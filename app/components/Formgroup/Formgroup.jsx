@@ -1,13 +1,15 @@
-import React, { forwardRef } from "react";
-import { Text, View, TextInput } from "react-native";
+import React, { forwardRef, useState } from "react";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import Eye from "../icons/Eye";
+import EyeOff from "../icons/EyeOff";
 
 const Formgroup = forwardRef(
   (
     {
+      type,
       label,
       value,
       onChangeText,
-      secure,
       returnKeyType,
       keyboardType,
       autoCapitalize,
@@ -15,25 +17,40 @@ const Formgroup = forwardRef(
       ...props
     },
     ref
-  ) => (
-    <View>
-      <Text className="text-base text-neutral-900">{label}</Text>
-      <TextInput
-        className="w-full h-10 border-spacing-x-2 pt-1 text-base text-neutral-900 border-b-2 border-deepMarine-300 outline-none focus:border-deepMarine-500 transition-all duration-300"
-        style={{ fontFamily: "Mulish-semibold" }}
-        value={value}
-        ref={ref}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSubmitEditing}
-        secureTextEntry={secure}
-        autoCapitalize={autoCapitalize}
-        blurOnSubmit={false}
-        returnKeyType={returnKeyType}
-        keyboardType={keyboardType}
-        {...props}
-      />
-    </View>
-  )
+  ) => {
+    const [secure, setSecure] = useState(true);
+
+    return (
+      <View>
+        <Text className="text-base text-neutral-900">{label}</Text>
+        <View className="relative">
+          <TextInput
+            className="w-full h-10 border-spacing-x-2 pt-1 text-base text-neutral-900 border-b-2 border-deepMarine-300 outline-none focus:border-deepMarine-500 transition-all duration-300"
+            style={{ fontFamily: "Mulish-semibold" }}
+            value={value}
+            ref={ref}
+            onChangeText={onChangeText}
+            onSubmitEditing={onSubmitEditing}
+            secureTextEntry={secure}
+            autoCapitalize={autoCapitalize}
+            blurOnSubmit={false}
+            returnKeyType={returnKeyType}
+            keyboardType={keyboardType}
+            {...props}
+          />
+          {type === "password" && (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              className="absolute right-2 top-0 "
+              onPress={() => setSecure(!secure)}
+            >
+              {secure ? <Eye /> : <EyeOff />}
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
+    );
+  }
 );
 
 export default Formgroup;

@@ -32,7 +32,7 @@ const Register = () => {
   }, []);
 
   return (
-    <SafeAreaView className="mt-2">
+    <SafeAreaView className="mt-2 bg-white h-full">
       <BackButton />
       <View className="px-4">
         <Text
@@ -98,6 +98,7 @@ const Register = () => {
 
           <View>
             <Formgroup
+              type="password"
               label="Wachtwoord"
               value={userPassword}
               onChangeText={(UserPassword) => setUserPassword(UserPassword)}
@@ -136,7 +137,7 @@ const Register = () => {
         <View>
           <PrimaryButton
             isLoading={isLoading}
-            label="Register"
+            label="Registreren"
             onPress={() => navigation.navigate("Intake")}
           />
         </View>

@@ -32,7 +32,7 @@ const Login = () => {
   }, []);
 
   return (
-    <SafeAreaView className="mt-2">
+    <SafeAreaView className="mt-2 bg-white h-full">
       <BackButton />
       <View className="px-4">
         <Text
@@ -60,11 +60,11 @@ const Login = () => {
 
           <View>
             <Formgroup
+              type="password"
               label="Wachtwoord"
               value={userPassword}
               ref={passwordInputRef}
               onChangeText={(UserPassword) => setUserPassword(UserPassword)}
-              secure={secure}
               onSubmitEditing={Keyboard.dismiss}
               returnKeyType="done"
             />

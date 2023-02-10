@@ -42,7 +42,7 @@ export default function Walkthrough() {
   }, []);
 
   return (
-    <View>
+    <View className="h-full bg-white">
       <View className="absolute z-10 bg-white py-[12px] px-[16px] top-[65px] right-4 rounded-full text-[20px]">
         <TouchableOpacity
           activeOpacity={0.8}

@@ -5,8 +5,7 @@ import {
   useWindowDimensions,
   TouchableOpacity,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import ArrowRight from "../icons/arrowRight";
+import ArrowRight from "../icons/ArrowRight";
 
 export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
   const { width } = useWindowDimensions();

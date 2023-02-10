@@ -27,7 +27,7 @@ const Landingscreen = () => {
   }, []);
 
   return (
-    <View>
+    <View className="bg-white h-full">
       <WalkthroughItem item={landingContent} />
       <View className="px-4 mt-10">
         <PrimaryButton
