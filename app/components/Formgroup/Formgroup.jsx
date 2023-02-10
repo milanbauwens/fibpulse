@@ -31,7 +31,7 @@ const Formgroup = forwardRef(
             ref={ref}
             onChangeText={onChangeText}
             onSubmitEditing={onSubmitEditing}
-            secureTextEntry={secure}
+            secureTextEntry={type === "password" ? secure : false}
             autoCapitalize={autoCapitalize}
             blurOnSubmit={false}
             returnKeyType={returnKeyType}
