@@ -41,7 +41,7 @@ const Formgroup = forwardRef(
           {type === "password" && (
             <TouchableOpacity
               activeOpacity={0.8}
-              className="absolute right-2 top-0 "
+              className="absolute right-2 h-6 w-6 top-2 flex items-center justify-center text-neutral-900"
               onPress={() => setSecure(!secure)}
             >
               {secure ? <Eye /> : <EyeOff />}

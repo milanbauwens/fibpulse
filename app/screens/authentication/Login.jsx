@@ -14,6 +14,7 @@ import Formgroup from "../../components/Formgroup/Formgroup";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -71,7 +72,13 @@ const Login = () => {
           </View>
 
           <View>
-            <TouchableOpacity activeOpacity={0.8} className="mb-4 w-full">
+            <TouchableOpacity
+              activeOpacity={0.8}
+              className="mb-4 w-full"
+              onPress={() => {
+                AsyncStorage.removeItem("@viewedOnboarding");
+              }}
+            >
               <Text
                 className="text-right pr-2 text-base text-neutral-900"
                 style={{ fontFamily: "Mulish-medium" }}

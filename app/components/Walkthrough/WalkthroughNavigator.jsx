@@ -6,12 +6,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import ArrowRight from "../icons/ArrowRight";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View className=" flex flex-row items-center justify-between px-4 h-12 mt-8">
+    <View
+      className="w-full absolute flex flex-row items-center justify-between px-4 h-12 mt-8"
+      style={{ bottom: insets.bottom + 32 }}
+    >
       <View className="flex flex-row gap-x-3">
         {data.map((_, index) => {
           const inputRange = [
