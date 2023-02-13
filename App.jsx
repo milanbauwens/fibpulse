@@ -23,8 +23,8 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [passedOnboarding, setPassedOnboarding] = useState(false);
 
-  const auth = useContext(AuthContext);
-  const user = auth.user;
+  // const auth = useContext(AuthContext);
+  // const user = auth.user;
 
   const checkOnboarding = async () => {
     const onboardingAsyncStorage = await AsyncStorage.getItem(
@@ -60,7 +60,7 @@ export default function App() {
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
 
-            {user && <Stack.Screen name="Intake" component={Intake} />}
+            <Stack.Screen name="Intake" component={Intake} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

@@ -2,13 +2,13 @@ import { Link, useNavigation } from "@react-navigation/native";
 import React, { createRef, useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Keyboard, KeyboardAvoidingView, Text, View } from "react-native";
+import { supabase } from "../../db/initSupabase";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
-import { supabase } from "../../db/initSupabase";
 
 const Register = () => {
   const navigation = useNavigation();
@@ -59,11 +59,11 @@ const Register = () => {
           email: userEmail,
           password: userPassword,
         });
-        // Acd name and surname to the user
+        // Acd name and surname to userData table
         await supabase
-          .from("profiles")
+          .from("userData")
           .insert([
-            { user_id: user.id, name: userName, surname: userFirstname },
+            { user_id: user.id, name: userName, firstname: userFirstname },
           ]);
       } catch (error) {
         setIsLoading(false);
@@ -75,6 +75,15 @@ const Register = () => {
     } else {
       setIsLoading(false);
     }
+  }
+
+  async function signInWithProvider() {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "http://localhost:19000/Intake",
+      },
+    });
   }
 
   useLayoutEffect(() => {
@@ -195,8 +204,14 @@ const Register = () => {
         </View>
 
         <View className="mt-6">
-          <AuthProviderButton provider="Google" />
-          <AuthProviderButton provider="Facebook" />
+          <AuthProviderButton
+            onPress={() => signInWithProvider()}
+            provider="google"
+          />
+          {/* <AuthProviderButton
+            onPress={() => signInWithProvider("facebook")}
+            provider="faceboook"
+          /> */}
         </View>
       </View>
     </SafeAreaView>
