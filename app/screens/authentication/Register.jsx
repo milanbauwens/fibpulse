@@ -3,6 +3,7 @@ import React, { createRef, useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Keyboard, KeyboardAvoidingView, Text, View } from "react-native";
 import { supabase } from "../../db/initSupabase";
+import { useForm, Controller } from "react-hook-form";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
@@ -12,79 +13,52 @@ import BackButton from "../../components/Buttons/BackButton";
 
 const Register = () => {
   const navigation = useNavigation();
-  const [userFirstname, setUserFirstname] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const [isLoading, setIsLoading] = useState(false);
-  const [errortext, setErrortext] = useState("");
-  const [secure, setSecure] = useState(true);
 
   const passwordInputRef = createRef();
   const emailInputRef = createRef();
   const nameInputRef = createRef();
   const firstnameInputRef = createRef();
 
-  const checkTextInput = () => {
-    //Check for the Name TextInput
-    if (!userName.trim()) {
-      alert("Please Enter Name");
-      return false;
-    }
-    //Check for the Firstname TextInput
-    if (!userFirstname.trim()) {
-      alert("Please Enter Name");
-      return false;
-    }
-    //Check for the Email TextInput
-    if (!userEmail.trim()) {
-      alert("Please Enter Email");
-      return false;
-    }
-    //Check for the Password TextInput
-    if (!userPassword.trim()) {
-      alert("Please Enter Email ");
-      return false;
-    }
-
-    return true;
-  };
-
-  async function register() {
+  async function register(data) {
     setIsLoading(true);
-    if (checkTextInput()) {
-      try {
-        // Create a new user
-        const { user, error } = await supabase.auth.signUp({
-          email: userEmail,
-          password: userPassword,
-        });
-        // Acd name and surname to userData table
-        await supabase
-          .from("userData")
-          .insert([
-            { user_id: user.id, name: userName, firstname: userFirstname },
-          ]);
-      } catch (error) {
-        setIsLoading(false);
-        setErrortext(error.message);
-      } finally {
-        setIsLoading(false);
-        navigation.navigate("Intake");
-      }
-    } else {
+    try {
+      // Create a new user
+      const { user, error } = await supabase.auth.signUp({
+        email: data.userEmail,
+        password: data.userPassword,
+      });
+      // Acd name and surname to userData table
+      await supabase.from("userData").insert([
+        {
+          user_id: user.id,
+          name: data.userName,
+          firstname: data.userFirstname,
+        },
+      ]);
+    } catch (error) {
+      console.error(error);
       setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+      navigation.navigate("Intake");
     }
   }
 
-  async function signInWithProvider() {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: "http://localhost:19000/Intake",
-      },
-    });
-  }
+  // async function signInWithProvider() {
+  //   await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       redirectTo: "http://localhost:19000/Intake",
+  //     },
+  //   });
+  // }
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -111,30 +85,30 @@ const Register = () => {
           <View className="flex flex-row gap-x-4">
             <View className="basis-[38%]">
               <Formgroup
+                rules={{ required: "Vul een voornaam in." }}
+                control={control}
                 label="Voornaam"
                 ref={firstnameInputRef}
-                value={userFirstname}
-                onChangeText={(UserFirstname) =>
-                  setUserFirstname(UserFirstname)
-                }
                 returnKeyType="next"
                 autoCapitalize={true}
                 keyboardType="default"
+                inputName="userFirstname"
                 onSubmitEditing={() =>
-                  nameInputRef.current && nameInputRef.current.focus()
+                  firstnameInputRef.current && firstnameInputRef.current.focus()
                 }
               />
             </View>
 
             <View className="basis-[65%] ">
               <Formgroup
+                rules={{ required: "Vul een naam in." }}
+                control={control}
                 label="Naam"
                 ref={nameInputRef}
-                value={userName}
-                onChangeText={(UserName) => setUserName(UserName)}
                 returnKeyType="next"
                 autoCapitalize={true}
                 keyboardType="default"
+                inputName="userName"
                 onSubmitEditing={() =>
                   emailInputRef.current && emailInputRef.current.focus()
                 }
@@ -144,31 +118,37 @@ const Register = () => {
 
           <View>
             <Formgroup
+              rules={{ required: "Vul een e-mail in." }}
+              control={control}
               label="E-mail"
-              value={userEmail}
-              autoCapitalize="none"
-              onChangeText={(UserEmail) => setUserEmail(UserEmail)}
+              ref={emailInputRef}
               returnKeyType="next"
+              autoCapitalize={false}
               keyboardType="email-address"
+              inputName="userEmail"
               onSubmitEditing={() =>
                 passwordInputRef.current && passwordInputRef.current.focus()
               }
-              ref={emailInputRef}
             />
           </View>
 
           <View>
             <Formgroup
-              type="password"
+              rules={{
+                required: "Vul een wachtwoord in.",
+                minLength: {
+                  value: 6,
+                  message: "Wachtwoord moet minstens 6 karakters lang zijn.",
+                },
+              }}
+              control={control}
               label="Wachtwoord"
-              value={userPassword}
-              onChangeText={(UserPassword) => setUserPassword(UserPassword)}
-              passwordRules={true}
-              secure={secure}
-              onSubmitEditing={Keyboard.dismiss}
-              blurOnSubmit={false}
-              returnKeyType="done"
+              inputName="userPassword"
               ref={passwordInputRef}
+              returnKeyType="done"
+              autoCapitalize={true}
+              keyboardType="default"
+              type="password"
             />
           </View>
         </KeyboardAvoidingView>
@@ -199,7 +179,7 @@ const Register = () => {
           <PrimaryButton
             isLoading={isLoading}
             label="Registreren"
-            onPress={register}
+            onPress={handleSubmit(register)}
           />
         </View>
 
