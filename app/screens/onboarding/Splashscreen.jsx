@@ -1,13 +1,8 @@
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { Asset } from "expo-asset";
+import { Asset, useAssets } from "expo-asset";
 import Constants from "expo-constants";
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Animated, Dimensions, Easing, StyleSheet, View } from "react-native";
 
 export function SplashscreenLoader({ children, image }) {
@@ -29,7 +24,6 @@ export function SplashscreenLoader({ children, image }) {
     async function prepare() {
       try {
         await Asset.fromURI(image.uri).downloadAsync();
-
       } catch (e) {
         console.error("Error:", e);
       } finally {
@@ -44,9 +38,7 @@ export function SplashscreenLoader({ children, image }) {
     return null;
   }
 
-  return (
-      <AnimatedSplashScreen image={image}>{children}</AnimatedSplashScreen>
-  );
+  return <AnimatedSplashScreen image={image}>{children}</AnimatedSplashScreen>;
 }
 
 function AnimatedSplashScreen({ children, image }) {
@@ -79,8 +71,7 @@ function AnimatedSplashScreen({ children, image }) {
   const onImageLoaded = useCallback(async () => {
     try {
       await SplashScreen.hideAsync();
-      // Load stuff
-      await Promise.all([]);
+      await Promise.all([fontsloaded]);
     } catch (e) {
       // handle errors
     } finally {

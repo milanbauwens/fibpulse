@@ -1,13 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { Animated, FlatList, Text } from "react-native";
+import { Animated, FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import slides from "../../content/intake.js";
 import IntakeItem from "../../components/Intake/IntakeItem";
 import IntakePaginator from "../../components/Intake/IntakePaginator";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
-import { View } from "react-native";
 
 const Intake = () => {
   const navigation = useNavigation();
@@ -64,7 +63,9 @@ const Intake = () => {
         data={slides}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => <IntakeItem data={item} />}
+        renderItem={({ item }) => (
+          <IntakeItem currentSlide={currentSlide} data={item} />
+        )}
         bounces={false}
         pagingEnabled
         scrollEnabled={false}

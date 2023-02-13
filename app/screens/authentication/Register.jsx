@@ -8,7 +8,7 @@ import Formgroup from "../../components/Formgroup/Formgroup";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
-import Login from "./Login";
+import { supabase } from "../../db/initSupabase";
 
 const Register = () => {
   const navigation = useNavigation();
@@ -24,6 +24,58 @@ const Register = () => {
   const emailInputRef = createRef();
   const nameInputRef = createRef();
   const firstnameInputRef = createRef();
+
+  const checkTextInput = () => {
+    //Check for the Name TextInput
+    if (!userName.trim()) {
+      alert("Please Enter Name");
+      return false;
+    }
+    //Check for the Firstname TextInput
+    if (!userFirstname.trim()) {
+      alert("Please Enter Name");
+      return false;
+    }
+    //Check for the Email TextInput
+    if (!userEmail.trim()) {
+      alert("Please Enter Email");
+      return false;
+    }
+    //Check for the Password TextInput
+    if (!userPassword.trim()) {
+      alert("Please Enter Email ");
+      return false;
+    }
+
+    return true;
+  };
+
+  async function register() {
+    setIsLoading(true);
+    if (checkTextInput()) {
+      try {
+        // Create a new user
+        const { user, error } = await supabase.auth.signUp({
+          email: userEmail,
+          password: userPassword,
+        });
+        // Acd name and surname to the user
+        await supabase
+          .from("profiles")
+          .insert([
+            { user_id: user.id, name: userName, surname: userFirstname },
+          ]);
+      } catch (error) {
+        setIsLoading(false);
+        setErrortext(error.message);
+      } finally {
+        setIsLoading(false);
+        navigation.navigate("Intake");
+      }
+    } else {
+      setIsLoading(false);
+    }
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -138,7 +190,7 @@ const Register = () => {
           <PrimaryButton
             isLoading={isLoading}
             label="Registreren"
-            onPress={() => navigation.navigate("Intake")}
+            onPress={register}
           />
         </View>
 

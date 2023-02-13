@@ -1,21 +1,23 @@
+import DatePicker from "@dietime/react-native-date-picker";
 import React, { useState } from "react";
 import {
   View,
   Text,
   useWindowDimensions,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 
-const IntakeItem = ({ data }) => {
+const IntakeItem = ({ data, currentSlide }) => {
   const { width } = useWindowDimensions();
 
   const [selectedRisks, setSelectedRisks] = useState([]);
   const [selectedEpisodeAmount, setSelectedEpisodeAmount] = useState();
   const [selectedGender, setSelectedGender] = useState();
-  const [selectedAge, setSelectedAge] = useState();
+  const [date, setDate] = useState();
 
   return (
-    <View style={{ width }}>
+    <View style={{ width }} className="h-full bg-white">
       <View className="mt-8 px-4">
         <Text
           style={{ fontFamily: "Mulish-regular" }}
@@ -32,7 +34,7 @@ const IntakeItem = ({ data }) => {
         </Text>
       </View>
 
-      {data.options && (
+      {data.options ? (
         <View className="mt-12">
           {data.options && data.options.length > 5 ? (
             <View className="px-4 flex flex-row flex-wrap gap-4">
@@ -128,6 +130,15 @@ const IntakeItem = ({ data }) => {
               })}
             </View>
           )}
+        </View>
+      ) : (
+        <View className="mt-28">
+          <DatePicker
+            value={date}
+            textColor="#336666"
+            markColor="#D6E7EB"
+            onChange={(date) => setDate(date)}
+          />
         </View>
       )}
     </View>

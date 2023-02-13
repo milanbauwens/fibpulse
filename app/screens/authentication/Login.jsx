@@ -22,7 +22,6 @@ const Login = () => {
   const [userPassword, setUserPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errortext, setErrortext] = useState("");
-  const [secure, setSecure] = useState(true);
 
   const passwordInputRef = createRef();
 
