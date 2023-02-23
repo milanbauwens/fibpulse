@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { View, Text, FlatList, Animated, TouchableOpacity } from "react-native";
 import WalkthroughItem from "../../components/Walkthrough/WalkthroughItem";
 import WalkthroughNavigator from "../../components/Walkthrough/WalkthroughNavigator";
@@ -8,7 +8,7 @@ import slides from "../../content/walkthrough";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Walkthrough() {
-  const navigation = useNavigation();
+  const authStackNavigation = useNavigation();
   const slidesRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -29,17 +29,11 @@ export default function Walkthrough() {
       } catch (err) {
         console.error("Error @setAsyncStorage:", err);
       } finally {
-        navigation.navigate("Landing");
+        authStackNavigation.navigate("Auth", { screen: "Landing" });
       }
     }
     return;
   };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
 
   return (
     <View className="h-full bg-white relative">
@@ -55,7 +49,7 @@ export default function Walkthrough() {
             } catch (err) {
               console.error("Error @setAsyncStorage:", err);
             } finally {
-              navigation.navigate("Landing");
+              authStackNavigation.navigate("Landing");
             }
           }}
         >

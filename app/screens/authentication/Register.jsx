@@ -1,15 +1,16 @@
 import { Link, useNavigation } from "@react-navigation/native";
-import React, { createRef, useLayoutEffect, useState } from "react";
+import React, { createRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Keyboard, KeyboardAvoidingView, Text, View } from "react-native";
 import { supabase } from "../../db/initSupabase";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
+import handleSupabaseError from "../../utils/handleSupabaseError";
 
 const Register = () => {
   const navigation = useNavigation();
@@ -20,34 +21,47 @@ const Register = () => {
   } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [signUpError, setSignUpError] = useState();
 
   const passwordInputRef = createRef();
   const emailInputRef = createRef();
   const nameInputRef = createRef();
   const firstnameInputRef = createRef();
 
-  async function register(data) {
+  async function handleRegister(formData) {
     setIsLoading(true);
     try {
-      // Create a new user
-      const { user, error } = await supabase.auth.signUp({
-        email: data.userEmail,
-        password: data.userPassword,
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.userEmail,
+        password: formData.userPassword,
       });
-      // Acd name and surname to userData table
-      await supabase.from("userData").insert([
-        {
-          user_id: user.id,
-          name: data.userName,
-          firstname: data.userFirstname,
-        },
-      ]);
+
+      if (error) {
+        const errorMessage = handleSupabaseError(error.status);
+        setSignUpError(errorMessage);
+        return;
+      } else {
+        const { error } = await supabase.from("profiles").upsert([
+          {
+            user_id: data.user?.id,
+            lastname: formData.userName,
+            firstname: formData.userFirstname,
+          },
+        ]);
+
+        if (error) {
+          const errorMessage = handleSupabaseError(error.status);
+          setSignUpError(errorMessage);
+          return;
+        } else {
+          navigation.navigate("VerifyEmail");
+        }
+      }
     } catch (error) {
       console.error(error);
       setIsLoading(false);
     } finally {
       setIsLoading(false);
-      navigation.navigate("Intake");
     }
   }
 
@@ -59,12 +73,6 @@ const Register = () => {
   //     },
   //   });
   // }
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
 
   return (
     <SafeAreaView className="mt-2 bg-white h-full">
@@ -82,6 +90,17 @@ const Register = () => {
           enabled
           className="overflow-hidden flex flex-col gap-y-8"
         >
+          {signUpError && (
+            <View
+              className=" bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <Text className="block text-red-700 text-center sm:inline">
+                {signUpError}
+              </Text>
+            </View>
+          )}
+
           <View className="flex flex-row gap-x-4">
             <View className="basis-[38%]">
               <Formgroup
@@ -94,7 +113,7 @@ const Register = () => {
                 keyboardType="default"
                 inputName="userFirstname"
                 onSubmitEditing={() =>
-                  firstnameInputRef.current && firstnameInputRef.current.focus()
+                  nameInputRef.current && nameInputRef.current.focus()
                 }
               />
             </View>
@@ -118,7 +137,13 @@ const Register = () => {
 
           <View>
             <Formgroup
-              rules={{ required: "Vul een e-mail in." }}
+              rules={{
+                required: "Vul een e-mail in.",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Vul een geldig e-mailadres in.",
+                },
+              }}
               control={control}
               label="E-mail"
               ref={emailInputRef}
@@ -146,9 +171,10 @@ const Register = () => {
               inputName="userPassword"
               ref={passwordInputRef}
               returnKeyType="done"
-              autoCapitalize={true}
+              autoCapitalize={false}
               keyboardType="default"
               type="password"
+              onSubmitEditing={Keyboard.dismiss}
             />
           </View>
         </KeyboardAvoidingView>
@@ -179,7 +205,7 @@ const Register = () => {
           <PrimaryButton
             isLoading={isLoading}
             label="Registreren"
-            onPress={handleSubmit(register)}
+            onPress={handleSubmit(handleRegister)}
           />
         </View>
 

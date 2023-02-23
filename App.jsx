@@ -1,18 +1,15 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SplashScreen from "expo-splash-screen";
-import Constants from "expo-constants";
 import { SplashscreenLoader } from "./app/screens/onboarding/Splashscreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect, useContext } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-// Screens
-import Walkthrough from "./app/screens/onboarding/Walkthrough";
-import Landingscreen from "./app/screens/authentication/Landingscreen";
-import Register from "./app/screens/authentication/Register";
-import Login from "./app/screens/authentication/Login";
-import Intake from "./app/screens/onboarding/Intake";
+// Stacks
+import Dashboard from "./app/screens/Dashboard";
+import AuthStackScreens from "./app/router/AuthStack";
+import OnboardingStackScreens from "./app/router/OnboardingStack";
 // import { AuthContext } from "./app/database/providor/AuthProvidor";
 
 // Keep the splash screen visible while app is loading
@@ -43,24 +40,19 @@ export default function App() {
   }, []);
 
   return (
-    <SplashscreenLoader image={{ uri: Constants.manifest.splash.imageUrl }}>
+    <SplashscreenLoader>
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator>
             {!isLoading && passedOnboarding ? (
-              <>
-                <Stack.Screen name="Landing" component={Landingscreen} />
-              </>
+              <Stack.Screen name="Auth" component={AuthStackScreens} />
             ) : (
-              <>
-                <Stack.Screen name="Walkthrough" component={Walkthrough} />
-                <Stack.Screen name="Landing" component={Landingscreen} />
-              </>
+              <Stack.Screen
+                name="Onboarding"
+                component={OnboardingStackScreens}
+              />
             )}
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Register" component={Register} />
-
-            <Stack.Screen name="Intake" component={Intake} />
+            <Stack.Screen name="Dashboard" component={Dashboard} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Animated, FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -19,8 +19,7 @@ const Intake = () => {
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentSlide(viewableItems[0].index);
   }).current;
-  `
-`;
+
   const scrollTo = async () => {
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
@@ -42,12 +41,6 @@ const Intake = () => {
     }
     return;
   };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
 
   return (
     <SafeAreaView className="relative h-full bg-white">

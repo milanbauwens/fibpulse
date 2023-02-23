@@ -1,13 +1,6 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import React, { useLayoutEffect } from "react";
-import {
-  Button,
-  SafeAreaView,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import React from "react";
+import { Text, View, TouchableOpacity } from "react-native";
 import WalkthroughItem from "../../components/Walkthrough/WalkthroughItem";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 
@@ -19,12 +12,6 @@ const landingContent = {
 
 const Landingscreen = () => {
   const navigation = useNavigation();
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
 
   return (
     <View className="bg-white h-full">

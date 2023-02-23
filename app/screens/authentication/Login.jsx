@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { createRef, useLayoutEffect, useState } from "react";
+import React, { createRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   Keyboard,
@@ -15,21 +15,41 @@ import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useForm } from "react-hook-form";
+import { supabase } from "../../db/initSupabase";
+import handleSupabaseError from "../../utils/handleSupabaseError";
 
 const Login = () => {
   const navigation = useNavigation();
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [isLoading, setIsLoading] = useState(false);
-  const [errortext, setErrortext] = useState("");
+  const [signInError, setSignInError] = useState();
 
   const passwordInputRef = createRef();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
+  const handleLogin = async (formData) => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.userEmail,
+        password: formData.userPassword,
+      });
+      if (error) {
+        const errorMessage = handleSupabaseError(error.status);
+        setSignInError(errorMessage);
+      } else {
+        navigation.navigate("Dashboard");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <SafeAreaView className="mt-2 bg-white h-full">
@@ -42,16 +62,33 @@ const Login = () => {
           Log in bij uw account
         </Text>
 
-        {/*  Form */}
         <KeyboardAvoidingView enabled className="flex flex-col gap-y-8">
+          {signInError && (
+            <View
+              className=" bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <Text className="block text-center text-red-700 sm:inline">
+                {signInError}
+              </Text>
+            </View>
+          )}
+
           <View>
             <Formgroup
+              rules={{
+                required: "Vul een e-mail in.",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Vul een geldig e-mailadres in.",
+                },
+              }}
+              control={control}
               label="E-mail"
-              value={userEmail}
-              onChangeText={(UserEmail) => setUserEmail(UserEmail)}
               returnKeyType="next"
-              autoCapitalize="none"
+              autoCapitalize={false}
               keyboardType="email-address"
+              inputName="userEmail"
               onSubmitEditing={() =>
                 passwordInputRef.current && passwordInputRef.current.focus()
               }
@@ -60,13 +97,22 @@ const Login = () => {
 
           <View>
             <Formgroup
-              type="password"
+              rules={{
+                required: "Vul een wachtwoord in.",
+                minLength: {
+                  value: 6,
+                  message: "Wachtwoord moet minstens 6 karakters lang zijn.",
+                },
+              }}
+              control={control}
               label="Wachtwoord"
-              value={userPassword}
+              inputName="userPassword"
               ref={passwordInputRef}
-              onChangeText={(UserPassword) => setUserPassword(UserPassword)}
-              onSubmitEditing={Keyboard.dismiss}
               returnKeyType="done"
+              autoCapitalize={false}
+              keyboardType="default"
+              type="password"
+              onSubmitEditing={Keyboard.dismiss}
             />
           </View>
 
@@ -86,12 +132,16 @@ const Login = () => {
               </Text>
             </TouchableOpacity>
 
-            <PrimaryButton isLoading={isLoading} label="Log in" />
+            <PrimaryButton
+              onPress={handleSubmit(handleLogin)}
+              isLoading={isLoading}
+              label="Log in"
+            />
           </View>
         </KeyboardAvoidingView>
         <View className="mt-11">
-          <AuthProviderButton provider="Google" />
-          <AuthProviderButton provider="Facebook" />
+          <AuthProviderButton provider="google" />
+          <AuthProviderButton provider="facebook" />
         </View>
       </View>
     </SafeAreaView>

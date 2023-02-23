@@ -1,11 +1,10 @@
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { Asset, useAssets } from "expo-asset";
-import Constants from "expo-constants";
+import { Asset } from "expo-asset";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Animated, Dimensions, Easing, StyleSheet, View } from "react-native";
 
-export function SplashscreenLoader({ children, image }) {
+export function SplashscreenLoader({ children }) {
   const [isSplashReady, setSplashReady] = useState(false);
   const [fontsLoaded] = useFonts({
     //Mulish Fonts
@@ -23,7 +22,6 @@ export function SplashscreenLoader({ children, image }) {
   useEffect(() => {
     async function prepare() {
       try {
-        await Asset.fromURI(image.uri).downloadAsync();
       } catch (e) {
         console.error("Error:", e);
       } finally {
@@ -32,16 +30,16 @@ export function SplashscreenLoader({ children, image }) {
     }
 
     prepare();
-  }, [image]);
+  }, []);
 
   if (!isSplashReady) {
     return null;
   }
 
-  return <AnimatedSplashScreen image={image}>{children}</AnimatedSplashScreen>;
+  return <AnimatedSplashScreen>{children}</AnimatedSplashScreen>;
 }
 
-function AnimatedSplashScreen({ children, image }) {
+function AnimatedSplashScreen({ children }) {
   const fadeOut = useMemo(() => new Animated.Value(1), []);
   const moveX = useMemo(() => new Animated.Value(0));
   const [isAppReady, setAppReady] = useState(false);
@@ -88,7 +86,7 @@ function AnimatedSplashScreen({ children, image }) {
           style={[
             StyleSheet.absoluteFill,
             {
-              backgroundColor: Constants.manifest.splash.backgroundColor,
+              backgroundColor: "#336666",
               transform: [
                 {
                   translateX: moveX,
@@ -101,10 +99,11 @@ function AnimatedSplashScreen({ children, image }) {
             style={{
               width: "100%",
               height: "100%",
-              resizeMode: Constants.manifest.splash.resizeMode || "contain",
+              marginBottom: 28,
+              resizeMode: "contain",
               opacity: fadeOut,
             }}
-            source={image}
+            source={require("../../../assets/splash.png")}
             onLoadEnd={onImageLoaded}
             fadeDuration={0}
           />
