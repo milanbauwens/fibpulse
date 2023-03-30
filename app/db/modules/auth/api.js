@@ -20,7 +20,7 @@ export const SignInWithProvider = async (provider = "google") => {
 
   const authResponse = await startAsync({
     projectNameForProxy: "@supabase/fibpulse",
-    authUrl: `${SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${redirectUrl}`,
+    authUrl: `${SUPABASE_URL}/auth/v1/authorize?provider=${provider}`,
     returnUrl: redirectUrl,
   });
 

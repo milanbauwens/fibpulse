@@ -98,7 +98,7 @@ const Login = () => {
               control={control}
               label="E-mail"
               returnKeyType="next"
-              autoCapitalize={false}
+              autoCapitalize="none"
               keyboardType="email-address"
               inputName="userEmail"
               onSubmitEditing={() =>
@@ -121,7 +121,7 @@ const Login = () => {
               inputName="userPassword"
               ref={passwordInputRef}
               returnKeyType="done"
-              autoCapitalize={false}
+              autoCapitalize="none"
               keyboardType="default"
               type="password"
               onSubmitEditing={Keyboard.dismiss}

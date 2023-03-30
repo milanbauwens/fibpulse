@@ -3,6 +3,7 @@
     "name": "fibpulse",
     "slug": "fibpulse",
     "version": "1.0.0",
+    "scheme": "fibpulse",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -15,9 +16,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/a32b5503-7a1e-40e7-ad8f-e958348387ee"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.milanbauwens.fibpulse"
@@ -36,6 +35,7 @@
       "eas": {
         "projectId": "a32b5503-7a1e-40e7-ad8f-e958348387ee"
       }
-    }
+    },
+    "runtimeVersion": "exposdk:48.0.0"
   }
 }

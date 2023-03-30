@@ -109,7 +109,7 @@ const Register = () => {
                 label="Voornaam"
                 ref={firstnameInputRef}
                 returnKeyType="next"
-                autoCapitalize={true}
+                autoCapitalize="words"
                 keyboardType="default"
                 inputName="userFirstname"
                 onSubmitEditing={() =>
@@ -125,7 +125,7 @@ const Register = () => {
                 label="Naam"
                 ref={nameInputRef}
                 returnKeyType="next"
-                autoCapitalize={true}
+                autoCapitalize="words"
                 keyboardType="default"
                 inputName="userName"
                 onSubmitEditing={() =>
@@ -148,7 +148,7 @@ const Register = () => {
               label="E-mail"
               ref={emailInputRef}
               returnKeyType="next"
-              autoCapitalize={false}
+              autoCapitalize="none"
               keyboardType="email-address"
               inputName="userEmail"
               onSubmitEditing={() =>
@@ -171,7 +171,7 @@ const Register = () => {
               inputName="userPassword"
               ref={passwordInputRef}
               returnKeyType="done"
-              autoCapitalize={false}
+              autoCapitalize="none"
               keyboardType="default"
               type="password"
               onSubmitEditing={Keyboard.dismiss}
@@ -179,7 +179,7 @@ const Register = () => {
           </View>
         </KeyboardAvoidingView>
         <Text
-          className="text-sm text-neutralMarine-400 mt-3 mb-8"
+          className="text-sm text-deepMarine-900 mt-3 mb-8"
           style={{ fontFamily: "Mulish-regular" }}
         >
           Door zich te registreren, gaat u akkoord met onze{" "}
