@@ -15,13 +15,16 @@ export default function AuthStack() {
   const [passedOnboarding, setPassedOnboarding] = useState(false);
 
   const checkOnboarding = async () => {
-    const onboardingAsyncStorage = await AsyncStorage.getItem(
-      "@viewedOnboarding"
-    );
-    if (onboardingAsyncStorage !== null) {
-      setPassedOnboarding(true);
+    try {
+      const onboardingAsyncStorage = await AsyncStorage.getItem(
+        "@viewedOnboarding"
+      );
+      if (onboardingAsyncStorage !== null) {
+        setPassedOnboarding(true);
+      }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -30,7 +33,7 @@ export default function AuthStack() {
 
   return (
     <Stack.Navigator>
-      {!passedOnboarding && (
+      {!isLoading && !passedOnboarding && (
         <Stack.Screen
           options={{ headerShown: false }}
           name="Walktrough"

@@ -26,6 +26,7 @@ const IntakeItem = ({ data, currentSlide }) => {
         gender: selectedGender,
         vkf_frequency: selectedEpisodeAmount,
         risk_factors: selectedRisks,
+        passed_intake: true,
       },
     ]);
     if (error) {

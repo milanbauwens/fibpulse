@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // Screens
@@ -10,21 +10,43 @@ import { useAuthContext } from "../../components/Auth/AuthProvider";
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
   const { user } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(true);
+  const [userIsVerified, setUserIsVerified] = useState(false);
+  const [userPassedIntake, setUserPassedIntake] = useState(false);
+
+  const checkUserProgress = async () => {
+    try {
+      if (user?.emailVerified) {
+        setUserIsVerified(true);
+      }
+      if (user?.passedIntake) {
+        setUserPassedIntake(true);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    checkUserProgress();
+  }, []);
 
   return (
     <Stack.Navigator>
-      {!user.email_verified && (
+      {!isLoading && !userIsVerified && (
         <Stack.Screen
           options={{ headerShown: false }}
           name="VerifyEmail"
           component={VerifyEmail}
         />
       )}
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Intake"
-        component={Intake}
-      />
+      {!isLoading && !userPassedIntake && (
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Intake"
+          component={Intake}
+        />
+      )}
       <Stack.Screen
         options={{ headerShown: false }}
         name="Dashboard"

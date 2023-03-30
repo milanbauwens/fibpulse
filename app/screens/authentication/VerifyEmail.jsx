@@ -11,8 +11,6 @@ const VerifyEmail = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthContext();
 
-  console.log(user);
-
   const checkVerifyEmail = () => {
     setIsLoading(true);
     try {
