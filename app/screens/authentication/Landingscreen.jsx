@@ -22,12 +22,13 @@ const Landingscreen = () => {
           label="Maak een profiel"
         />
         <TouchableOpacity
+          className="mt-2"
           onPress={() => navigation.navigate("Login")}
           activeOpacity={1}
         >
           <Text
             style={{ fontFamily: "Mulish-regular" }}
-            className="text-center text-lg text-neutral-900"
+            className="text-center text-lg text-deepMarine-900"
           >
             Heeft u al een profiel?{" "}
             <Text

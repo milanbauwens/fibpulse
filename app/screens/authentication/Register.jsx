@@ -80,7 +80,7 @@ const Register = () => {
       <View className="px-4">
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
-          className="text-2xl text-neutral-900 mb-8"
+          className="text-2xl text-deepMarine-900 mb-8"
         >
           Maak een nieuw profiel
         </Text>
@@ -179,7 +179,7 @@ const Register = () => {
           </View>
         </KeyboardAvoidingView>
         <Text
-          className="text-sm text-neutral-600 mt-3 mb-8"
+          className="text-sm text-neutralMarine-400 mt-3 mb-8"
           style={{ fontFamily: "Mulish-regular" }}
         >
           Door zich te registreren, gaat u akkoord met onze{" "}
@@ -209,15 +209,19 @@ const Register = () => {
           />
         </View>
 
-        <View className="mt-6">
-          <AuthProviderButton
-            onPress={() => signInWithProvider()}
-            provider="google"
-          />
-          {/* <AuthProviderButton
-            onPress={() => signInWithProvider("facebook")}
-            provider="faceboook"
-          /> */}
+        <View className="relative flex flex-row py-5 items-center mt-2 mb-4">
+          <View className="flex-grow border-t border-deepMarine-500" />
+          <Text
+            style={{ fontFamily: "Mulish-medium" }}
+            className="flex-shrink mx-4 text-deepMarine-900 text-base"
+          >
+            Of ga verder met
+          </Text>
+          <View className="flex-grow border-t border-gray-400" />
+        </View>
+        <View className="content-center flex-row flex-nowrap flex align-middle justify-between">
+          <AuthProviderButton provider="google" />
+          <AuthProviderButton provider="facebook" />
         </View>
       </View>
     </SafeAreaView>

@@ -50,7 +50,7 @@ const VerifyEmail = () => {
   return (
     <SafeAreaView className="px-4 h-screen bg-white">
       <View className="flex h-full flex-col items-center">
-        <VerifiedEmail className="mb-14 mt-2" />
+        <VerifiedEmail className="mb-8 mt-8" />
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
           className="text-[28px] text-center text-neutral-900 mb-4 leading-10 "
@@ -66,25 +66,25 @@ const VerifyEmail = () => {
           u geen e-mail terugvindt.
         </Text>
         <View className="w-full px-4 absolute bottom-6">
-          <TouchableOpacity
-            className="w-full"
-            onPress={resendVerificationEmail}
-            activeOpacity={0.8}
-          >
-            <Text
-              style={{ fontFamily: "Mulish-semibold" }}
-              className="text-base text-center text-neutral-900 mb-4"
-            >
-              Stuur verificatie e-mail opnieuw.
-            </Text>
-          </TouchableOpacity>
-          <PrimaryButton
+        <PrimaryButton
             label="E-mail geverifiëerd"
             onPress={() => {
               navigation.navigate("Intake");
             }}
             isLoading={isLoading}
           />
+          <TouchableOpacity
+            className="w-full mt-2"
+            onPress={resendVerificationEmail}
+            activeOpacity={0.8}
+          >
+            <Text
+              style={{ fontFamily: "Mulish-semibold" }}
+              className="text-base text-center text-neutral-900"
+            >
+              Stuur verificatie e-mail opnieuw.
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>

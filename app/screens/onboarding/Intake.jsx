@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Animated, FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -29,7 +29,7 @@ const Intake = () => {
       } catch (err) {
         console.error("Error intake error:", err);
       } finally {
-        navigation.navigate("Landing");
+        navigation.navigate("Dashboard");
       }
     }
     return;
@@ -73,7 +73,10 @@ const Intake = () => {
         ref={slidesRef}
       />
       <View className="w-full px-4 absolute bottom-6">
-        <PrimaryButton label="Volgende" onPress={scrollTo} />
+        <PrimaryButton
+          label={currentSlide <= 2 ? " Volgende" : "Voltooi"}
+          onPress={scrollTo}
+        />
       </View>
     </SafeAreaView>
   );

@@ -1,20 +1,49 @@
-import DatePicker from "@dietime/react-native-date-picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import {
   View,
   Text,
   useWindowDimensions,
   TouchableOpacity,
-  Platform,
 } from "react-native";
+import { useAuthContext } from "../Auth/AuthProvider";
+import { supabase } from "../../db/initSupabase";
 
 const IntakeItem = ({ data, currentSlide }) => {
   const { width } = useWindowDimensions();
+  const { user } = useAuthContext();
 
   const [selectedRisks, setSelectedRisks] = useState([]);
   const [selectedEpisodeAmount, setSelectedEpisodeAmount] = useState();
   const [selectedGender, setSelectedGender] = useState();
   const [date, setDate] = useState();
+
+  const handleFormSubmit = async () => {
+    const { error } = await supabase.from("profiles").upsert([
+      {
+        user_id: user?.id,
+        date_of_birth: date,
+        gender: selectedGender,
+        vkf_frequency: selectedEpisodeAmount,
+        risk_factors: selectedRisks,
+      },
+    ]);
+    if (error) {
+      console.log(error);
+    }
+  };
+
+  if (currentSlide === 3) {
+    handleFormSubmit();
+  }
+
+  const handleDate = (event, date) => {
+    const {
+      type,
+      nativeEvent: { timestamp },
+    } = event;
+    setDate(date);
+  };
 
   return (
     <View style={{ width }} className="h-full bg-white">
@@ -133,11 +162,14 @@ const IntakeItem = ({ data, currentSlide }) => {
         </View>
       ) : (
         <View className="mt-28">
-          <DatePicker
-            value={date}
+          <DateTimePicker
+            minimumDate={new Date(1900, 0, 1)}
+            maximumDate={new Date()}
+            value={date || new Date()}
+            display="spinner"
             textColor="#336666"
-            markColor="#D6E7EB"
-            onChange={(date) => setDate(date)}
+            mode="date"
+            onChange={handleDate}
           />
         </View>
       )}

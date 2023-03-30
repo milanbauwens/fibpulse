@@ -29,7 +29,7 @@ export default function Walkthrough() {
       } catch (err) {
         console.error("Error @setAsyncStorage:", err);
       } finally {
-        authStackNavigation.navigate("Auth", { screen: "Landing" });
+        authStackNavigation.navigate("Landing");
       }
     }
     return;
@@ -54,7 +54,7 @@ export default function Walkthrough() {
           }}
         >
           <Text
-            className="text-neutral-900 text-[14px]"
+            className="text-deepMarine-900 text-[14px]"
             style={{ fontFamily: "Mulish-regular" }}
           >
             Overslaan

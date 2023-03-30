@@ -8,16 +8,17 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useForm } from "react-hook-form";
+import { supabase } from "../../db/initSupabase";
+import handleSupabaseError from "../../utils/handleSupabaseError";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useForm } from "react-hook-form";
-import { supabase } from "../../db/initSupabase";
-import handleSupabaseError from "../../utils/handleSupabaseError";
+import { SignInWithProvider } from "../../db/modules/auth/api";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -51,13 +52,24 @@ const Login = () => {
     }
   };
 
+  const handleProviderLogin = async (provider) => {
+    setIsLoading(true);
+    try {
+      await SignInWithProvider(provider);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <SafeAreaView className="mt-2 bg-white h-full">
       <BackButton />
       <View className="px-4">
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
-          className="text-2xl text-neutral-900 mb-8"
+          className="text-2xl text-deepMarine-900 mb-8"
         >
           Log in bij uw account
         </Text>
@@ -125,7 +137,7 @@ const Login = () => {
               }}
             >
               <Text
-                className="text-right pr-2 text-base text-neutral-900"
+                className="text-right pr-2 text-base text-deepMarine-900"
                 style={{ fontFamily: "Mulish-medium" }}
               >
                 Wachtwoord vergeten?
@@ -139,9 +151,26 @@ const Login = () => {
             />
           </View>
         </KeyboardAvoidingView>
-        <View className="mt-11">
-          <AuthProviderButton provider="google" />
-          <AuthProviderButton provider="facebook" />
+
+        <View className="relative flex flex-row py-5 items-center mt-2 mb-4">
+          <View className="flex-grow border-t border-deepMarine-500" />
+          <Text
+            style={{ fontFamily: "Mulish-medium" }}
+            className="flex-shrink mx-4 text-deepMarine-900 text-base"
+          >
+            Of ga verder met
+          </Text>
+          <View className="flex-grow border-t border-gray-400" />
+        </View>
+        <View className="content-center flex-row flex-nowrap flex align-middle justify-between">
+          <AuthProviderButton
+            provider="google"
+            onPress={() => handleProviderLogin("google")}
+          />
+          <AuthProviderButton
+            provider="facebook"
+            onPress={handleProviderLogin}
+          />
         </View>
       </View>
     </SafeAreaView>
