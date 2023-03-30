@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Navigation from "../components/Navigation/Navigation";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
-import { SignOut } from "../db/modules/auth/api";
+import { signOut } from "../db/modules/auth/api";
 
 const Dashboard = () => {
   const navigation = useNavigation();
@@ -16,7 +16,7 @@ const Dashboard = () => {
   }, []);
 
   const handleLogout = async () => {
-    const { error } = await SignOut();
+    await signOut();
   };
 
   return (

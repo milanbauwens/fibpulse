@@ -15,7 +15,7 @@ export const getCurrentSession = async () => {
   return session;
 };
 
-export const SignInWithProvider = async (provider) => {
+export const signInWithProvider = async (provider) => {
   const redirectUrl = Linking.createURL("/auth/callback");
 
   const authResponse = await startAsync({
@@ -32,6 +32,6 @@ export const SignInWithProvider = async (provider) => {
   }
 };
 
-export const SignOut = async () => {
+export const signOut = async () => {
   await supabase.auth.signOut();
 };

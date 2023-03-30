@@ -12,13 +12,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../db/initSupabase";
 import handleSupabaseError from "../../utils/handleSupabaseError";
+import { signInWithProvider } from "../../db/modules/auth/api";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
-import { SignInWithProvider } from "../../db/modules/auth/api";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -55,7 +55,7 @@ const Login = () => {
   const handleProviderLogin = async (provider) => {
     setIsLoading(true);
     try {
-      await SignInWithProvider(provider);
+      await signInWithProvider(provider);
     } catch (error) {
       console.error(error);
     } finally {
