@@ -5,17 +5,21 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Dashboard from "../../screens/Dashboard";
 import VerifyEmail from "../../screens/authentication/VerifyEmail";
 import Intake from "../../screens/onboarding/Intake";
+import { useAuthContext } from "../../components/Auth/AuthProvider";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
+  const { user } = useAuthContext();
 
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="VerifyEmail"
-        component={VerifyEmail}
-      />
+      {!user.email_verified && (
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VerifyEmail"
+          component={VerifyEmail}
+        />
+      )}
       <Stack.Screen
         options={{ headerShown: false }}
         name="Intake"

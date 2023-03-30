@@ -1,45 +1,26 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { supabase } from "../../db/initSupabase";
 import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import VerifiedEmail from "../../components/icons/VerifiedEmail";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import { useAuthContext } from "../../components/Auth/AuthProvider";
 
 const VerifyEmail = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAuthContext();
 
-  const resendVerificationEmail = async () => {
-    try {
-      const { error } = await supabase.auth.api.updateUser(
-        supabase.auth.user().id,
-        {
-          email: supabase.auth.user().email,
-        }
-      );
-      if (error) {
-        console.error(error);
-      } else {
-        console.log("Email sent");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  console.log(user);
 
-  const checkVerifyEmail = async () => {
+  const checkVerifyEmail = () => {
     setIsLoading(true);
     try {
-      const { data: authListener } = supabase.auth.onAuthStateChange(
-        async (event, session) => {
-          if (event === "MFA_CHALLENGE_VERIFIED") {
-            navigation.navigate("Intake");
-          } else {
-            console.log("Email not verified");
-          }
-        }
-      );
+      if (user.email_verified) {
+        navigation.navigate("Dashboard");
+      } else {
+        console.log("Email not verified");
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -66,18 +47,12 @@ const VerifyEmail = () => {
           u geen e-mail terugvindt.
         </Text>
         <View className="w-full px-4 absolute bottom-6">
-        <PrimaryButton
+          <PrimaryButton
             label="E-mail geverifiëerd"
-            onPress={() => {
-              navigation.navigate("Intake");
-            }}
+            onPress={checkVerifyEmail}
             isLoading={isLoading}
           />
-          <TouchableOpacity
-            className="w-full mt-2"
-            onPress={resendVerificationEmail}
-            activeOpacity={0.8}
-          >
+          <TouchableOpacity className="w-full mt-2" activeOpacity={0.8}>
             <Text
               style={{ fontFamily: "Mulish-semibold" }}
               className="text-base text-center text-neutral-900"

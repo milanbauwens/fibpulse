@@ -169,7 +169,7 @@ const Login = () => {
           />
           <AuthProviderButton
             provider="facebook"
-            onPress={handleProviderLogin}
+            onPress={() => handleProviderLogin("facebook")}
           />
         </View>
       </View>
