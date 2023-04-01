@@ -2,21 +2,31 @@ import React from "react";
 import { TouchableOpacity, Text, View } from "react-native";
 import Google from "../icons/Google";
 import Facebook from "../icons/Facebook";
+import { MaterialIcons } from "@expo/vector-icons";
 
-const AuthProviderButton = ({ provider = "google" | "facebook", onPress }) => {
+const AuthProviderButton = ({
+  provider = "google" | "facebook" | "e-mail",
+  onPress,
+  disabled = false,
+}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      className="border border-neutral-900 py-[12px] px-[16px] rounded-full min-w-[165px]"
+      disabled={disabled}
+      className="border border-deepMarine-700 py-[12px] px-[16px] rounded-full mb-6 w-full bg-white"
     >
       <View className="flex flex-row gap-x-3 justify-center items-center">
-        {provider === "google" ? <Google /> : <Facebook />}
+        {provider === "google" && <Google />}
+        {provider === "facebook" && <Facebook />}
+        {provider === "e-mail" && (
+          <MaterialIcons name="email" size={32} color="#1B3C43" />
+        )}
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
-          className="text-lg text-center text-neutral-900"
+          className="text-lg text-center text-deepMarine-700"
         >
-          {provider.charAt(0).toUpperCase() + provider.slice(1)}
+          Ga verder met {provider.charAt(0).toUpperCase() + provider.slice(1)}
         </Text>
       </View>
     </TouchableOpacity>

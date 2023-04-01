@@ -11,15 +11,18 @@ import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
 import handleSupabaseError from "../../utils/handleSupabaseError";
+import TertiairyButton from "../../components/Buttons/TertiairyButton";
+import { useAuthContext } from "../../components/Auth/AuthProvider";
+import AppStack from "../../router/stacks/AppStack";
 
 const Register = () => {
   const navigation = useNavigation();
+  const { user } = useAuthContext();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const [isLoading, setIsLoading] = useState(false);
   const [signUpError, setSignUpError] = useState();
 
@@ -35,20 +38,18 @@ const Register = () => {
         email: formData.userEmail,
         password: formData.userPassword,
       });
-
       if (error) {
         const errorMessage = handleSupabaseError(error.status);
         setSignUpError(errorMessage);
         return;
       } else {
-        const { error } = await supabase.from("profiles").upsert([
-          {
-            user_id: data.user?.id,
+        const { error } = await supabase
+          .from("profiles")
+          .update({
             lastname: formData.userName,
             firstname: formData.userFirstname,
-          },
-        ]);
-
+          })
+          .eq("user_id", data.user.id);
         if (error) {
           const errorMessage = handleSupabaseError(error.status);
           setSignUpError(errorMessage);
@@ -65,18 +66,9 @@ const Register = () => {
     }
   }
 
-  // async function signInWithProvider() {
-  //   await supabase.auth.signInWithOAuth({
-  //     provider: "google",
-  //     options: {
-  //       redirectTo: "http://localhost:19000/Intake",
-  //     },
-  //   });
-  // }
-
   return (
     <SafeAreaView className="mt-2 bg-white h-full">
-      <BackButton />
+      <BackButton onPress={() => navigation.navigate("Landing")} />
       <View className="px-4">
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
@@ -148,6 +140,7 @@ const Register = () => {
               label="E-mail"
               ref={emailInputRef}
               returnKeyType="next"
+              autoComplete="off"
               autoCapitalize="none"
               keyboardType="email-address"
               inputName="userEmail"
@@ -185,7 +178,7 @@ const Register = () => {
           Door zich te registreren, gaat u akkoord met onze{" "}
           <Link to="/Login">
             <Text
-              className="text-sm text-deepMarine-500"
+              className="text-base text-deepMarine-500"
               style={{ fontFamily: "Mulish-bold" }}
             >
               Gebruiksvoorwaarden
@@ -194,35 +187,23 @@ const Register = () => {
           en{" "}
           <Link to="/Login">
             <Text
-              className="text-sm text-deepMarine-500"
+              className="text-base text-deepMarine-500"
               style={{ fontFamily: "Mulish-bold" }}
             >
               Privacy verklaring.
             </Text>
           </Link>
         </Text>
-        <View>
-          <PrimaryButton
-            isLoading={isLoading}
-            label="Registreren"
-            onPress={handleSubmit(handleRegister)}
-          />
-        </View>
-
-        <View className="relative flex flex-row py-5 items-center mt-2 mb-4">
-          <View className="flex-grow border-t border-deepMarine-500" />
-          <Text
-            style={{ fontFamily: "Mulish-medium" }}
-            className="flex-shrink mx-4 text-deepMarine-900 text-base"
-          >
-            Of ga verder met
-          </Text>
-          <View className="flex-grow border-t border-gray-400" />
-        </View>
-        <View className="content-center flex-row flex-nowrap flex align-middle justify-between">
-          <AuthProviderButton provider="google" />
-          <AuthProviderButton provider="facebook" />
-        </View>
+        <PrimaryButton
+          isLoading={isLoading}
+          label="Registreren"
+          onPress={handleSubmit(handleRegister)}
+        />
+        <TertiairyButton
+          label="Heeft u al een profiel?"
+          action="Log in"
+          onPress={() => navigation.navigate("Login")}
+        />
       </View>
     </SafeAreaView>
   );

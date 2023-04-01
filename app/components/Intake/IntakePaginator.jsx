@@ -22,7 +22,7 @@ const IntakePaginator = ({
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={scrollBack}
-          className="absolute left-4 bottom-1 p-2 bg-deepMarine-300 rounded-full"
+          className="absolute left-4 bottom-1 p-2 bg-turquoise-200 rounded-full"
         >
           <ArrowLeft />
         </TouchableOpacity>

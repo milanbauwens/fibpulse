@@ -12,6 +12,7 @@ const Formgroup = forwardRef(
       inputName,
       label,
       control,
+      autoComplete,
       returnKeyType,
       keyboardType,
       autoCapitalize,
@@ -23,7 +24,7 @@ const Formgroup = forwardRef(
 
     return (
       <View>
-        <Text className="text-base text-neutral-900">{label}</Text>
+        <Text className="text-base text-deepMarine-900">{label}</Text>
         <View className="relative">
           <Controller
             control={control}
@@ -35,14 +36,15 @@ const Formgroup = forwardRef(
             }) => (
               <>
                 <TextInput
-                  className={`w-full h-10 border-spacing-x-2 pt-1 text-base text-neutral-900 ${
+                  className={`w-full h-10 border-spacing-x-2 pt-1 text-base text-deepMarine-900 ${
                     error
                       ? "border-red-500  focus:border-red-500"
-                      : " border-deepMarine-300  focus:border-deepMarine-500"
+                      : " border-turquoise-200  focus:border-deepMarine-500"
                   } border-b-2 outline-none transition-all duration-300`}
                   style={{ fontFamily: "Mulish-semibold" }}
                   value={value}
                   ref={ref}
+                  autoComplete={autoComplete}
                   onBlur={onBlur}
                   onChangeText={onChange}
                   onSubmitEditing={onSubmitEditing}
@@ -62,7 +64,7 @@ const Formgroup = forwardRef(
           {type === "password" && (
             <TouchableOpacity
               activeOpacity={0.8}
-              className="absolute right-2 h-6 w-6 top-2 flex items-center justify-center text-neutral-900"
+              className="absolute right-2 h-6 w-6 top-2 flex items-center justify-center text-deepMarine-900"
               onPress={() => setSecure(!secure)}
             >
               {secure ? <Eye /> : <EyeOff />}

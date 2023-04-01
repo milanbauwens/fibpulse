@@ -19,16 +19,16 @@ const IntakeItem = ({ data, currentSlide }) => {
   const [date, setDate] = useState();
 
   const handleFormSubmit = async () => {
-    const { error } = await supabase.from("profiles").upsert([
-      {
-        user_id: user?.id,
+    const { error } = await supabase
+      .from("profiles")
+      .update({
         date_of_birth: date,
         gender: selectedGender,
         vkf_frequency: selectedEpisodeAmount,
         risk_factors: selectedRisks,
         passed_intake: true,
-      },
-    ]);
+      })
+      .eq("user_id", user?.id);
     if (error) {
       console.log(error);
     }

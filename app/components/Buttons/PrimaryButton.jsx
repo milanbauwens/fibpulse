@@ -6,7 +6,7 @@ const PrimaryButton = ({ label, onPress, isLoading }) => {
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      className="w-full bg-deepMarine-300 py-[12px] px-[16px] rounded-full mb-4"
+      className="w-full bg-turquoise-200 py-[12px] px-[16px] rounded-full mb-4"
     >
       {!isLoading ? (
         <Text

@@ -1,46 +1,61 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import WalkthroughItem from "../../components/Walkthrough/WalkthroughItem";
-import PrimaryButton from "../../components/Buttons/PrimaryButton";
-
-const landingContent = {
-  title: "Neem vandaag nog de controle over uw hart",
-  description: "Maak een nieuw profiel aan of log in met een bestaand profiel.",
-  image: require("../../../assets/images/walkthrough-medical-bloodpressure.jpg"),
-};
+import React, { useState } from "react";
+import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ImageBackground } from "react-native";
+import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
+import { signInWithProvider } from "../../db/modules/auth/api";
+import { Image } from "react-native-svg";
+import IconWhite from "../../components/icons/IconWhite";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleProviderLogin = async (provider) => {
+    setIsLoading(true);
+    try {
+      await signInWithProvider(provider);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <View className="bg-white h-full">
-      <WalkthroughItem item={landingContent} />
-      <View className="px-4 mt-10">
-        <PrimaryButton
-          onPress={() => navigation.navigate("Register")}
-          label="Maak een profiel"
-        />
-        <TouchableOpacity
-          className="mt-2"
-          onPress={() => navigation.navigate("Login")}
-          activeOpacity={1}
+    <ImageBackground
+      source={require("../../../assets/images/landing_people_smiling_and_being_happy.jpg")}
+      fadeDuration={100}
+      style={{}}
+    >
+      <SafeAreaView className="h-full px-5 relative flex items-center">
+        <IconWhite />
+        <Text
+          style={{ fontFamily: "Bitter-bold" }}
+          className="text-3xl text-white mt-6"
         >
-          <Text
-            style={{ fontFamily: "Mulish-regular" }}
-            className="text-center text-lg text-deepMarine-900"
-          >
-            Heeft u al een profiel?{" "}
-            <Text
-              className="text-deepMarine-500"
-              style={{ fontFamily: "Mulish-bold" }}
-            >
-              Log in.
-            </Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+          Fibpulse{" "}
+        </Text>
+        <View className="absolute bottom-8 w-full">
+          <AuthProviderButton
+            disabled={isLoading}
+            provider="google"
+            onPress={() => handleProviderLogin("google")}
+          />
+          <AuthProviderButton
+            disabled={isLoading}
+            provider="facebook"
+            onPress={() => handleProviderLogin("facebook")}
+          />
+          <AuthProviderButton
+            disabled={isLoading}
+            provider="e-mail"
+            onPress={() => navigation.navigate("Login")}
+          />
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 

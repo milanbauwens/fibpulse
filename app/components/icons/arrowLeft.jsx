@@ -12,7 +12,7 @@ const ArrowLeft = (props) => (
     <G clipPath="url(#a)">
       <G
         clipPath="url(#b)"
-        stroke="#252525"
+        stroke="#1B3C43"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"

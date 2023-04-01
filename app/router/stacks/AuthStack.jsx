@@ -8,6 +8,7 @@ import Login from "../../screens/authentication/Login";
 import Register from "../../screens/authentication/Register";
 import Landingscreen from "../../screens/authentication/Landingscreen";
 import Walkthrough from "../../screens/onboarding/Walkthrough";
+import VerifyEmail from "../../screens/authentication/VerifyEmail";
 
 export default function AuthStack() {
   const Stack = createNativeStackNavigator();
@@ -54,6 +55,11 @@ export default function AuthStack() {
         options={{ headerShown: false }}
         name="Register"
         component={Register}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="VerifyEmail"
+        component={VerifyEmail}
       />
     </Stack.Navigator>
   );

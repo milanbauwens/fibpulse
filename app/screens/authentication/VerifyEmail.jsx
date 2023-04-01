@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import VerifiedEmail from "../../components/icons/VerifiedEmail";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import { useAuthContext } from "../../components/Auth/AuthProvider";
+import TertiairyButton from "../../components/Buttons/TertiairyButton";
 
 const VerifyEmail = () => {
   const navigation = useNavigation();
@@ -14,10 +15,10 @@ const VerifyEmail = () => {
   const checkVerifyEmail = () => {
     setIsLoading(true);
     try {
-      if (user.email_verified) {
+      if (user.passedIntake) {
         navigation.navigate("Dashboard");
       } else {
-        console.log("Email not verified");
+        navigation.navigate("IntakeExplainer");
       }
     } catch (error) {
       console.error(error);
@@ -29,20 +30,19 @@ const VerifyEmail = () => {
   return (
     <SafeAreaView className="px-4 h-screen bg-white">
       <View className="flex h-full flex-col items-center">
-        <VerifiedEmail className="mb-8 mt-8" />
+        <VerifiedEmail className="mb-12 mt-8" />
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
-          className="text-[28px] text-center text-neutral-900 mb-4 leading-10 "
+          className="text-2xl text-center text-deepMarine-900 mb-2 "
         >
-          Verifiëer uw account
+          Verifieer uw account
         </Text>
         <Text
-          style={{ fontFamily: "Mulish-regular" }}
-          className="text-base text-center text-neutral-900 mb-4"
+          style={{ fontFamily: "Mulish-medium" }}
+          className="text-base text-center text-deepMarine-700"
         >
-          Voordat u verder kunt gaan, dient u uw e-mailadres te verifiëren. Ga
-          naar uw mailbox en volg de stappen. Check zeker ook uw spambox, indien
-          u geen e-mail terugvindt.
+          Voordat u verder kunt gaan, moet u eerst uw e-mailadres verifiëren. Ga
+          naar uw mailbox en volg de stappen. Kijk zeker ook uw spambox na.
         </Text>
         <View className="w-full px-4 absolute bottom-6">
           <PrimaryButton
@@ -50,14 +50,7 @@ const VerifyEmail = () => {
             onPress={checkVerifyEmail}
             isLoading={isLoading}
           />
-          <TouchableOpacity className="w-full mt-2" activeOpacity={0.8}>
-            <Text
-              style={{ fontFamily: "Mulish-semibold" }}
-              className="text-base text-center text-neutral-900"
-            >
-              Stuur verificatie e-mail opnieuw.
-            </Text>
-          </TouchableOpacity>
+          <TertiairyButton label="Stuur verificatie e-mail opnieuw." />
         </View>
       </View>
     </SafeAreaView>

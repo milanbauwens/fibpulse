@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useAuthContext } from "../../components/Auth/AuthProvider";
 
 // Screens
 import Dashboard from "../../screens/Dashboard";
 import VerifyEmail from "../../screens/authentication/VerifyEmail";
 import Intake from "../../screens/onboarding/Intake";
-import { useAuthContext } from "../../components/Auth/AuthProvider";
+import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
@@ -16,10 +17,10 @@ export default function AppStack() {
 
   const checkUserProgress = async () => {
     try {
-      if (user?.emailVerified) {
+      if (user.emailVerified) {
         setUserIsVerified(true);
       }
-      if (user?.passedIntake) {
+      if (user.passedIntake) {
         setUserPassedIntake(true);
       }
     } finally {
@@ -41,11 +42,18 @@ export default function AppStack() {
         />
       )}
       {!isLoading && !userPassedIntake && (
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Intake"
-          component={Intake}
-        />
+        <>
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="IntakeExplainer"
+            component={IntakeExplainer}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Intake"
+            component={Intake}
+          />
+        </>
       )}
       <Stack.Screen
         options={{ headerShown: false }}
