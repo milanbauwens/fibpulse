@@ -24,12 +24,12 @@ const IntakeExplainer = () => {
           We doen dit om een beter beeld te kunnen schetsen van uw medisch
           profiel. Zo kunnen we u de best mogelijke ervaring geven.
         </Text>
-        <View className="w-full absolute bottom-6">
-          <PrimaryButton
-            label="Ga van start"
-            onPress={() => navigation.navigate("Intake")}
-          />
-        </View>
+      </View>
+      <View className="w-full px-4 absolute bottom-6">
+        <PrimaryButton
+          label="Ga van start"
+          onPress={() => navigation.navigate("Intake")}
+        />
       </View>
     </SafeAreaView>
   );

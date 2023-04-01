@@ -33,34 +33,38 @@ export default function AuthStack() {
   }, []);
 
   return (
-    <Stack.Navigator>
-      {!isLoading && !passedOnboarding && (
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Walktrough"
-          component={Walkthrough}
-        />
+    <>
+      {!isLoading && (
+        <Stack.Navigator>
+          {!passedOnboarding && (
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Walktrough"
+              component={Walkthrough}
+            />
+          )}
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Landing"
+            component={Landingscreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Login"
+            component={Login}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Register"
+            component={Register}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="VerifyEmail"
+            component={VerifyEmail}
+          />
+        </Stack.Navigator>
       )}
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Landing"
-        component={Landingscreen}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Login"
-        component={Login}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Register"
-        component={Register}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="VerifyEmail"
-        component={VerifyEmail}
-      />
-    </Stack.Navigator>
+    </>
   );
 }

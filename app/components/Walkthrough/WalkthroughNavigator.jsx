@@ -49,7 +49,7 @@ export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
       <TouchableOpacity
         onPress={scrollTo}
         activeOpacity={0.8}
-        className="flex rounded-full justify-center items-center w-[72px] h-[72px] bg-deepMarine-300"
+        className="flex rounded-full justify-center items-center w-[72px] h-[72px] bg-turquoise-200"
       >
         <ArrowRight />
       </TouchableOpacity>

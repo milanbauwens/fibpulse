@@ -16,13 +16,13 @@ export default function WalkthroughItem({ item }) {
       <View className="mt-6 px-4">
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
-          className="text-[28px] text-neutral-900 mb-4 leading-10 "
+          className="text-[28px] text-deepMarine-900 mb-4 leading-10 "
         >
           {item.title}
         </Text>
         <Text
           style={{ fontFamily: "Mulish-regular" }}
-          className="text-neutral-900 text-[16px] mb-4 leading-6"
+          className="text-deepMarine-700 text-[16px] mb-4 leading-6"
         >
           {item.description}
         </Text>

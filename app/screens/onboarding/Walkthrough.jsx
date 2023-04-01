@@ -54,7 +54,7 @@ export default function Walkthrough() {
           }}
         >
           <Text
-            className="text-deepMarine-900 text-[14px]"
+            className="text-deepMarine-700 text-[14px]"
             style={{ fontFamily: "Mulish-regular" }}
           >
             Overslaan

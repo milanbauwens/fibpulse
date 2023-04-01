@@ -120,8 +120,8 @@ const Login = () => {
             <TouchableOpacity
               activeOpacity={0.8}
               className="mb-4 w-full"
-              onPress={() => {
-                AsyncStorage.removeItem("@viewedOnboarding");
+              onPress={async () => {
+                await AsyncStorage.removeItem("@viewedOnboarding");
               }}
             >
               <Text
@@ -141,7 +141,7 @@ const Login = () => {
         </KeyboardAvoidingView>
         <TertiairyButton
           label="Nog geen account?"
-          action="Registreer"
+          action="Registreer."
           onPress={() => navigation.navigate("Register")}
         />
       </View>
