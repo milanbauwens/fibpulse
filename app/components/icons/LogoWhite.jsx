@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-function IconWhite(props) {
+function LogoWhite(props) {
   return (
     <Svg
       width={123}
@@ -49,4 +49,4 @@ function IconWhite(props) {
   );
 }
 
-export default IconWhite;
+export default LogoWhite;

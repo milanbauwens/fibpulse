@@ -14,7 +14,7 @@ const AuthProviderButton = ({
       onPress={onPress}
       activeOpacity={0.8}
       disabled={disabled}
-      className="border border-deepMarine-700 py-[12px] px-[16px] rounded-full mb-6 w-full bg-white"
+      className=" py-[12px] px-[16px] rounded-full mb-6 w-full bg-white"
     >
       <View className="flex flex-row gap-x-3 justify-center items-center">
         {provider === "google" && <Google />}
@@ -26,7 +26,7 @@ const AuthProviderButton = ({
           style={{ fontFamily: "Bitter-semibold" }}
           className="text-lg text-center text-deepMarine-700"
         >
-          Ga verder met {provider.charAt(0).toUpperCase() + provider.slice(1)}
+          Doorgaan met {provider.charAt(0).toUpperCase() + provider.slice(1)}
         </Text>
       </View>
     </TouchableOpacity>

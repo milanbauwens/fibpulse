@@ -10,7 +10,7 @@ const IntakeExplainer = () => {
   return (
     <SafeAreaView className="px-4 h-screen bg-white">
       <View className="flex h-full flex-col items-center">
-        <IntakeIllustration className="mb-12 mt-8" />
+        <IntakeIllustration className="mb-12 mt-20" />
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
           className="text-2xl text-center text-deepMarine-900 mb-2 "

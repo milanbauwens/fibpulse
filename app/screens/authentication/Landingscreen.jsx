@@ -1,12 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
+import { Link, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ImageBackground } from "react-native";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import { signInWithProvider } from "../../db/modules/auth/api";
-import { Image } from "react-native-svg";
-import IconWhite from "../../components/icons/IconWhite";
+import LogoWhite from "../../components/icons/LogoWhite";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
@@ -30,10 +29,10 @@ const Landingscreen = () => {
       style={{}}
     >
       <SafeAreaView className="h-full px-5 relative flex items-center">
-        <IconWhite />
+        <LogoWhite />
         <Text
           style={{ fontFamily: "Bitter-bold" }}
-          className="text-3xl text-white mt-6"
+          className="text-2xl text-white mt-2"
         >
           Fibpulse{" "}
         </Text>
@@ -51,8 +50,31 @@ const Landingscreen = () => {
           <AuthProviderButton
             disabled={isLoading}
             provider="e-mail"
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => navigation.navigate("Register")}
           />
+          <Text
+            className="text-sm text-white mb-8 text-center"
+            style={{ fontFamily: "Mulish-medium" }}
+          >
+            Door zich te registreren, gaat u akkoord met onze{" "}
+            <Link to="/Login">
+              <Text
+                className="text-sm text-white"
+                style={{ fontFamily: "Mulish-bold" }}
+              >
+                Gebruiksvoorwaarden
+              </Text>
+            </Link>{" "}
+            en{" "}
+            <Link to="/Login">
+              <Text
+                className="text-sm text-white"
+                style={{ fontFamily: "Mulish-bold" }}
+              >
+                Privacy verklaring.
+              </Text>
+            </Link>
+          </Text>
         </View>
       </SafeAreaView>
     </ImageBackground>

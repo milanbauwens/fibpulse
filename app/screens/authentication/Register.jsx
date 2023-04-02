@@ -80,7 +80,7 @@ const Register = () => {
         {/*  Form */}
         <KeyboardAvoidingView
           enabled
-          className="overflow-hidden flex flex-col gap-y-8"
+          className="overflow-hidden flex flex-col gap-y-8 mb-12"
         >
           {signUpError && (
             <View
@@ -171,29 +171,6 @@ const Register = () => {
             />
           </View>
         </KeyboardAvoidingView>
-        <Text
-          className="text-sm text-deepMarine-900 mt-4 mb-8"
-          style={{ fontFamily: "Mulish-regular" }}
-        >
-          Door zich te registreren, gaat u akkoord met onze{" "}
-          <Link to="/Login">
-            <Text
-              className="text-sm text-deepMarine-500"
-              style={{ fontFamily: "Mulish-bold" }}
-            >
-              Gebruiksvoorwaarden
-            </Text>
-          </Link>{" "}
-          en{" "}
-          <Link to="/Login">
-            <Text
-              className="text-sm text-deepMarine-500"
-              style={{ fontFamily: "Mulish-bold" }}
-            >
-              Privacy verklaring.
-            </Text>
-          </Link>
-        </Text>
         <PrimaryButton
           isLoading={isLoading}
           label="Registreren"
