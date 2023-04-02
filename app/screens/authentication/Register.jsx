@@ -93,38 +93,36 @@ const Register = () => {
             </View>
           )}
 
-          <View className="flex flex-row gap-x-4">
-            <View className="basis-[38%]">
-              <Formgroup
-                rules={{ required: "Vul een voornaam in." }}
-                control={control}
-                label="Voornaam"
-                ref={firstnameInputRef}
-                returnKeyType="next"
-                autoCapitalize="words"
-                keyboardType="default"
-                inputName="userFirstname"
-                onSubmitEditing={() =>
-                  nameInputRef.current && nameInputRef.current.focus()
-                }
-              />
-            </View>
+          <View>
+            <Formgroup
+              rules={{ required: "Vul een voornaam in." }}
+              control={control}
+              label="Voornaam"
+              ref={firstnameInputRef}
+              returnKeyType="next"
+              autoCapitalize="words"
+              keyboardType="default"
+              inputName="userFirstname"
+              onSubmitEditing={() =>
+                nameInputRef.current && nameInputRef.current.focus()
+              }
+            />
+          </View>
 
-            <View className="basis-[65%] ">
-              <Formgroup
-                rules={{ required: "Vul een naam in." }}
-                control={control}
-                label="Naam"
-                ref={nameInputRef}
-                returnKeyType="next"
-                autoCapitalize="words"
-                keyboardType="default"
-                inputName="userName"
-                onSubmitEditing={() =>
-                  emailInputRef.current && emailInputRef.current.focus()
-                }
-              />
-            </View>
+          <View>
+            <Formgroup
+              rules={{ required: "Vul een naam in." }}
+              control={control}
+              label="Naam"
+              ref={nameInputRef}
+              returnKeyType="next"
+              autoCapitalize="words"
+              keyboardType="default"
+              inputName="userName"
+              onSubmitEditing={() =>
+                emailInputRef.current && emailInputRef.current.focus()
+              }
+            />
           </View>
 
           <View>

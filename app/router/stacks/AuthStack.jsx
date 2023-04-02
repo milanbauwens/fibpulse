@@ -8,7 +8,7 @@ import Login from "../../screens/authentication/Login";
 import Register from "../../screens/authentication/Register";
 import Landingscreen from "../../screens/authentication/Landingscreen";
 import Walkthrough from "../../screens/onboarding/Walkthrough";
-import VerifyEmail from "../../screens/authentication/VerifyEmail";
+import ResetPassword from "../../screens/authentication/ResetPassword";
 
 export default function AuthStack() {
   const Stack = createNativeStackNavigator();
@@ -60,8 +60,8 @@ export default function AuthStack() {
           />
           <Stack.Screen
             options={{ headerShown: false }}
-            name="VerifyEmail"
-            component={VerifyEmail}
+            name="ResetPassword"
+            component={ResetPassword}
           />
         </Stack.Navigator>
       )}

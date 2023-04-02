@@ -119,10 +119,8 @@ const Login = () => {
           <View>
             <TouchableOpacity
               activeOpacity={0.8}
-              className="mb-4 w-full"
-              onPress={async () => {
-                await AsyncStorage.removeItem("@viewedOnboarding");
-              }}
+              className="mb-4 w-full mt-4"
+              onPress={() => navigation.navigate("ResetPassword")}
             >
               <Text
                 className="text-right pr-2 text-base text-deepMarine-900"
