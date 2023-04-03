@@ -176,7 +176,7 @@ const Register = () => {
         />
         <TertiairyButton
           label="Heeft u al een profiel?"
-          action="Log in."
+          action="Inloggen."
           onPress={() => navigation.navigate("Login")}
         />
       </View>

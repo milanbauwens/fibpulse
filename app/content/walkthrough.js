@@ -1,12 +1,12 @@
 module.exports = [
   {
-    title: "Blijf je ritmestoornis steeds een stap voor",
+    title: "Een beter inzicht in uw ritmestoornis",
     description:
-      "Door de VKF-episodes bij te houden, krijgt u een beter inzicht in hoe de ritmestoornis evolueert en kunt u snel actie ondernemen wanneer dat nodig zou zijn.",
+      "Fibpulse focust zich op voorkamerfibrilatie. Door deze episodes bij te houden, krijgt u een beter inzicht in hoe de ritmestoornis evolueert en kunt u, indien nodig, snel actie ondernemen. ",
     image: require("../../assets/images/walkthrough_medical_consultation.jpg"),
   },
   {
-    title: "Leef volgens een gezonde levensstijl",
+    title: "Leef volgens een gezonde levensstijl.",
     description:
       "Ontdek hoe tips over slaap, evenwichtige voeding en stress bijdragen tot een gezonde levensstijl voor uw hart.",
     image: require("../../assets/images/walkthrough_sportive_man_running.jpg"),

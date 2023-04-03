@@ -37,9 +37,10 @@ export default function Walkthrough() {
 
   return (
     <View className="h-full bg-white relative">
+      {/* Skip component */}
       <View
-        className="absolute z-10 bg-white py-[12px] px-[16px] right-4 rounded-full text-[20px]"
-        style={{ marginTop: insets.top + 16 }}
+        style={{ marginTop: insets.top + 8 }}
+        className="absolute z-10 bg-white p-3 right-4 rounded-full text-base"
       >
         <TouchableOpacity
           activeOpacity={0.8}
@@ -54,14 +55,13 @@ export default function Walkthrough() {
           }}
         >
           <Text
-            className="text-deepMarine-700 text-[14px]"
-            style={{ fontFamily: "Mulish-regular" }}
+            className="text-deepMarine-700 text-sm"
+            style={{ fontFamily: "Mulish-medium" }}
           >
             Overslaan
           </Text>
         </TouchableOpacity>
       </View>
-
       <FlatList
         data={slides}
         renderItem={({ item }) => <WalkthroughItem item={item} />}
@@ -79,7 +79,6 @@ export default function Walkthrough() {
         scrollEventThrottle={32}
         ref={slidesRef}
       />
-
       <WalkthroughNavigator
         data={slides}
         scrollX={scrollX}

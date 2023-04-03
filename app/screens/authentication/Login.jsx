@@ -133,7 +133,7 @@ const Login = () => {
             <PrimaryButton
               onPress={handleSubmit(handleLogin)}
               isLoading={isLoading}
-              label="Log in"
+              label="Inloggen"
             />
           </View>
         </KeyboardAvoidingView>

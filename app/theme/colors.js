@@ -1,5 +1,6 @@
 module.exports = {
   deepMarine: {
+    100: "#F2F7F7",
     200: "#C7D3D3",
     300: "#8A9D9D",
     400: "#577777",

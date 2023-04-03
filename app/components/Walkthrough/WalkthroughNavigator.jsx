@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import ArrowRight from "../icons/ArrowRight";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import colors from "../../theme/colors";
 
 export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
   const { width } = useWindowDimensions();
@@ -33,7 +34,11 @@ export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
 
           const color = scrollX.interpolate({
             inputRange,
-            outputRange: ["#D6E7EB", "#336666", "#D6E7EB"],
+            outputRange: [
+              colors.turquoise[200],
+              colors.deepMarine[500],
+              colors.turquoise[200],
+            ],
             extrapolate: "clamp",
           });
 
@@ -49,7 +54,7 @@ export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
       <TouchableOpacity
         onPress={scrollTo}
         activeOpacity={0.8}
-        className="flex rounded-full justify-center items-center w-[72px] h-[72px] bg-turquoise-200"
+        className="flex rounded-full justify-center items-center w-[72px] h-[72px] bg-deepMarine-500"
       >
         <ArrowRight />
       </TouchableOpacity>
