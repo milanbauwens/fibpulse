@@ -9,6 +9,9 @@ import Register from "../../screens/authentication/Register";
 import Landingscreen from "../../screens/authentication/Landingscreen";
 import Walkthrough from "../../screens/onboarding/Walkthrough";
 import ResetPassword from "../../screens/authentication/ResetPassword";
+import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
+import Intake from "../../screens/onboarding/Intake";
+import VerifyEmail from "../../screens/authentication/VerifyEmail";
 
 export default function AuthStack() {
   const Stack = createNativeStackNavigator();
@@ -62,6 +65,21 @@ export default function AuthStack() {
             options={{ headerShown: false }}
             name="ResetPassword"
             component={ResetPassword}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="IntakeExplainer"
+            component={IntakeExplainer}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Intake"
+            component={Intake}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="VerifyEmail"
+            component={VerifyEmail}
           />
         </Stack.Navigator>
       )}

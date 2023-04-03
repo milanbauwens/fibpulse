@@ -1,11 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useRef, useState } from "react";
 import { View, Text, FlatList, Animated, TouchableOpacity } from "react-native";
-import WalkthroughItem from "../../components/Walkthrough/WalkthroughItem";
-import WalkthroughNavigator from "../../components/Walkthrough/WalkthroughNavigator";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import slides from "../../content/walkthrough";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import WalkthroughItem from "../../components/Walkthrough/WalkthroughItem";
+import WalkthroughNavigator from "../../components/Walkthrough/WalkthroughNavigator";
 
 export default function Walkthrough() {
   const authStackNavigation = useNavigation();

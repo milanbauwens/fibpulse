@@ -1,9 +1,9 @@
-import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 
-const TertiairyButton = ({ label, action, onPress }) => {
+const TertiairyButton = ({ label, action, onPress, props }) => {
   return (
-    <TouchableOpacity className="mt-2" onPress={onPress} activeOpacity={1}>
+    <TouchableOpacity onPress={onPress} activeOpacity={1} {...props}>
       <Text
         style={{ fontFamily: "Mulish-bold" }}
         className="text-center text-base text-deepMarine-700"

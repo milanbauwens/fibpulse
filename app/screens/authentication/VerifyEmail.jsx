@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import VerifiedEmail from "../../components/icons/VerifiedEmail";
+import VerifiedEmail from "../../components/svg/VerifiedEmail";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import { useAuthContext } from "../../components/Auth/AuthProvider";
 import TertiairyButton from "../../components/Buttons/TertiairyButton";
@@ -44,9 +44,10 @@ const VerifyEmail = () => {
           Voordat u verder kunt gaan, moet u eerst uw e-mailadres verifiëren. Ga
           naar uw mailbox en volg de stappen. Kijk zeker ook uw spambox na.
         </Text>
-        <View className="w-full px-4 absolute bottom-6">
+
+        <View className="absolute left-0 right-0 bottom-2 m-auto flex flex-col justify-center">
           <PrimaryButton
-            label="E-mail geverifiëerd"
+            label="Oké"
             onPress={checkVerifyEmail}
             isLoading={isLoading}
           />

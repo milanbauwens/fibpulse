@@ -2,14 +2,16 @@ import { Link, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ImageBackground } from "react-native";
 import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import { signInWithProvider } from "../../db/modules/auth/api";
-import Logo from "../../components/icons/Logo";
+import Logo from "../../components/svg/Logo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import { MaterialIcons } from "@expo/vector-icons";
 import TertiairyButton from "../../components/Buttons/TertiairyButton";
+import Ellipse from "../../components/svg/Ellipse";
+import CircleMd from "../../components/svg/CircleMd";
+import CircleSm from "../../components/svg/CircleSm";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
@@ -32,6 +34,14 @@ const Landingscreen = () => {
         className="mt-2 mb-16"
         onPress={async () => await AsyncStorage.removeItem("@viewedOnboarding")}
       />
+
+      <Ellipse
+        className="absolute top-12 right-0"
+        onPress={() => navigation.navigate("IntakeExplainer")}
+      />
+      <CircleMd className="absolute bottom-1/2 left-0" />
+      <CircleSm className="absolute bottom-4 right-0" />
+
       <View>
         <Text
           className="text-[28px] leading-[42px] text-deepMarine-900 mb-2"
@@ -98,11 +108,13 @@ const Landingscreen = () => {
             </Text>
           </Link>
         </Text>
-        <TertiairyButton
-          label="Heeft u al een account?"
-          action="Inloggen."
-          onPress={() => navigation.navigate("Login")}
-        />
+        <View className="mb-2">
+          <TertiairyButton
+            label="Heeft u al een account?"
+            action="Inloggen."
+            onPress={() => navigation.navigate("Login")}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

@@ -5,29 +5,21 @@ import {
   Animated,
   TouchableOpacity,
 } from "react-native";
-import ArrowLeft from "../icons/ArrowLeft";
+import ArrowLeft from "../svg/icons/ArrowLeft";
+import colors from "../../theme/colors";
+import BackButton from "../Buttons/BackButton";
 
-const IntakePaginator = ({
-  data,
-  currentSlide,
-  scrollX,
-  scrollTo,
-  scrollBack,
-}) => {
+const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
   const { width } = useWindowDimensions();
 
   return (
     <View className="w-full relative flex justify-center items-center">
       {currentSlide > 0 && (
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={scrollBack}
-          className="absolute left-4 bottom-1 p-2 bg-turquoise-200 rounded-full"
-        >
-          <ArrowLeft />
-        </TouchableOpacity>
+        <View className="absolute left-4 top-6">
+          <BackButton onPress={scrollBack} />
+        </View>
       )}
-      <View className="flex flex-row items-center justify-between px-4 h-12 mt-4">
+      <View className="flex flex-row items-center justify-between px-4 h-12 mt-6">
         <View className="flex flex-row gap-x-3">
           {data.map((_, index) => {
             const inputRange = [
@@ -38,7 +30,11 @@ const IntakePaginator = ({
 
             const color = scrollX.interpolate({
               inputRange,
-              outputRange: ["#D6E7EB", "#336666", "#336666"],
+              outputRange: [
+                colors.turquoise[200],
+                colors.deepMarine[500],
+                colors.deepMarine[500],
+              ],
               extrapolate: "clamp",
             });
 

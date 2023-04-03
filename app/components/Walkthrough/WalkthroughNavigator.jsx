@@ -5,7 +5,7 @@ import {
   useWindowDimensions,
   TouchableOpacity,
 } from "react-native";
-import ArrowRight from "../icons/ArrowRight";
+import ArrowRight from "../svg/icons/ArrowRight";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import colors from "../../theme/colors";
 

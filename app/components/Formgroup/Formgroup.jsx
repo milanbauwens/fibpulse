@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
-import Eye from "../icons/Eye";
-import EyeOff from "../icons/EyeOff";
+import Eye from "../svg/icons/Eye";
+import EyeOff from "../svg/icons/EyeOff";
 import { Controller } from "react-hook-form";
 
 const Formgroup = forwardRef(

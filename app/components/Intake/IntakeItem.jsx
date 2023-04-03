@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { useAuthContext } from "../Auth/AuthProvider";
 import { supabase } from "../../db/initSupabase";
+import { Ionicons } from "@expo/vector-icons";
+import colors from "../../theme/colors";
 
 const IntakeItem = ({ data, currentSlide }) => {
   const { width } = useWindowDimensions();
@@ -47,27 +49,26 @@ const IntakeItem = ({ data, currentSlide }) => {
   };
 
   return (
-    <View style={{ width }} className="h-full bg-white">
-      <View className="mt-8 px-4">
+    <View style={{ width }} className="h-full bg-white mt-8 px-4">
+      <Text
+        style={{ fontFamily: "Bitter-semibold" }}
+        className="text-deepMarine-900 text-2xl mb-2 text-center"
+      >
+        {data.question}
+      </Text>
+      {data.multiselect && (
         <Text
-          style={{ fontFamily: "Mulish-regular" }}
-          className="text-base text-neutral-900 mb-4 text-center"
+          style={{ fontFamily: "Mulish-medium" }}
+          className="text-deepMarine-700 text-base text-center"
         >
-          Enkele vragen om u beter te leren kennen
+          U kunt meerdere factoren selecteren.
         </Text>
-
-        <Text
-          style={{ fontFamily: "Bitter-semibold" }}
-          className="text-neutral-900 text-2xl text-center"
-        >
-          {data.question}
-        </Text>
-      </View>
+      )}
 
       {data.options ? (
         <View className="mt-12">
           {data.options && data.options.length > 5 ? (
-            <View className="px-4 flex flex-row flex-wrap gap-4">
+            <View className="flex flex-row flex-wrap gap-4">
               {data.options.map((option, index) => {
                 const handleSelect = () => {
                   setSelectedRisks([...selectedRisks, option]);
@@ -88,18 +89,18 @@ const IntakeItem = ({ data, currentSlide }) => {
                         : handleSelect
                     }
                     activeOpacity={1}
-                    className={`p-4 w-fit rounded-lg border-2 border-deepMarine-500 ${
+                    className={`px-4 py-3 min-h-[62px] flex items-center justify-center w-fit rounded-lg ${
                       selectedRisks.includes(option)
                         ? "bg-deepMarine-500"
-                        : "bg-neutral-50"
+                        : "bg-deepMarine-100"
                     }`}
                   >
                     <Text
-                      style={{ fontFamily: "Mulish-semibold" }}
-                      className={`text-lg text-center ${
+                      style={{ fontFamily: "Mulish-medium" }}
+                      className={`text-base text-center ${
                         selectedRisks.includes(option)
-                          ? "text-neutral-100"
-                          : "text-deepMarine-500"
+                          ? "text-white"
+                          : "text-deepMarine-900"
                       }`}
                     >
                       {option}
@@ -109,7 +110,7 @@ const IntakeItem = ({ data, currentSlide }) => {
               })}
             </View>
           ) : (
-            <View className="px-4 flex flex-col gap-4">
+            <View className="flex flex-col gap-4">
               {data.options.map((option, index) => {
                 const handleSelect = () => {
                   if (data.question === "Wat is uw geslacht?") {
@@ -137,24 +138,34 @@ const IntakeItem = ({ data, currentSlide }) => {
                         : handleSelect
                     }
                     activeOpacity={1}
-                    className={`p-4 w-fit rounded-lg border-2 border-deepMarine-500 ${
+                    className={`px-4 py-3 min-h-[62px] w-fit rounded-lg flex flex-row items-center justify-between ${
                       selectedGender === option ||
                       selectedEpisodeAmount === option
                         ? "bg-deepMarine-500"
-                        : "bg-neutral-50"
+                        : "bg-deepMarine-100"
                     }`}
                   >
                     <Text
-                      style={{ fontFamily: "Mulish-semibold" }}
-                      className={`text-lg text-center ${
+                      style={{ fontFamily: "Mulish-medium" }}
+                      className={`text-base ${
                         selectedGender === option ||
                         selectedEpisodeAmount === option
-                          ? "text-neutral-100"
-                          : "text-deepMarine-500"
+                          ? "text-white"
+                          : "text-deepMarine-900"
                       }`}
                     >
                       {option}
                     </Text>
+                    {selectedGender === option ||
+                    selectedEpisodeAmount === option ? (
+                      <Ionicons
+                        name="md-checkmark-circle"
+                        size={32}
+                        color={colors.green[500]}
+                      />
+                    ) : (
+                      <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200"></View>
+                    )}
                   </TouchableOpacity>
                 );
               })}
@@ -168,7 +179,7 @@ const IntakeItem = ({ data, currentSlide }) => {
             maximumDate={new Date()}
             value={date || new Date()}
             display="spinner"
-            textColor="#336666"
+            textColor={colors.deepMarine[700]}
             mode="date"
             onChange={handleDate}
           />

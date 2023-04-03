@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, View } from "react-native";
-import Google from "../icons/Google";
-import Facebook from "../icons/Facebook";
+import Google from "../svg/icons/Google";
+import Facebook from "../svg/icons/Facebook";
 
 const AuthProviderButton = ({
   provider = "google" | "facebook",

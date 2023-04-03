@@ -1,18 +1,17 @@
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { Asset } from "expo-asset";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Animated, Dimensions, Easing, StyleSheet, View } from "react-native";
 
 export function SplashscreenLoader({ children }) {
   const [isSplashReady, setSplashReady] = useState(false);
   const [fontsLoaded] = useFonts({
-    //Mulish Fonts
+    // Mulish Fonts
     "Mulish-regular": require("../../../assets/fonts/Mulish-Regular.ttf"),
     "Mulish-medium": require("../../../assets/fonts/Mulish-Medium.ttf"),
     "Mulish-semibold": require("../../../assets/fonts/Mulish-SemiBold.ttf"),
     "Mulish-bold": require("../../../assets/fonts/Mulish-Bold.ttf"),
-    // //Bitter Fonts
+    // Bitter Fonts
     "Bitter-regular": require("../../../assets/fonts/Bitter-Regular.ttf"),
     "Bitter-medium": require("../../../assets/fonts/Bitter-Medium.ttf"),
     "Bitter-semibold": require("../../../assets/fonts/Bitter-SemiBold.ttf"),

@@ -2,14 +2,15 @@ import { useNavigation } from "@react-navigation/native";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import IntakeIllustration from "../../components/icons/IntakeIllustration";
+import IntakeIllustration from "../../components/svg/IntakeIllustration";
+import ButtonGroup from "../../components/Buttons/ButtonGroup";
 
 const IntakeExplainer = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView className="px-4 h-screen bg-white">
-      <View className="flex h-full flex-col items-center">
+    <SafeAreaView className="px-4 relative w-full h-screen bg-white">
+      <View className="flex flex-col items-center">
         <IntakeIllustration className="mb-12 mt-20" />
         <Text
           style={{ fontFamily: "Bitter-semibold" }}
@@ -25,7 +26,7 @@ const IntakeExplainer = () => {
           profiel. Zo kunnen we u de best mogelijke ervaring geven.
         </Text>
       </View>
-      <View className="w-full px-4 absolute bottom-6">
+      <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
         <PrimaryButton
           label="Ga van start"
           onPress={() => navigation.navigate("Intake")}

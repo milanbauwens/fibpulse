@@ -24,13 +24,7 @@ const Intake = () => {
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
     } else {
-      try {
-        console.log("intake done");
-      } catch (err) {
-        console.error("Error intake error:", err);
-      } finally {
-        navigation.navigate("Dashboard");
-      }
+      navigation.navigate("Dashboard");
     }
     return;
   };
@@ -72,9 +66,9 @@ const Intake = () => {
         scrollEventThrottle={32}
         ref={slidesRef}
       />
-      <View className="w-full px-4 absolute bottom-6">
+      <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
         <PrimaryButton
-          label={currentSlide <= 2 ? " Volgende" : "Voltooi"}
+          label={currentSlide <= 2 ? " Volgende" : "Voltooi uw profiel"}
           onPress={scrollTo}
         />
       </View>

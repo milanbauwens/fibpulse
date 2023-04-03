@@ -3,10 +3,11 @@ import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 
 // Icons
-import Home from "../icons/Home";
-import Heart from "../icons/Heart";
-import Pill from "../icons/Pill";
-import Health from "../icons/Health";
+import Home from "../svg/icons/Home";
+import Heart from "../svg/icons/Heart";
+import Health from "../svg/icons/Health";
+import Pill from "../svg/icons/Pill";
+import colors from "../../theme/colors";
 
 const NAVIGATION_ITEMS = [
   {
@@ -31,7 +32,7 @@ const NAVIGATION_ITEMS = [
   },
 ];
 
-const Navigation = () => {
+const BottomNavigation = () => {
   const navigation = useNavigation();
   const currentRoute = useRoute();
 
@@ -46,14 +47,18 @@ const Navigation = () => {
           key={item.title}
         >
           <item.icon
-            color={currentRoute.name === item.screen ? "#252525" : "#809393"}
+            color={
+              currentRoute.name === item.screen
+                ? colors.deepMarine[700]
+                : colors.deepMarine[300]
+            }
           />
           <Text
             style={{ fontFamily: "Mulish-regular" }}
             className={`text-xs ${
               currentRoute.name === item.screen
-                ? "text-neutral-900"
-                : "text-[#809393]"
+                ? "text-deepMarine-700"
+                : "text-deepMarine-300"
             }`}
           >
             {item.title}
@@ -64,4 +69,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default BottomNavigation;
