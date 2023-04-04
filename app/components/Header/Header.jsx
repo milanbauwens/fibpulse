@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import ArrowLeft from "../svg/icons/ArrowLeft";
 import UserCircle from "../svg/icons/UserCircle";
 
-const Header = ({ withPrevious, withClose, title }) => {
+const Header = ({ withPrevious = false, withClose = false, title }) => {
   const navigation = useNavigation();
 
   return (
@@ -13,7 +13,7 @@ const Header = ({ withPrevious, withClose, title }) => {
       {withPrevious && (
         <TouchableOpacity
           activeOpacity={0.8}
-          className="absolute left-0 top-0"
+          className="absolute z-10 left-3 top-0"
           onPress={() => navigation.goBack()}
         >
           <ArrowLeft />
@@ -21,9 +21,8 @@ const Header = ({ withPrevious, withClose, title }) => {
       )}
       {withClose && (
         <TouchableOpacity
-          activeOpacity={0.8}
-          className="absolute left-0 top-0"
           onPress={() => navigation.goBack()}
+          className="absolute z-10 left-3 top-0"
         >
           <Ionicons name="md-close" size={24} color={colors.turquoise[700]} />
         </TouchableOpacity>
@@ -37,7 +36,7 @@ const Header = ({ withPrevious, withClose, title }) => {
       {!withClose && (
         <TouchableOpacity
           activeOpacity={0.8}
-          className="absolute right-0 top-0"
+          className="absolute z-10 right-4 top-0"
           onPress={() => navigation.navigate("Settings")}
         >
           <UserCircle />

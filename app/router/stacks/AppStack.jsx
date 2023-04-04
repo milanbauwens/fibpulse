@@ -7,6 +7,7 @@ import Dashboard from "../../screens/Dashboard";
 import VerifyEmail from "../../screens/authentication/VerifyEmail";
 import Intake from "../../screens/onboarding/Intake";
 import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
+import Settings from "../../screens/Settings";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
@@ -59,6 +60,11 @@ export default function AppStack() {
         options={{ headerShown: false }}
         name="Dashboard"
         component={Dashboard}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Settings"
+        component={Settings}
       />
     </Stack.Navigator>
   );

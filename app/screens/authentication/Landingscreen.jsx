@@ -2,32 +2,29 @@ import { Link, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
 import { signInWithProvider } from "../../db/modules/auth/api";
-import Logo from "../../components/svg/Logo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import { MaterialIcons } from "@expo/vector-icons";
+
+// Components
+import AuthProviderButton from "../../components/Buttons/AuthProviderButton";
+import Logo from "../../components/svg/Logo";
+import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import TertiairyButton from "../../components/Buttons/TertiairyButton";
 import Ellipse from "../../components/svg/Ellipse";
 import CircleMd from "../../components/svg/CircleMd";
 import CircleSm from "../../components/svg/CircleSm";
 import Display from "../../components/Typograhy/Display";
 import Paragraph from "../../components/Typograhy/Paragraph";
-import { useAuthContext } from "../../components/Auth/AuthProvider";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
-  const { user } = useAuthContext();
-
-  console.log(user);
 
   const handleProviderLogin = async (provider) => {
     setIsLoading(true);
     try {
       await signInWithProvider(provider);
-
     } catch (error) {
       console.error(error);
     } finally {
