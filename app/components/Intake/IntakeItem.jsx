@@ -8,8 +8,10 @@ import {
 } from "react-native";
 import { useAuthContext } from "../Auth/AuthProvider";
 import { supabase } from "../../db/initSupabase";
-import { Ionicons } from "@expo/vector-icons";
 import colors from "../../theme/colors";
+import CheckCircle from "../svg/icons/CheckCircle";
+import Title from "../Typograhy/Title";
+import Paragraph from "../Typograhy/Paragraph";
 
 const IntakeItem = ({ data, currentSlide }) => {
   const { width } = useWindowDimensions();
@@ -50,20 +52,14 @@ const IntakeItem = ({ data, currentSlide }) => {
 
   return (
     <View style={{ width }} className="h-full bg-white mt-8 px-4">
-      <Text
-        style={{ fontFamily: "Bitter-semibold" }}
-        className="text-deepMarine-900 text-2xl mb-2 text-center"
-      >
-        {data.question}
-      </Text>
-      {data.multiselect && (
-        <Text
-          style={{ fontFamily: "Mulish-medium" }}
-          className="text-deepMarine-700 text-base text-center"
-        >
-          U kunt meerdere factoren selecteren.
-        </Text>
-      )}
+      <View className="flex w-full items-center">
+        <Title centered>{data.question}</Title>
+        {data.multiselect && (
+          <Paragraph className="text-center">
+            U kunt meerdere opties selecteren.
+          </Paragraph>
+        )}
+      </View>
 
       {data.options ? (
         <View className="mt-12">
@@ -158,11 +154,7 @@ const IntakeItem = ({ data, currentSlide }) => {
                     </Text>
                     {selectedGender === option ||
                     selectedEpisodeAmount === option ? (
-                      <Ionicons
-                        name="md-checkmark-circle"
-                        size={32}
-                        color={colors.green[500]}
-                      />
+                      <CheckCircle />
                     ) : (
                       <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200"></View>
                     )}

@@ -17,6 +17,7 @@ import Formgroup from "../../components/Formgroup/Formgroup";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
 import TertiairyButton from "../../components/Buttons/TertiairyButton";
+import Title from "../../components/Typograhy/Title";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -53,14 +54,8 @@ const Login = () => {
   return (
     <SafeAreaView className="bg-white h-full px-4">
       <BackButton onPress={() => navigation.navigate("Landing")} />
-      <Text
-        style={{ fontFamily: "Bitter-semibold" }}
-        className="text-2xl text-deepMarine-900 mb-8"
-      >
-        Log in bij uw account
-      </Text>
-
-      <KeyboardAvoidingView enabled className="flex flex-col gap-y-8">
+      <Title>Log in bij uw account</Title>
+      <KeyboardAvoidingView enabled className="flex flex-col gap-y-8 mt-2">
         {signInError && (
           <View
             className=" bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"

@@ -12,6 +12,8 @@ import TertiairyButton from "../../components/Buttons/TertiairyButton";
 import Ellipse from "../../components/svg/Ellipse";
 import CircleMd from "../../components/svg/CircleMd";
 import CircleSm from "../../components/svg/CircleSm";
+import Display from "../../components/Typograhy/Display";
+import Paragraph from "../../components/Typograhy/Paragraph";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
@@ -43,18 +45,10 @@ const Landingscreen = () => {
       <CircleSm className="absolute bottom-4 right-0" />
 
       <View>
-        <Text
-          className="text-[28px] leading-[42px] text-deepMarine-900 mb-2"
-          style={{ fontFamily: "Bitter-semibold" }}
-        >
-          Laat uw hartritmestoornis niet de bovenhand nemen.
-        </Text>
-        <Text
-          className="text-base text-deepMarine-700"
-          style={{ fontFamily: "Mulish-medium" }}
-        >
-          Begin vandaag nog met het zorgen voor uw hart.
-        </Text>
+        <Display>Laat uw hartritmestoornis niet de bovenhand nemen.</Display>
+        <Paragraph>
+          Begin vandaag nog met het zorg dragen voor uw hart.
+        </Paragraph>
       </View>
 
       <View className="absolute bottom-8 w-full">

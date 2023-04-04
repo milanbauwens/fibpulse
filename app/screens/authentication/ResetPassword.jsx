@@ -10,6 +10,8 @@ import handleSupabaseError from "../../utils/handleSupabaseError";
 import Formgroup from "../../components/Formgroup/Formgroup";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
+import Paragraph from "../../components/Typograhy/Paragraph";
+import Title from "../../components/Typograhy/Title";
 
 const ResetPassword = () => {
   const navigation = useNavigation();
@@ -41,21 +43,13 @@ const ResetPassword = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white h-full px-4">
+    <SafeAreaView className=" bg-white h-full px-4">
       <BackButton onPress={() => navigation.navigate("Login")} />
-      <Text
-        style={{ fontFamily: "Bitter-semibold" }}
-        className="text-2xl text-deepMarine-900 mb-2"
-      >
-        Wachtwoord vergeten
-      </Text>
-      <Text
-        style={{ fontFamily: "Mulish-medium" }}
-        className="text-base text-deepMarine-700 mb-8"
-      >
+      <Title>Wachtwoord vergeten</Title>
+      <Paragraph className="mb-12">
         Geen probleem! Vul je e-mail in en we sturen je een mail om je
         wachtwoord te herstellen.
-      </Text>
+      </Paragraph>
 
       <KeyboardAvoidingView enabled className="flex flex-col gap-y-8">
         {resetPasswordError && (

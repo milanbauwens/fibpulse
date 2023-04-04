@@ -11,6 +11,7 @@ import Formgroup from "../../components/Formgroup/Formgroup";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import BackButton from "../../components/Buttons/BackButton";
 import TertiairyButton from "../../components/Buttons/TertiairyButton";
+import Title from "../../components/Typograhy/Title";
 
 const Register = () => {
   const navigation = useNavigation();
@@ -65,18 +66,8 @@ const Register = () => {
   return (
     <SafeAreaView className="bg-white h-full px-4">
       <BackButton onPress={() => navigation.navigate("Landing")} />
-      <Text
-        style={{ fontFamily: "Bitter-semibold" }}
-        className="text-2xl text-deepMarine-900 mb-8"
-      >
-        Maak een nieuw profiel
-      </Text>
-
-      {/*  Form */}
-      <KeyboardAvoidingView
-        enabled
-        className="overflow-hidden flex flex-col gap-y-8 mb-12"
-      >
+      <Title>Maak een nieuw profiel</Title>
+      <KeyboardAvoidingView enabled className="flex gap-y-8 mt-2 mb-12">
         {signUpError && (
           <View
             className=" bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
