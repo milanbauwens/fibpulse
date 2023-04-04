@@ -134,21 +134,11 @@ const IntakeItem = ({ data, currentSlide }) => {
                         : handleSelect
                     }
                     activeOpacity={1}
-                    className={`px-4 py-3 min-h-[62px] w-fit rounded-lg flex flex-row items-center justify-between ${
-                      selectedGender === option ||
-                      selectedEpisodeAmount === option
-                        ? "bg-deepMarine-500"
-                        : "bg-deepMarine-100"
-                    }`}
+                    className="px-4 py-3 min-h-[62px] w-fit rounded-lg flex flex-row items-center justify-between bg-deepMarine-100"
                   >
                     <Text
                       style={{ fontFamily: "Mulish-medium" }}
-                      className={`text-base ${
-                        selectedGender === option ||
-                        selectedEpisodeAmount === option
-                          ? "text-white"
-                          : "text-deepMarine-900"
-                      }`}
+                      className="text-base text-deepMarine-900"
                     >
                       {option}
                     </Text>

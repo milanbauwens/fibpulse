@@ -14,15 +14,20 @@ import CircleMd from "../../components/svg/CircleMd";
 import CircleSm from "../../components/svg/CircleSm";
 import Display from "../../components/Typograhy/Display";
 import Paragraph from "../../components/Typograhy/Paragraph";
+import { useAuthContext } from "../../components/Auth/AuthProvider";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAuthContext();
+
+  console.log(user);
 
   const handleProviderLogin = async (provider) => {
     setIsLoading(true);
     try {
       await signInWithProvider(provider);
+
     } catch (error) {
       console.error(error);
     } finally {
