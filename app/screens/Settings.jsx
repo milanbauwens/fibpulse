@@ -49,7 +49,7 @@ const Settings = () => {
           <Text className="text-sm text-deepMarine-400 mb-6">Help</Text>
           <SettingsItem iconName="flag" title="Rapporteer een probleem" />
           <SettingsItem iconName="information" title="Privacy verklaring" />
-          <SettingsItem iconName="information" title="Privacy verklaring" />
+          <SettingsItem iconName="information" title="Gebruikersvoorwaarden" />
           <SettingsItem
             type="error"
             iconName="exit-to-app"
