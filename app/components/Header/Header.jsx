@@ -5,7 +5,12 @@ import { useNavigation } from "@react-navigation/native";
 import ArrowLeft from "../svg/icons/ArrowLeft";
 import UserCircle from "../svg/icons/UserCircle";
 
-const Header = ({ withPrevious = false, withClose = false, title }) => {
+const Header = ({
+  withPrevious = false,
+  withClose = false,
+  withSettings = false,
+  title,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -33,7 +38,7 @@ const Header = ({ withPrevious = false, withClose = false, title }) => {
       >
         {title}
       </Text>
-      {!withClose && (
+      {withSettings && (
         <TouchableOpacity
           activeOpacity={0.8}
           className="absolute z-10 right-4 top-0"

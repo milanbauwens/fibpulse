@@ -1,7 +1,10 @@
 import { Link, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { signInWithProvider } from "../../db/modules/auth/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -19,6 +22,7 @@ import Paragraph from "../../components/Typograhy/Paragraph";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
+  const { bottom } = useSafeAreaInsets();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleProviderLogin = async (provider) => {
@@ -53,7 +57,7 @@ const Landingscreen = () => {
         </Paragraph>
       </View>
 
-      <View className="absolute bottom-8 w-full">
+      <View style={{ bottom: bottom + 8 }} className="absolute w-full">
         <AuthProviderButton
           disabled={isLoading}
           provider="google"
@@ -104,13 +108,12 @@ const Landingscreen = () => {
             </Text>
           </Link>
         </Text>
-        <View className="mb-2">
-          <TertiairyButton
-            label="Heeft u al een account?"
-            action="Inloggen."
-            onPress={() => navigation.navigate("Login")}
-          />
-        </View>
+
+        <TertiairyButton
+          label="Heeft u al een account?"
+          action="Inloggen."
+          onPress={() => navigation.navigate("Login")}
+        />
       </View>
     </SafeAreaView>
   );

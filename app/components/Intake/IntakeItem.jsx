@@ -54,7 +54,7 @@ const IntakeItem = ({ data, currentSlide }) => {
 
   useEffect(() => {
     handleFormSubmit();
-  }, [selectedRisks, selectedEpisodeAmount, selectedGender, date]);
+  }, [selectedRisks, selectedEpisodeAmount, selectedGender]);
 
   const handleDate = (event, date) => {
     const {

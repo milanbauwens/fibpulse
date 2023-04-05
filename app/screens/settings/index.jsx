@@ -1,39 +1,24 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "../components/Header/Header";
-import { signOut } from "../db/modules/auth/api";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import Header from "../../components/Header/Header";
+import { signOut } from "../../db/modules/auth/api";
 import { useNavigation } from "@react-navigation/native";
-import { useAuthContext } from "../components/Auth/AuthProvider";
-import Paragraph from "../components/Typograhy/Paragraph";
+import { useAuthContext } from "../../components/Auth/AuthProvider";
+import Paragraph from "../../components/Typograhy/Paragraph";
 import { View, Text, ScrollView } from "react-native";
-import Title from "../components/Typograhy/Title";
-import SettingsItem from "../components/SettingsItem/SettingsItem";
-import { useEffect, useState } from "react";
-import { supabase } from "../db/initSupabase";
+import Title from "../../components/Typograhy/Title";
+import SettingsItem from "../../components/SettingsItem/SettingsItem";
+import { useState } from "react";
 
 const Settings = () => {
   const navigation = useNavigation();
   const { user } = useAuthContext();
+  const { bottom } = useSafeAreaInsets();
   const [notifactionState, setNotificationState] = useState(false);
   const toggleSwitch = () =>
     setNotificationState((previousState) => !previousState);
-
-  // const fetchProfile = async () => {
-  //   const { data, error } = await supabase
-  //     .from("profiles")
-  //     .select("*")
-  //     .eq("user_id", user.id)
-  //     .single();
-
-  //   if (error) {
-  //     console.error(error);
-  //   } else {
-  //     setProfile(data);
-  //   }
-  // };
-
-  // fetchProfile();
-
-  // console.log(profile);
 
   return (
     <SafeAreaView className="bg-white">
@@ -48,7 +33,11 @@ const Settings = () => {
 
         <View className="mb-6">
           <Text className="text-sm text-deepMarine-400 mb-6">Profiel</Text>
-          <SettingsItem iconName="account" title="Persoonlijke gegevens" />
+          <SettingsItem
+            iconName="account"
+            title="Persoonlijke gegevens"
+            onPress={() => navigation.navigate("PersonalInformation")}
+          />
           <SettingsItem iconName="cards-heart" title="Hart gegevens" />
         </View>
 
@@ -79,7 +68,10 @@ const Settings = () => {
           />
         </View>
 
-        <Text className="text-xs text-center text-deepMarine-400 mb-12">
+        <Text
+          style={{ marginBottom: bottom + 8 }}
+          className="text-xs text-center text-deepMarine-400"
+        >
           Fibpulse v1.0.0{" "}
         </Text>
       </ScrollView>

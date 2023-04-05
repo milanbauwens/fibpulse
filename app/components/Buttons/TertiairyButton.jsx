@@ -1,16 +1,20 @@
 import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 
-const TertiairyButton = ({ label, action, onPress, props }) => {
+const TertiairyButton = ({ type, label, action, onPress, props }) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={1} {...props}>
       <Text
         style={{ fontFamily: "Mulish-bold" }}
-        className="text-center text-base text-deepMarine-700"
+        className={`${
+          type === "error" ? "text-red-600" : "text-deepMarine-500"
+        } text-center text-base `}
       >
         {label}{" "}
         <Text
-          className="text-deepMarine-500"
+          className={`${
+            type === "error" ? "text-red-600" : "text-deepMarine-500"
+          } `}
           style={{ fontFamily: "Mulish-bold" }}
         >
           {action}
