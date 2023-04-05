@@ -1,10 +1,13 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   View,
   Text,
   useWindowDimensions,
   TouchableOpacity,
+  TextInput,
+  Platform,
+  Keyboard,
 } from "react-native";
 import { useAuthContext } from "../Auth/AuthProvider";
 import { supabase } from "../../db/initSupabase";
@@ -16,31 +19,42 @@ import Paragraph from "../Typograhy/Paragraph";
 const IntakeItem = ({ data, currentSlide }) => {
   const { width } = useWindowDimensions();
   const { user } = useAuthContext();
+  const [datePickerVisible, setDatePickerVisible] = useState(false);
 
   const [selectedRisks, setSelectedRisks] = useState([]);
   const [selectedEpisodeAmount, setSelectedEpisodeAmount] = useState();
   const [selectedGender, setSelectedGender] = useState();
   const [date, setDate] = useState();
 
+  // Android date formatter
+  const [dayAN, setDayAN] = useState();
+  const [monthAN, setMonthAN] = useState();
+  const [yearAN, setYearAN] = useState();
+
+  const dayRef = useRef();
+  const monthRef = useRef();
+  const yearRef = useRef();
+
   const handleFormSubmit = async () => {
-    const { error } = await supabase
-      .from("profiles")
-      .update({
-        date_of_birth: date,
-        gender: selectedGender,
-        vkf_frequency: selectedEpisodeAmount,
-        risk_factors: selectedRisks,
-        passed_intake: true,
-      })
-      .eq("user_id", user?.id);
+    const { error } = await supabase.from("medical_profiles").upsert({
+      user_id: user.id,
+      date_of_birth:
+        Platform.OS === "android"
+          ? `${new Date(yearAN, monthAN, dayAN)}`
+          : date,
+      gender: selectedGender,
+      vkf_frequency: selectedEpisodeAmount,
+      risk_factors: selectedRisks,
+      passed_intake: true,
+    });
     if (error) {
       console.log(error);
     }
   };
 
-  if (currentSlide === 3) {
+  useEffect(() => {
     handleFormSubmit();
-  }
+  }, [selectedRisks, selectedEpisodeAmount, selectedGender, date]);
 
   const handleDate = (event, date) => {
     const {
@@ -156,15 +170,77 @@ const IntakeItem = ({ data, currentSlide }) => {
         </View>
       ) : (
         <View className="mt-28">
-          <DateTimePicker
-            minimumDate={new Date(1900, 0, 1)}
-            maximumDate={new Date()}
-            value={date || new Date()}
-            display="spinner"
-            textColor={colors.deepMarine[700]}
-            mode="date"
-            onChange={handleDate}
-          />
+          {Platform.OS === "android" ? (
+            <View className="bg-deepMarine-100 flex flex-row w-2/3 mx-auto items-center">
+              <TextInput
+                value={dayAN}
+                ref={dayRef}
+                className={`mx-auto w-16 p-4 text-2xl text-deepMarine-900 bg-deepMarine-100 rounded-lg`}
+                style={{ fontFamily: "Bitter-semibold" }}
+                secureTextEntry={false}
+                maxLength={2}
+                keyboardType="number-pad"
+                onChangeText={(text) => {
+                  setDayAN(text);
+                  if (text.length === 2) {
+                    monthRef.current.focus();
+                  }
+                }}
+              />
+              <Text
+                style={{ fontFamily: "Mulish-medium" }}
+                className="mx-4 text-[48px] text-deepMarine-300 "
+              >
+                /
+              </Text>
+              <TextInput
+                value={monthAN}
+                ref={monthRef}
+                className={`mx-auto w-16 p-4 text-2xl text-deepMarine-900 bg-deepMarine-100 rounded-lg`}
+                style={{ fontFamily: "Bitter-semibold" }}
+                secureTextEntry={false}
+                maxLength={2}
+                onChangeText={(text) => {
+                  setMonthAN(text);
+                  if (text.length === 2) {
+                    yearRef.current.focus();
+                  }
+                }}
+                keyboardType="number-pad"
+              />
+              <Text
+                style={{ fontFamily: "Mulish-medium" }}
+                className="mx-4 text-[48px] text-deepMarine-300 "
+              >
+                /
+              </Text>
+              <TextInput
+                value={yearAN}
+                ref={yearRef}
+                className={`mx-auto w-24 p-4 text-2xl text-deepMarine-900 bg-deepMarine-100 rounded-lg`}
+                style={{ fontFamily: "Bitter-semibold" }}
+                secureTextEntry={false}
+                maxLength={4}
+                onChangeText={(text) => {
+                  setYearAN(text);
+                  if (text.length === 4) {
+                    Keyboard.dismiss();
+                  }
+                }}
+                keyboardType="number-pad"
+              />
+            </View>
+          ) : (
+            <DateTimePicker
+              minimumDate={new Date(1900, 0, 1)}
+              maximumDate={new Date()}
+              value={date || new Date()}
+              display="spinner"
+              textColor={colors.deepMarine[700]}
+              mode="date"
+              onChange={handleDate}
+            />
+          )}
         </View>
       )}
     </View>

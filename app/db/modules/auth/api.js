@@ -1,7 +1,5 @@
 import { supabase } from "../../initSupabase";
-import { startAsync } from "expo-auth-session";
 import { SUPABASE_URL } from "@env";
-import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 
 export const getCurrentSession = async () => {
@@ -15,6 +13,28 @@ export const getCurrentSession = async () => {
   }
   return session;
 };
+
+// export const signInWithEmail = async ({
+//   email,
+//   password,
+//   firstname,
+//   lastname,
+// }) => {
+//   const { data, error } = await supabase.auth.signUp({
+//     email,
+//     password,
+//     options: {
+//       data: {
+//         firstname,
+//         lastname,
+//       },
+//     },
+//   });
+
+//   if (error) {
+//     return error;
+//   }
+// };
 
 export const signInWithProvider = async (provider) => {
   const authUrl = `${SUPABASE_URL}/auth/v1/authorize?provider=${provider}&prompt=consent&projectNameForProxy=@supabase/fibpulse`;

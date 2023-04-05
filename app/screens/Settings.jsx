@@ -7,7 +7,8 @@ import Paragraph from "../components/Typograhy/Paragraph";
 import { View, Text, ScrollView } from "react-native";
 import Title from "../components/Typograhy/Title";
 import SettingsItem from "../components/SettingsItem/SettingsItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../db/initSupabase";
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -16,12 +17,32 @@ const Settings = () => {
   const toggleSwitch = () =>
     setNotificationState((previousState) => !previousState);
 
+  // const fetchProfile = async () => {
+  //   const { data, error } = await supabase
+  //     .from("profiles")
+  //     .select("*")
+  //     .eq("user_id", user.id)
+  //     .single();
+
+  //   if (error) {
+  //     console.error(error);
+  //   } else {
+  //     setProfile(data);
+  //   }
+  // };
+
+  // fetchProfile();
+
+  // console.log(profile);
+
   return (
-    <SafeAreaView>
+    <SafeAreaView className="bg-white">
       <Header title="Instellingen" withClose />
       <ScrollView className="mb-6 px-4">
         <View className="mb-12">
-          <Title>{user.name}</Title>
+          <Title>
+            {user.name ? user.name : `${user.firstname} ${user.lastname}`}
+          </Title>
           <Paragraph>{user.email}</Paragraph>
         </View>
 

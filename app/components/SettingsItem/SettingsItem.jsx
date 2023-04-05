@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../theme/colors";
-import { Switch, View } from "react-native";
+import { Switch, View, TouchableOpacity } from "react-native";
 import Paragraph from "../Typograhy/Paragraph";
 import { useState } from "react";
 
@@ -16,7 +16,8 @@ const SettingsItem = ({
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       className="w-full flex flex-row items-center justify-between mb-6"
     >
@@ -56,7 +57,7 @@ const SettingsItem = ({
           color={type === "error" ? colors.red[600] : colors.deepMarine[700]}
         />
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 

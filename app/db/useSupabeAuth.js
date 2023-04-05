@@ -32,6 +32,7 @@ const UseSupabaseAuth = () => {
     });
   }, []);
 
+
   const user = useMemo(
     () => (auth ? { ...auth.user, ...auth.user.user_metadata } : null),
     [auth]

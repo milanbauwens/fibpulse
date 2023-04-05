@@ -34,19 +34,18 @@ const Register = () => {
       const { data, error } = await supabase.auth.signUp({
         email: formData.userEmail,
         password: formData.userPassword,
+        options: {
+          data: {
+            firstname: formData.userFirstname,
+            lastname: formData.userName,
+          },
+        },
       });
       if (error) {
         const errorMessage = handleSupabaseError(error.status);
         setSignUpError(errorMessage);
         return;
       } else {
-        const { error } = await supabase
-          .from("profiles")
-          .update({
-            lastname: formData.userName,
-            firstname: formData.userFirstname,
-          })
-          .eq("user_id", data.user.id);
         if (error) {
           const errorMessage = handleSupabaseError(error.status);
           setSignUpError(errorMessage);

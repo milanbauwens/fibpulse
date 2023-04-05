@@ -11,7 +11,7 @@ import Paragraph from "../../components/Typograhy/Paragraph";
 
 const VerifyEmail = () => {
   const navigation = useNavigation();
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   // const { user } = useAuthContext();
 
   // const checkVerifyEmail = () => {
@@ -42,7 +42,7 @@ const VerifyEmail = () => {
         <View className="absolute left-0 right-0 bottom-2 m-auto flex flex-col justify-center">
           <PrimaryButton
             label="Email geverifieerd"
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => navigation.navigate("IntakeExplainer")}
             isLoading={isLoading}
           />
           <TertiairyButton label="Stuur verificatie e-mail opnieuw." />
