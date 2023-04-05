@@ -23,7 +23,7 @@ const PersonalInformation = () => {
         <View className="mb-6">
           <Text
             style={{ fontFamily: "Mulish-semibold" }}
-            className="text-sm text-deepMarine-400 mb-2"
+            className="text-sm text-deepMarine-400 mb-1"
           >
             Volledige naam
           </Text>
@@ -37,7 +37,7 @@ const PersonalInformation = () => {
         <View className="mb-6">
           <Text
             style={{ fontFamily: "Mulish-semibold" }}
-            className="text-sm text-deepMarine-400 mb-2"
+            className="text-sm text-deepMarine-400 mb-1"
           >
             E-mail
           </Text>
@@ -51,7 +51,7 @@ const PersonalInformation = () => {
         <View className="mb-6">
           <Text
             style={{ fontFamily: "Mulish-semibold" }}
-            className="text-sm text-deepMarine-400 mb-2"
+            className="text-sm text-deepMarine-400 mb-1"
           >
             Actief sinds
           </Text>
@@ -65,7 +65,7 @@ const PersonalInformation = () => {
         <View className="mb-6">
           <Text
             style={{ fontFamily: "Mulish-semibold" }}
-            className="text-sm text-deepMarine-400 mb-2"
+            className="text-sm text-deepMarine-400 mb-1"
           >
             Loginmethode
           </Text>
