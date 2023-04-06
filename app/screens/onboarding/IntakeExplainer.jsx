@@ -22,10 +22,12 @@ const IntakeExplainer = () => {
         </Paragraph>
       </View>
       <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
-        <PrimaryButton
-          label="Ga van start"
-          onPress={() => navigation.navigate("Intake")}
-        />
+        <View className="mb-6">
+          <PrimaryButton
+            label="Ga van start"
+            onPress={() => navigation.navigate("Intake")}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

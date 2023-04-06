@@ -8,7 +8,7 @@ import VerifyEmail from "../../screens/authentication/VerifyEmail";
 import Intake from "../../screens/onboarding/Intake";
 import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
 import Settings from "../../screens/settings";
-import PersonalInformation from "../../screens/settings/personalInformation";
+import PersonalInformation from "../../screens/settings/PersonalInformation";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();

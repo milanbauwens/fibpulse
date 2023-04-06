@@ -5,9 +5,9 @@ const TertiairyButton = ({ type, label, action, onPress, props }) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={1} {...props}>
       <Text
-        style={{ fontFamily: "Mulish-bold" }}
+        style={{ fontFamily: "Mulish-medium" }}
         className={`${
-          type === "error" ? "text-red-600" : "text-deepMarine-500"
+          type === "error" ? "text-red-600" : "text-deepMarine-900"
         } text-center text-base `}
       >
         {label}{" "}

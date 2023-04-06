@@ -40,11 +40,13 @@ const VerifyEmail = () => {
         </Paragraph>
 
         <View className="absolute left-0 right-0 bottom-2 m-auto flex flex-col justify-center">
-          <PrimaryButton
-            label="Email geverifieerd"
-            onPress={() => navigation.navigate("IntakeExplainer")}
-            isLoading={isLoading}
-          />
+          <View className="mb-6">
+            <PrimaryButton
+              label="Email geverifieerd"
+              onPress={() => navigation.navigate("IntakeExplainer")}
+              isLoading={isLoading}
+            />
+          </View>
           <TertiairyButton label="Stuur verificatie e-mail opnieuw." />
         </View>
       </View>

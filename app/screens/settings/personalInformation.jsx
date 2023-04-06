@@ -1,12 +1,24 @@
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import Header from "../../components/Header/Header";
 import { useAuthContext } from "../../components/Auth/AuthProvider";
 import { View, Text } from "react-native";
 import { useState } from "react";
+import TertiairyButton from "../../components/Buttons/TertiairyButton";
+import Popover from "../../components/Popover/Popover";
+import Paragraph from "../../components/Typograhy/Paragraph";
+import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import DeleteAccount from "../../components/svg/DeleteAccount";
+import { deleteUser, signOut } from "../../db/modules/auth/api";
+import { useNavigation } from "@react-navigation/native";
 
 const PersonalInformation = () => {
   const { user } = useAuthContext();
-  const [notifactionState, setNotificationState] = useState(false);
+  const navigation = useNavigation();
+  const { bottom } = useSafeAreaInsets();
+  const [isVisible, setIsVisible] = useState(false);
   const toggleSwitch = () =>
     setNotificationState((previousState) => !previousState);
 
@@ -16,8 +28,51 @@ const PersonalInformation = () => {
     day: "numeric",
   });
 
+  const handleDeleteAccount = async () => {
+    try {
+      await deleteUser(user);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      signOut();
+      setIsVisible(false);
+    }
+  };
+
   return (
     <SafeAreaView className="bg-white h-full w-full">
+      <Popover isVisible={isVisible} transparent={true} animationType="fade">
+        <View className="bg-white mt-28 shadow-lg mx-4 h-fit rounded-xl px-4 py-6">
+          <DeleteAccount />
+          <Text
+            style={{ fontFamily: "Bitter-semibold" }}
+            className="text-xl text-deepMarine-900 mb-2 mt-8"
+          >
+            Account Verwijderen?
+          </Text>
+          <Paragraph className="mb-10" textColor="text-deepMarine-700">
+            Indien u verder gaat zal uw account definitief verwijderd worden. U
+            zal alle gegevens verliezen en u zal niet meer in staat zijn om in
+            te loggen.
+          </Paragraph>
+          <View className="w-full flex flex-row items-center ">
+            <View className="mr-4 flex-1">
+              <PrimaryButton
+                label="Annuleren"
+                onPress={() => setIsVisible(false)}
+              />
+            </View>
+            <View className="flex-1">
+              <TertiairyButton
+                action="Verwijder account"
+                type="error"
+                onPress={handleDeleteAccount}
+              />
+            </View>
+          </View>
+        </View>
+      </Popover>
+
       <Header title="Persoonlijke gegevens" withPrevious />
       <View className="px-4">
         <View className="mb-6">
@@ -31,7 +86,7 @@ const PersonalInformation = () => {
             style={{ fontFamily: "Mulish-medium" }}
             className="text-base text-deepMarine-900"
           >
-            {user.name}
+            {user.name ? user.name : `${user.firstname} ${user.lastname}`}
           </Text>
         </View>
         <View className="mb-6">
@@ -77,6 +132,13 @@ const PersonalInformation = () => {
               user.app_metadata.provider.slice(1)}
           </Text>
         </View>
+      </View>
+      <View className="absolute w-full z-10" style={{ bottom: bottom + 8 }}>
+        <TertiairyButton
+          type="error"
+          action="Verwijder account"
+          onPress={() => setIsVisible(true)}
+        />
       </View>
     </SafeAreaView>
   );

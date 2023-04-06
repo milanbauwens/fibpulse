@@ -67,10 +67,12 @@ const Intake = () => {
         ref={slidesRef}
       />
       <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
-        <PrimaryButton
-          label={currentSlide <= 2 ? " Volgende" : "Voltooi uw profiel"}
-          onPress={scrollTo}
-        />
+        <View className="mb-6">
+          <PrimaryButton
+            label={currentSlide <= 2 ? " Volgende" : "Voltooi uw profiel"}
+            onPress={scrollTo}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

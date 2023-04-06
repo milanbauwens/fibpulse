@@ -1,4 +1,4 @@
-import { supabase } from "../../initSupabase";
+import { supabase, supabaseAdmin } from "../../initSupabase";
 import { SUPABASE_URL } from "@env";
 import * as WebBrowser from "expo-web-browser";
 
@@ -54,6 +54,22 @@ export const signInWithProvider = async (provider) => {
     } catch (error) {
       return error;
     }
+  }
+};
+
+export const deleteUser = async (user) => {
+  try {
+    const { error } = await supabaseAdmin.auth.admin.deleteUser(user.id);
+
+    if (error) {
+      console.log(error);
+      return error;
+    } else {
+      await supabase.auth.signOut();
+    }
+  } catch (error) {
+    console.error(error);
+    return error;
   }
 };
 

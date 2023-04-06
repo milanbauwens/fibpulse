@@ -6,12 +6,12 @@ const SecondaryButton = ({ label, onPress, isLoading }) => {
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      className="p-4 w-fit rounded-lg active:bg-deepMarine-500 border-2 border-deepMarine-500 "
+      className="py-[12px] px-[16px] min-h-12 flex flex-row items-center justify-center border rounded-full border-deepMarine-700 mb-6"
     >
       {!isLoading ? (
         <Text
           style={{ fontFamily: "Mulish-semibold" }}
-          className="text-lg text-center text-deepMarine-500"
+          className="text-base text-center text-deepMarine-700"
         >
           {label}
         </Text>

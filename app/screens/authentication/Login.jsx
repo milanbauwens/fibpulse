@@ -122,14 +122,16 @@ const Login = () => {
               Wachtwoord vergeten?
             </Text>
           </TouchableOpacity>
-
-          <PrimaryButton
-            onPress={handleSubmit(handleLogin)}
-            isLoading={isLoading}
-            label="Inloggen"
-          />
         </View>
       </KeyboardAvoidingView>
+
+      <View className="mb-6">
+        <PrimaryButton
+          onPress={handleSubmit(handleLogin)}
+          isLoading={isLoading}
+          label="Inloggen"
+        />
+      </View>
       <TertiairyButton
         label="Nog geen account?"
         action="Registreer."

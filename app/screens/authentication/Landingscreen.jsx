@@ -80,13 +80,15 @@ const Landingscreen = () => {
           <View className="flex-grow border-t border-gray-400" />
         </View>
 
-        <PrimaryButton
-          icon={<MaterialIcons name="email" size={24} color="#FFF" />}
-          label={"Doorgaan met E-mail"}
-          onPress={() => navigation.navigate("Register")}
-        />
+        <View className="mb-2">
+          <PrimaryButton
+            icon={<MaterialIcons name="email" size={24} color="#FFF" />}
+            label={"Doorgaan met E-mail"}
+            onPress={() => navigation.navigate("Register")}
+          />
+        </View>
         <Text
-          className="text-xs text-deepMarine-700 mb-10 mt-[-16px] text-center"
+          className="text-xs text-deepMarine-700 mb-10  text-center"
           style={{ fontFamily: "Mulish-regular" }}
         >
           Door zich te registreren, gaat u akkoord met onze{" "}

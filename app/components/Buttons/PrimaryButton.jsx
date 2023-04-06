@@ -6,11 +6,11 @@ const PrimaryButton = ({ label, onPress, isLoading, icon }) => {
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      className=" flex flex-row items-center justify-center w-full min-h-12 bg-deepMarine-500 py-[12px] px-[16px] rounded-full mb-6"
+      className="flex flex-row items-center justify-center min-h-12 bg-deepMarine-500 py-[12px] px-[16px] rounded-full "
     >
       {!isLoading ? (
         <>
-          <View className="mr-3">{icon}</View>
+          {icon && <View className="mr-3">{icon}</View>}
           <Text
             style={{ fontFamily: "Bitter-semibold" }}
             className="text-base text-center text-white"

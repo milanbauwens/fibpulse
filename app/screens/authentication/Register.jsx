@@ -154,11 +154,13 @@ const Register = () => {
           />
         </View>
       </KeyboardAvoidingView>
-      <PrimaryButton
-        isLoading={isLoading}
-        label="Registreren"
-        onPress={handleSubmit(handleRegister)}
-      />
+      <View className="mb-6">
+        <PrimaryButton
+          isLoading={isLoading}
+          label="Registreren"
+          onPress={handleSubmit(handleRegister)}
+        />
+      </View>
       <TertiairyButton
         label="Heeft u al een profiel?"
         action="Inloggen."
