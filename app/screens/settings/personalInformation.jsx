@@ -16,11 +16,8 @@ import { useNavigation } from "@react-navigation/native";
 
 const PersonalInformation = () => {
   const { user } = useAuthContext();
-  const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
   const [isVisible, setIsVisible] = useState(false);
-  const toggleSwitch = () =>
-    setNotificationState((previousState) => !previousState);
 
   const created_at = new Date(user.created_at).toLocaleDateString("nl-NL", {
     year: "numeric",
@@ -41,8 +38,8 @@ const PersonalInformation = () => {
 
   return (
     <SafeAreaView className="bg-white h-full w-full">
-      <Popover isVisible={isVisible} transparent={true} animationType="fade">
-        <View className="bg-white mt-28 shadow-lg mx-4 h-fit rounded-xl px-4 py-6">
+      <Popover isVisible={isVisible} transparent={true} animationType="slide">
+        <View className="bg-white shadow-top-xl mx-4 h-fit rounded-xl px-4 py-6">
           <DeleteAccount />
           <Text
             style={{ fontFamily: "Bitter-semibold" }}
@@ -51,12 +48,11 @@ const PersonalInformation = () => {
             Account Verwijderen?
           </Text>
           <Paragraph className="mb-10" textColor="text-deepMarine-700">
-            Indien u verder gaat zal uw account definitief verwijderd worden. U
-            zal alle gegevens verliezen en u zal niet meer in staat zijn om in
-            te loggen.
+            Bent u zeker dat u uw account wil verwijderen? Deze stap is
+            onomkeerbaar en alle vooruitgang zal verloren gaan.
           </Paragraph>
           <View className="w-full flex flex-row items-center ">
-            <View className="mr-4 flex-1">
+            <View className="mr-2 flex-1">
               <PrimaryButton
                 label="Annuleren"
                 onPress={() => setIsVisible(false)}

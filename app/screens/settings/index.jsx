@@ -38,7 +38,11 @@ const Settings = () => {
             title="Persoonlijke gegevens"
             onPress={() => navigation.navigate("PersonalInformation")}
           />
-          <SettingsItem iconName="cards-heart" title="Hart gegevens" />
+          <SettingsItem
+            iconName="cards-heart"
+            title="Medische gegevens"
+            onPress={() => navigation.navigate("MedicalInformation")}
+          />
         </View>
 
         <View className="mb-6">

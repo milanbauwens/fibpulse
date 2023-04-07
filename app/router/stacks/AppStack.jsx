@@ -9,6 +9,7 @@ import Intake from "../../screens/onboarding/Intake";
 import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
 import Settings from "../../screens/settings";
 import PersonalInformation from "../../screens/settings/PersonalInformation";
+import MedicalInformation from "../../screens/settings/MedicalInformation";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
@@ -62,16 +63,23 @@ export default function AppStack() {
         name="Dashboard"
         component={Dashboard}
       />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Settings"
-        component={Settings}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="PersonalInformation"
-        component={PersonalInformation}
-      />
+      <>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Settings"
+          component={Settings}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="PersonalInformation"
+          component={PersonalInformation}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="MedicalInformation"
+          component={MedicalInformation}
+        />
+      </>
     </Stack.Navigator>
   );
 }

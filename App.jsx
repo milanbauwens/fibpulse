@@ -4,23 +4,25 @@ import { SplashscreenLoader } from "./app/screens/onboarding/Splashscreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppContent from "./app/router/AppContent";
 import AuthProvider from "./app/components/Auth/AuthProvider";
-// import { Buffer } from "buffer";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Keep the splash screen visible while app is loading
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
-// Set global.Buffer to use in supabase-js
-// global.Buffer = Buffer;
+// Creates a Provider that allows us to use React Query
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <SplashscreenLoader>
       <SafeAreaProvider>
-        <AuthProvider>
-          <NavigationContainer>
-            <AppContent />
-          </NavigationContainer>
-        </AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <NavigationContainer>
+              <AppContent />
+            </NavigationContainer>
+          </AuthProvider>
+        </QueryClientProvider>
       </SafeAreaProvider>
     </SplashscreenLoader>
   );

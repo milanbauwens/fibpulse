@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Modal, TouchableOpacity } from "react-native";
+import { Animated, Modal, View } from "react-native";
 
 const Popover = ({
   children,
   isVisible,
-  transparent,
+  transparent = true,
   animationType = "none" | "slide" | "fade",
 }) => {
   const [modalVisible, setModalVisible] = useState(isVisible);
@@ -16,17 +16,16 @@ const Popover = ({
   return (
     <Modal
       animationType={animationType}
-      transparent={true}
+      transparent={transparent}
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible);
+        setFade(false);
       }}
     >
-      <TouchableOpacity
-        onPressIn={() => setModalVisible(false)}
-        className="w-full h-full bg-gray-700 opacity-30 top-0 bottom-0 right-0 left-0 absolute"
-      ></TouchableOpacity>
-      {children}
+      <View className=" w-full h-full absolute justify-center items-center">
+        {children}
+      </View>
     </Modal>
   );
 };
