@@ -223,7 +223,7 @@ const IntakeItem = ({ data, currentSlide }) => {
                   if (text.length === 4) {
                     Keyboard.dismiss();
                   }
-                  setDate(new Date(dayAN, monthAN, yearAN));
+                  setDate(new Date(yearAN, monthAN, dayAN));
                 }}
                 keyboardType="number-pad"
               />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Animated, Modal, View } from "react-native";
+import { Modal, View } from "react-native";
 
 const Popover = ({
   children,
