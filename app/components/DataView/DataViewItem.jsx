@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import {
   View,
   Text,
@@ -11,39 +11,21 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../theme/colors";
 import PrimaryButton from "../Buttons/PrimaryButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DatePicker from "../Input/DatePicker";
 
 const DataViewItem = ({ data, options, label, method, column }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
-    column === "date_of_birth" ? new Date(data) : data
+    data && column === "date_of_birth" ? new Date(data) : data
   );
 
-
-  const handleDate = (event, date) => {
-    const {
-      type,
-      nativeEvent: { timestamp },
-    } = event;
-    setSelectedValue(date);
-  };
-
+  // Mutate data back to Supabase
   const queryClient = useQueryClient();
-
   const mutation = useMutation((value) => method(column, value), {
     onSuccess: () => {
       queryClient.invalidateQueries(["medical_profile"]);
       setIsVisible(false);
     },
-  });
-
-  const formattedData =
-    data && data.length > 16 ? `${data.toString().substring(0, 17)}...` : data;
-
-  const formattedDateOfBirth = new Date(data).toLocaleDateString("nl-NL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
   });
 
   const handleUpdate = async () => {
@@ -53,6 +35,30 @@ const DataViewItem = ({ data, options, label, method, column }) => {
       console.log(error);
     }
   };
+
+  // Date input states
+  const [dayAN, setDayAN] = useState();
+  const [monthAN, setMonthAN] = useState();
+  const [yearAN, setYearAN] = useState();
+
+  const handleDate = (event, date) => {
+    const {
+      type,
+      nativeEvent: { timestamp },
+    } = event;
+    setSelectedValue(date);
+  };
+
+  // Formatted data
+  const formattedData =
+    data && data.length > 16 ? `${data.toString().substring(0, 17)}...` : data;
+
+  const formattedDateOfBirth = new Date(data).toLocaleDateString("nl-NL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <>
       <Popover animationType="slide" isVisible={isVisible}>
@@ -95,14 +101,28 @@ const DataViewItem = ({ data, options, label, method, column }) => {
             </Picker>
           ) : (
             <KeyboardAvoidingView className="mt-12">
-              <DateTimePicker
-                minimumDate={new Date(1900, 0, 1)}
-                maximumDate={new Date()}
-                value={selectedValue || new Date()}
-                display="spinner"
-                textColor={colors.deepMarine[700]}
-                mode="date"
+              <DatePicker
+                value={selectedValue}
                 onChange={handleDate}
+                onMonthChange={(text) => {
+                  setMonthAN(text);
+                  if (text.length === 2) {
+                    monthRef.current.focus();
+                  }
+                }}
+                onYearChange={(text) => {
+                  setYearAN(text);
+                  if (text.length === 4) {
+                    monthRef.current.focus();
+                  }
+                  setSelectedValue(new Date(yearAN, monthAN, dayAN));
+                }}
+                onDayChange={(text) => {
+                  setDayAN(text);
+                  if (text.length === 2) {
+                    monthRef.current.focus();
+                  }
+                }}
               />
               {/* )} */}
             </KeyboardAvoidingView>

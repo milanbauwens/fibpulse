@@ -15,25 +15,29 @@ import colors from "../../theme/colors";
 import CheckCircle from "../svg/icons/CheckCircle";
 import Title from "../Typograhy/Title";
 import Paragraph from "../Typograhy/Paragraph";
+import DatePicker from "../Input/DatePicker";
 
 const IntakeItem = ({ data, currentSlide }) => {
   const { width } = useWindowDimensions();
   const { user } = useAuthContext();
-  const [datePickerVisible, setDatePickerVisible] = useState(false);
 
   const [selectedRisks, setSelectedRisks] = useState([]);
   const [selectedEpisodeAmount, setSelectedEpisodeAmount] = useState();
   const [selectedGender, setSelectedGender] = useState();
   const [date, setDate] = useState();
 
-  // Android date formatter
+  // Date input states
   const [dayAN, setDayAN] = useState();
   const [monthAN, setMonthAN] = useState();
   const [yearAN, setYearAN] = useState();
 
-  const dayRef = useRef();
-  const monthRef = useRef();
-  const yearRef = useRef();
+  const handleDate = (event, date) => {
+    const {
+      type,
+      nativeEvent: { timestamp },
+    } = event;
+    setDate(date);
+  };
 
   const handleFormSubmit = async () => {
     const { error } = await supabase.from("medical_profiles").upsert({
@@ -52,14 +56,6 @@ const IntakeItem = ({ data, currentSlide }) => {
   useEffect(() => {
     handleFormSubmit();
   }, [selectedRisks, selectedEpisodeAmount, selectedGender]);
-
-  const handleDate = (event, date) => {
-    const {
-      type,
-      nativeEvent: { timestamp },
-    } = event;
-    setDate(date);
-  };
 
   return (
     <View style={{ width }} className="h-full bg-white mt-8 px-4">
@@ -167,78 +163,29 @@ const IntakeItem = ({ data, currentSlide }) => {
         </View>
       ) : (
         <View className="mt-28">
-          {Platform.OS === "android" ? (
-            <View className="bg-deepMarine-100 flex flex-row w-2/3 mx-auto items-center">
-              <TextInput
-                value={dayAN}
-                ref={dayRef}
-                className={`mx-auto w-16 p-4 text-2xl text-deepMarine-900 bg-deepMarine-100 rounded-lg`}
-                style={{ fontFamily: "Bitter-semibold" }}
-                secureTextEntry={false}
-                maxLength={2}
-                keyboardType="number-pad"
-                onChangeText={(text) => {
-                  setDayAN(text);
-                  if (text.length === 2) {
-                    monthRef.current.focus();
-                  }
-                }}
-              />
-              <Text
-                style={{ fontFamily: "Mulish-medium" }}
-                className="mx-4 text-[48px] text-deepMarine-300 "
-              >
-                /
-              </Text>
-              <TextInput
-                value={monthAN}
-                ref={monthRef}
-                className={`mx-auto w-16 p-4 text-2xl text-deepMarine-900 bg-deepMarine-100 rounded-lg`}
-                style={{ fontFamily: "Bitter-semibold" }}
-                secureTextEntry={false}
-                maxLength={2}
-                onChangeText={(text) => {
-                  setMonthAN(text);
-                  if (text.length === 2) {
-                    yearRef.current.focus();
-                  }
-                }}
-                keyboardType="number-pad"
-              />
-              <Text
-                style={{ fontFamily: "Mulish-medium" }}
-                className="mx-4 text-[48px] text-deepMarine-300 "
-              >
-                /
-              </Text>
-              <TextInput
-                value={yearAN}
-                ref={yearRef}
-                className={`mx-auto w-24 p-4 text-2xl text-deepMarine-900 bg-deepMarine-100 rounded-lg`}
-                style={{ fontFamily: "Bitter-semibold" }}
-                secureTextEntry={false}
-                maxLength={4}
-                onChangeText={(text) => {
-                  setYearAN(text);
-                  if (text.length === 4) {
-                    Keyboard.dismiss();
-                  }
-                  setDate(new Date(yearAN, monthAN, dayAN));
-                }}
-                keyboardType="number-pad"
-              />
-            </View>
-          ) : (
-            <DateTimePicker
-              minimumDate={new Date(1900, 0, 1)}
-              maximumDate={new Date()}
-              value={date || new Date()}
-              display="spinner"
-              textColor={colors.deepMarine[700]}
-              mode="date"
-              onChange={handleDate}
-            />
-          )}
+          <DatePicker
+            value={date}
+            onChange={handleDate}
+            onMonthChange={(text) => {
+              setMonthAN(text);
+              if (text.length === 2) {
+                monthRef.current.focus();
+              }
+            }}
+            onYearChange={(text) => {
+              setYearAN(text);
+              if (text.length === 4) {
+                monthRef.current.focus();
+              }
+              setDate(new Date(yearAN, monthAN, dayAN));
+            }}
+            onDayChange={(text) => {
+              setDayAN(text);
+              if (text.length === 2) {
+                monthRef.current.focus();
+              }
+            }}
+          />
         </View>
       )}
     </View>
