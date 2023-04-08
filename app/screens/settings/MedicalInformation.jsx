@@ -5,10 +5,19 @@ import {
 import Header from "../../components/Header/Header";
 import { View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
-import { getMedicalProfile } from "../../db/modules/medical_profiles/api";
+import {
+  getMedicalProfile,
+  updateDate,
+  updateMedicalProfile,
+} from "../../db/modules/medical_profiles/api";
 import LoadingIndicator from "../../components/Loading/Loading";
 import DataView from "../../components/DataView/DataView";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import {
+  EPISODE_AMOUNTS,
+  GENDERS,
+  RISK_FACTORS,
+} from "../../content/medicalProfile";
 
 const MedicalInformation = () => {
   const {
@@ -22,10 +31,29 @@ const MedicalInformation = () => {
   });
 
   const formattedData = {
-    Geslacht: medicalProfile?.data?.gender,
-    Geboortedatum: medicalProfile?.data?.date_of_birth,
-    "VKF frequentie": medicalProfile?.data?.vkf_frequency,
-    Risicofactoren: medicalProfile?.data?.risk_factors.join(", "),
+    Geslacht: {
+      data: medicalProfile?.data?.gender,
+      options: GENDERS,
+      column: "gender",
+      method: updateMedicalProfile,
+    },
+    Geboortedatum: {
+      data: medicalProfile?.data?.date_of_birth,
+      column: "date_of_birth",
+      method: updateMedicalProfile,
+    },
+    "VKF frequentie": {
+      data: medicalProfile?.data?.vkf_frequency,
+      options: EPISODE_AMOUNTS,
+      column: "vkf_frequency",
+      method: updateMedicalProfile,
+    },
+    Risicofactoren: {
+      data: medicalProfile?.data?.risk_factors.join(", "),
+      options: RISK_FACTORS,
+      column: "risk_factors",
+      method: updateMedicalProfile,
+    },
   };
 
   return (
@@ -39,11 +67,6 @@ const MedicalInformation = () => {
         ) : (
           <DataView data={formattedData} />
         )}
-      </View>
-      <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
-        <View className="mb-6">
-          <PrimaryButton label="Opslaan" />
-        </View>
       </View>
     </SafeAreaView>
   );

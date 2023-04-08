@@ -38,10 +38,7 @@ const IntakeItem = ({ data, currentSlide }) => {
   const handleFormSubmit = async () => {
     const { error } = await supabase.from("medical_profiles").upsert({
       user_id: user.id,
-      date_of_birth:
-        Platform.OS === "android"
-          ? `${new Date(yearAN, monthAN, dayAN)}`
-          : date,
+      date_of_birth: date,
       gender: selectedGender,
       vkf_frequency: selectedEpisodeAmount,
       risk_factors: selectedRisks,
@@ -226,6 +223,7 @@ const IntakeItem = ({ data, currentSlide }) => {
                   if (text.length === 4) {
                     Keyboard.dismiss();
                   }
+                  setDate(new Date(dayAN, monthAN, yearAN));
                 }}
                 keyboardType="number-pad"
               />

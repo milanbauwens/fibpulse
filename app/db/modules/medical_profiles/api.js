@@ -12,3 +12,16 @@ export const getMedicalProfile = async () => {
     .single()
     .throwOnError();
 };
+
+export const updateMedicalProfile = async (column, value) => {
+  const session = await getCurrentSession();
+  const userID = session.user?.id;
+
+  return await supabase
+    .from("medical_profiles")
+    .update({
+      [column]: value,
+    })
+    .eq("user_id", userID)
+    .throwOnError();
+};
