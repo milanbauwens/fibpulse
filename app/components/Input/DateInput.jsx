@@ -15,12 +15,7 @@ const DateInput = ({ onDayChange, onMonthChange, onYearChange }) => {
         secureTextEntry={false}
         maxLength={2}
         keyboardType="number-pad"
-        onChangeText={(text) => {
-          setDayAN(text);
-          if (text.length === 2) {
-            monthRef.current.focus();
-          }
-        }}
+        onChangeText={onDayChange}
       />
       <Text
         style={{ fontFamily: "Mulish-medium" }}
@@ -35,12 +30,7 @@ const DateInput = ({ onDayChange, onMonthChange, onYearChange }) => {
         style={{ fontFamily: "Bitter-semibold" }}
         secureTextEntry={false}
         maxLength={2}
-        onChangeText={(text) => {
-          setMonthAN(text);
-          if (text.length === 2) {
-            yearRef.current.focus();
-          }
-        }}
+        onChangeText={onMonthChange}
         keyboardType="number-pad"
       />
       <Text
@@ -56,12 +46,7 @@ const DateInput = ({ onDayChange, onMonthChange, onYearChange }) => {
         style={{ fontFamily: "Bitter-semibold" }}
         secureTextEntry={false}
         maxLength={4}
-        onChangeText={(text) => {
-          setYearAN(text);
-          if (text.length === 4) {
-            Keyboard.dismiss();
-          }
-        }}
+        onChangeText={onYearChange}
         keyboardType="number-pad"
       />
     </View>

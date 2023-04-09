@@ -1,13 +1,12 @@
-import { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import { View, Text, TextInput, Platform, Keyboard } from "react-native";
+import { View, Platform } from "react-native";
 import colors from "../../theme/colors";
 import DateInput from "./DateInput";
 
 const DatePicker = ({
   onChange, // ios
-  value,
+  value, // ios
   onDayChange, // android
   onMonthChange, // android
   onYearChange, // android

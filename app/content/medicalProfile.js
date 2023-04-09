@@ -38,8 +38,12 @@ export const EPISODE_AMOUNTS = [
 
 export const RISK_FACTORS = [
   {
-    label: "Hoge bloeddruk",
-    value: "Hoge bloeddruk",
+    label: "Stress",
+    value: "Stress",
+  },
+  {
+    label: "Slechte slaaphygiëne",
+    value: "Slechte slaaphygiëne",
   },
   {
     label: "Diabetes",
@@ -56,6 +60,18 @@ export const RISK_FACTORS = [
   {
     label: "Alcoholgebruik",
     value: "Alcoholgebruik",
+  },
+  {
+    label: "Hoge bloeddruk",
+    value: "Hoge bloeddruk",
+  },
+  {
+    label: "Chronische ziektes",
+    value: "Chronsche ziektes",
+  },
+  {
+    label: "Hoge cholesterol",
+    value: "Hoge cholesterol",
   },
   {
     label: "Familiegeschiedenis",
