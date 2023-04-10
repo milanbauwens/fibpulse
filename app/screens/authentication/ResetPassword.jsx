@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Keyboard, KeyboardAvoidingView, Text, View } from "react-native";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../db/initSupabase";
-import handleSupabaseError from "../../utils/handleSupabaseError";
+import { handleAuthError } from "../../utils/auth/handleAuthError";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
@@ -30,8 +30,8 @@ const ResetPassword = () => {
         formData.userEmail
       );
       if (error) {
-        const errorMessage = handleSupabaseError(error.status);
-        setResetPasswordError(errorMessage);
+        const authError = handleAuthError(error);
+        setResetPasswordError(authError);
       } else {
         navigation.navigate("Login");
       }

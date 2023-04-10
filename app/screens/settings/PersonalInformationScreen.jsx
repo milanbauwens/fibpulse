@@ -14,7 +14,7 @@ import {
   RISK_FACTORS,
 } from "../../content/medicalProfile";
 
-const MedicalInformation = () => {
+const PersonalInformationScreen = () => {
   const {
     data: medicalProfile,
     isError,
@@ -57,7 +57,7 @@ const MedicalInformation = () => {
 
   return (
     <SafeAreaView className="bg-white h-full w-full">
-      <Header title="Medische gegevens" withPrevious />
+      <Header title="Persoonlijke gegevens" withPrevious />
       <View className="px-4">
         {isLoading ? (
           <View className="h-5/6 w-full flex items-center justify-center">
@@ -71,4 +71,4 @@ const MedicalInformation = () => {
   );
 };
 
-export default MedicalInformation;
+export default PersonalInformationScreen;

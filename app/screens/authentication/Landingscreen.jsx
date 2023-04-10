@@ -19,18 +19,21 @@ import CircleMd from "../../components/svg/CircleMd";
 import CircleSm from "../../components/svg/CircleSm";
 import Display from "../../components/Typograhy/Display";
 import Paragraph from "../../components/Typograhy/Paragraph";
+import { handleAuthError } from "../../utils/auth/handleAuthError";
 
 const Landingscreen = () => {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleProviderLogin = async (provider) => {
     setIsLoading(true);
     try {
       await signInWithProvider(provider);
     } catch (error) {
-      console.error(error);
+      const authError = handleAuthError(error);
+      setError(authError);
     } finally {
       setIsLoading(false);
     }

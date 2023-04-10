@@ -12,9 +12,8 @@ import Paragraph from "../../components/Typograhy/Paragraph";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
 import DeleteAccount from "../../components/svg/DeleteAccount";
 import { deleteUser, signOut } from "../../db/modules/auth/api";
-import { useNavigation } from "@react-navigation/native";
 
-const PersonalInformation = () => {
+const AccountScreen = () => {
   const { user } = useAuthContext();
   const { bottom } = useSafeAreaInsets();
   const [isVisible, setIsVisible] = useState(false);
@@ -69,7 +68,7 @@ const PersonalInformation = () => {
         </View>
       </Popover>
 
-      <Header title="Persoonlijke gegevens" withPrevious />
+      <Header title="Profiel" withPrevious />
       <View className="px-4">
         <View className="mb-6">
           <Text
@@ -140,4 +139,4 @@ const PersonalInformation = () => {
   );
 };
 
-export default PersonalInformation;
+export default AccountScreen;

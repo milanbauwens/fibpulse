@@ -8,8 +8,8 @@ import VerifyEmail from "../../screens/authentication/VerifyEmail";
 import Intake from "../../screens/onboarding/Intake";
 import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
 import Settings from "../../screens/settings";
-import PersonalInformation from "../../screens/settings/PersonalInformation";
-import MedicalInformation from "../../screens/settings/MedicalInformation";
+import PersonalInformationScreen from "../../screens/settings/PersonalInformationScreen";
+import AccountScreen from "../../screens/settings/AccountScreen";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
@@ -18,7 +18,7 @@ export default function AppStack() {
   const [userIsVerified, setUserIsVerified] = useState(false);
   const [userPassedIntake, setUserPassedIntake] = useState(false);
 
-  const checkUserProgress = async () => {
+  const checkUserProgress = () => {
     try {
       if (user.emailVerified) {
         setUserIsVerified(true);
@@ -71,13 +71,13 @@ export default function AppStack() {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="PersonalInformation"
-          component={PersonalInformation}
+          name="Account"
+          component={AccountScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="MedicalInformation"
-          component={MedicalInformation}
+          name="PersonalInformation"
+          component={PersonalInformationScreen}
         />
       </>
     </Stack.Navigator>

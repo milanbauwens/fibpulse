@@ -35,13 +35,13 @@ const Settings = () => {
           <Text className="text-sm text-deepMarine-400 mb-6">Profiel</Text>
           <SettingsItem
             iconName="account"
-            title="Persoonlijke gegevens"
-            onPress={() => navigation.navigate("PersonalInformation")}
+            title="Profiel"
+            onPress={() => navigation.navigate("Account")}
           />
           <SettingsItem
             iconName="cards-heart"
-            title="Medische gegevens"
-            onPress={() => navigation.navigate("MedicalInformation")}
+            title="Persoonlijke gegevens"
+            onPress={() => navigation.navigate("PersonalInformation")}
           />
         </View>
 

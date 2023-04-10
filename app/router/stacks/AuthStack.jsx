@@ -68,16 +68,6 @@ export default function AuthStack() {
           />
           <Stack.Screen
             options={{ headerShown: false }}
-            name="IntakeExplainer"
-            component={IntakeExplainer}
-          />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Intake"
-            component={Intake}
-          />
-          <Stack.Screen
-            options={{ headerShown: false }}
             name="VerifyEmail"
             component={VerifyEmail}
           />

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../db/initSupabase";
-import handleSupabaseError from "../../utils/handleSupabaseError";
+import { handleAuthError } from "../../utils/auth/handleAuthError";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
@@ -26,6 +26,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const [isLoading, setIsLoading] = useState(false);
   const [signInError, setSignInError] = useState();
 
@@ -39,8 +40,8 @@ const Login = () => {
         password: formData.userPassword,
       });
       if (error) {
-        const errorMessage = handleSupabaseError(error.status);
-        setSignInError(errorMessage);
+        const authError = handleAuthError(error);
+        setSignInError(authError);
       } else {
         navigation.navigate("Dashboard");
       }

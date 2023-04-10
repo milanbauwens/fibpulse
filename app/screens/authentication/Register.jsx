@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Keyboard, KeyboardAvoidingView, Text, View } from "react-native";
 import { supabase } from "../../db/initSupabase";
 import { useForm } from "react-hook-form";
-import handleSupabaseError from "../../utils/handleSupabaseError";
+import { handleAuthError } from "../../utils/auth/handleAuthError";
 
 // Components
 import Formgroup from "../../components/Formgroup/Formgroup";
@@ -42,21 +42,13 @@ const Register = () => {
         },
       });
       if (error) {
-        const errorMessage = handleSupabaseError(error.status);
-        setSignUpError(errorMessage);
-        return;
+        const authError = handleAuthError(error);
+        setSignUpError(authError);
       } else {
-        if (error) {
-          const errorMessage = handleSupabaseError(error.status);
-          setSignUpError(errorMessage);
-          return;
-        } else {
-          navigation.navigate("VerifyEmail");
-        }
+        navigation.navigate("VerifyEmail");
       }
     } catch (error) {
       console.error(error);
-      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

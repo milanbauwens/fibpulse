@@ -65,6 +65,11 @@ const DataViewItem = ({ data, options, label, method, column, type }) => {
   };
 
   // Formatted data
+  const formattedRisks =
+    type === "multi" && data.toString().length > 17
+      ? `${data.join(",").toString().substring(0, 17)}...`
+      : data;
+
   const formattedData =
     data && data.length > 17 ? `${data.toString().substring(0, 17)}...` : data;
 
@@ -201,9 +206,7 @@ const DataViewItem = ({ data, options, label, method, column, type }) => {
           {label && label.length > 15 ? `${label.substring(0, 15)}...` : label}
         </Text>
         <Text className="text-deepMarine-900 text-base">
-          {type === "multi" &&
-            data.toString().length > 17 &&
-            `${data.join(",").toString().substring(0, 17)}...`}
+          {type === "multi" && formattedRisks}
           {type === "date" && formattedDateOfBirth}
           {type === "single" && formattedData}
         </Text>
