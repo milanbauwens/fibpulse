@@ -35,13 +35,8 @@ const Settings = () => {
           <Text className="text-sm text-deepMarine-400 mb-6">Profiel</Text>
           <SettingsItem
             iconName="account"
-            title="Profiel"
-            onPress={() => navigation.navigate("Account")}
-          />
-          <SettingsItem
-            iconName="cards-heart"
-            title="Persoonlijke gegevens"
-            onPress={() => navigation.navigate("PersonalInformation")}
+            title="Profiel gegevens"
+            onPress={() => navigation.navigate("AccountScreen")}
           />
         </View>
 

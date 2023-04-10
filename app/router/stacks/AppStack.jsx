@@ -71,13 +71,8 @@ export default function AppStack() {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Account"
+          name="AccountScreen"
           component={AccountScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="PersonalInformation"
-          component={PersonalInformationScreen}
         />
       </>
     </Stack.Navigator>

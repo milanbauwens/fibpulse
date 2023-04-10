@@ -13,7 +13,15 @@ import colors from "../../theme/colors";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import DatePicker from "../Input/DatePicker";
 
-const DataViewItem = ({ data, options, label, method, column, type }) => {
+const DataViewItem = ({
+  data,
+  options,
+  label,
+  method,
+  column,
+  type,
+  hasBorder = true,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     type === "multi" ? [] : type === "data" ? new Date() : ""
@@ -191,16 +199,18 @@ const DataViewItem = ({ data, options, label, method, column, type }) => {
               })}
             </View>
           )}
-
           <View className="mt-12">
             <PrimaryButton onPress={handleUpdate} label="Opslaan" />
           </View>
         </View>
       </Popover>
+
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => setIsVisible(true)}
-        className="border-b border-deepMarine-300 py-4 flex flex-row items-center justify-between"
+        className={`${
+          hasBorder && "border-b border-deepMarine-200"
+        } py-4 flex flex-row items-center justify-between`}
       >
         <Text className="text-deepMarine-400 text-base">
           {label && label.length > 15 ? `${label.substring(0, 15)}...` : label}
