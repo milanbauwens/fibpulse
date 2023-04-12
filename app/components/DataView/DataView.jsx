@@ -2,17 +2,22 @@ import { View } from "react-native";
 import DataViewItem from "./DataViewItem";
 
 const DataView = ({ data }) => {
+  const dataArray = Object.entries(data);
+
   return (
     <View className="bg-deepMarine-100 px-4 py-2 rounded-lg">
-      {Object.entries(data).map(
-        ([label, { data, options, method, column, type }], index) => {
-          const isLast = index < data.length - 1;
+      {dataArray.map(
+        (
+          [label, { data: medicalData, options, method, column, type }],
+          index
+        ) => {
+          const hasBorder = index < dataArray.length - 1;
           return (
             <DataViewItem
-              hasBorder={data ? isLast : false}
+              hasBorder={hasBorder}
               type={type}
               key={index}
-              data={data}
+              data={medicalData}
               method={method}
               column={column}
               label={label}
