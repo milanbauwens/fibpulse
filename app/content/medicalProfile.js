@@ -36,14 +36,41 @@ export const EPISODE_AMOUNTS = [
   },
 ];
 
+export const EPISODE_DURATIONS = [
+  {
+    label: "Minder dan 1 minuut",
+    value: "Minder dan 1 minuut",
+  },
+  {
+    label: "Enkele minuten",
+    value: "Enkele minuten",
+  },
+  {
+    label: "Enkele uren",
+    value: "Enkele uren",
+  },
+  {
+    label: "Een dag",
+    value: "Een dag",
+  },
+  {
+    label: "Enkele dagen",
+    value: "Enkele dagen",
+  },
+];
+
 export const RISK_FACTORS = [
   {
     label: "Stress",
     value: "Stress",
   },
   {
-    label: "Slechte slaaphygiëne",
-    value: "Slechte slaaphygiëne",
+    label: "Slaapapneu",
+    value: "Slaapapneu",
+  },
+  {
+    label: "Roken",
+    value: "Roken",
   },
   {
     label: "Diabetes",
@@ -54,20 +81,20 @@ export const RISK_FACTORS = [
     value: "Overgewicht",
   },
   {
-    label: "Roken",
-    value: "Roken",
-  },
-  {
-    label: "Alcoholgebruik",
-    value: "Alcoholgebruik",
-  },
-  {
-    label: "Hoge bloeddruk",
-    value: "Hoge bloeddruk",
+    label: "Alcohol",
+    value: "Alcohol",
   },
   {
     label: "Chronische ziektes",
     value: "Chronsche ziektes",
+  },
+  {
+    label: "Vaatziektes",
+    value: "Vaatziektes",
+  },
+  {
+    label: "Hoge bloeddruk",
+    value: "Hoge bloeddruk",
   },
   {
     label: "Hoge cholesterol",
@@ -76,5 +103,24 @@ export const RISK_FACTORS = [
   {
     label: "Familiegeschiedenis",
     value: "Familiegeschiedenis",
+  },
+  {
+    label: "Duursport",
+    value: "Duursport",
+  },
+];
+
+export const HEART_DISORDERS = [
+  {
+    label: "Nee, ik heb geen ritmestoornis",
+    value: "Nee, ik heb geen ritmestoornis",
+  },
+  {
+    label: "Ja, voorkamerfibrillatie",
+    value: "Ja, voorkamerfibrillatie",
+  },
+  {
+    label: "Ja, een andere ritmestoornis",
+    value: "Ja, een andere ritmestoornis",
   },
 ];

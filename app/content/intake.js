@@ -1,34 +1,61 @@
 module.exports = [
   {
     question: "Wat is uw geslacht?",
+    type: "select",
     options: ["Man", "Vrouw", "Zeg ik liever niet"],
   },
   {
     question: "Wat is uw geboortedatum?",
+    type: "date",
   },
   {
-    question: "Hoe vaak heeft u een episode van voorkamerfibrileren?  ",
+    question: "Werd bij u reeds een hartritmestoornis vastgesteld? ",
+    type: "select",
     options: [
-      "Minder dan 1 keer per maand",
+      "Nee, ik heb geen ritmestoornis",
+      "Ja, namelijk voorkamerfibrilatie ",
+      "Ja, een andere ritmestoornis ",
+    ],
+  },
+  {
+    question: "Hoe vaak heeft u een episode van uw ritmestoornis?  ",
+    type: "select",
+    options: [
+      "Minder dan 1 keer per jaar",
+      "Jaarlijks",
       "Maandelijks",
       "Wekelijks",
       "Dagelijks",
-      "Meer dan 1 keer per dag",
+    ],
+  },
+  {
+    question: "Hoe lang duren deze episodes gemiddeld?  ",
+    type: "select",
+    options: [
+      "Minder dan 1 minuut",
+      "Enkele minuten",
+      "Enkele uren",
+      "Een hele dag",
+      "Enkele dagen",
     ],
   },
   {
     question: "Welke risicofactoren zijn bij u van toepassing? ",
-    multiselect: true,
+    subtitle: "Kies de risicofactoren die bij u van toepassing zijn",
+    type: "multiselect",
     options: [
       "Stress",
-      "Slechte slaaphygiëne",
+      "Slaapapneu",
       "Roken",
-      "Alcohol",
+      "Diabetes",
       "Overgewicht",
+      "Alcohol",
+      "Chronische ziekte",
+      "Vaatziektes",
       "Hoge bloeddruk",
       "Hoge cholesterol",
-      "Diabetes",
       "Familiegeschiedenis",
+      "Duursport",
     ],
   },
 ];

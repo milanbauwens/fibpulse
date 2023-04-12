@@ -69,7 +69,11 @@ const Intake = () => {
       <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
         <View className="mb-6">
           <PrimaryButton
-            label={currentSlide <= 2 ? " Volgende" : "Voltooi uw profiel"}
+            label={
+              currentSlide === slides.length - 1
+                ? " Voltooi uw profiel"
+                : "Volgende"
+            }
             onPress={scrollTo}
           />
         </View>

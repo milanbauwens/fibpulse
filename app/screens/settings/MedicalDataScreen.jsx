@@ -1,3 +1,5 @@
+import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../../components/Header/Header";
 import { View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -10,9 +12,11 @@ import {
   EPISODE_AMOUNTS,
   GENDERS,
   RISK_FACTORS,
+  HEART_DISORDERS,
+  EPISODE_DURATIONS,
 } from "../../content/medicalProfile";
 
-const PersonalDataView = () => {
+const MedicalDataScreen = () => {
   const {
     data: medicalProfile,
     isError,
@@ -37,10 +41,24 @@ const PersonalDataView = () => {
       type: "date",
       method: updateMedicalProfile,
     },
-    "VKF frequentie": {
-      data: medicalProfile?.data?.vkf_frequency,
+    Ritmestoornis: {
+      data: medicalProfile?.data?.heart_disorder,
+      options: HEART_DISORDERS,
+      column: "heart_disorder",
+      type: "single",
+      method: updateMedicalProfile,
+    },
+    "Episode frequentie": {
+      data: medicalProfile?.data?.episode_frequency,
       options: EPISODE_AMOUNTS,
-      column: "vkf_frequency",
+      column: "episode_frequency",
+      type: "single",
+      method: updateMedicalProfile,
+    },
+    "Episode duur": {
+      data: medicalProfile?.data?.episode_duration,
+      options: EPISODE_DURATIONS,
+      column: "episode_duration",
       type: "single",
       method: updateMedicalProfile,
     },
@@ -54,16 +72,19 @@ const PersonalDataView = () => {
   };
 
   return (
-    <View className="pt-8 px-4 bg-white h-full">
-      {isLoading ? (
-        <View className="h-5/6 w-full flex items-center justify-center">
-          <LoadingIndicator />
-        </View>
-      ) : (
-        <DataView data={formattedData} />
-      )}
-    </View>
+    <SafeAreaView className="bg-white h-full w-full">
+      <Header title="Medische gegevens" withPrevious />
+      <View className="px-4 bg-white h-full">
+        {isLoading ? (
+          <View className="h-5/6 w-full flex items-center justify-center">
+            <LoadingIndicator />
+          </View>
+        ) : (
+          <DataView data={formattedData} />
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 
-export default PersonalDataView;
+export default MedicalDataScreen;

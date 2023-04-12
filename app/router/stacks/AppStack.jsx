@@ -10,6 +10,7 @@ import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
 import Settings from "../../screens/settings";
 import PersonalInformationScreen from "../../screens/settings/PersonalInformationScreen";
 import AccountScreen from "../../screens/settings/AccountScreen";
+import MedicalDataScreen from "../../screens/settings/MedicalDataScreen";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
@@ -69,11 +70,19 @@ export default function AppStack() {
           name="Settings"
           component={Settings}
         />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="AccountScreen"
-          component={AccountScreen}
-        />
+        {/* Settings */}
+        <>
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="AccountScreen"
+            component={AccountScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="MedicalDataScreen"
+            component={MedicalDataScreen}
+          />
+        </>
       </>
     </Stack.Navigator>
   );

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  useWindowDimensions,
-  Animated,
-  TouchableOpacity,
-} from "react-native";
-import ArrowLeft from "../svg/icons/ArrowLeft";
+import { View, useWindowDimensions, Animated } from "react-native";
 import colors from "../../theme/colors";
 import BackButton from "../Buttons/BackButton";
 
@@ -19,7 +13,7 @@ const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
           <BackButton onPress={scrollBack} />
         </View>
       )}
-      <View className="flex flex-row items-center justify-between px-4 h-12 mt-6">
+      <View className="flex flex-row items-center justify-between px-2 h-12 mt-6">
         <View className="flex flex-row gap-x-3">
           {data.map((_, index) => {
             const inputRange = [
@@ -41,7 +35,7 @@ const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
             return (
               <Animated.View
                 style={{ backgroundColor: color }}
-                className="h-[10px] w-11 rounded-full"
+                className="h-[10px] w-7 rounded-full"
                 key={index.toString()}
               />
             );

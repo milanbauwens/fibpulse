@@ -6,10 +6,10 @@ const DataView = ({ data }) => {
     <View className="bg-deepMarine-100 px-4 py-2 rounded-lg">
       {Object.entries(data).map(
         ([label, { data, options, method, column, type }], index) => {
-          const hasBorder = index !== data.length - 1;
+          const isLast = index < data.length - 1;
           return (
             <DataViewItem
-              hasBorder={hasBorder}
+              hasBorder={data ? isLast : false}
               type={type}
               key={index}
               data={data}
