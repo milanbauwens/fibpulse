@@ -129,7 +129,7 @@ const IntakeItem = ({ data, currentSlide }) => {
                 ) {
                   setSelectedHeartDisorder(option);
                 } else if (
-                  data.question === "Hoe lang duren deze episodes gemiddeld? "
+                  data.question === "Hoe lang duren deze episodes gemiddeld?"
                 ) {
                   setSelectedEpisodeDuration(option);
                 } else if (
@@ -149,7 +149,7 @@ const IntakeItem = ({ data, currentSlide }) => {
                 ) {
                   setSelectedHeartDisorder("");
                 } else if (
-                  data.question === "Hoe lang duren deze episodes gemiddeld? "
+                  data.question === "Hoe lang duren deze episodes gemiddeld?"
                 ) {
                   setSelectedEpisodeDuration("");
                 } else if (
@@ -165,7 +165,9 @@ const IntakeItem = ({ data, currentSlide }) => {
                   key={index}
                   onPress={
                     selectedGender === option ||
-                    selectedEpisodeAmount === option
+                    selectedEpisodeFrequency === option ||
+                    selectedEpisodeDuration === option ||
+                    selectedHeartDisorder === option
                       ? handleDeselect
                       : handleSelect
                   }
@@ -179,7 +181,9 @@ const IntakeItem = ({ data, currentSlide }) => {
                     {option}
                   </Text>
                   {selectedGender === option ||
-                  selectedEpisodeAmount === option ? (
+                  selectedEpisodeFrequency === option ||
+                  selectedEpisodeDuration === option ||
+                  selectedHeartDisorder === option ? (
                     <CheckCircle />
                   ) : (
                     <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200"></View>
@@ -190,7 +194,6 @@ const IntakeItem = ({ data, currentSlide }) => {
           </View>
         )}
       </View>
-      // Date input
       {data.type === "date" && (
         <View className="mt-28">
           <DatePicker

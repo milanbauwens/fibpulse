@@ -9,7 +9,7 @@ module.exports = [
     type: "date",
   },
   {
-    question: "Werd bij u reeds een hartritmestoornis vastgesteld? ",
+    question: "Werd bij u reeds een hartritmestoornis vastgesteld?",
     type: "select",
     options: [
       "Nee, ik heb geen ritmestoornis",
@@ -18,7 +18,7 @@ module.exports = [
     ],
   },
   {
-    question: "Hoe vaak heeft u een episode van uw ritmestoornis?  ",
+    question: "Hoe vaak heeft u een episode van uw ritmestoornis?",
     type: "select",
     options: [
       "Minder dan 1 keer per jaar",
@@ -29,7 +29,7 @@ module.exports = [
     ],
   },
   {
-    question: "Hoe lang duren deze episodes gemiddeld?  ",
+    question: "Hoe lang duren deze episodes gemiddeld?",
     type: "select",
     options: [
       "Minder dan 1 minuut",
@@ -40,7 +40,7 @@ module.exports = [
     ],
   },
   {
-    question: "Welke risicofactoren zijn bij u van toepassing? ",
+    question: "Welke risicofactoren zijn bij u van toepassing?",
     subtitle: "Kies de risicofactoren die bij u van toepassing zijn",
     type: "multiselect",
     options: [
