@@ -12,7 +12,7 @@ import Title from "../Typograhy/Title";
 import Paragraph from "../Typograhy/Paragraph";
 import DatePicker from "../Input/DatePicker";
 
-const IntakeItem = ({ data, currentSlide }) => {
+const IntakeItem = ({ data }) => {
   const { width } = useWindowDimensions();
   const { user } = useAuthContext();
 
@@ -65,7 +65,9 @@ const IntakeItem = ({ data, currentSlide }) => {
   return (
     <View style={{ width }} className="h-full bg-white mt-8 px-4">
       <View className="flex w-full items-center">
-        <Title centered>{data.question}</Title>
+        <Title size="large" textCenter>
+          {data.question}
+        </Title>
         {data.type === "multiselect" && (
           <Paragraph className="text-center">
             U kunt meerdere opties selecteren.

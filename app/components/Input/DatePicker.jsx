@@ -23,7 +23,7 @@ const DatePicker = ({
         <DateTimePicker
           minimumDate={new Date(1900, 0, 1)}
           maximumDate={new Date()}
-          value={value || new Date()}
+          value={value}
           display="spinner"
           textColor={colors.deepMarine[700]}
           mode="date"

@@ -1,4 +1,4 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 const Paragraph = ({
   children,
@@ -7,13 +7,15 @@ const Paragraph = ({
   ...props
 }) => {
   return (
-    <Text
-      style={{ fontFamily: "Mulish-medium" }}
-      className={`text-base ${textColor} ${className}`}
-      {...props}
-    >
-      {children}
-    </Text>
+    <View style={{ flexDirection: "row" }}>
+      <Text
+        style={{ fontFamily: "Mulish-medium", flex: 1, flexWrap: "wrap" }}
+        className={`text-base ${textColor} ${className}`}
+        {...props}
+      >
+        {children}
+      </Text>
+    </View>
   );
 };
 

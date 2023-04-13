@@ -33,7 +33,9 @@ const VerifyEmail = () => {
     <SafeAreaView className="px-4 h-screen bg-white">
       <View className="flex h-full flex-col items-center">
         <VerifiedEmail className="mb-12 mt-8" />
-        <Title centered>Verifieer uw account</Title>
+        <Title size="large" textCenter>
+          Verifieer uw account
+        </Title>
         <Paragraph className="text-center">
           Voordat u verder kunt gaan, moet u eerst uw e-mailadres verifiëren. Ga
           naar uw mailbox en volg de stappen. Kijk zeker ook uw spambox na.

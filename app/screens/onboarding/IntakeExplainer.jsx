@@ -13,7 +13,7 @@ const IntakeExplainer = () => {
     <SafeAreaView className="px-4 relative w-full h-screen bg-white">
       <View className="flex flex-col items-center">
         <IntakeIllustration className="mb-12 mt-20" />
-        <Title centered>
+        <Title size="large" textCenter>
           Eerst enkele vragen om uw medisch profiel te schetsen
         </Title>
         <Paragraph className="text-center">

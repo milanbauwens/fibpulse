@@ -25,7 +25,7 @@ const Settings = () => {
       <Header title="Instellingen" withClose />
       <ScrollView className="mb-6 px-4">
         <View className="mb-12">
-          <Title>
+          <Title size="large">
             {user.name ? user.name : `${user.firstname} ${user.lastname}`}
           </Title>
           <Paragraph>{user.email}</Paragraph>
