@@ -1,7 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../theme/colors";
-import { Switch, View, TouchableOpacity } from "react-native";
-import Paragraph from "../Typograhy/Paragraph";
+import { Switch, View, TouchableOpacity, Text } from "react-native";
 import { useState } from "react";
 
 const SettingsItem = ({
@@ -9,7 +8,7 @@ const SettingsItem = ({
   title,
   iconName,
   onPress,
-  withToggle,
+  withToggle = false,
   toggleState,
 }) => {
   const [isEnabled, setIsEnabled] = useState(toggleState);
@@ -33,11 +32,14 @@ const SettingsItem = ({
             color={type === "error" ? colors.red[600] : colors.turquoise[700]}
           />
         </View>
-        <Paragraph
-          textColor={type === "error" ? "text-red-600" : "text-deepMarine-900"}
+        <Text
+          style={{ fontFamily: "Mulish-medium" }}
+          className={` text-base ${
+            type === "error" ? "text-red-600" : "text-deepMarine-700"
+          } `}
         >
           {title}
-        </Paragraph>
+        </Text>
       </View>
       {withToggle ? (
         <Switch

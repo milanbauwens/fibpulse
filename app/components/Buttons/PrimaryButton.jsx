@@ -6,7 +6,7 @@ const PrimaryButton = ({ label, onPress, isLoading, icon }) => {
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      className="flex flex-row items-center justify-center min-h-12 bg-deepMarine-500 py-[12px] px-[16px] rounded-full "
+      className="flex flex-row items-center justify-center min-h-12 bg-[#15615f] py-[12px] px-[16px] rounded-full "
     >
       {!isLoading ? (
         <>

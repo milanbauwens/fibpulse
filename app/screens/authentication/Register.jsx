@@ -59,11 +59,14 @@ const Register = () => {
   return (
     <SafeAreaView className="bg-white h-full px-4">
       <BackButton onPress={() => navigation.navigate("Landing")} />
-      <Title size="large">Maak een nieuw profiel</Title>
+      <View className="bg-white z-[2]">
+        <Title size="large">Maak een nieuw profiel</Title>
+      </View>
       <KeyboardAwareScrollView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        enabled
-        className="flex gap-y-8 mt-2 mb-12"
+        overScrollMode="never"
+        bounces={false}
+        extraHeight={0}
+        className="py-2"
       >
         {signUpError && (
           <View
@@ -75,91 +78,93 @@ const Register = () => {
             </Text>
           </View>
         )}
-        <View>
-          <Formgroup
-            rules={{ required: "Vul een voornaam in." }}
-            control={control}
-            label="Voornaam"
-            ref={firstnameInputRef}
-            returnKeyType="next"
-            autoCapitalize="words"
-            keyboardType="default"
-            inputName="userFirstname"
-            onSubmitEditing={() =>
-              nameInputRef.current && nameInputRef.current.focus()
-            }
+        <View className=" flex gap-y-8">
+          <View>
+            <Formgroup
+              rules={{ required: "Vul een voornaam in." }}
+              control={control}
+              label="Voornaam"
+              ref={firstnameInputRef}
+              returnKeyType="next"
+              autoCapitalize="words"
+              keyboardType="default"
+              inputName="userFirstname"
+              onSubmitEditing={() =>
+                nameInputRef.current && nameInputRef.current.focus()
+              }
+            />
+          </View>
+          <View>
+            <Formgroup
+              rules={{ required: "Vul een naam in." }}
+              control={control}
+              label="Naam"
+              ref={nameInputRef}
+              returnKeyType="next"
+              autoCapitalize="words"
+              keyboardType="default"
+              inputName="userName"
+              onSubmitEditing={() =>
+                emailInputRef.current && emailInputRef.current.focus()
+              }
+            />
+          </View>
+          <View>
+            <Formgroup
+              rules={{
+                required: "Vul een e-mail in.",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Vul een geldig e-mailadres in.",
+                },
+              }}
+              control={control}
+              label="E-mail"
+              ref={emailInputRef}
+              returnKeyType="next"
+              autoComplete="off"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              inputName="userEmail"
+              onSubmitEditing={() =>
+                passwordInputRef.current && passwordInputRef.current.focus()
+              }
+            />
+          </View>
+          <View>
+            <Formgroup
+              rules={{
+                required: "Vul een wachtwoord in.",
+                minLength: {
+                  value: 6,
+                  message: "Wachtwoord moet minstens 6 karakters lang zijn.",
+                },
+              }}
+              control={control}
+              label="Wachtwoord"
+              inputName="userPassword"
+              ref={passwordInputRef}
+              returnKeyType="done"
+              autoCapitalize="none"
+              keyboardType="default"
+              type="password"
+              onSubmitEditing={Keyboard.dismiss}
+            />
+          </View>
+        </View>
+        <View className="mb-6 mt-12">
+          <PrimaryButton
+            isLoading={isLoading}
+            label="Registreren"
+            onPress={handleSubmit(handleRegister)}
           />
         </View>
-        <View>
-          <Formgroup
-            rules={{ required: "Vul een naam in." }}
-            control={control}
-            label="Naam"
-            ref={nameInputRef}
-            returnKeyType="next"
-            autoCapitalize="words"
-            keyboardType="default"
-            inputName="userName"
-            onSubmitEditing={() =>
-              emailInputRef.current && emailInputRef.current.focus()
-            }
-          />
-        </View>
-        <View>
-          <Formgroup
-            rules={{
-              required: "Vul een e-mail in.",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Vul een geldig e-mailadres in.",
-              },
-            }}
-            control={control}
-            label="E-mail"
-            ref={emailInputRef}
-            returnKeyType="next"
-            autoComplete="off"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            inputName="userEmail"
-            onSubmitEditing={() =>
-              passwordInputRef.current && passwordInputRef.current.focus()
-            }
-          />
-        </View>
-        <View>
-          <Formgroup
-            rules={{
-              required: "Vul een wachtwoord in.",
-              minLength: {
-                value: 6,
-                message: "Wachtwoord moet minstens 6 karakters lang zijn.",
-              },
-            }}
-            control={control}
-            label="Wachtwoord"
-            inputName="userPassword"
-            ref={passwordInputRef}
-            returnKeyType="done"
-            autoCapitalize="none"
-            keyboardType="default"
-            type="password"
-            onSubmitEditing={Keyboard.dismiss}
-          />
-        </View>
-      </KeyboardAwareScrollView>
-      <View className="mb-6">
-        <PrimaryButton
-          isLoading={isLoading}
-          label="Registreren"
-          onPress={handleSubmit(handleRegister)}
+        <TertiairyButton
+          label="Heeft u al een profiel?"
+          action="Inloggen."
+          onPress={() => navigation.navigate("Login")}
         />
-      </View>
-      <TertiairyButton
-        label="Heeft u al een profiel?"
-        action="Inloggen."
-        onPress={() => navigation.navigate("Login")}
-      />
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
