@@ -11,7 +11,7 @@ function Medication(props) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <Circle cx={48} cy={48} r={48} fill="#fff" />
+      <Circle cx={48} cy={48} r={48} fill="#F2F7F7" />
       <Path
         d="M65.186 36.526L77.532 50.45c4.214 4.752 3.779 12.02-.973 16.234-4.752 4.214-12.02 3.779-16.234-.973L47.978 51.788l17.208-15.262z"
         fill="#FEC272"
@@ -28,7 +28,7 @@ function Medication(props) {
         height={5}
         rx={2.5}
         transform="rotate(47.252 24.686 49.742)"
-        fill="#357171"
+        fill="#15615f"
       />
     </Svg>
   );

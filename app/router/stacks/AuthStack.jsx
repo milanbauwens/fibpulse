@@ -9,8 +9,6 @@ import Register from "../../screens/authentication/Register";
 import Landingscreen from "../../screens/authentication/Landingscreen";
 import Walkthrough from "../../screens/onboarding/Walkthrough";
 import ResetPassword from "../../screens/authentication/ResetPassword";
-import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
-import Intake from "../../screens/onboarding/Intake";
 import VerifyEmail from "../../screens/authentication/VerifyEmail";
 
 export default function AuthStack() {

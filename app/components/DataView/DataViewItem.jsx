@@ -78,7 +78,10 @@ const DataViewItem = ({
       ? `${data.join(",").toString().substring(0, 17)}...`
       : data;
 
-  const formattedData = data ? `${data.toString().substring(0, 17)}...` : "";
+  const formattedData =
+    data && data.toString().length > 17
+      ? `${data.toString().substring(0, 17)}...`
+      : data;
 
   const formattedDateOfBirth = new Date(data).toLocaleDateString("nl-NL", {
     day: "numeric",

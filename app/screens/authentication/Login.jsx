@@ -141,7 +141,7 @@ const Login = () => {
       </View>
       <TertiairyButton
         label="Nog geen account?"
-        action="Registreer."
+        action="Registreren."
         onPress={() => navigation.navigate("Register")}
       />
     </SafeAreaView>
