@@ -56,7 +56,8 @@ const Landingscreen = () => {
       <View>
         <Display>Laat uw hartritmestoornis niet de bovenhand nemen.</Display>
         <Paragraph>
-          Begin vandaag nog met het zorg dragen voor uw hart.
+          Begin vandaag nog met een dagboek bij te houden over uw
+          hartritmestoornis.
         </Paragraph>
       </View>
 
@@ -73,14 +74,14 @@ const Landingscreen = () => {
         />
 
         <View className="relative flex flex-row items-center mb-4">
-          <View className="flex-grow border-t border-deepMarine-300" />
+          <View className="flex-grow border-t border-deepMarine-200" />
           <Text
             style={{ fontFamily: "Mulish-regular" }}
-            className="flex-shrink mx-4 text-deepMarine-300 text-sm"
+            className="flex-shrink mx-4 text-deepMarine-200 text-sm"
           >
             Of
           </Text>
-          <View className="flex-grow border-t border-gray-400" />
+          <View className="flex-grow border-t border-deepMarine-200" />
         </View>
 
         <View className="mb-2">

@@ -1,9 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import colors from "../../theme/colors";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import ArrowLeft from "../svg/icons/ArrowLeft";
-import UserCircle from "../svg/icons/UserCircle";
 import LogoSmall from "../svg/logoSmall";
 
 const Header = ({
@@ -15,7 +14,7 @@ const Header = ({
   const navigation = useNavigation();
 
   return (
-    <View className="w-full relative mt-2 mb-10">
+    <View className="w-full flex items-center relative mt-2 mb-8">
       {withPrevious && (
         <TouchableOpacity
           activeOpacity={0.8}
@@ -30,7 +29,11 @@ const Header = ({
           onPress={() => navigation.goBack()}
           className="absolute z-10 left-3 top-0"
         >
-          <Ionicons name="md-close" size={24} color={colors.turquoise[700]} />
+          <MaterialCommunityIcons
+            name="close"
+            size={28}
+            color={colors.turquoise[700]}
+          />
         </TouchableOpacity>
       )}
       {!withClose && !withPrevious && (
@@ -50,7 +53,11 @@ const Header = ({
           className="absolute z-10 right-4 top-0"
           onPress={() => navigation.navigate("Settings")}
         >
-          <UserCircle />
+          <MaterialCommunityIcons
+            name="menu"
+            size={28}
+            color={colors.turquoise[700]}
+          />
         </TouchableOpacity>
       )}
     </View>

@@ -8,9 +8,9 @@ import VerifyEmail from "../../screens/authentication/VerifyEmail";
 import Intake from "../../screens/onboarding/Intake";
 import IntakeExplainer from "../../screens/onboarding/IntakeExplainer";
 import Settings from "../../screens/settings";
-import PersonalInformationScreen from "../../screens/settings/PersonalInformationScreen";
 import AccountScreen from "../../screens/settings/AccountScreen";
 import MedicalDataScreen from "../../screens/settings/MedicalDataScreen";
+import MedicationScreen from "../../screens/MedicationScreen";
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
@@ -63,6 +63,11 @@ export default function AppStack() {
         options={{ headerShown: false }}
         name="Dashboard"
         component={Dashboard}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Medication"
+        component={MedicationScreen}
       />
       <>
         <Stack.Screen

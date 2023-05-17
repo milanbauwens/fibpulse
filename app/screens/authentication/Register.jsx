@@ -59,14 +59,13 @@ const Register = () => {
   return (
     <SafeAreaView className="bg-white h-full px-4">
       <BackButton onPress={() => navigation.navigate("Landing")} />
-      <View className="bg-white z-[2]">
+      <View className="bg-white z-[2] mb-6">
         <Title size="large">Maak een nieuw profiel</Title>
       </View>
       <KeyboardAwareScrollView
         overScrollMode="never"
         bounces={false}
         extraHeight={0}
-        className="py-2"
       >
         {signUpError && (
           <View
@@ -78,7 +77,7 @@ const Register = () => {
             </Text>
           </View>
         )}
-        <View className=" flex gap-y-8">
+        <View className=" flex gap-y-6">
           <View>
             <Formgroup
               rules={{ required: "Vul een voornaam in." }}

@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 
 const Paragraph = ({
   children,
-  textColor = "text-deepMarine-700",
+  textColor = "text-turquoise-700",
   className,
   ...props
 }) => {

@@ -55,13 +55,13 @@ const Login = () => {
   return (
     <SafeAreaView className="bg-white h-full px-4">
       <BackButton onPress={() => navigation.navigate("Landing")} />
-      <View className="bg-white z-[2]">
+      <View className="bg-white z-[2] mb-6">
         <Title size="large">Log in bij uw account</Title>
       </View>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         enabled
-        className="flex flex-col gap-y-8 mt-2"
+        className="flex flex-col gap-y-6"
       >
         {signInError && (
           <View

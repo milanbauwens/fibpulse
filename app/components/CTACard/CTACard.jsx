@@ -10,7 +10,7 @@ const CTACard = ({
   description,
   image,
   buttonLabel,
-  iconName,
+  buttonIconName,
   onPress,
 }) => (
   <Card className="w-full p-4 bg-white rounded-lg shadow-card">
@@ -24,8 +24,12 @@ const CTACard = ({
     <PrimaryButton
       onPress={onPress}
       icon={
-        iconName && (
-          <MaterialCommunityIcons name={iconName} size={24} color="#FFF" />
+        buttonIconName && (
+          <MaterialCommunityIcons
+            name={buttonIconName}
+            size={24}
+            color="#FFF"
+          />
         )
       }
       label={buttonLabel}

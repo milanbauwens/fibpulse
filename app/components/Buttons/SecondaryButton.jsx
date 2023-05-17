@@ -1,5 +1,6 @@
 import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import React from "react";
+import colors from "../../theme/colors";
 
 const SecondaryButton = ({ label, onPress, isLoading }) => {
   return (
@@ -16,7 +17,10 @@ const SecondaryButton = ({ label, onPress, isLoading }) => {
           {label}
         </Text>
       ) : (
-        <ActivityIndicator color="#336666" className="my-[6px]" />
+        <ActivityIndicator
+          color={colors.deepMarine[400]}
+          className="my-[6px]"
+        />
       )}
     </TouchableOpacity>
   );
