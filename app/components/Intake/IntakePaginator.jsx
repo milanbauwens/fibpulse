@@ -1,7 +1,7 @@
 import React from "react";
 import { View, useWindowDimensions, Animated } from "react-native";
 import colors from "../../theme/colors";
-import BackButton from "../Buttons/BackButton";
+import BackButton from "../common/Buttons/BackButton";
 
 const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
   const { width } = useWindowDimensions();

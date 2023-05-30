@@ -1,8 +1,8 @@
 import { Image, Text } from "react-native";
 import Card from "../Card/Card";
 import { View } from "react-native";
-import Title from "../Typograhy/Title";
-import Paragraph from "../Typograhy/Paragraph";
+import Title from "../common/Typograhy/Title";
+import Paragraph from "../common/Typograhy/Paragraph";
 import { Dimensions } from "react-native";
 
 const LifestyleCard = ({ category, content, imageURL }) => {

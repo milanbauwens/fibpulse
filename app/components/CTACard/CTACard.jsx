@@ -1,8 +1,8 @@
 import { View } from "react-native";
 import Card from "../Card/Card";
-import Paragraph from "../Typograhy/Paragraph";
-import Title from "../Typograhy/Title";
-import PrimaryButton from "../Buttons/PrimaryButton";
+import Paragraph from "../common/Typograhy/Paragraph";
+import Title from "../common/Typograhy/Title";
+import PrimaryButton from "../common/Buttons/PrimaryButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const CTACard = ({

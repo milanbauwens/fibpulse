@@ -2,14 +2,14 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import Header from "../../components/Header/Header";
-import { signOut } from "../../db/modules/auth/api";
+import Header from "../../components/common/Header/Header";
+import { signOut } from "../../core/db/modules/auth/api";
 import { useNavigation } from "@react-navigation/native";
-import { useAuthContext } from "../../components/Auth/AuthProvider";
-import Paragraph from "../../components/Typograhy/Paragraph";
+import { useAuthContext } from "../../components/auth/AuthProvider";
+import Paragraph from "../../components/common/Typograhy/Paragraph";
 import { View, Text, ScrollView } from "react-native";
-import Title from "../../components/Typograhy/Title";
-import SettingsItem from "../../components/SettingsItem/SettingsItem";
+import Title from "../../components/common/Typograhy/Title";
+import SettingsItem from "../../components/screens/settings/SettingsItem/SettingsItem";
 import { useState } from "react";
 
 const Settings = () => {

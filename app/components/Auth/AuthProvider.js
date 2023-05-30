@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import UseSupabaseAuth from "../../db/useSupabeAuth";
+import { createContext, useContext } from "react";
+import UseSupabaseAuth from "../../core/db/useSupabeAuth";
 
 const AuthContext = createContext();
 

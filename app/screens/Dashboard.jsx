@@ -2,12 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomNavigation from "../components/BottomNavigation/BottomNavigation";
-import Header from "../components/Header/Header";
+import Header from "../components/common/Header/Header";
 import CTACard from "../components/CTACard/CTACard";
 import Medication from "../components/svg/Medication";
 import HeartWarning from "../components/svg/HeartWarning";
 import LifestyleSlider from "../components/LifestyleSlider/LifestyleSlider";
-import Title from "../components/Typograhy/Title";
+import Title from "../components/common/Typograhy/Title";
 
 const Dashboard = () => {
   const navigation = useNavigation();

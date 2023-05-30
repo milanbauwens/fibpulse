@@ -1,12 +1,12 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "../../components/Header/Header";
+import Header from "../../components/common/Header/Header";
 import { View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import {
   getMedicalProfile,
   updateMedicalProfile,
-} from "../../db/modules/medical_profiles/api";
-import LoadingIndicator from "../../components/Loading/Loading";
+} from "../../core/db/modules/medical_profiles/api";
+import LoadingIndicator from "../../components/common/Loading/Loading";
 import DataView from "../../components/DataView/DataView";
 import {
   EPISODE_AMOUNTS,

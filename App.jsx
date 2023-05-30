@@ -2,8 +2,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import { SplashscreenLoader } from "./app/screens/onboarding/Splashscreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import AppContent from "./app/router/AppContent";
-import AuthProvider from "./app/components/Auth/AuthProvider";
+import AppContent from "./app/core/router/AppContent";
+import AuthProvider from "./app/components/auth/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Keep the splash screen visible while app is loading

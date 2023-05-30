@@ -5,12 +5,12 @@ import {
   useWindowDimensions,
   TouchableOpacity,
 } from "react-native";
-import { useAuthContext } from "../Auth/AuthProvider";
-import { supabase } from "../../db/initSupabase";
+import { supabase } from "../../core/db/initSupabase";
 import CheckCircle from "../svg/icons/CheckCircle";
-import Title from "../Typograhy/Title";
-import Paragraph from "../Typograhy/Paragraph";
-import DatePicker from "../Input/DatePicker";
+import Title from "../common/Typograhy/Title";
+import Paragraph from "../common/Typograhy/Paragraph";
+import { useAuthContext } from "../auth/AuthProvider";
+// import DatePicker from "../Input/DatePicker";
 
 const IntakeItem = ({ data }) => {
   const { width } = useWindowDimensions();
@@ -198,7 +198,7 @@ const IntakeItem = ({ data }) => {
       </View>
       {data.type === "date" && (
         <View className="mt-28">
-          <DatePicker
+          {/* <DatePicker
             value={date}
             onChange={handleDate}
             onMonthChange={(text) => {
@@ -220,7 +220,7 @@ const IntakeItem = ({ data }) => {
                 monthRef.current.focus();
               }
             }}
-          />
+          /> */}
         </View>
       )}
     </View>

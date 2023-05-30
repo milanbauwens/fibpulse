@@ -5,13 +5,12 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from "react-native";
-import Popover from "../Popover/Popover";
-import { Picker } from "@react-native-picker/picker";
+import Popover from "../common/Popover/Popover";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../theme/colors";
-import PrimaryButton from "../Buttons/PrimaryButton";
-import DatePicker from "../Input/DatePicker";
+import PrimaryButton from "../common/Buttons/PrimaryButton";
+import DatePicker from "../common/Input/DatePicker";
 
 const DataViewItem = ({
   data,
@@ -132,7 +131,7 @@ const DataViewItem = ({
           )}
           {type === "date" && (
             <KeyboardAvoidingView className="mt-12">
-              <DatePicker
+              {/* <DatePicker
                 value={selectedValue}
                 onChange={handleDate}
                 onMonthChange={(text) => {
@@ -154,7 +153,7 @@ const DataViewItem = ({
                     monthRef.current.focus();
                   }
                 }}
-              />
+              /> */}
             </KeyboardAvoidingView>
           )}
 

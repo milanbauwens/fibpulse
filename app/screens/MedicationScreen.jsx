@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView, View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomNavigation from "../components/BottomNavigation/BottomNavigation";
-import Header from "../components/Header/Header";
+import Header from "../components/common/Header/Header";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import TabBar from "../components/TabBar/TabBar";
 import Medication from "../components/svg/Medication";

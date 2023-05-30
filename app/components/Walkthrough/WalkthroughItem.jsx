@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, Image, useWindowDimensions } from "react-native";
-import Display from "../Typograhy/Display";
-import Paragraph from "../Typograhy/Paragraph";
+import { View, Image, useWindowDimensions } from "react-native";
+import Display from "../common/Typograhy/Display";
+import Paragraph from "../common/Typograhy/Paragraph";
 
 export default function WalkthroughItem({ item }) {
   const { width } = useWindowDimensions();
@@ -17,9 +17,7 @@ export default function WalkthroughItem({ item }) {
       </View>
       <View className="mt-6 px-4">
         <Display>{item.title}</Display>
-        <Paragraph className="mb-4">
-          {item.description}
-        </Paragraph>
+        <Paragraph className="mb-4">{item.description}</Paragraph>
       </View>
     </View>
   );

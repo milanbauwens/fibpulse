@@ -3,10 +3,10 @@ import { useRef, useState } from "react";
 import { Animated, FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import slides from "../../content/intake.js";
+import slides from "../../__content/intake.js";
 import IntakeItem from "../../components/Intake/IntakeItem";
 import IntakePaginator from "../../components/Intake/IntakePaginator";
-import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import PrimaryButton from "../../components/common/Buttons/PrimaryButton";
 
 const Intake = () => {
   const navigation = useNavigation();

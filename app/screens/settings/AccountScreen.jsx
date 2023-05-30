@@ -1,14 +1,14 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "../../components/Header/Header";
+import Header from "../../components/common/Header/Header";
 import { View, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { useAuthContext } from "../../components/Auth/AuthProvider";
-import Popover from "../../components/Popover/Popover";
+import { useAuthContext } from "../../components/auth/AuthProvider";
+import Popover from "../../components/common/Popover/Popover";
 import DeleteAccount from "../../components/svg/DeleteAccount";
-import Paragraph from "../../components/Typograhy/Paragraph";
-import PrimaryButton from "../../components/Buttons/PrimaryButton";
-import TertiairyButton from "../../components/Buttons/TertiairyButton";
+import Paragraph from "../../components/common/Typograhy/Paragraph";
+import PrimaryButton from "../../components/common/Buttons/PrimaryButton";
+import TertiairyButton from "../../components/common/Buttons/TertiairyButton";
 
 const AccountScreen = () => {
   const { user } = useAuthContext();

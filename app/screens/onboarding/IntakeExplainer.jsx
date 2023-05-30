@@ -1,10 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
-import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import PrimaryButton from "../../components/common/Buttons/PrimaryButton";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import IntakeIllustration from "../../components/svg/IntakeIllustration";
-import Title from "../../components/Typograhy/Title";
-import Paragraph from "../../components/Typograhy/Paragraph";
+import Title from "../../components/common/Typograhy/Title";
+import Paragraph from "../../components/common/Typograhy/Paragraph";
+import SecondaryButton from "../../components/common/Buttons/SecondaryButton";
 
 const IntakeExplainer = () => {
   const navigation = useNavigation();
@@ -14,15 +15,21 @@ const IntakeExplainer = () => {
       <View className="flex flex-col items-center">
         <IntakeIllustration className="mb-12 mt-20" />
         <Title size="large" textCenter>
-          Eerst enkele vragen om uw medisch profiel te schetsen
+          Uw medisch profiel in kaart brengen
         </Title>
         <Paragraph className="text-center">
-          We doen dit om een beter beeld te kunnen schetsen van uw medisch
-          profiel. Zo kunnen we u de best mogelijke ervaring geven.
+          Met uw medische gegevens, kunnen we u een gerichtere ervaring
+          aanbieden.
         </Paragraph>
       </View>
-      <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
-        <View className="mb-6">
+      <View className="flex-1 flex flex-row items-center px-4 absolute left-0 right-0 bottom-12 m-auto justify-center">
+        <View className="flex-1 mr-4">
+          <SecondaryButton
+            label="Doe dit later"
+            onPress={() => navigation.navigate("Dashboard")}
+          />
+        </View>
+        <View className="flex-1">
           <PrimaryButton
             label="Ga van start"
             onPress={() => navigation.navigate("Intake")}
