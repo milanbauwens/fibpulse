@@ -1,5 +1,5 @@
-import * as React from "react";
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
+import * as React from 'react';
+import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
 const ArrowLeft = (props) => (
   <Svg
@@ -21,11 +21,7 @@ const ArrowLeft = (props) => (
     </G>
     <Defs>
       <ClipPath id="clip0_188_605">
-        <Path
-          fill="#fff"
-          transform="rotate(-180 13.334 13.333)"
-          d="M0 0H21.3333V21.3333H0z"
-        />
+        <Path fill="#fff" transform="rotate(-180 13.334 13.333)" d="M0 0H21.3333V21.3333H0z" />
       </ClipPath>
     </Defs>
   </Svg>

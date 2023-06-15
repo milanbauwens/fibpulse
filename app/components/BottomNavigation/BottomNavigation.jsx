@@ -1,29 +1,28 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 // Icons
-import Home from "../svg/icons/Home";
-import Heart from "../svg/icons/Heart";
-import Health from "../svg/icons/Health";
-import Pill from "../svg/icons/Pill";
-import colors from "../../theme/colors";
+import colors from '../../theme/colors';
+import Heart from '../svg/icons/Heart';
+import Home from '../svg/icons/Home';
+import Pill from '../svg/icons/Pill';
 
 const NAVIGATION_ITEMS = [
   {
-    title: "Overzicht",
+    title: 'Overzicht',
     icon: Home,
-    screen: "Dashboard",
+    screen: 'Dashboard',
   },
   {
-    title: "Aanvallen",
+    title: 'Aanvallen',
     icon: Heart,
-    screen: "Episodes",
+    screen: 'Episodes',
   },
   {
-    title: "Medicatie",
+    title: 'Medicatie',
     icon: Pill,
-    screen: "Medication",
+    screen: 'Medication',
   },
 ];
 
@@ -43,17 +42,13 @@ const BottomNavigation = () => {
         >
           <item.icon
             color={
-              currentRoute.name === item.screen
-                ? colors.deepMarine[700]
-                : colors.deepMarine[300]
+              currentRoute.name === item.screen ? colors.deepMarine[700] : colors.deepMarine[300]
             }
           />
           <Text
-            style={{ fontFamily: "Mulish-regular" }}
+            style={{ fontFamily: 'Mulish-regular' }}
             className={`text-xs ${
-              currentRoute.name === item.screen
-                ? "text-deepMarine-700"
-                : "text-deepMarine-300"
+              currentRoute.name === item.screen ? 'text-deepMarine-700' : 'text-deepMarine-300'
             }`}
           >
             {item.title}

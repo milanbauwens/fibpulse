@@ -1,4 +1,4 @@
-import React, { View } from "react-native";
+import React, { View } from 'react-native';
 
 const ButtonGroup = ({ PrimaryButton, SecondaryButton, TertiairyButton }) => (
   <View className="flex flex-col items-center">

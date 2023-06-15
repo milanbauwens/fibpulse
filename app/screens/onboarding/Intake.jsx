@@ -1,12 +1,12 @@
-import { useNavigation } from "@react-navigation/native";
-import { useRef, useState } from "react";
-import { Animated, FlatList, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from '@react-navigation/native';
+import slides from '__content/intake.js';
+import { useRef, useState } from 'react';
+import { Animated, FlatList, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import slides from "../../__content/intake.js";
-import IntakeItem from "../../components/Intake/IntakeItem";
-import IntakePaginator from "../../components/Intake/IntakePaginator";
-import PrimaryButton from "../../components/common/Buttons/PrimaryButton";
+import IntakeItem from 'components/Intake/IntakeItem';
+import IntakePaginator from 'components/Intake/IntakePaginator';
+import PrimaryButton from 'components/common/Buttons/PrimaryButton';
 
 const Intake = () => {
   const navigation = useNavigation();
@@ -24,16 +24,14 @@ const Intake = () => {
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
     } else {
-      navigation.navigate("Dashboard");
+      navigation.navigate('Dashboard');
     }
-    return;
   };
 
   const scrollBack = async () => {
     if (currentSlide < slides.length) {
       slidesRef.current.scrollToIndex({ index: currentSlide - 1 });
     }
-    return;
   };
 
   return (
@@ -50,17 +48,14 @@ const Intake = () => {
         data={slides}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <IntakeItem currentSlide={currentSlide} data={item} />
-        )}
+        renderItem={({ item }) => <IntakeItem currentSlide={currentSlide} data={item} />}
         bounces={false}
         pagingEnabled
         scrollEnabled={false}
         keyExtractor={(item, index) => index.toString()}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+          useNativeDriver: false,
+        })}
         onViewableItemsChanged={viewableItemsChanged}
         viewabilityConfig={viewConfig}
         scrollEventThrottle={32}
@@ -69,11 +64,7 @@ const Intake = () => {
       <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
         <View className="mb-6">
           <PrimaryButton
-            label={
-              currentSlide === slides.length - 1
-                ? " Voltooi uw profiel"
-                : "Volgende"
-            }
+            label={currentSlide === slides.length - 1 ? ' Voltooi uw profiel' : 'Volgende'}
             onPress={scrollTo}
           />
         </View>

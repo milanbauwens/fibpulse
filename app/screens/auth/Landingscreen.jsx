@@ -1,25 +1,20 @@
-import { Link, useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
-import { View, Text } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import { signInWithProvider } from "../../core/db/modules/auth/api";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Link, useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Text, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-// Components
-import AuthProviderButton from "../../components/common/Buttons/AuthProviderButton";
-import Logo from "../../components/svg/Logo";
-import PrimaryButton from "../../components/common/Buttons/PrimaryButton";
-import TertiairyButton from "../../components/common/Buttons/TertiairyButton";
-import Ellipse from "../../components/svg/Ellipse";
-import CircleMd from "../../components/svg/CircleMd";
-import CircleSm from "../../components/svg/CircleSm";
-import Display from "../../components/common/Typograhy/Display";
-import Paragraph from "../../components/common/Typograhy/Paragraph";
-import { handleAuthError } from "../../core/utils/auth/handleAuthError";
+import AuthProviderButton from '../../components/common/Buttons/AuthProviderButton';
+import PrimaryButton from '../../components/common/Buttons/PrimaryButton';
+import TertiairyButton from '../../components/common/Buttons/TertiairyButton';
+import { Display, Paragraph } from '../../components/common/Typography';
+import CircleMd from '../../components/svg/CircleMd';
+import CircleSm from '../../components/svg/CircleSm';
+import Ellipse from '../../components/svg/Ellipse';
+import Logo from '../../components/svg/Logo';
+import { signInWithProvider } from '../../core/db/modules/auth/api';
+import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const Landingscreen = () => {
   const navigation = useNavigation();
@@ -43,12 +38,12 @@ const Landingscreen = () => {
     <SafeAreaView className="bg-white h-full px-5 relative flex items-center">
       <Logo
         className="mt-2 mb-16"
-        onPress={async () => await AsyncStorage.removeItem("@viewedOnboarding")}
+        onPress={async () => await AsyncStorage.removeItem('@viewedOnboarding')}
       />
 
       <Ellipse
         className="absolute top-12 right-0"
-        onPress={() => navigation.navigate("IntakeExplainer")}
+        onPress={() => navigation.navigate('IntakeExplainer')}
       />
       <CircleMd className="absolute bottom-1/2 left-0" />
       <CircleSm className="absolute bottom-4 right-0" />
@@ -56,8 +51,7 @@ const Landingscreen = () => {
       <View>
         <Display>Laat uw hartritmestoornis niet de bovenhand nemen.</Display>
         <Paragraph>
-          Begin vandaag nog met een dagboek bij te houden over uw
-          hartritmestoornis.
+          Begin vandaag nog met een dagboek bij te houden over uw hartritmestoornis.
         </Paragraph>
       </View>
 
@@ -65,18 +59,18 @@ const Landingscreen = () => {
         <AuthProviderButton
           disabled={isLoading}
           provider="google"
-          onPress={() => handleProviderLogin("google")}
+          onPress={() => handleProviderLogin('google')}
         />
         <AuthProviderButton
           disabled={isLoading}
           provider="facebook"
-          onPress={() => handleProviderLogin("facebook")}
+          onPress={() => handleProviderLogin('facebook')}
         />
 
         <View className="relative flex flex-row items-center mb-4">
           <View className="flex-grow border-t border-deepMarine-200" />
           <Text
-            style={{ fontFamily: "Mulish-regular" }}
+            style={{ fontFamily: 'Mulish-regular' }}
             className="flex-shrink mx-4 text-deepMarine-200 text-sm"
           >
             Of
@@ -87,29 +81,23 @@ const Landingscreen = () => {
         <View className="mb-2">
           <PrimaryButton
             icon={<MaterialIcons name="email" size={24} color="#FFF" />}
-            label={"Doorgaan met E-mail"}
-            onPress={() => navigation.navigate("Register")}
+            label="Doorgaan met E-mail"
+            onPress={() => navigation.navigate('Register')}
           />
         </View>
         <Text
           className="text-xs text-deepMarine-700 mb-10  text-center"
-          style={{ fontFamily: "Mulish-medium" }}
+          style={{ fontFamily: 'Mulish-medium' }}
         >
-          Door zich te registreren, gaat u akkoord met onze{" "}
+          Door zich te registreren, gaat u akkoord met onze{' '}
           <Link to="/Login">
-            <Text
-              className="text-xs text-deepMarine-500"
-              style={{ fontFamily: "Mulish-bold" }}
-            >
+            <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
               Gebruiksvoorwaarden
             </Text>
-          </Link>{" "}
-          en{" "}
+          </Link>{' '}
+          en{' '}
           <Link to="/Login">
-            <Text
-              className="text-xs text-deepMarine-500"
-              style={{ fontFamily: "Mulish-bold" }}
-            >
+            <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
               Privacy verklaring.
             </Text>
           </Link>
@@ -118,7 +106,7 @@ const Landingscreen = () => {
         <TertiairyButton
           label="Heeft u al een account?"
           action="Inloggen."
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </SafeAreaView>

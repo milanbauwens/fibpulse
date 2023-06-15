@@ -1,10 +1,11 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import colors from "../../../../theme/colors";
-import { Switch, View, TouchableOpacity, Text } from "react-native";
-import { useState } from "react";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useState } from 'react';
+import { Switch, Text, TouchableOpacity, View } from 'react-native';
+
+import colors from '../../../../theme/colors';
 
 const SettingsItem = ({
-  type = "normal" || "error",
+  type = 'normal' || 'error',
   title,
   iconName,
   onPress,
@@ -23,20 +24,18 @@ const SettingsItem = ({
       <View className="flex flex-row items-center">
         <View
           className={`w-8 h-8 mr-4 flex items-center justify-center ${
-            type === "error" ? "bg-red-100" : " bg-turquoise-200"
+            type === 'error' ? 'bg-red-100' : ' bg-turquoise-200'
           } rounded-full`}
         >
           <MaterialCommunityIcons
             name={iconName}
             size={20}
-            color={type === "error" ? colors.red[600] : colors.turquoise[700]}
+            color={type === 'error' ? colors.red[600] : colors.turquoise[700]}
           />
         </View>
         <Text
-          style={{ fontFamily: "Mulish-medium" }}
-          className={` text-base ${
-            type === "error" ? "text-red-600" : "text-deepMarine-700"
-          } `}
+          style={{ fontFamily: 'Mulish-medium' }}
+          className={` text-base ${type === 'error' ? 'text-red-600' : 'text-deepMarine-700'} `}
         >
           {title}
         </Text>
@@ -56,7 +55,7 @@ const SettingsItem = ({
         <MaterialCommunityIcons
           name="chevron-right"
           size={24}
-          color={type === "error" ? colors.red[600] : colors.deepMarine[700]}
+          color={type === 'error' ? colors.red[600] : colors.deepMarine[700]}
         />
       )}
     </TouchableOpacity>

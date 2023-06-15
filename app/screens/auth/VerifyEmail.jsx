@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import VerifiedEmail from "../../components/svg/VerifiedEmail";
-import PrimaryButton from "../../components/common/Buttons/PrimaryButton";
-import { useAuthContext } from "../../components/auth/AuthProvider";
-import TertiairyButton from "../../components/common/Buttons/TertiairyButton";
-import Title from "../../components/common/Typograhy/Title";
-import Paragraph from "../../components/common/Typograhy/Paragraph";
+import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
+import { Paragraph, Title } from '../../components/common/Typography';
+import VerifiedEmail from '../../components/svg/VerifiedEmail';
 
 const VerifyEmail = () => {
   const navigation = useNavigation();
@@ -37,15 +35,15 @@ const VerifyEmail = () => {
           Verifieer uw account
         </Title>
         <Paragraph className="text-center">
-          Voordat u verder kunt gaan, moet u eerst uw e-mailadres verifiëren. Ga
-          naar uw mailbox en volg de stappen. Kijk zeker ook uw spambox na.
+          Voordat u verder kunt gaan, moet u eerst uw e-mailadres verifiëren. Ga naar uw mailbox en
+          volg de stappen. Kijk zeker ook uw spambox na.
         </Paragraph>
 
         <View className="absolute left-0 right-0 bottom-2 m-auto flex flex-col justify-center">
           <View className="mb-6">
             <PrimaryButton
               label="Email geverifieerd"
-              onPress={() => navigation.navigate("IntakeExplainer")}
+              onPress={() => navigation.navigate('IntakeExplainer')}
               isLoading={isLoading}
             />
           </View>

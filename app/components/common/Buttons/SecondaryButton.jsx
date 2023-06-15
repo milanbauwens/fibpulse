@@ -1,6 +1,8 @@
-import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import React from "react";
-import colors from "../../../theme/colors";
+import React from 'react';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+
+import colors from '../../../theme/colors';
+
 const SecondaryButton = ({ label, onPress, isLoading, icon }) => {
   return (
     <TouchableOpacity
@@ -12,7 +14,7 @@ const SecondaryButton = ({ label, onPress, isLoading, icon }) => {
         <>
           {icon && <View className="mr-3">{icon}</View>}
           <Text
-            style={{ fontFamily: "Bitter-semibold" }}
+            style={{ fontFamily: 'Bitter-semibold' }}
             className="text-base text-center text-turquoise-700"
           >
             {label}

@@ -1,20 +1,21 @@
-import { useNavigation } from "@react-navigation/native";
-import { ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import BottomNavigation from "../components/BottomNavigation/BottomNavigation";
-import Header from "../components/common/Header/Header";
-import CTACard from "../components/CTACard/CTACard";
-import Medication from "../components/svg/Medication";
-import HeartWarning from "../components/svg/HeartWarning";
-import LifestyleSlider from "../components/LifestyleSlider/LifestyleSlider";
-import Title from "../components/common/Typograhy/Title";
+import { useNavigation } from '@react-navigation/native';
+import { ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
+import CTACard from '../components/CTACard/CTACard';
+import LifestyleSlider from '../components/LifestyleSlider/LifestyleSlider';
+import Header from '../components/common/Header/Header';
+import { Title } from '../components/common/Typography';
+import { HeartWarning } from '../components/svg/HeartWarning.jsx';
+import Medication from '../components/svg/Medication';
 
 const Dashboard = () => {
   const navigation = useNavigation();
 
   return (
     <>
-      <SafeAreaView className="bg-white">
+      <SafeAreaView style={{ padding: 2 }} className="bg-white">
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 196 }}

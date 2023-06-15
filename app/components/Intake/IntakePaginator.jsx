@@ -1,7 +1,8 @@
-import React from "react";
-import { View, useWindowDimensions, Animated } from "react-native";
-import colors from "../../theme/colors";
-import BackButton from "../common/Buttons/BackButton";
+import React from 'react';
+import { Animated, View, useWindowDimensions } from 'react-native';
+
+import colors from '../../theme/colors';
+import BackButton from '../common/Buttons/BackButton';
 
 const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
   const { width } = useWindowDimensions();
@@ -16,20 +17,12 @@ const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
       <View className="flex flex-row items-center justify-between px-2 h-12 mt-6">
         <View className="flex flex-row gap-x-3">
           {data.map((_, index) => {
-            const inputRange = [
-              (index - 1) * width,
-              index * width,
-              (index + 1) * width,
-            ];
+            const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
             const color = scrollX.interpolate({
               inputRange,
-              outputRange: [
-                colors.turquoise[200],
-                colors.deepMarine[500],
-                colors.deepMarine[500],
-              ],
-              extrapolate: "clamp",
+              outputRange: [colors.turquoise[200], colors.deepMarine[500], colors.deepMarine[500]],
+              extrapolate: 'clamp',
             });
 
             return (

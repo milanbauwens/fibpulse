@@ -1,7 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createClient } from "@supabase/supabase-js";
-import "react-native-url-polyfill/auto";
-import { SUPABASE_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY } from "@env";
+import { SUPABASE_KEY, SUPABASE_SERVICE_KEY, SUPABASE_URL } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createClient } from '@supabase/supabase-js';
+import 'react-native-url-polyfill/auto';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: {
@@ -22,9 +22,9 @@ export const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
 });
 
 export const AuthEvent = {
-  SIGNED_IN: "SIGNED_IN",
-  USER_UPDATED: "USER_UPDATED",
-  TOKEN_REFRESHED: "TOKEN_REFRESHED",
-  SIGNED_OUT: "SIGNED_OUT",
-  USER_DELETED: "USER_DELETED",
+  SIGNED_IN: 'SIGNED_IN',
+  USER_UPDATED: 'USER_UPDATED',
+  TOKEN_REFRESHED: 'TOKEN_REFRESHED',
+  SIGNED_OUT: 'SIGNED_OUT',
+  USER_DELETED: 'USER_DELETED',
 };

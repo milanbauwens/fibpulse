@@ -1,29 +1,29 @@
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Animated, Dimensions, Easing, StyleSheet, View } from "react-native";
-import colors from "../../theme/colors";
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Animated, Dimensions, Easing, StyleSheet, View } from 'react-native';
+import colors from 'theme/colors';
 
 export function SplashscreenLoader({ children }) {
   const [isSplashReady, setSplashReady] = useState(false);
   const [fontsLoaded] = useFonts({
     // Mulish Fonts
-    "Mulish-regular": require("../../../assets/fonts/Mulish-Regular.ttf"),
-    "Mulish-medium": require("../../../assets/fonts/Mulish-Medium.ttf"),
-    "Mulish-semibold": require("../../../assets/fonts/Mulish-SemiBold.ttf"),
-    "Mulish-bold": require("../../../assets/fonts/Mulish-Bold.ttf"),
+    'Mulish-regular': require('../../../assets/fonts/Mulish-Regular.ttf'),
+    'Mulish-medium': require('../../../assets/fonts/Mulish-Medium.ttf'),
+    'Mulish-semibold': require('../../../assets/fonts/Mulish-SemiBold.ttf'),
+    'Mulish-bold': require('../../../assets/fonts/Mulish-Bold.ttf'),
     // Bitter Fonts
-    "Bitter-regular": require("../../../assets/fonts/Bitter-Regular.ttf"),
-    "Bitter-medium": require("../../../assets/fonts/Bitter-Medium.ttf"),
-    "Bitter-semibold": require("../../../assets/fonts/Bitter-SemiBold.ttf"),
-    "Bitter-bold": require("../../../assets/fonts/Bitter-Bold.ttf"),
+    'Bitter-regular': require('../../../assets/fonts/Bitter-Regular.ttf'),
+    'Bitter-medium': require('../../../assets/fonts/Bitter-Medium.ttf'),
+    'Bitter-semibold': require('../../../assets/fonts/Bitter-SemiBold.ttf'),
+    'Bitter-bold': require('../../../assets/fonts/Bitter-Bold.ttf'),
   });
 
   useEffect(() => {
     async function prepare() {
       try {
       } catch (e) {
-        console.error("Error:", e);
+        console.error('Error:', e);
       } finally {
         setSplashReady(true);
       }
@@ -57,7 +57,7 @@ function AnimatedSplashScreen({ children }) {
         }),
         Animated.timing(moveX, {
           delay: 300,
-          toValue: -Dimensions.get("window").width,
+          toValue: -Dimensions.get('window').width,
           duration: 900,
           easing: Easing.exp,
           useNativeDriver: true,
@@ -69,9 +69,8 @@ function AnimatedSplashScreen({ children }) {
   const onImageLoaded = useCallback(async () => {
     try {
       await SplashScreen.hideAsync();
-      await Promise.all([fontsloaded]);
     } catch (e) {
-      // handle errors
+      console.error('Error:', e);
     } finally {
       setAppReady(true);
     }
@@ -97,13 +96,13 @@ function AnimatedSplashScreen({ children }) {
         >
           <Animated.Image
             style={{
-              width: "100%",
-              height: "100%",
+              width: '100%',
+              height: '100%',
               marginBottom: 28,
-              resizeMode: "contain",
+              resizeMode: 'contain',
               opacity: fadeOut,
             }}
-            source={require("../../../assets/splash.png")}
+            source={require('../../../assets/splash.png')}
             onLoadEnd={onImageLoaded}
             fadeDuration={0}
           />

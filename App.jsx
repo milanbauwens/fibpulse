@@ -1,10 +1,11 @@
-import { NavigationContainer } from "@react-navigation/native";
-import * as SplashScreen from "expo-splash-screen";
-import { SplashscreenLoader } from "./app/screens/onboarding/Splashscreen";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import AppContent from "./app/core/router/AppContent";
-import AuthProvider from "./app/components/auth/AuthProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import * as SplashScreen from 'expo-splash-screen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import AuthProvider from './app/components/auth/AuthProvider';
+import AppContent from './app/core/router/AppContent';
+import { SplashscreenLoader } from './app/screens/onboarding/Splashscreen';
 
 // Keep the splash screen visible while app is loading
 SplashScreen.preventAutoHideAsync().catch(() => {});

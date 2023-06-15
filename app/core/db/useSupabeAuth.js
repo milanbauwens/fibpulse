@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
-import { getCurrentSession } from "./modules/auth/api.js";
-import { supabase, AuthEvent } from "./initSupabase.js";
+import { useEffect, useMemo, useState } from 'react';
+
+import { AuthEvent, supabase } from './initSupabase.js';
+import { getCurrentSession } from './modules/auth/api.js';
 
 const UseSupabaseAuth = () => {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -32,10 +33,7 @@ const UseSupabaseAuth = () => {
     });
   }, []);
 
-  const user = useMemo(
-    () => (auth ? { ...auth.user, ...auth.user.user_metadata } : null),
-    [auth]
-  );
+  const user = useMemo(() => (auth ? { ...auth.user, ...auth.user.user_metadata } : null), [auth]);
 
   const isLoggedIn = isInitialized && !!auth;
 

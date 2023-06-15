@@ -1,8 +1,7 @@
-import { useAuthContext } from "../../components/auth/AuthProvider";
-
 // Stacks
-import AuthStack from "./stacks/AuthStack.jsx";
-import AppStack from "./stacks/AppStack.jsx";
+import { useAuthContext } from '../../components/auth/AuthProvider';
+import AppStack from './stacks/AppStack.jsx';
+import AuthStack from './stacks/AuthStack.jsx';
 
 const AppContent = () => {
   const { isLoggedIn } = useAuthContext();

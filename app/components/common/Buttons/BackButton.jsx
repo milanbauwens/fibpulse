@@ -1,7 +1,8 @@
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import ArrowLeft from "../../svg/icons/ArrowLeft";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+
+import ArrowLeft from '../../svg/icons/ArrowLeft';
 
 const BackButton = ({ onPress }) => {
   const navigation = useNavigation();

@@ -1,12 +1,12 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useRef, useState } from "react";
-import { View, Text, FlatList, Animated, TouchableOpacity } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import slides from "../../__content/walkthrough";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import React, { useRef, useState } from 'react';
+import { Animated, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import WalkthroughItem from "../../components/Walkthrough/WalkthroughItem";
-import WalkthroughNavigator from "../../components/Walkthrough/WalkthroughNavigator";
+import slides from '../../__content/walkthrough';
+import WalkthroughItem from '../../components/Walkthrough/WalkthroughItem';
+import WalkthroughNavigator from '../../components/Walkthrough/WalkthroughNavigator';
 
 export default function Walkthrough() {
   const authStackNavigation = useNavigation();
@@ -26,14 +26,13 @@ export default function Walkthrough() {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
     } else {
       try {
-        await AsyncStorage.setItem("@viewedOnboarding", "true");
+        await AsyncStorage.setItem('@viewedOnboarding', 'true');
       } catch (err) {
-        console.error("Error @setAsyncStorage:", err);
+        console.error('Error @setAsyncStorage:', err);
       } finally {
-        authStackNavigation.navigate("Landing");
+        authStackNavigation.navigate('Landing');
       }
     }
-    return;
   };
 
   return (
@@ -47,18 +46,15 @@ export default function Walkthrough() {
           activeOpacity={0.8}
           onPress={async () => {
             try {
-              await AsyncStorage.setItem("@viewedOnboarding", "true");
+              await AsyncStorage.setItem('@viewedOnboarding', 'true');
             } catch (err) {
-              console.error("Error @setAsyncStorage:", err);
+              console.error('Error @setAsyncStorage:', err);
             } finally {
-              authStackNavigation.navigate("Landing");
+              authStackNavigation.navigate('Landing');
             }
           }}
         >
-          <Text
-            className="text-deepMarine-700 text-sm"
-            style={{ fontFamily: "Mulish-medium" }}
-          >
+          <Text className="text-deepMarine-700 text-sm" style={{ fontFamily: 'Mulish-medium' }}>
             Overslaan
           </Text>
         </TouchableOpacity>
@@ -71,20 +67,15 @@ export default function Walkthrough() {
         bounces={false}
         pagingEnabled
         keyExtractor={(item, index) => index.toString()}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+          useNativeDriver: false,
+        })}
         onViewableItemsChanged={viewableItemsChanged}
         viewabilityConfig={viewConfig}
         scrollEventThrottle={32}
         ref={slidesRef}
       />
-      <WalkthroughNavigator
-        data={slides}
-        scrollX={scrollX}
-        scrollTo={scrollTo}
-      />
+      <WalkthroughNavigator data={slides} scrollX={scrollX} scrollTo={scrollTo} />
     </View>
   );
 }

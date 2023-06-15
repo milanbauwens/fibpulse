@@ -1,5 +1,5 @@
-import { Text, TouchableOpacity, ActivityIndicator, View } from "react-native";
-import React from "react";
+import React from 'react';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 
 const PrimaryButton = ({ label, onPress, isLoading, icon }) => {
   return (
@@ -12,7 +12,7 @@ const PrimaryButton = ({ label, onPress, isLoading, icon }) => {
         <>
           {icon && <View className="mr-3">{icon}</View>}
           <Text
-            style={{ fontFamily: "Bitter-semibold" }}
+            style={{ fontFamily: 'Bitter-semibold' }}
             className="text-base text-center text-white"
           >
             {label}

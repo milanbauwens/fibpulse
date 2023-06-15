@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Image, useWindowDimensions } from "react-native";
-import Display from "../common/Typograhy/Display";
-import Paragraph from "../common/Typograhy/Paragraph";
+import React from 'react';
+import { Image, View, useWindowDimensions } from 'react-native';
+
+import { Display, Paragraph } from '../common/Typography';
 
 export default function WalkthroughItem({ item }) {
   const { width } = useWindowDimensions();
@@ -11,7 +11,7 @@ export default function WalkthroughItem({ item }) {
       <View className="basis-[55%] relative w-full flex">
         <Image
           className="absolute w-full h-full overflow-hidden"
-          style={{ resizeMode: "cover" }}
+          style={{ resizeMode: 'cover' }}
           source={item.image}
         />
       </View>

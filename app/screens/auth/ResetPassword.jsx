@@ -1,17 +1,15 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Keyboard, KeyboardAvoidingView, Text, View } from "react-native";
-import { useForm } from "react-hook-form";
-import { supabase } from "../../core/db/initSupabase";
-import { handleAuthError } from "../../core/utils/auth/handleAuthError";
+import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Keyboard, KeyboardAvoidingView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { BackButton, PrimaryButton } from '../../components/common/Buttons';
 // Components
-import Formgroup from "../../components/common/Formgroup/Formgroup";
-import PrimaryButton from "../../components/common/Buttons/PrimaryButton";
-import BackButton from "../../components/common/Buttons/BackButton";
-import Paragraph from "../../components/common/Typograhy/Paragraph";
-import Title from "../../components/common/Typograhy/Title";
+import Formgroup from '../../components/common/Formgroup/Formgroup';
+import { Paragraph, Title } from '../../components/common/Typography';
+import { supabase } from '../../core/db/initSupabase';
+import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const ResetPassword = () => {
   const navigation = useNavigation();
@@ -26,14 +24,12 @@ const ResetPassword = () => {
   const handleResetPassword = async (formData) => {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase.auth.resetPasswordForEmail(
-        formData.userEmail
-      );
+      const { data, error } = await supabase.auth.resetPasswordForEmail(formData.userEmail);
       if (error) {
         const authError = handleAuthError(error);
         setResetPasswordError(authError);
       } else {
-        navigation.navigate("Login");
+        navigation.navigate('Login');
       }
     } catch (error) {
       console.error(error);
@@ -44,11 +40,10 @@ const ResetPassword = () => {
 
   return (
     <SafeAreaView className=" bg-white h-full px-4">
-      <BackButton onPress={() => navigation.navigate("Login")} />
+      <BackButton onPress={() => navigation.navigate('Login')} />
       <Title size="large">Wachtwoord vergeten</Title>
       <Paragraph className="mb-12">
-        Geen probleem! Vul je e-mail in en we sturen je een mail om je
-        wachtwoord te herstellen.
+        Geen probleem! Vul je e-mail in en we sturen je een mail om je wachtwoord te herstellen.
       </Paragraph>
 
       <KeyboardAvoidingView enabled className="flex flex-col gap-y-8">
@@ -57,19 +52,17 @@ const ResetPassword = () => {
             className=" bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
             role="alert"
           >
-            <Text className="block text-center text-red-700 sm:inline">
-              {resetPasswordError}
-            </Text>
+            <Text className="block text-center text-red-700 sm:inline">{resetPasswordError}</Text>
           </View>
         )}
 
         <View>
           <Formgroup
             rules={{
-              required: "Vul een e-mail in.",
+              required: 'Vul een e-mail in.',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Vul een geldig e-mailadres in.",
+                message: 'Vul een geldig e-mailadres in.',
               },
             }}
             control={control}

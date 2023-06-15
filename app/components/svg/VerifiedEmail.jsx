@@ -1,13 +1,5 @@
-import * as React from "react";
-import Svg, {
-  Path,
-  G,
-  Rect,
-  Circle,
-  Defs,
-  LinearGradient,
-  Stop,
-} from "react-native-svg";
+import * as React from 'react';
+import Svg, { Circle, Defs, G, LinearGradient, Path, Rect, Stop } from 'react-native-svg';
 
 function VerifiedEmail(props) {
   return (
@@ -36,14 +28,7 @@ function VerifiedEmail(props) {
         fill="url(#paint0_linear_313_622)"
       />
       <G filter="url(#filter0_d_313_622)">
-        <Rect
-          x={72.4873}
-          y={62.2402}
-          width={128.756}
-          height={103.005}
-          rx={8}
-          fill="#fff"
-        />
+        <Rect x={72.4873} y={62.2402} width={128.756} height={103.005} rx={8} fill="#fff" />
       </G>
       <Path
         d="M56.007 200.782v-19.571l68.24-40.429c11.846-8.241 12.876-8.498 24.206-.515l68.756 40.944c.086 3.691 0 12.77 0 19.571 0 6.695-4.635 7.468-6.953 7.468-45.665-.086-146.267 0-146.781 0-7.983 0-7.468-4.378-7.468-7.468z"
@@ -61,42 +46,21 @@ function VerifiedEmail(props) {
         d="M217.209 172.97l-65.428-34.506-2.555 2.317 67.983 40.945v-8.756z"
         fill="url(#paint1_linear_313_622)"
         style={{
-          mixBlendMode: "multiply",
+          mixBlendMode: 'multiply',
         }}
       />
       <Path
         d="M56 172.97l65.428-34.506 2.555 2.317L56 181.726v-8.756z"
         fill="url(#paint2_linear_313_622)"
         style={{
-          mixBlendMode: "multiply",
+          mixBlendMode: 'multiply',
         }}
       />
-      <Rect
-        x={153}
-        y={53}
-        width={135.966}
-        height={60.7728}
-        rx={8}
-        fill="#366"
-      />
+      <Rect x={153} y={53} width={135.966} height={60.7728} rx={8} fill="#366" />
       <Rect x={260.56} y={74.7935} width={15} height={6} rx={3} fill="#fff" />
       <Rect x={204.56} y={74.7935} width={50} height={6} rx={3} fill="#fff" />
-      <Rect
-        x={204.502}
-        y={87.5068}
-        width={22.6611}
-        height={6.18029}
-        rx={3.09014}
-        fill="#fff"
-      />
-      <Rect
-        x={233.343}
-        y={87.5068}
-        width={41.7169}
-        height={6.18029}
-        rx={3.09014}
-        fill="#fff"
-      />
+      <Rect x={204.502} y={87.5068} width={22.6611} height={6.18029} rx={3.09014} fill="#fff" />
+      <Rect x={233.343} y={87.5068} width={41.7169} height={6.18029} rx={3.09014} fill="#fff" />
       <Circle cx={178.751} cy={83.3865} r={19.0559} fill="#4E8D8D" />
       <Circle cx={178.751} cy={83.3865} r={12.3606} fill="#97BCBC" />
       <Circle cx={178.751} cy={83.3863} r={6.18029} fill="#fff" />
@@ -115,14 +79,8 @@ function VerifiedEmail(props) {
         d="M257.225 199.859l-4.671-14.547L309.007 137l-47.778 53.117 2.936 1.734-6.94 8.008z"
         fill="#C0883D"
       />
-      <Path
-        d="M288.723 208l20.286-71-47.779 53.117L288.723 208z"
-        fill="#FEC272"
-      />
-      <Path
-        d="M261.229 190.117l-4.003 9.609 6.806-7.741-2.803-1.868z"
-        fill="#EAA850"
-      />
+      <Path d="M288.723 208l20.286-71-47.779 53.117L288.723 208z" fill="#FEC272" />
+      <Path d="M261.229 190.117l-4.003 9.609 6.806-7.741-2.803-1.868z" fill="#EAA850" />
       <Defs>
         <LinearGradient
           id="paint0_linear_313_622"

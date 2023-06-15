@@ -1,5 +1,6 @@
-import { createContext, useContext } from "react";
-import UseSupabaseAuth from "../../core/db/useSupabeAuth";
+import { createContext, useContext } from 'react';
+
+import UseSupabaseAuth from '../../core/db/useSupabeAuth';
 
 const AuthContext = createContext();
 

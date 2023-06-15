@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  useWindowDimensions,
-  TouchableOpacity,
-} from "react-native";
-import { supabase } from "../../core/db/initSupabase";
-import CheckCircle from "../svg/icons/CheckCircle";
-import Title from "../common/Typograhy/Title";
-import Paragraph from "../common/Typograhy/Paragraph";
-import { useAuthContext } from "../auth/AuthProvider";
+import { supabase } from 'core/db/initSupabase';
+import { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+
+import CheckCircle from 'components/svg/icons/CheckCircle';
+
+import { useAuthContext } from '../auth/AuthProvider';
+import { Paragraph, Title } from '../common/Typography';
+
 // import DatePicker from "../Input/DatePicker";
 
 const IntakeItem = ({ data }) => {
@@ -24,20 +21,20 @@ const IntakeItem = ({ data }) => {
   const [selectedRisks, setSelectedRisks] = useState([]);
 
   // Date input states
-  const [dayAN, setDayAN] = useState();
-  const [monthAN, setMonthAN] = useState();
-  const [yearAN, setYearAN] = useState();
+  // const [dayAN, setDayAN] = useState();
+  // const [monthAN, setMonthAN] = useState();
+  // const [yearAN, setYearAN] = useState();
 
-  const handleDate = (event, date) => {
-    const {
-      type,
-      nativeEvent: { timestamp },
-    } = event;
-    setDate(date);
-  };
+  // const handleDate = (event, date) => {
+  //   const {
+  //     type,
+  //     nativeEvent: { timestamp },
+  //   } = event;
+  //   setDate(date);
+  // };
 
   const handleFormSubmit = async () => {
-    const { error } = await supabase.from("medical_profiles").upsert({
+    const { error } = await supabase.from('medical_profiles').upsert({
       user_id: user.id,
       date_of_birth: date,
       gender: selectedGender,
@@ -68,14 +65,12 @@ const IntakeItem = ({ data }) => {
         <Title size="large" textCenter>
           {data.question}
         </Title>
-        {data.type === "multiselect" && (
-          <Paragraph className="text-center">
-            U kunt meerdere opties selecteren.
-          </Paragraph>
+        {data.type === 'multiselect' && (
+          <Paragraph className="text-center">U kunt meerdere opties selecteren.</Paragraph>
         )}
       </View>
       <View className="mt-12">
-        {data.type === "multiselect" && (
+        {data.type === 'multiselect' && (
           <View className="flex flex-row flex-wrap gap-4">
             {data.options.map((option, index) => {
               const handleSelect = () => {
@@ -83,32 +78,22 @@ const IntakeItem = ({ data }) => {
               };
 
               const handleDeselect = () => {
-                setSelectedRisks(
-                  selectedRisks.filter((risk) => risk !== option)
-                );
+                setSelectedRisks(selectedRisks.filter((risk) => risk !== option));
               };
 
               return (
                 <TouchableOpacity
                   key={index}
-                  onPress={
-                    selectedRisks.includes(option)
-                      ? handleDeselect
-                      : handleSelect
-                  }
+                  onPress={selectedRisks.includes(option) ? handleDeselect : handleSelect}
                   activeOpacity={1}
                   className={`px-4 py-3 min-h-[62px] flex items-center justify-center w-fit rounded-lg ${
-                    selectedRisks.includes(option)
-                      ? "bg-deepMarine-500"
-                      : "bg-deepMarine-100"
+                    selectedRisks.includes(option) ? 'bg-deepMarine-500' : 'bg-deepMarine-100'
                   }`}
                 >
                   <Text
-                    style={{ fontFamily: "Mulish-medium" }}
+                    style={{ fontFamily: 'Mulish-medium' }}
                     className={`text-base text-center ${
-                      selectedRisks.includes(option)
-                        ? "text-white"
-                        : "text-deepMarine-900"
+                      selectedRisks.includes(option) ? 'text-white' : 'text-deepMarine-900'
                     }`}
                   >
                     {option}
@@ -119,46 +104,34 @@ const IntakeItem = ({ data }) => {
           </View>
         )}
 
-        {data.type === "select" && (
+        {data.type === 'select' && (
           <View className="flex flex-col gap-4">
             {data.options.map((option, index) => {
               const handleSelect = () => {
-                if (data.question === "Wat is uw geslacht?") {
+                if (data.question === 'Wat is uw geslacht?') {
                   setSelectedGender(option);
                 } else if (
-                  data.question ===
-                  "Werd bij u reeds een hartritmestoornis vastgesteld?"
+                  data.question === 'Werd bij u reeds een hartritmestoornis vastgesteld?'
                 ) {
                   setSelectedHeartDisorder(option);
-                } else if (
-                  data.question === "Hoe lang duren deze episodes gemiddeld?"
-                ) {
+                } else if (data.question === 'Hoe lang duren deze episodes gemiddeld?') {
                   setSelectedEpisodeDuration(option);
-                } else if (
-                  data.question ===
-                  "Hoe vaak heeft u een episode van uw ritmestoornis?"
-                ) {
+                } else if (data.question === 'Hoe vaak heeft u een episode van uw ritmestoornis?') {
                   setSelectedEpisodeFrequency(option);
                 }
               };
 
               const handleDeselect = () => {
-                if (data.question === "Wat is uw geslacht?") {
-                  setSelectedGender("");
+                if (data.question === 'Wat is uw geslacht?') {
+                  setSelectedGender('');
                 } else if (
-                  data.question ===
-                  "Werd bij u reeds een hartritmestoornis vastgesteld?"
+                  data.question === 'Werd bij u reeds een hartritmestoornis vastgesteld?'
                 ) {
-                  setSelectedHeartDisorder("");
-                } else if (
-                  data.question === "Hoe lang duren deze episodes gemiddeld?"
-                ) {
-                  setSelectedEpisodeDuration("");
-                } else if (
-                  data.question ===
-                  "Hoe vaak heeft u een episode van uw ritmestoornis?"
-                ) {
-                  setSelectedEpisodeFrequency("");
+                  setSelectedHeartDisorder('');
+                } else if (data.question === 'Hoe lang duren deze episodes gemiddeld?') {
+                  setSelectedEpisodeDuration('');
+                } else if (data.question === 'Hoe vaak heeft u een episode van uw ritmestoornis?') {
+                  setSelectedEpisodeFrequency('');
                 }
               };
 
@@ -177,7 +150,7 @@ const IntakeItem = ({ data }) => {
                   className="px-4 py-3 min-h-[62px] w-fit rounded-lg flex flex-row items-center justify-between bg-deepMarine-100"
                 >
                   <Text
-                    style={{ fontFamily: "Mulish-medium" }}
+                    style={{ fontFamily: 'Mulish-medium' }}
                     className="text-base text-deepMarine-900"
                   >
                     {option}
@@ -188,7 +161,7 @@ const IntakeItem = ({ data }) => {
                   selectedHeartDisorder === option ? (
                     <CheckCircle />
                   ) : (
-                    <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200"></View>
+                    <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200" />
                   )}
                 </TouchableOpacity>
               );
@@ -196,7 +169,7 @@ const IntakeItem = ({ data }) => {
           </View>
         )}
       </View>
-      {data.type === "date" && (
+      {data.type === 'date' && (
         <View className="mt-28">
           {/* <DatePicker
             value={date}

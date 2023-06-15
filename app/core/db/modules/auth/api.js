@@ -1,6 +1,8 @@
-import { supabase, supabaseAdmin } from "../../initSupabase";
-import { SUPABASE_URL } from "@env";
-import * as WebBrowser from "expo-web-browser";
+import { SUPABASE_URL } from '@env';
+import * as WebBrowser from 'expo-web-browser';
+import { URLSearchParams } from 'react-native-url-polyfill';
+
+import { supabase, supabaseAdmin } from '../../initSupabase';
 
 export const getCurrentSession = async () => {
   const {
@@ -19,10 +21,10 @@ export const signInWithProvider = async (provider) => {
 
   const authResponse = await WebBrowser.openAuthSessionAsync(authUrl);
 
-  if (authResponse.type === "success") {
-    const urlParams = new URLSearchParams(authResponse.url.split("#")[1]);
-    const access_token = urlParams.get("access_token");
-    const refresh_token = urlParams.get("refresh_token");
+  if (authResponse.type === 'success') {
+    const urlParams = new URLSearchParams(authResponse.url.split('#')[1]);
+    const access_token = urlParams.get('access_token');
+    const refresh_token = urlParams.get('refresh_token');
 
     try {
       await supabase.auth.setSession({

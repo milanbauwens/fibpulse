@@ -1,6 +1,7 @@
-import * as React from "react";
-import Svg, { Circle, G, Path, Defs, ClipPath } from "react-native-svg";
-import colors from "../../../theme/colors";
+import * as React from 'react';
+import Svg, { Circle, ClipPath, Defs, G, Path } from 'react-native-svg';
+
+import colors from '../../../theme/colors';
 
 function CheckCircle(props) {
   return (

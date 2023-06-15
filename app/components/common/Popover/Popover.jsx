@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { Modal, View } from "react-native";
+import { useEffect, useState } from 'react';
+import { Modal, View } from 'react-native';
 
 const Popover = ({
   children,
   isVisible,
   transparent = true,
-  animationType = "none" | "slide" | "fade",
+  animationType = 'none' | 'slide' | 'fade',
 }) => {
   const [modalVisible, setModalVisible] = useState(isVisible);
 
@@ -20,12 +20,9 @@ const Popover = ({
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible);
-        setFade(false);
       }}
     >
-      <View className=" w-full h-full absolute justify-center items-center">
-        {children}
-      </View>
+      <View className=" w-full h-full absolute justify-center items-center">{children}</View>
     </Modal>
   );
 };

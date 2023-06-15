@@ -1,14 +1,8 @@
-import * as React from "react";
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
+import * as React from 'react';
+import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
 const ArrowRight = (props) => (
-  <Svg
-    width={48}
-    height={48}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <Svg width={48} height={48} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <G
       clipPath="url(#a)"
       stroke="#FFF"

@@ -1,4 +1,4 @@
-import { Animated, TouchableOpacity, View } from "react-native";
+import { Animated, TouchableOpacity, View } from 'react-native';
 
 function TabBar({ state, descriptors, navigation, position }) {
   return (
@@ -16,7 +16,7 @@ function TabBar({ state, descriptors, navigation, position }) {
 
         const onPress = () => {
           const event = navigation.emit({
-            type: "tabPress",
+            type: 'tabPress',
             target: route.key,
             canPreventDefault: true,
           });
@@ -29,7 +29,7 @@ function TabBar({ state, descriptors, navigation, position }) {
 
         const onLongPress = () => {
           navigation.emit({
-            type: "tabLongPress",
+            type: 'tabLongPress',
             target: route.key,
           });
         };
@@ -44,7 +44,7 @@ function TabBar({ state, descriptors, navigation, position }) {
           <TouchableOpacity
             activeOpacity={0.8}
             className={`flex items-center justify-center h-16 px-4 ${
-              isFocused ? "border-b-2 border-turquoise-500" : ""
+              isFocused ? 'border-b-2 border-turquoise-500' : ''
             }`}
             key={index}
             accessibilityRole="button"
@@ -56,7 +56,7 @@ function TabBar({ state, descriptors, navigation, position }) {
           >
             <Animated.Text
               className="text-base text-deepMarine-900"
-              style={{ opacity, fontFamily: "Bitter-semibold" }}
+              style={{ opacity, fontFamily: 'Bitter-semibold' }}
             >
               {label}
             </Animated.Text>

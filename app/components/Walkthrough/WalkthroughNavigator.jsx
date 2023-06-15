@@ -1,13 +1,9 @@
-import React from "react";
-import {
-  View,
-  Animated,
-  useWindowDimensions,
-  TouchableOpacity,
-} from "react-native";
-import ArrowRight from "../svg/icons/ArrowRight";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import colors from "../../theme/colors";
+import React from 'react';
+import { Animated, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import colors from '../../theme/colors';
+import ArrowRight from '../svg/icons/ArrowRight';
 
 export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
   const { width } = useWindowDimensions();
@@ -20,26 +16,18 @@ export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
     >
       <View className="flex flex-row gap-x-3">
         {data.map((_, index) => {
-          const inputRange = [
-            (index - 1) * width,
-            index * width,
-            (index + 1) * width,
-          ];
+          const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
           const dotWidth = scrollX.interpolate({
             inputRange,
             outputRange: [10, 20, 10],
-            extrapolate: "clamp",
+            extrapolate: 'clamp',
           });
 
           const color = scrollX.interpolate({
             inputRange,
-            outputRange: [
-              colors.turquoise[200],
-              colors.deepMarine[500],
-              colors.turquoise[200],
-            ],
-            extrapolate: "clamp",
+            outputRange: [colors.turquoise[200], colors.deepMarine[500], colors.turquoise[200]],
+            extrapolate: 'clamp',
           });
 
           return (

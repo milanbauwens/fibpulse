@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useAuthContext } from "../../../components/auth/AuthProvider";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useEffect, useState } from 'react';
 
+import { useAuthContext } from '../../../components/auth/AuthProvider';
 // Screens
-import Dashboard from "../../../screens/Dashboard";
-import VerifyEmail from "../../../screens/auth/VerifyEmail";
-import Intake from "../../../screens/onboarding/Intake";
-import IntakeExplainer from "../../../screens/onboarding/IntakeExplainer";
-import Settings from "../../../screens/settings";
-import AccountScreen from "../../../screens/settings/AccountScreen";
-import MedicalDataScreen from "../../../screens/settings/MedicalDataScreen";
-import MedicationScreen from "../../../screens/MedicationScreen";
+import Dashboard from '../../../screens/Dashboard';
+import VerifyEmail from '../../../screens/auth/VerifyEmail';
+import Intake from '../../../screens/onboarding/Intake';
+import IntakeExplainer from '../../../screens/onboarding/IntakeExplainer';
+import Settings from '../../../screens/settings';
+import AccountScreen from '../../../screens/settings/AccountScreen';
+import MedicalDataScreen from '../../../screens/settings/MedicalDataScreen';
 
 export default function AppStack() {
   const Stack = createNativeStackNavigator();
@@ -39,11 +38,7 @@ export default function AppStack() {
   return (
     <Stack.Navigator>
       {!isLoading && !userIsVerified && (
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="VerifyEmail"
-          component={VerifyEmail}
-        />
+        <Stack.Screen options={{ headerShown: false }} name="VerifyEmail" component={VerifyEmail} />
       )}
       {!isLoading && !userPassedIntake && (
         <>
@@ -52,29 +47,12 @@ export default function AppStack() {
             name="IntakeExplainer"
             component={IntakeExplainer}
           />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Intake"
-            component={Intake}
-          />
+          <Stack.Screen options={{ headerShown: false }} name="Intake" component={Intake} />
         </>
       )}
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Dashboard"
-        component={Dashboard}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Medication"
-        component={MedicationScreen}
-      />
+      <Stack.Screen options={{ headerShown: false }} name="Dashboard" component={Dashboard} />
       <>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Settings"
-          component={Settings}
-        />
+        <Stack.Screen options={{ headerShown: false }} name="Settings" component={Settings} />
         {/* Settings */}
         <>
           <Stack.Screen
