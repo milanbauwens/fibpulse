@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
-import slides from '__content/intake.js';
 import { useRef, useState } from 'react';
 import { Animated, FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import IntakeItem from 'components/Intake/IntakeItem';
-import IntakePaginator from 'components/Intake/IntakePaginator';
-import PrimaryButton from 'components/common/Buttons/PrimaryButton';
+import slides from '../../__content/intake.js';
+import IntakeItem from '../../components/Intake/IntakeItem';
+import IntakePaginator from '../../components/Intake/IntakePaginator';
+import { PrimaryButton } from '../../components/common/Buttons';
 
 const Intake = () => {
   const navigation = useNavigation();

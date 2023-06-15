@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
-import { signOut } from 'core/db/modules/auth/api';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useAuthContext } from 'components/auth/AuthProvider';
-import Header from 'components/common/Header/Header';
-import { Paragraph, Title } from 'components/common/Typography';
-import SettingsItem from 'components/screens/settings/SettingsItem/SettingsItem';
+import { useAuthContext } from '../../components/auth/AuthProvider';
+import Header from '../../components/common/Header/Header';
+import { Paragraph, Title } from '../../components/common/Typography';
+import SettingsItem from '../../components/screens/settings/SettingsItem/SettingsItem';
+import { signOut } from '../../core/db/modules/auth/api';
 
 const Settings = () => {
   const navigation = useNavigation();

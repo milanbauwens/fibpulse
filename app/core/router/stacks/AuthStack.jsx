@@ -1,11 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import Register from 'screens/auth/Register';
 
 import Landingscreen from '../../../screens/auth/Landingscreen';
-// Screens
 import Login from '../../../screens/auth/Login';
+import Register from '../../../screens/auth/Register';
 import ResetPassword from '../../../screens/auth/ResetPassword';
 import VerifyEmail from '../../../screens/auth/VerifyEmail';
 import Walkthrough from '../../../screens/onboarding/Walkthrough';

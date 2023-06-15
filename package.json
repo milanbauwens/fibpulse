@@ -65,7 +65,7 @@
       "universe/native"
     ],
     "rules": {
-      "no-console": "warn",
+      "no-console": "off",
       "no-unreachable": "off",
       "sort-imports": "off"
     }

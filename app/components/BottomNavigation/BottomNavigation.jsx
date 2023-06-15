@@ -2,7 +2,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-// Icons
 import colors from '../../theme/colors';
 import Heart from '../svg/icons/Heart';
 import Home from '../svg/icons/Home';

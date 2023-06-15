@@ -1,9 +1,8 @@
-import { supabase } from 'core/db/initSupabase';
 import { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
-import CheckCircle from 'components/svg/icons/CheckCircle';
-
+import CheckCircle from '../../components/svg/icons/CheckCircle';
+import { supabase } from '../../core/db/initSupabase';
 import { useAuthContext } from '../auth/AuthProvider';
 import { Paragraph, Title } from '../common/Typography';
 

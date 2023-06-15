@@ -2,9 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { PrimaryButton, SecondaryButton } from 'components/common/Buttons';
-import { Paragraph, Title } from 'components/common/Typography';
-import IntakeIllustration from 'components/svg/IntakeIllustration';
+import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons';
+import { Paragraph, Title } from '../../components/common/Typography';
+import IntakeIllustration from '../../components/svg/IntakeIllustration';
 
 const IntakeExplainer = () => {
   const navigation = useNavigation();

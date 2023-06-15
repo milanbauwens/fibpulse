@@ -2,7 +2,8 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Animated, Dimensions, Easing, StyleSheet, View } from 'react-native';
-import colors from 'theme/colors';
+
+import colors from '../../theme/colors';
 
 export function SplashscreenLoader({ children }) {
   const [isSplashReady, setSplashReady] = useState(false);
