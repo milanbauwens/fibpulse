@@ -35,7 +35,7 @@ const LifestyleSlider = () => {
 
   return (
     <View className="pb-10">
-      <View className="shadow-card">
+      <View>
         <FlatList
           contentContainerStyle={{
             paddingTop: 16,

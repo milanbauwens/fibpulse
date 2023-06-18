@@ -35,7 +35,7 @@ const AccountScreen = () => {
   return (
     <>
       <Popover isVisible={isVisible} transparent animationType="slide">
-        <View className="bg-white shadow-top-xl mx-4 h-fit rounded-xl px-4 py-6">
+        <View className="bg-white shadow-top-lg mx-4 h-fit rounded-xl px-4 py-6">
           <DeleteAccount />
           <Text
             style={{ fontFamily: 'Bitter-semibold' }}

@@ -77,7 +77,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
   return (
     <>
       <Popover animationType="slide" isVisible={isVisible}>
-        <View className="bg-white shadow-top-xl absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6 pb-12">
+        <View className="bg-white shadow-top-lg absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6 pb-12">
           <View className="flex flex-row justify-between items-center ">
             <Text style={{ fontFamily: 'Bitter-semibold' }} className="text-deepMarine-800 text-xl">
               {label}

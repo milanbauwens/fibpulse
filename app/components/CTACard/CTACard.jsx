@@ -6,7 +6,7 @@ import PrimaryButton from '../common/Buttons/PrimaryButton';
 import { Paragraph, Title } from '../common/Typography';
 
 const CTACard = ({ title, description, image, buttonLabel, buttonIconName, onPress }) => (
-  <Card className="w-full p-4 bg-white rounded-lg shadow-card">
+  <Card className="w-full p-4 bg-white rounded-lg">
     <View className="flex flex-row items-center mb-6">
       <View className="mr-4">{image}</View>
       <View className="w-8/12">

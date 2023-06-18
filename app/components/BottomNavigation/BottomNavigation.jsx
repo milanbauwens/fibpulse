@@ -30,7 +30,7 @@ const BottomNavigation = () => {
   const currentRoute = useRoute();
 
   return (
-    <View className="w-full pt-2 bg-white bottom-0 absolute h-[90px] items-start flex flex-row justify-evenly z-50 shadow-top-xl">
+    <View className="w-full pt-2 bg-white bottom-0 absolute h-[90px] items-start flex flex-row justify-evenly z-50 shadow-top-lg">
       {NAVIGATION_ITEMS.map((item) => (
         <TouchableOpacity
           className="flex flex-col items-center justify-center"
