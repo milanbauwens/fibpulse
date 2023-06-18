@@ -1,63 +1,28 @@
 {
   "cli": {
-    "version": ">= 0.52.0"
+    "version": ">= 3.5.2"
   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env": {}
-    },
-    "development-android": {
-      "extends": "development",
-      "android": {
-        "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
-      }
-    },
-    "development-ios": {
-      "extends": "development",
       "ios": {
-        "enterpriseProvisioning": "universal"
-      },
-      "cache": {
-        "key": "18999"
+        "resourceClass": "m1-medium"
       }
     },
-
-    "preview-android": {
-      "extends": "development",
-      "channel": "preview-android",
-      "developmentClient": false,
-      "android": {
-        "buildType": "app-bundle",
-        "gradleCommand": ":app:bundleRelease"
-      }
-    },
-    "preview-ios": {
-      "extends": "development",
-      "channel": "preview-ios",
-      "developmentClient": false,
+    "preview": {
+      "distribution": "internal",
       "ios": {
-        "enterpriseProvisioning": "universal"
-      },
-      "cache": {
-        "key": "18999"
+        "resourceClass": "m1-medium"
       }
     },
-
-    "production-android": {
-      "extends": "development",
-      "distribution": "store",
-      "channel": "production-android",
-      "developmentClient": false
-    },
-    "production-ios": {
-      "extends": "development",
-      "distribution": "store",
-      "channel": "production-ios",
-      "developmentClient": false
+    "production": {
+      "ios": {
+        "resourceClass": "m1-medium"
+      }
     }
   },
-  "submit": {}
+  "submit": {
+    "production": {}
+  }
 }
