@@ -61,6 +61,9 @@
   "private": true,
   "scheme": "exp://192.168.1.56:19000",
   "eslintConfig": {
+    "env": {
+      "node": true
+    },
     "extends": [
       "universe/native"
     ],

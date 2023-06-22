@@ -8,7 +8,7 @@ import AppContent from './app/core/router/AppContent';
 import { SplashscreenLoader } from './app/screens/onboarding/Splashscreen';
 
 // Keep the splash screen visible while app is loading
-SplashScreen.preventAutoHideAsync().catch(() => {});
+SplashScreen.preventAutoHideAsync().catch();
 
 // Creates a Provider that allows us to use React Query
 const queryClient = new QueryClient();

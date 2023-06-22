@@ -18,8 +18,9 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.milanbauwens.fibpulse"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.milanbauwens.fibpulse",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {

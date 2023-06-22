@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { Animated, FlatList, View } from 'react-native';
 
 import LifestyleCard from '../LifestyleCard/LifestyleCard';
-import LifestyleNavigator from './LifestyleNavigator';
+import LifestyleNavigator from '../LifestyleNavigator';
 
 const LifestyleSlider = () => {
   const data = [
