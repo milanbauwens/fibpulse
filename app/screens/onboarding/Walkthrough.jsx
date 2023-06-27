@@ -40,7 +40,7 @@ export default function Walkthrough() {
       {/* Skip component */}
       <View
         style={{ marginTop: insets.top + 8 }}
-        className="absolute z-10 bg-white p-3 right-4 rounded-full text-base"
+        className="absolute z-10 bg-white p-3 right-5 rounded-full text-base shadow-card-md"
       >
         <TouchableOpacity
           activeOpacity={0.8}
@@ -54,7 +54,7 @@ export default function Walkthrough() {
             }
           }}
         >
-          <Text className="text-deepMarine-700 text-sm" style={{ fontFamily: 'Mulish-medium' }}>
+          <Text className="text-deepMarine-900 text-sm" style={{ fontFamily: 'Mulish-medium' }}>
             Overslaan
           </Text>
         </TouchableOpacity>

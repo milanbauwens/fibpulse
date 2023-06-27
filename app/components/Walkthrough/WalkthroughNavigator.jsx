@@ -11,7 +11,7 @@ export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
 
   return (
     <View
-      className="w-full absolute flex flex-row items-center justify-between px-4 h-12 mt-8"
+      className="w-full absolute flex flex-row items-center justify-between px-5 h-12 mt-8"
       style={{ bottom: insets.bottom + 32 }}
     >
       <View className="flex flex-row gap-x-3">

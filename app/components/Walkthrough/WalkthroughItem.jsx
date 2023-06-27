@@ -8,16 +8,16 @@ export default function WalkthroughItem({ item }) {
 
   return (
     <View style={{ width }} className="flex">
-      <View className="basis-[55%] relative w-full flex">
+      <View className="basis-[55vh] relative w-full flex">
         <Image
           className="absolute w-full h-full overflow-hidden"
           style={{ resizeMode: 'cover' }}
           source={item.image}
         />
       </View>
-      <View className="mt-6 px-4">
+      <View className="mt-6 px-5">
         <Display>{item.title}</Display>
-        <Paragraph className="mb-4">{item.description}</Paragraph>
+        <Paragraph className="mb-4 max-w-xs">{item.description}</Paragraph>
       </View>
     </View>
   );
