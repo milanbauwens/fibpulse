@@ -37,7 +37,7 @@ const Landingscreen = () => {
   return (
     <SafeAreaView className="bg-white h-full relative">
       <Logo
-        className="mt-2 mb-16 sm:mb-2 mx-auto"
+        className="mt-2 mb-16 mx-auto md:mb-8 sm:mb-4"
         onPress={async () => await AsyncStorage.removeItem('@viewedOnboarding')}
       />
 

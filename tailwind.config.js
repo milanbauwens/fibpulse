@@ -7,7 +7,7 @@ module.exports = {
   content: ['./App.{js,jsx,ts,tsx}', './app/**/*.{js,jsx,ts,tsx}'],
   theme: {
     screens: {
-      sm: { max: '320px' },
+      sm: { max: '32Opx' },
       // => @media (max-width: 320px) { ... }
 
       md: { min: '320px', max: '379px' },
