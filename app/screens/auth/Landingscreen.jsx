@@ -35,9 +35,9 @@ const Landingscreen = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white h-full px-5 relative flex items-center">
+    <SafeAreaView className="bg-white h-full relative">
       <Logo
-        className="mt-2 mb-16"
+        className="mt-2 mb-16 sm:mb-2 mx-auto"
         onPress={async () => await AsyncStorage.removeItem('@viewedOnboarding')}
       />
 
@@ -48,14 +48,14 @@ const Landingscreen = () => {
       <CircleMd className="absolute bottom-1/2 left-0" />
       <CircleSm className="absolute bottom-4 right-0" />
 
-      <View>
+      <View className="mx-auto px-5">
         <Display>Laat uw hartritmestoornis niet de bovenhand nemen.</Display>
         <Paragraph>
           Begin vandaag nog met een dagboek bij te houden over uw hartritmestoornis.
         </Paragraph>
       </View>
 
-      <View style={{ bottom: bottom + 8 }} className="absolute w-full">
+      <View style={{ bottom: bottom + 8 }} className="absolute w-full mx-auto px-5">
         <AuthProviderButton
           disabled={isLoading}
           provider="google"
