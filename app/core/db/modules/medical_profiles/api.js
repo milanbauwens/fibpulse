@@ -27,3 +27,15 @@ export const updateMedicalProfile = async (column, value) => {
     .eq('user_id', userID)
     .throwOnError();
 };
+
+export const checkIntakeCompletion = async (column, value) => {
+  const session = await getCurrentSession();
+  const userID = session.user?.id;
+
+  return await supabase
+    .from('medical_profiles')
+    .select('passed_intake')
+    .eq('user_id', userID)
+    .single()
+    .throwOnError();
+};
