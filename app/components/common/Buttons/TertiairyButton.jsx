@@ -2,7 +2,12 @@ import { Text, TouchableOpacity } from 'react-native';
 
 const TertiairyButton = ({ type, label, action, onPress, props }) => {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={1} {...props}>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={1}
+      className="flex flex-row items-center justify-center h-12 px-[16px] "
+      {...props}
+    >
       <Text
         style={{ fontFamily: 'Bitter-semibold' }}
         className={`${

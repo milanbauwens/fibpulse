@@ -10,7 +10,7 @@
   "useTabs": false,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "importOrder": ["^components/(.*)$", "^[./]"],
+  "importOrder": ["^components/(.*)$", "^[./]", "^[../]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

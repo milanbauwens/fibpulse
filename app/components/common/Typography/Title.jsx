@@ -4,9 +4,9 @@ const Title = ({ size = 'small' || 'large' || 'medium', children, textCenter, pr
   <Text
     style={{ fontFamily: 'Bitter-semibold' }}
     className={`
-      ${size === 'small' && 'text-lg'} 
-      ${size === 'medium' && 'text-xl'} 
-      ${size === 'large' && 'text-2xl'}
+      ${size === 'small' && 'text-lg sm:text-base'} 
+      ${size === 'medium' && 'text-xl sm:text-lg'} 
+      ${size === 'large' && 'text-2xl sm:text-lg'}
      text-deepMarine-900 mb-2 ${textCenter && 'text-center'}`}
     {...props}
   >
