@@ -1,60 +1,54 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
 
+import Home from '../../screens/Home';
+import { Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
-import Heart from '../svg/icons/Heart';
-import Home from '../svg/icons/Home';
-import Pill from '../svg/icons/Pill';
-
-const NAVIGATION_ITEMS = [
-  {
-    title: 'Overzicht',
-    icon: Home,
-    screen: 'Dashboard',
-  },
-  {
-    title: 'Aanvallen',
-    icon: Heart,
-    screen: 'Episodes',
-  },
-  {
-    title: 'Medicatie',
-    icon: Pill,
-    screen: 'Medication',
-  },
-];
 
 const BottomNavigation = () => {
-  const navigation = useNavigation();
-  const currentRoute = useRoute();
+  const bottomTab = createBottomTabNavigator();
+
+  const screenOptions = ({ route }) => ({
+    headerShown: false,
+    tabBarActiveTintColor: colors.turquoise[500],
+    tabBarInactiveTintColor: 'lightgray',
+    tabBarShowLabel: false,
+    tabBarStyle: {
+      showLabel: false,
+      backgroundColor: colors.turquoise[500],
+      height: 80,
+      borderTopWidth: 0,
+      paddingTop: 10,
+      paddingHorizontal: 10,
+    },
+
+    // tabBarIcon: ({ focused, color, size }) => {
+    //   let iconName = 'ios-home';
+
+    //   switch (route.name) {
+    //     case 'Home':
+    //       iconName = focused ? 'grid' : 'grid-outline';
+    //       break;
+    //     case 'BudgetCategories':
+    //       iconName = focused ? 'wallet' : 'wallet-outline';
+    //       break;
+    //     case 'GoalsCategories':
+    //       iconName = focused ? 'golf' : 'golf-outline';
+    //       break;
+    //     case 'Educational':
+    //       iconName = focused ? 'school' : 'school-outline';
+    //       break;
+    //   }
+
+    //   return <Ionicons name={iconName} size={size} color={color} />;
+    // },
+  });
 
   return (
-    <View className="w-full pt-2 bg-white bottom-0 absolute h-[90px] items-start flex flex-row justify-evenly z-50 shadow-top-lg">
-      {NAVIGATION_ITEMS.map((item) => (
-        <TouchableOpacity
-          className="flex flex-col items-center justify-center"
-          onPress={() => {
-            navigation.navigate(item.screen);
-          }}
-          key={item.title}
-        >
-          <item.icon
-            color={
-              currentRoute.name === item.screen ? colors.deepMarine[700] : colors.deepMarine[300]
-            }
-          />
-          <Text
-            style={{ fontFamily: 'Mulish-regular' }}
-            className={`text-xs ${
-              currentRoute.name === item.screen ? 'text-deepMarine-700' : 'text-deepMarine-300'
-            }`}
-          >
-            {item.title}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+    <bottomTab.Navigator screenOptions={screenOptions}>
+      <bottomTab.Screen name="Overview" component={Home} />
+      <bottomTab.Screen name="Settings" component={Settings} />
+    </bottomTab.Navigator>
   );
 };
 
