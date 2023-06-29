@@ -1,20 +1,43 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { getHeaderTitle } from '@react-navigation/elements';
 import React from 'react';
-import { Text } from 'react-native';
 
 import Home from '../../screens/Home';
 import { Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
 import { Icon } from '../Icon/Icon';
+import { useAuthContext } from '../auth/AuthProvider';
+import Header from '../common/Header/Header';
 
 const BottomNavigation = () => {
   const bottomTab = createBottomTabNavigator();
+  const { user } = useAuthContext();
 
   const screenOptions = ({ route }) => ({
-    headerShown: false,
+    headerShown: true,
+    headerStyle: {
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowColor: colors.deepMarine[700],
+      shadowOpacity: 0.15,
+      shadowRadius: 8.0,
+      backgroundColor: 'white',
+      elevation: 0,
+    },
+    headerTitleStyle: {
+      fontFamily: 'Mulish-bold',
+      fontSize: 18,
+    },
+    headerTitleAlign: 'center',
     tabBarActiveTintColor: colors.deepMarine[500],
     tabBarInactiveTintColor: '#5C524B',
     tabBarShowLabel: true,
+    tabBarLabelStyle: {
+      fontFamily: 'Mulish-bold',
+      fontSize: 12,
+    },
     tabBarStyle: {
       shadowOffset: {
         width: 0,
@@ -30,32 +53,10 @@ const BottomNavigation = () => {
       paddingHorizontal: 40,
     },
 
-    tabBarLabel: ({ focused }) => {
-      let label = 'Overzicht';
+    header: ({ navigation, screenProps, route, options }) => {
+      const title = getHeaderTitle(options, route.name);
 
-      switch (route.name) {
-        case 'Home':
-          label = 'Overzicht';
-          break;
-        case 'Episodes':
-          label = 'Opnames';
-          break;
-        case 'Discover':
-          label = 'Ontdekken';
-          break;
-        case 'Settings':
-          label = 'Profiel';
-          break;
-      }
-
-      return (
-        <Text
-          style={{ fontFamily: 'Mulish-bold', color: focused ? colors.deepMarine[500] : '#5C524B' }}
-          className="text-xs"
-        >
-          {label}
-        </Text>
-      );
+      return <Header {...navigation} title={title} />;
     },
 
     tabBarIcon: ({ focused, color, size }) => {
@@ -82,8 +83,16 @@ const BottomNavigation = () => {
 
   return (
     <bottomTab.Navigator screenOptions={screenOptions}>
-      <bottomTab.Screen name="Overview" component={Home} />
-      <bottomTab.Screen name="Settings" component={Settings} />
+      <bottomTab.Screen
+        name="Overview"
+        component={Home}
+        options={{ title: 'Overzicht', headerTitle: 'Overzicht' }}
+      />
+      <bottomTab.Screen
+        name="Settings"
+        component={Settings}
+        options={{ title: 'Profiel', headerTitle: `${user.firstname} ${user.lastname}` }}
+      />
     </bottomTab.Navigator>
   );
 };

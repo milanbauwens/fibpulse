@@ -1,17 +1,28 @@
 import { ScrollView, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { useAuthContext } from '../components/auth/AuthProvider';
+import { Paragraph, Title } from '../components/common/Typography';
 
 const Home = () => {
+  const { user } = useAuthContext();
+
   return (
-    <SafeAreaView style={{ padding: 2 }} className="bg-white">
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 196 }}
-        className="w-full h-screen mb-40"
-      >
-        <Text>Home</Text>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: 196 }}
+      style={{ paddingTop: 16 }}
+      className="w-full h-screen bg-white px-5"
+    >
+      <Title size="large">{`Dag ${user.firstname}`}</Title>
+      <Paragraph>
+        Al{' '}
+        <Text style={{ fontFamily: 'Mulish-bold' }}>{`${
+          // TODO: Replace with actual days since last admission
+          user.daysSinceLastAdmission || 4
+        } dagen`}</Text>{' '}
+        geen opname
+      </Paragraph>
+    </ScrollView>
   );
 };
 

@@ -42,7 +42,7 @@ const ResetPassword = () => {
       <BackButton onPress={() => navigation.navigate('Login')} />
       <Title size="large">Wachtwoord vergeten</Title>
       <Paragraph className="mb-12">
-        Geen probleem! Vul je e-mail in en we sturen je een mail om je wachtwoord te herstellen.
+        Vul uw e-mail in en wij sturen u een mail om uw wachtwoord te herstellen.
       </Paragraph>
 
       <KeyboardAvoidingView enabled className="flex flex-col gap-y-8">
