@@ -16,7 +16,7 @@ const VerifyEmail = () => {
   //   setIsLoading(true);
   //   try {
   //     if (user.passedIntake) {
-  //       navigation.navigate("Dashboard");
+  //       navigation.navigate("Home");
   //     } else {
   //       navigation.navigate("IntakeExplainer");
   //     }
@@ -30,17 +30,17 @@ const VerifyEmail = () => {
   return (
     <SafeAreaView className="px-4 h-screen bg-white">
       <View className="flex h-full flex-col items-center">
-        <VerifiedEmail className="mb-12 mt-8" />
+        <VerifiedEmail className="mb-2 mt-4" />
         <Title size="large" textCenter>
           Verifieer uw account
         </Title>
         <Paragraph className="text-center">
-          Voordat u verder kunt gaan, moet u eerst uw e-mailadres verifiëren. Ga naar uw mailbox en
-          volg de stappen. Kijk zeker ook uw spambox na.
+          Om door te gaan, moet u uw e-mailadres verifiëren. Controleer uw inbox of spam en volg de
+          stappen.
         </Paragraph>
 
         <View className="absolute left-0 right-0 bottom-2 m-auto flex flex-col justify-center">
-          <View className="mb-6">
+          <View className="mb-4">
             <PrimaryButton
               label="Email geverifieerd"
               onPress={() => navigation.navigate('IntakeExplainer')}

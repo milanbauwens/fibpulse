@@ -31,12 +31,12 @@ const Settings = () => {
           <SettingsItem
             iconName="account"
             title="Account"
-            onPress={() => navigation.navigate('AccountScreen')}
+            onPress={() => navigation.navigate('Profile')}
           />
           <SettingsItem
             iconName="heart"
             title="Medische gegevens"
-            onPress={() => navigation.navigate('MedicalDataScreen')}
+            onPress={() => navigation.navigate('MedicalProfile')}
           />
         </View>
 

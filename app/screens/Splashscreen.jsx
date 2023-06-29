@@ -3,21 +3,21 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Animated, Dimensions, Easing, StyleSheet, View } from 'react-native';
 
-import colors from '../../theme/colors';
+import colors from '../theme/colors';
 
 export function SplashscreenLoader({ children }) {
   const [isSplashReady, setSplashReady] = useState(false);
   const [fontsLoaded] = useFonts({
     // Mulish Fonts
-    'Mulish-regular': require('../../../assets/fonts/Mulish-Regular.ttf'),
-    'Mulish-medium': require('../../../assets/fonts/Mulish-Medium.ttf'),
-    'Mulish-semibold': require('../../../assets/fonts/Mulish-SemiBold.ttf'),
-    'Mulish-bold': require('../../../assets/fonts/Mulish-Bold.ttf'),
+    'Mulish-regular': require('../../assets/fonts/Mulish-Regular.ttf'),
+    'Mulish-medium': require('../../assets/fonts/Mulish-Medium.ttf'),
+    'Mulish-semibold': require('../../assets/fonts/Mulish-SemiBold.ttf'),
+    'Mulish-bold': require('../../assets/fonts/Mulish-Bold.ttf'),
     // Bitter Fonts
-    'Bitter-regular': require('../../../assets/fonts/Bitter-Regular.ttf'),
-    'Bitter-medium': require('../../../assets/fonts/Bitter-Medium.ttf'),
-    'Bitter-semibold': require('../../../assets/fonts/Bitter-SemiBold.ttf'),
-    'Bitter-bold': require('../../../assets/fonts/Bitter-Bold.ttf'),
+    'Bitter-regular': require('../../assets/fonts/Bitter-Regular.ttf'),
+    'Bitter-medium': require('../../assets/fonts/Bitter-Medium.ttf'),
+    'Bitter-semibold': require('../../assets/fonts/Bitter-SemiBold.ttf'),
+    'Bitter-bold': require('../../assets/fonts/Bitter-Bold.ttf'),
   });
 
   useEffect(() => {
@@ -103,7 +103,7 @@ function AnimatedSplashScreen({ children }) {
               resizeMode: 'contain',
               opacity: fadeOut,
             }}
-            source={require('../../../assets/splash.png')}
+            source={require('../../assets/splash.png')}
             onLoadEnd={onImageLoaded}
             fadeDuration={0}
           />

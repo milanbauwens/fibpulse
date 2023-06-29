@@ -5,16 +5,16 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import AuthProviderButton from '../../components/common/Buttons/AuthProviderButton';
-import PrimaryButton from '../../components/common/Buttons/PrimaryButton';
-import TertiairyButton from '../../components/common/Buttons/TertiairyButton';
-import { Display, Paragraph } from '../../components/common/Typography';
-import CircleMd from '../../components/svg/CircleMd';
-import CircleSm from '../../components/svg/CircleSm';
-import Ellipse from '../../components/svg/Ellipse';
-import Logo from '../../components/svg/Logo';
-import { signInWithProvider } from '../../core/db/modules/auth/api';
-import { handleAuthError } from '../../core/utils/auth/handleAuthError';
+import AuthProviderButton from '../components/common/Buttons/AuthProviderButton';
+import PrimaryButton from '../components/common/Buttons/PrimaryButton';
+import TertiairyButton from '../components/common/Buttons/TertiairyButton';
+import { Display, Paragraph } from '../components/common/Typography';
+import CircleMd from '../components/svg/CircleMd';
+import CircleSm from '../components/svg/CircleSm';
+import Ellipse from '../components/svg/Ellipse';
+import Logo from '../components/svg/Logo';
+import { signInWithProvider } from '../core/db/modules/auth/api';
+import { handleAuthError } from '../core/utils/auth/handleAuthError';
 
 const Landingscreen = () => {
   const navigation = useNavigation();
@@ -41,10 +41,7 @@ const Landingscreen = () => {
         onPress={async () => await AsyncStorage.removeItem('@viewedOnboarding')}
       />
 
-      <Ellipse
-        className="absolute top-12 right-0"
-        onPress={() => navigation.navigate('IntakeExplainer')}
-      />
+      <Ellipse className="absolute top-12 right-0" />
       <CircleMd className="absolute bottom-1/2 left-0" />
       <CircleSm className="absolute bottom-4 right-0" />
 
@@ -82,11 +79,11 @@ const Landingscreen = () => {
           <PrimaryButton
             icon={<MaterialIcons name="email" size={24} color="#FFF" />}
             label="Doorgaan met E-mail"
-            onPress={() => navigation.navigate('Register')}
+            onPress={() => navigation.navigate('Auth', { screen: 'Register' })}
           />
         </View>
         <Text
-          className="text-xs text-deepMarine-700 mb-10  text-center"
+          className="text-xs text-deepMarine-700 mb-10 text-center"
           style={{ fontFamily: 'Mulish-medium' }}
         >
           Door zich te registreren, gaat u akkoord met onze{' '}
@@ -106,7 +103,7 @@ const Landingscreen = () => {
         <TertiairyButton
           label="Heeft u al een account?"
           action="Inloggen."
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate('Auth', { screen: 'Login' })}
         />
       </View>
     </SafeAreaView>

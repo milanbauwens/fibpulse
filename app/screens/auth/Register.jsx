@@ -43,8 +43,6 @@ const Register = () => {
       if (error) {
         const authError = handleAuthError(error);
         setSignUpError(authError);
-      } else {
-        navigation.navigate('VerifyEmail');
       }
     } catch (error) {
       console.error(error);
@@ -54,7 +52,7 @@ const Register = () => {
   }
 
   return (
-    <SafeAreaView className="bg-white h-full px-4">
+    <SafeAreaView className="bg-white h-full px-5">
       <BackButton onPress={() => navigation.navigate('Landing')} />
       <View className="bg-white z-[2] mb-6">
         <Title size="large">Maak een nieuw profiel</Title>

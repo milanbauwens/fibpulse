@@ -4,9 +4,9 @@ import { Animated, FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import slides from '../../__content/intake.js';
-import IntakeItem from '../../components/Intake/IntakeItem';
-import IntakePaginator from '../../components/Intake/IntakePaginator';
-import { PrimaryButton } from '../../components/common/Buttons';
+import IntakeItem from '../../components/Intake/IntakeItem.jsx';
+import IntakePaginator from '../../components/Intake/IntakePaginator.jsx';
+import { PrimaryButton } from '../../components/common/Buttons/index.jsx';
 
 const Intake = () => {
   const navigation = useNavigation();
@@ -24,7 +24,7 @@ const Intake = () => {
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
     } else {
-      navigation.navigate('Dashboard');
+      navigation.navigate('Main');
     }
   };
 

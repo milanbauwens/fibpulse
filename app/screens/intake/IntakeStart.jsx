@@ -6,7 +6,7 @@ import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons'
 import { Paragraph, Title } from '../../components/common/Typography';
 import IntakeIllustration from '../../components/svg/IntakeIllustration';
 
-const IntakeExplainer = () => {
+const IntakeStart = () => {
   const navigation = useNavigation();
 
   return (
@@ -22,7 +22,7 @@ const IntakeExplainer = () => {
       </View>
       <View className="flex-1 flex flex-row items-center px-4 absolute left-0 right-0 bottom-12 m-auto justify-center">
         <View className="flex-1 mr-4">
-          <SecondaryButton label="Doe dit later" onPress={() => navigation.navigate('Dashboard')} />
+          <SecondaryButton label="Doe dit later" onPress={() => navigation.navigate('Main')} />
         </View>
         <View className="flex-1">
           <PrimaryButton label="Ga van start" onPress={() => navigation.navigate('Intake')} />
@@ -32,4 +32,4 @@ const IntakeExplainer = () => {
   );
 };
 
-export default IntakeExplainer;
+export default IntakeStart;

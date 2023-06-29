@@ -41,8 +41,6 @@ const Login = () => {
       if (error) {
         const authError = handleAuthError(error);
         setSignInError(authError);
-      } else {
-        navigation.navigate('Dashboard');
       }
     } catch (error) {
       console.error(error);
@@ -52,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white h-full px-4">
+    <SafeAreaView className="bg-white h-full px-5">
       <BackButton onPress={() => navigation.navigate('Landing')} />
       <View className="bg-white z-[2] mb-6">
         <Title size="large">Log in bij uw account</Title>

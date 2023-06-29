@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { LoadingIndicator } from 'app/components/common/Loading/Loading';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { EPISODE_AMOUNTS, GENDERS, RISK_FACTORS } from '../../__content/medicalProfile';
 import DataView from '../../components/DataView/DataView';
 import Header from '../../components/common/Header/Header';
-import { EPISODE_AMOUNTS, GENDERS, RISK_FACTORS } from '../../content/medicalProfile';
+import { LoadingIndicator } from '../../components/common/Loading/Loading';
 import {
   getMedicalProfile,
   updateMedicalProfile,
