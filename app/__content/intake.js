@@ -9,13 +9,9 @@ module.exports = [
     type: 'date',
   },
   {
-    question: 'Werd bij u reeds een hartritmestoornis vastgesteld?',
+    question: 'Welke hartritmestoornis werd bij u reeds vastgesteld?',
     type: 'select',
-    options: [
-      'Nee, ik heb geen ritmestoornis',
-      'Ja, namelijk voorkamerfibrilatie ',
-      'Ja, een andere ritmestoornis ',
-    ],
+    options: ['Voorkamerfibrilatie ', 'Een andere ritmestoornis '],
   },
   {
     question: 'Hoe vaak heeft u een episode van uw ritmestoornis?',

@@ -112,15 +112,15 @@ export const RISK_FACTORS = [
 
 export const HEART_DISORDERS = [
   {
-    label: 'Nee, ik heb geen ritmestoornis',
-    value: 'Nee, ik heb geen ritmestoornis',
+    label: 'Voorkamerfibrillatie',
+    value: 'Voorkamerfibrillatie',
   },
   {
-    label: 'Ja, voorkamerfibrillatie',
-    value: 'Ja, voorkamerfibrillatie',
+    label: 'Een andere ritmestoornis',
+    value: 'Een andere ritmestoornis',
   },
   {
-    label: 'Ja, een andere ritmestoornis',
-    value: 'Ja, een andere ritmestoornis',
+    label: 'Zeg ik liever niet',
+    value: 'Zeg ik liever niet',
   },
 ];

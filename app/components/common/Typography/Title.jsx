@@ -7,7 +7,7 @@ const Title = ({ size = 'small' || 'large' || 'medium', children, textCenter, pr
       ${size === 'small' && 'text-lg sm:text-base'} 
       ${size === 'medium' && 'text-xl sm:text-lg'} 
       ${size === 'large' && 'text-2xl sm:text-lg'}
-     text-deepMarine-900 mb-2 ${textCenter && 'text-center'}`}
+     text-deepMarine-900 mb-1 ${textCenter && 'text-center'}`}
     {...props}
   >
     {children}

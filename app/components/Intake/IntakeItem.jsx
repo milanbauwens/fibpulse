@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
-import CheckCircle from '../../components/svg/icons/CheckCircle';
 import { supabase } from '../../core/db/initSupabase';
 import { useAuthContext } from '../auth/AuthProvider';
 import { Paragraph, Title } from '../common/Typography';
@@ -59,16 +58,12 @@ const IntakeItem = ({ data }) => {
   ]);
 
   return (
-    <View style={{ width }} className="h-full bg-white mt-8 px-4">
-      <View className="flex w-full items-center">
-        <Title size="large" textCenter>
-          {data.question}
-        </Title>
-        {data.type === 'multiselect' && (
-          <Paragraph className="text-center">U kunt meerdere opties selecteren.</Paragraph>
-        )}
+    <View style={{ width }} className="h-full bg-white mt-8 px-5">
+      <View>
+        <Title size="large">{data.question}</Title>
+        {data.type === 'multiselect' && <Paragraph>U kan meerdere factoren selecteren.</Paragraph>}
       </View>
-      <View className="mt-12">
+      <View className="mt-8">
         {data.type === 'multiselect' && (
           <View className="flex flex-row flex-wrap gap-4">
             {data.options.map((option, index) => {
@@ -106,59 +101,64 @@ const IntakeItem = ({ data }) => {
         {data.type === 'select' && (
           <View className="flex flex-col gap-4">
             {data.options.map((option, index) => {
+              const isSelected =
+                selectedGender === option ||
+                selectedEpisodeFrequency === option ||
+                selectedEpisodeDuration === option ||
+                selectedHeartDisorder === option;
+
               const handleSelect = () => {
-                if (data.question === 'Wat is uw geslacht?') {
-                  setSelectedGender(option);
-                } else if (
-                  data.question === 'Werd bij u reeds een hartritmestoornis vastgesteld?'
-                ) {
-                  setSelectedHeartDisorder(option);
-                } else if (data.question === 'Hoe lang duren deze episodes gemiddeld?') {
-                  setSelectedEpisodeDuration(option);
-                } else if (data.question === 'Hoe vaak heeft u een episode van uw ritmestoornis?') {
-                  setSelectedEpisodeFrequency(option);
+                switch (data.question) {
+                  case 'Wat is uw geslacht?':
+                    setSelectedGender(option);
+                    break;
+                  case 'Welke hartritmestoornis werd bij u reeds vastgesteld?':
+                    setSelectedHeartDisorder(option);
+                    break;
+                  case 'Hoe lang duren deze episodes gemiddeld?':
+                    setSelectedEpisodeDuration(option);
+                    break;
+                  case 'Hoe vaak heeft u een episode van uw ritmestoornis?':
+                    setSelectedEpisodeFrequency(option);
+                    break;
                 }
               };
 
               const handleDeselect = () => {
-                if (data.question === 'Wat is uw geslacht?') {
-                  setSelectedGender('');
-                } else if (
-                  data.question === 'Werd bij u reeds een hartritmestoornis vastgesteld?'
-                ) {
-                  setSelectedHeartDisorder('');
-                } else if (data.question === 'Hoe lang duren deze episodes gemiddeld?') {
-                  setSelectedEpisodeDuration('');
-                } else if (data.question === 'Hoe vaak heeft u een episode van uw ritmestoornis?') {
-                  setSelectedEpisodeFrequency('');
+                switch (data.question) {
+                  case 'Wat is uw geslacht?':
+                    setSelectedGender('');
+                    break;
+                  case 'Welke hartritmestoornis werd bij u reeds vastgesteld?':
+                    setSelectedHeartDisorder('');
+                    break;
+                  case 'Hoe lang duren deze episodes gemiddeld?':
+                    setSelectedEpisodeDuration('');
+                    break;
+                  case 'Hoe vaak heeft u een episode van uw ritmestoornis?':
+                    setSelectedEpisodeFrequency('');
+                    break;
                 }
               };
 
               return (
                 <TouchableOpacity
                   key={index}
-                  onPress={
-                    selectedGender === option ||
-                    selectedEpisodeFrequency === option ||
-                    selectedEpisodeDuration === option ||
-                    selectedHeartDisorder === option
-                      ? handleDeselect
-                      : handleSelect
-                  }
+                  onPress={isSelected ? handleDeselect : handleSelect}
                   activeOpacity={1}
                   className="px-4 py-3 min-h-[62px] w-fit rounded-lg flex flex-row items-center justify-between bg-deepMarine-100"
                 >
                   <Text
                     style={{ fontFamily: 'Mulish-medium' }}
-                    className="text-base text-deepMarine-900"
+                    className="text-base text-turquoise-900"
                   >
                     {option}
                   </Text>
-                  {selectedGender === option ||
-                  selectedEpisodeFrequency === option ||
-                  selectedEpisodeDuration === option ||
-                  selectedHeartDisorder === option ? (
-                    <CheckCircle />
+
+                  {isSelected ? (
+                    <View className="w-8 h-8 flex items-center justify-center rounded-full bg-white border-2 border-deepMarine-500">
+                      <View className="w-4 h-4 rounded-full bg-deepMarine-500" />
+                    </View>
                   ) : (
                     <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200" />
                   )}

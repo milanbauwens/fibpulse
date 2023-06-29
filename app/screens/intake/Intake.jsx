@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useRef, useState } from 'react';
 import { Animated, FlatList, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import slides from '../../__content/intake.js';
 import IntakeItem from '../../components/Intake/IntakeItem.jsx';
@@ -10,12 +10,13 @@ import { PrimaryButton } from '../../components/common/Buttons/index.jsx';
 
 const Intake = () => {
   const navigation = useNavigation();
+  const { bottom } = useSafeAreaInsets();
+
   const slidesRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const scrollX = useRef(new Animated.Value(0)).current;
-
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentSlide(viewableItems[0].index);
   }).current;
@@ -61,13 +62,14 @@ const Intake = () => {
         scrollEventThrottle={32}
         ref={slidesRef}
       />
-      <View className="px-4 absolute left-0 right-0 bottom-14 m-auto flex flex-col justify-center">
-        <View className="mb-6">
-          <PrimaryButton
-            label={currentSlide === slides.length - 1 ? ' Voltooi uw profiel' : 'Volgende'}
-            onPress={scrollTo}
-          />
-        </View>
+      <View
+        style={{ bottom: bottom + 32 }}
+        className="px-4 absolute left-0 right-0 m-auto flex flex-col justify-center"
+      >
+        <PrimaryButton
+          label={currentSlide === slides.length - 1 ? ' Voltooi uw profiel' : 'Volgende'}
+          onPress={scrollTo}
+        />
       </View>
     </SafeAreaView>
   );

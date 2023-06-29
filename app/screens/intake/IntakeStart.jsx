@@ -1,26 +1,43 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons';
 import { Paragraph, Title } from '../../components/common/Typography';
 import IntakeIllustration from '../../components/svg/IntakeIllustration';
+import colors from '../../theme/colors';
 
 const IntakeStart = () => {
   const navigation = useNavigation();
+  const { bottom } = useSafeAreaInsets();
 
   return (
-    <SafeAreaView className="px-4 relative w-full h-screen bg-white">
+    <SafeAreaView className="px-5 relative w-full h-screen bg-white">
       <View className="flex flex-col items-center">
         <IntakeIllustration className="mb-12 mt-20" />
-        <Title size="large" textCenter>
-          Uw medisch profiel in kaart brengen
-        </Title>
+        <View className="w-3/4">
+          <Title size="large" textCenter>
+            Uw medisch profiel in kaart brengen
+          </Title>
+        </View>
         <Paragraph className="text-center">
-          Met uw medische gegevens, kunnen we u een gerichtere ervaring aanbieden.
+          Met uw medische gegevens, proberen we meer inzichten te krijgen in hoe uw ritmestoornis in
+          elkaar zit.
         </Paragraph>
+        <View className="flex items-center justify-center flex-row mt-5">
+          <View className="rounded-full bg-turquoise-200 w-8 h-8 flex items-center justify-center">
+            <MaterialIcons name="alarm" size={20} color={colors.turquoise[700]} />
+          </View>
+          <Paragraph className="ml-3" textColor="text-deepMarine-900" isStrong>
+            5-8 minuten
+          </Paragraph>
+        </View>
       </View>
-      <View className="flex-1 flex flex-row items-center px-4 absolute left-0 right-0 bottom-12 m-auto justify-center">
+      <View
+        style={{ bottom: bottom + 32 }}
+        className="flex-1 flex flex-row items-center px-5 absolute left-0 right-0 m-auto justify-center"
+      >
         <View className="flex-1 mr-4">
           <SecondaryButton label="Doe dit later" onPress={() => navigation.navigate('Main')} />
         </View>

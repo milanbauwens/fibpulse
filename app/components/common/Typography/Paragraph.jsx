@@ -1,9 +1,15 @@
 import { Text } from 'react-native';
 
-const Paragraph = ({ children, textColor = 'text-turquoise-700', className, ...props }) => {
+const Paragraph = ({
+  children,
+  isStrong,
+  textColor = 'text-turquoise-700',
+  className,
+  ...props
+}) => {
   return (
     <Text
-      style={{ fontFamily: 'Mulish-medium' }}
+      style={{ fontFamily: isStrong ? 'Mulish-bold' : 'Mulish-medium' }}
       className={`text-base ${textColor} ${className}`}
       {...props}
     >
