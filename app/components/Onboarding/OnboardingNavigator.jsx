@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import ArrowRight from '../svg/icons/ArrowRight';
 
-export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
+export const OnboardingNavigator = ({ data, scrollX, scrollTo }) => {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
@@ -48,4 +48,4 @@ export default function WalkthroughNavigator({ data, scrollX, scrollTo }) {
       </TouchableOpacity>
     </View>
   );
-}
+};

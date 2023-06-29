@@ -3,7 +3,7 @@ import { Image, View, useWindowDimensions } from 'react-native';
 
 import { Display, Paragraph } from '../common/Typography';
 
-export default function WalkthroughItem({ item }) {
+export const OnboardingItem = ({ item }) => {
   const { width } = useWindowDimensions();
 
   return (
@@ -21,4 +21,4 @@ export default function WalkthroughItem({ item }) {
       </View>
     </View>
   );
-}
+};

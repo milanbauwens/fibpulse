@@ -4,12 +4,11 @@ import React, { useRef, useState } from 'react';
 import { Animated, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import slides from '../../__content/walkthrough';
-import WalkthroughItem from '../../components/Walkthrough/WalkthroughItem';
-import WalkthroughNavigator from '../../components/Walkthrough/WalkthroughNavigator';
+import slides from '../__content/walkthrough';
+import { OnboardingItem, OnboardingNavigator } from '../components/Onboarding';
 
-export default function Walkthrough() {
-  const authStackNavigation = useNavigation();
+export const Onboarding = () => {
+  const navigation = useNavigation();
   const slidesRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -30,7 +29,7 @@ export default function Walkthrough() {
       } catch (err) {
         console.error('Error @setAsyncStorage:', err);
       } finally {
-        authStackNavigation.navigate('Landing');
+        navigation.navigate('Landing');
       }
     }
   };
@@ -50,7 +49,7 @@ export default function Walkthrough() {
             } catch (err) {
               console.error('Error @setAsyncStorage:', err);
             } finally {
-              authStackNavigation.navigate('Landing');
+              navigation.navigate('Landing');
             }
           }}
         >
@@ -61,7 +60,7 @@ export default function Walkthrough() {
       </View>
       <FlatList
         data={slides}
-        renderItem={({ item }) => <WalkthroughItem item={item} />}
+        renderItem={({ item }) => <OnboardingItem item={item} />}
         horizontal
         showsHorizontalScrollIndicator={false}
         bounces={false}
@@ -75,7 +74,9 @@ export default function Walkthrough() {
         scrollEventThrottle={32}
         ref={slidesRef}
       />
-      <WalkthroughNavigator data={slides} scrollX={scrollX} scrollTo={scrollTo} />
+      <OnboardingNavigator data={slides} scrollX={scrollX} scrollTo={scrollTo} />
     </View>
   );
-}
+};
+
+export default Onboarding;

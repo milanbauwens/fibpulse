@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 
-export default OnboardingContext = createContext();
+export const OnboardingContext = createContext();
