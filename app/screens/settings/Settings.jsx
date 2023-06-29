@@ -4,7 +4,6 @@ import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAuthContext } from '../../components/auth/AuthProvider';
-import Header from '../../components/common/Header/Header';
 import { Paragraph, Title } from '../../components/common/Typography';
 import SettingsItem from '../../components/screens/settings/SettingsItem/SettingsItem';
 import { signOut } from '../../core/db/modules/auth/api';
@@ -18,8 +17,8 @@ const Settings = () => {
   const toggleSwitch = () => setNotificationState((previousState) => !previousState);
 
   return (
-    <SafeAreaView className="bg-white">
-      <Header title="Instellingen" withClose />
+    <SafeAreaView className="bg-white h-screen pt-6">
+      {/* <Header title="Instellingen" withClose /> */}
       <ScrollView className="mb-6 px-4">
         <View className="mb-12">
           <Title size="large">{user.name ? user.name : `${user.firstname} ${user.lastname}`}</Title>

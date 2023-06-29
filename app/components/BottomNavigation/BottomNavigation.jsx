@@ -1,47 +1,83 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import { Text } from 'react-native';
 
 import Home from '../../screens/Home';
 import { Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
+import { Icon } from '../Icon/Icon';
 
 const BottomNavigation = () => {
   const bottomTab = createBottomTabNavigator();
 
   const screenOptions = ({ route }) => ({
     headerShown: false,
-    tabBarActiveTintColor: colors.turquoise[500],
-    tabBarInactiveTintColor: 'lightgray',
-    tabBarShowLabel: false,
+    tabBarActiveTintColor: colors.deepMarine[500],
+    tabBarInactiveTintColor: '#5C524B',
+    tabBarShowLabel: true,
     tabBarStyle: {
-      showLabel: false,
-      backgroundColor: colors.turquoise[500],
-      height: 80,
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowColor: colors.deepMarine[700],
+      shadowOpacity: 0.15,
+      shadowRadius: 8.0,
+      backgroundColor: 'white',
       borderTopWidth: 0,
-      paddingTop: 10,
-      paddingHorizontal: 10,
+      height: 84,
+      paddingTop: 8,
+      paddingHorizontal: 40,
     },
 
-    // tabBarIcon: ({ focused, color, size }) => {
-    //   let iconName = 'ios-home';
+    tabBarLabel: ({ focused }) => {
+      let label = 'Overzicht';
 
-    //   switch (route.name) {
-    //     case 'Home':
-    //       iconName = focused ? 'grid' : 'grid-outline';
-    //       break;
-    //     case 'BudgetCategories':
-    //       iconName = focused ? 'wallet' : 'wallet-outline';
-    //       break;
-    //     case 'GoalsCategories':
-    //       iconName = focused ? 'golf' : 'golf-outline';
-    //       break;
-    //     case 'Educational':
-    //       iconName = focused ? 'school' : 'school-outline';
-    //       break;
-    //   }
+      switch (route.name) {
+        case 'Home':
+          label = 'Overzicht';
+          break;
+        case 'Episodes':
+          label = 'Opnames';
+          break;
+        case 'Discover':
+          label = 'Ontdekken';
+          break;
+        case 'Settings':
+          label = 'Profiel';
+          break;
+      }
 
-    //   return <Ionicons name={iconName} size={size} color={color} />;
-    // },
+      return (
+        <Text
+          style={{ fontFamily: 'Mulish-bold', color: focused ? colors.deepMarine[500] : '#5C524B' }}
+          className="text-xs"
+        >
+          {label}
+        </Text>
+      );
+    },
+
+    tabBarIcon: ({ focused, color, size }) => {
+      let iconName = 'home';
+
+      switch (route.name) {
+        case 'Home':
+          iconName = 'home';
+          break;
+        case 'Episodes':
+          iconName = 'date';
+          break;
+        case 'Discover':
+          iconName = 'discover';
+          break;
+        case 'Settings':
+          iconName = 'user';
+          break;
+      }
+
+      return <Icon name={focused ? iconName : `${iconName}-outline`} size={24} color={color} />;
+    },
   });
 
   return (
