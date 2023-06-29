@@ -4,8 +4,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import AuthProvider from './app/components/auth/AuthProvider';
-import AppContent from './app/core/router/AppContent';
-import { SplashscreenLoader } from './app/screens/onboarding/Splashscreen';
+import { AppStack } from './app/core/router/AppStack';
+import { SplashscreenLoader } from './app/screens/Splashscreen';
 
 // Keep the splash screen visible while app is loading
 SplashScreen.preventAutoHideAsync().catch();
@@ -20,7 +20,7 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <AuthProvider>
             <NavigationContainer>
-              <AppContent />
+              <AppStack />
             </NavigationContainer>
           </AuthProvider>
         </QueryClientProvider>
