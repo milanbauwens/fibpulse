@@ -4,6 +4,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import colors from '../../../theme/colors';
 import { Icon } from '../../Icon/Icon';
+import Label from '../Label/Label';
 
 const Formgroup = forwardRef(
   (
@@ -21,13 +22,11 @@ const Formgroup = forwardRef(
     },
     ref
   ) => {
-    const [secure, setSecure] = useState(true);
+    const [isSecure, setIsSecure] = useState(true);
 
     return (
       <View>
-        <Text style={{ fontFamily: 'Mulish-bold' }} className="text-sm text-turquoise-500 mb-2">
-          {label}
-        </Text>
+        <Label title={label} />
         <View className="relative">
           <Controller
             control={control}
@@ -50,7 +49,7 @@ const Formgroup = forwardRef(
                   onBlur={onBlur}
                   onChangeText={onChange}
                   onSubmitEditing={onSubmitEditing}
-                  secureTextEntry={type === 'password' ? secure : false}
+                  secureTextEntry={type === 'password' ? isSecure : false}
                   autoCapitalize={autoCapitalize}
                   blurOnSubmit={false}
                   returnKeyType={returnKeyType}
@@ -65,10 +64,10 @@ const Formgroup = forwardRef(
             <TouchableOpacity
               activeOpacity={0.8}
               className="absolute right-2 h-6 w-6 top-3 flex items-center justify-center text-turquoise-700"
-              onPress={() => setSecure(!secure)}
+              onPress={() => setIsSecure(!isSecure)}
             >
               <Icon
-                name={secure ? 'eye-outline' : 'eye-off-outline'}
+                name={isSecure ? 'eye-outline' : 'eye-off-outline'}
                 size={24}
                 color={colors.turquoise[700]}
               />

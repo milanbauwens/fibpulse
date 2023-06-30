@@ -22,7 +22,7 @@ const Popover = ({
         setModalVisible(!modalVisible);
       }}
     >
-      <View className=" w-full h-full absolute justify-center items-center">{children}</View>
+      <View className="w-full h-full absolute justify-center items-center">{children}</View>
     </Modal>
   );
 };

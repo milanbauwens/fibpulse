@@ -14,12 +14,12 @@ module.exports = [
     options: ['Voorkamerfibrilatie ', 'Een andere ritmestoornis '],
   },
   {
-    question: 'Hoe vaak heeft u een episode van uw ritmestoornis?',
+    question: 'Hoe vaak heeft u last van uw ritmestoornis?',
     type: 'select',
     options: ['Minder dan 1 keer per jaar', 'Jaarlijks', 'Maandelijks', 'Wekelijks', 'Dagelijks'],
   },
   {
-    question: 'Hoe lang duren deze episodes gemiddeld?',
+    question: 'Hoe lang duren deze momenten gemiddeld?',
     type: 'select',
     options: [
       'Minder dan 1 minuut',
@@ -31,7 +31,6 @@ module.exports = [
   },
   {
     question: 'Welke risicofactoren zijn bij u van toepassing?',
-    subtitle: 'Kies de risicofactoren die bij u van toepassing zijn',
     type: 'multiselect',
     options: [
       'Stress',

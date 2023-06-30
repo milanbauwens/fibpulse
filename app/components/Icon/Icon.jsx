@@ -1,6 +1,6 @@
 import { Path, Svg } from 'react-native-svg';
 
-export const Icon = ({ name, size, color = '#000', onPress }) => {
+export const Icon = ({ name, size, color = '#000', onPress, props }) => {
   let icon;
 
   switch (name) {
@@ -10,6 +10,18 @@ export const Icon = ({ name, size, color = '#000', onPress }) => {
           d="M12.982 2.764c-.351-.273-.527-.41-.72-.463a1 1 0 00-.523 0c-.194.053-.37.19-.721.463L4.235 8.039c-.453.353-.68.529-.843.75a2 2 0 00-.318.65C3 9.703 3 9.99 3 10.565V17.8c0 1.12 0 1.68.218 2.108a2 2 0 00.874.874C4.52 21 5.08 21 6.2 21h2c.28 0 .42 0 .527-.055a.5.5 0 00.218-.218C9 20.62 9 20.48 9 20.2v-6.6c0-.56 0-.84.109-1.054a1 1 0 01.437-.437c.214-.11.494-.11 1.054-.11h2.8c.56 0 .84 0 1.054.11a1 1 0 01.437.437C15 12.76 15 13.04 15 13.6v6.6c0 .28 0 .42.055.527a.5.5 0 00.218.218c.107.055.247.055.527.055h2c1.12 0 1.68 0 2.108-.218a2 2 0 00.874-.874C21 19.48 21 18.92 21 17.8v-7.235c0-.575 0-.862-.074-1.126a2.002 2.002 0 00-.318-.65c-.163-.221-.39-.397-.843-.75l-6.783-5.275z"
           fill="#A2CCCF"
           stroke="#168087"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'calendar-outline':
+      icon = (
+        <Path
+          d="M21 10H3m13-8v4M8 2v4m-.2 16h8.4c1.68 0 2.52 0 3.162-.327a3 3 0 001.311-1.311C21 19.72 21 18.88 21 17.2V8.8c0-1.68 0-2.52-.327-3.162a3 3 0 00-1.311-1.311C18.72 4 17.88 4 16.2 4H7.8c-1.68 0-2.52 0-3.162.327a3 3 0 00-1.311 1.311C3 6.28 3 7.12 3 8.8v8.4c0 1.68 0 2.52.327 3.162a3 3 0 001.311 1.311C5.28 22 6.12 22 7.8 22z"
+          stroke={color}
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -170,6 +182,7 @@ export const Icon = ({ name, size, color = '#000', onPress }) => {
 
   return (
     <Svg
+      {...props}
       onPress={onPress}
       width={size}
       height={size}
