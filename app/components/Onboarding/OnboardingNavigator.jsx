@@ -3,7 +3,7 @@ import { Animated, TouchableOpacity, View, useWindowDimensions } from 'react-nat
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import colors from '../../theme/colors';
-import ArrowRight from '../svg/icons/ArrowRight';
+import { Icon } from '../Icon/Icon';
 
 export const OnboardingNavigator = ({ data, scrollX, scrollTo }) => {
   const { width } = useWindowDimensions();
@@ -44,7 +44,7 @@ export const OnboardingNavigator = ({ data, scrollX, scrollTo }) => {
         activeOpacity={0.8}
         className="flex rounded-full justify-center items-center w-[72px] h-[72px] bg-deepMarine-500"
       >
-        <ArrowRight />
+        <Icon name="arrow-right" size={32} color="white" />
       </TouchableOpacity>
     </View>
   );

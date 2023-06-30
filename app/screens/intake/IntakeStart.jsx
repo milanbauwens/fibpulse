@@ -1,8 +1,8 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Icon } from '../../components/Icon/Icon';
 import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons';
 import { Paragraph, Title } from '../../components/common/Typography';
 import IntakeIllustration from '../../components/svg/IntakeIllustration';
@@ -27,7 +27,7 @@ const IntakeStart = () => {
         </Paragraph>
         <View className="flex items-center justify-center flex-row mt-5">
           <View className="rounded-full bg-turquoise-200 w-8 h-8 flex items-center justify-center">
-            <MaterialIcons name="alarm" size={20} color={colors.turquoise[700]} />
+            <Icon name="clock-outline" size={20} color={colors.turquoise[700]} />
           </View>
           <Paragraph className="ml-3" textColor="text-deepMarine-900" isStrong>
             5-8 minuten

@@ -2,8 +2,8 @@ import React, { forwardRef, useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import Eye from '../../svg/icons/Eye';
-import EyeOff from '../../svg/icons/EyeOff';
+import colors from '../../../theme/colors';
+import { Icon } from '../../Icon/Icon';
 
 const Formgroup = forwardRef(
   (
@@ -67,7 +67,11 @@ const Formgroup = forwardRef(
               className="absolute right-2 h-6 w-6 top-3 flex items-center justify-center text-turquoise-700"
               onPress={() => setSecure(!secure)}
             >
-              {secure ? <Eye /> : <EyeOff />}
+              <Icon
+                name={secure ? 'eye-outline' : 'eye-off-outline'}
+                size={24}
+                color={colors.turquoise[700]}
+              />
             </TouchableOpacity>
           )}
         </View>

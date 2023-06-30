@@ -2,7 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import ArrowLeft from '../../svg/icons/ArrowLeft';
+import colors from '../../../theme/colors';
+import { Icon } from '../../Icon/Icon';
 
 const BackButton = ({ onPress }) => {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ const BackButton = ({ onPress }) => {
       }
       className="mb-8 mt-2"
     >
-      <ArrowLeft />
+      <Icon name="arrow-left" size={32} color={colors.turquoise[700]} />
     </TouchableOpacity>
   );
 };

@@ -1,10 +1,10 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Link, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Icon } from '../components/Icon/Icon';
 import AuthProviderButton from '../components/common/Buttons/AuthProviderButton';
 import PrimaryButton from '../components/common/Buttons/PrimaryButton';
 import TertiairyButton from '../components/common/Buttons/TertiairyButton';
@@ -77,7 +77,7 @@ const Landingscreen = () => {
 
         <View className="mb-2">
           <PrimaryButton
-            icon={<MaterialIcons name="email" size={24} color="#FFF" />}
+            icon={<Icon name="mail-outline" size={24} color="white" />}
             label="Doorgaan met E-mail"
             onPress={() => navigation.navigate('Auth', { screen: 'Register' })}
           />

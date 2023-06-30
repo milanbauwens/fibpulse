@@ -1,9 +1,9 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Animated, View, useWindowDimensions } from 'react-native';
 
 import colors from '../../theme/colors';
+import { Icon } from '../Icon/Icon';
 import BackButton from '../common/Buttons/BackButton';
 
 const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
@@ -39,10 +39,10 @@ const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
         </View>
       </View>
       <View className="absolute right-5 top-8">
-        <MaterialIcons
+        <Icon
           name="close"
-          color={colors.turquoise[700]}
           size={32}
+          color={colors.turquoise[700]}
           onPress={() => navigation.navigate('Main')}
         />
       </View>
