@@ -33,7 +33,7 @@ const Settings = () => {
         />
         <SettingsItem
           iconName="heart"
-          title="Medische gegevens"
+          title="Medisch profiel"
           onPress={() => navigation.navigate('MedicalProfile')}
         />
       </View>

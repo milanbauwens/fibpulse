@@ -10,7 +10,6 @@ import {
   RISK_FACTORS,
 } from '../../__content/medicalProfile.js';
 import DataView from '../../components/DataView/DataView';
-import Header from '../../components/common/Header/Header';
 import LoadingIndicator from '../../components/common/Loading/Loading';
 import {
   getMedicalProfile,
@@ -69,7 +68,6 @@ const MedicalDataScreen = () => {
 
   return (
     <SafeAreaView className="bg-white h-full w-full">
-      <Header title="Medische gegevens" withPrevious />
       <View className="px-4 bg-white h-full">
         {isLoading ? (
           <View className="h-5/6 w-full flex items-center justify-center">

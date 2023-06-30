@@ -28,7 +28,7 @@ export const updateMedicalProfile = async (column, value) => {
     .throwOnError();
 };
 
-export const checkIntakeCompletion = async (column, value) => {
+export const getIntakeCompletion = async (column, value) => {
   const session = await getCurrentSession();
   const userID = session.user?.id;
 

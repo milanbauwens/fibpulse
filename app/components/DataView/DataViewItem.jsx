@@ -1,10 +1,10 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Picker } from '@react-native-picker/picker';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Text, TouchableOpacity, View } from 'react-native';
-import { Picker } from 'react-native-web';
 
 import colors from '../../theme/colors';
+import { Icon } from '../Icon/Icon';
 import PrimaryButton from '../common/Buttons/PrimaryButton';
 import Popover from '../common/Popover/Popover';
 
@@ -46,34 +46,6 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
     }
   };
 
-  // Date input states
-  // const [dayAN, setDayAN] = useState();
-  // const [monthAN, setMonthAN] = useState();
-  // const [yearAN, setYearAN] = useState();
-
-  // const handleDate = (event, date) => {
-  //   const {
-  //     type,
-  //     nativeEvent: { timestamp },
-  //   } = event;
-  //   setSelectedValue(date);
-  // };
-
-  // Formatted data
-  const formattedRisks =
-    type === 'multi' && data && data.toString().length > 17
-      ? `${data.join(',').toString().substring(0, 17)}...`
-      : data;
-
-  const formattedData =
-    data && data.toString().length > 17 ? `${data.toString().substring(0, 17)}...` : data;
-
-  const formattedDateOfBirth = new Date(data).toLocaleDateString('nl-NL', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-
   return (
     <>
       <Popover animationType="slide" isVisible={isVisible}>
@@ -85,16 +57,17 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
             <TouchableOpacity
               onPress={() => setIsVisible(false)}
               activeOpacity={0.8}
-              className="w-8 h-8 flex items-center justify-center bg-deepMarine-200 rounded-full"
+              className="w-8 h-8 flex items-center justify-center rounded-full"
             >
-              <MaterialCommunityIcons name="close" size={20} color={colors.deepMarine[700]} />
+              <Icon name="close" size={24} color={colors.turquoise[700]} />
             </TouchableOpacity>
           </View>
           {type === 'single' && (
             <Picker
-              selectionColor={colors.deepMarine[900]}
+              selectionColor="rgba(22, 128, 135, 0.05)"
+              itemStyle={{ fontFamily: 'Mulish-medium' }}
               selectedValue={selectedValue}
-              onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+              onValueChange={(itemValue) => setSelectedValue(itemValue)}
             >
               {options.map(({ label, value }, index) => (
                 <Picker.Item
@@ -106,33 +79,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
               ))}
             </Picker>
           )}
-          {type === 'date' && (
-            <KeyboardAvoidingView className="mt-12">
-              {/* <DatePicker
-                value={selectedValue}
-                onChange={handleDate}
-                onMonthChange={(text) => {
-                  setMonthAN(text);
-                  if (text.length === 2) {
-                    monthRef.current.focus();
-                  }
-                }}
-                onYearChange={(text) => {
-                  setYearAN(text);
-                  if (text.length === 4) {
-                    monthRef.current.focus();
-                  }
-                  setSelectedValue(new Date(yearAN, monthAN, dayAN));
-                }}
-                onDayChange={(text) => {
-                  setDayAN(text);
-                  if (text.length === 2) {
-                    monthRef.current.focus();
-                  }
-                }}
-              /> */}
-            </KeyboardAvoidingView>
-          )}
+          {type === 'date' && <KeyboardAvoidingView className="mt-12" />}
 
           {type === 'multi' && (
             <View className="flex flex-row flex-wrap gap-4 mt-8">
@@ -183,11 +130,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
         <Text className="text-deepMarine-400 text-base">
           {label && label.length > 15 ? `${label.substring(0, 15)}...` : label}
         </Text>
-        <Text className="text-deepMarine-900 text-base">
-          {type === 'multi' && formattedRisks}
-          {type === 'date' && formattedDateOfBirth}
-          {type === 'single' && formattedData}
-        </Text>
+        <Text className="text-deepMarine-900 text-base">{data}</Text>
       </TouchableOpacity>
     </>
   );

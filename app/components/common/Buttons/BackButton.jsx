@@ -20,7 +20,7 @@ const BackButton = ({ onPress }) => {
       }
       className="mb-8 mt-2"
     >
-      <Icon name="arrow-left" size={32} color={colors.turquoise[700]} />
+      <Icon name="arrow-left" size={28} color={colors.turquoise[700]} />
     </TouchableOpacity>
   );
 };
