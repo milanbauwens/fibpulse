@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Text, TouchableOpacity, View } from 'react-native';
 
+import Label from '../../components/common/Label/Label';
 import colors from '../../theme/colors';
 import { Icon } from '../Icon/Icon';
 import PrimaryButton from '../common/Buttons/PrimaryButton';
@@ -49,7 +50,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
   return (
     <>
       <Popover animationType="slide" isVisible={isVisible}>
-        <View className="bg-white shadow-top-lg absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6 pb-12">
+        <View className="bg-white shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6 pb-12">
           <View className="flex flex-row justify-between items-center ">
             <Text style={{ fontFamily: 'Bitter-semibold' }} className="text-deepMarine-800 text-xl">
               {label}
@@ -123,14 +124,15 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => setIsVisible(true)}
-        className={`${
-          hasBorder && 'border-b border-deepMarine-200'
-        } py-4 flex flex-row items-center justify-between`}
+        className={`${hasBorder && 'border-b border-deepMarine-200'} py-4`}
       >
-        <Text className="text-deepMarine-400 text-base">
-          {label && label.length > 15 ? `${label.substring(0, 15)}...` : label}
-        </Text>
-        <Text className="text-deepMarine-900 text-base">{data}</Text>
+        <Label title={label} />
+        <View className="flex flex-row justify-between">
+          <Text className="text-deepMarine-900 text-base max-w-[65vw]">
+            {type === 'multi' ? data.join(', ') : data}
+          </Text>
+          <Icon name={type === 'date' ? 'calendar-outline' : 'chevron-right'} size={20} />
+        </View>
       </TouchableOpacity>
     </>
   );
