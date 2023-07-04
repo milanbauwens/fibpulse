@@ -238,6 +238,18 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
+    case 'plus':
+      icon = (
+        <Path
+          d="M12 5v14m-7-7h14"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
     case 'arrow-left':
       icon = (
         <Path

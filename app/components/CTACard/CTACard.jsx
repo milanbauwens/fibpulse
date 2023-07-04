@@ -1,26 +1,27 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
-import Card from '../Card/Card';
-import PrimaryButton from '../common/Buttons/PrimaryButton';
+import { Icon } from '../../components/Icon/Icon';
+import Card from '../common/Card/Card';
 import { Paragraph, Title } from '../common/Typography';
 
-const CTACard = ({ title, description, image, buttonLabel, buttonIconName, onPress }) => (
-  <Card className="w-full p-4 bg-white rounded-lg">
-    <View className="flex flex-row items-center mb-6">
-      <View className="mr-4">{image}</View>
-      <View className="w-8/12">
-        <Title size="small">{title}</Title>
-        <Paragraph textColor="text-deepMarine-700">{description}</Paragraph>
+const CTACard = ({ title, description, onPress }) => (
+  <Card onPress={onPress} className="w-full bg-deepMarine-500 rounded-lg p-4">
+    <View className="flex flex-row items-top justify-between ">
+      <View className="w-[80%]">
+        <Title color="text-white" size="medium">
+          {title}
+        </Title>
+        <Paragraph textColor="text-white">{description}</Paragraph>
+      </View>
+      <View>
+        <TouchableOpacity
+          className="w-8 h-8 flex justify-center items-center bg-deepMarine-600 rounded-full"
+          onPress={onPress}
+        >
+          <Icon name="plus" size={24} color="white" />
+        </TouchableOpacity>
       </View>
     </View>
-    <PrimaryButton
-      onPress={onPress}
-      icon={
-        buttonIconName && <MaterialCommunityIcons name={buttonIconName} size={24} color="#FFF" />
-      }
-      label={buttonLabel}
-    />
   </Card>
 );
 
