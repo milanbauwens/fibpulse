@@ -5,7 +5,7 @@ import Card from '../common/Card/Card';
 import { Paragraph, Title } from '../common/Typography';
 
 const CTACard = ({ title, description, onPress }) => (
-  <Card onPress={onPress} className="w-full bg-deepMarine-500 rounded-lg p-4">
+  <Card onPress={onPress} className="w-full bg-deepMarine-500 rounded-lg p-4 shadow-card-md">
     <View className="flex flex-row items-top justify-between ">
       <View className="w-[80%]">
         <Title color="text-white" size="medium">

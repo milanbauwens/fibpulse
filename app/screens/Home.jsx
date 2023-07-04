@@ -1,6 +1,7 @@
 import { ScrollView, Text, View } from 'react-native';
 
 import CTACard from '../components/CTACard/CTACard';
+import SectionCard from '../components/SectionCard/SectionCard';
 import { useAuthContext } from '../components/auth/AuthProvider';
 import { Paragraph, Title } from '../components/common/Typography';
 
@@ -10,7 +11,7 @@ const Home = () => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: 196 }}
+      contentContainerStyle={{ paddingBottom: 64 }}
       style={{ paddingTop: 16 }}
       className="w-full h-screen bg-white px-5"
     >
@@ -25,13 +26,27 @@ const Home = () => {
           geen opname
         </Paragraph>
       </View>
-      <View>
+      <View className="mb-6">
         <CTACard
           title="Opname toevoegen"
           description="Maak steeds een nieuwe opname bij een onregelmatige hartslag."
-          onPress={() => console.log('CTA pressed')}
         />
       </View>
+      <SectionCard
+        label="Dagboek"
+        title="Mijn opnames"
+        description="Door uw opnames bij te houden creëert u een beter overzicht over uw ritmestoornis."
+        cta="Bekijk alle opnames"
+        icon="calendar-heart-outline"
+      />
+      <SectionCard
+        withImage
+        label="Tips & tricks"
+        title="Ontdek welke tips uw hart ten goede komen."
+        description="Wees bewust van de zaken die nefast zijn voor uw hart. Zo draagt u zorg voor uzelf."
+        cta="Bekijk alle tips"
+        icon="calendar-heart-outline"
+      />
     </ScrollView>
   );
 };
