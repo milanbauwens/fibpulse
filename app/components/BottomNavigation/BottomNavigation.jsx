@@ -2,7 +2,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getHeaderTitle } from '@react-navigation/elements';
 import React from 'react';
 
+import Discover from '../../screens/Discover';
 import Home from '../../screens/Home';
+import { Episodes } from '../../screens/episodes';
 import { Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
 import { Icon } from '../Icon/Icon';
@@ -50,16 +52,16 @@ const BottomNavigation = () => {
       borderTopWidth: 0,
       height: 84,
       paddingTop: 8,
-      paddingHorizontal: 40,
+      paddingHorizontal: 24,
     },
 
-    header: ({ navigation, screenProps, route, options }) => {
+    header: ({ navigation, route, options }) => {
       const title = getHeaderTitle(options, route.name);
 
       return <Header {...navigation} title={title} />;
     },
 
-    tabBarIcon: ({ focused, color, size }) => {
+    tabBarIcon: ({ focused, color }) => {
       let iconName = 'home';
 
       switch (route.name) {
@@ -67,10 +69,10 @@ const BottomNavigation = () => {
           iconName = 'home';
           break;
         case 'Episodes':
-          iconName = 'date';
+          iconName = 'calendar-heart';
           break;
         case 'Discover':
-          iconName = 'discover';
+          iconName = 'compass';
           break;
         case 'Settings':
           iconName = 'user';
@@ -87,6 +89,16 @@ const BottomNavigation = () => {
         name="Overview"
         component={Home}
         options={{ title: 'Overzicht', headerTitle: 'Overzicht' }}
+      />
+      <bottomTab.Screen
+        name="Episodes"
+        component={Episodes}
+        options={{ title: 'Opnames', headerTitle: 'Opnames' }}
+      />
+      <bottomTab.Screen
+        name="Discover"
+        component={Discover}
+        options={{ title: 'Ontdek', headerTitle: 'Ontdek' }}
       />
       <bottomTab.Screen
         name="Settings"
