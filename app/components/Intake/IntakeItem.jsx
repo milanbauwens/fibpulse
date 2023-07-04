@@ -10,8 +10,6 @@ import Label from '../common/Label/Label';
 import Popover from '../common/Popover/Popover';
 import { Paragraph, Title } from '../common/Typography';
 
-// import DatePicker from "../Input/DatePicker";
-
 const IntakeItem = ({ data }) => {
   const { width } = useWindowDimensions();
   const { user } = useAuthContext();

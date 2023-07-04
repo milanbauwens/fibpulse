@@ -12,7 +12,7 @@ const SectionCard = ({ withImage = false, title, label, description, cta, onPres
       <Image
         className="w-full h-36 rounded-t-lg"
         style={{ resizeMode: 'cover' }}
-        source={require('../../../assets/images/man-and-woman-hugging-child.jpg')}
+        source={require('../../../assets/images/woman-running.jpg')}
       />
     )}
     <View className="p-4">

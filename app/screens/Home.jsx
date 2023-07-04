@@ -1,6 +1,7 @@
 import { ScrollView, Text, View } from 'react-native';
 
 import CTACard from '../components/CTACard/CTACard';
+import Insights from '../components/Insights/Insights';
 import SectionCard from '../components/SectionCard/SectionCard';
 import { useAuthContext } from '../components/auth/AuthProvider';
 import { Paragraph, Title } from '../components/common/Typography';
@@ -39,6 +40,7 @@ const Home = () => {
         cta="Bekijk alle opnames"
         icon="calendar-heart-outline"
       />
+      <Insights />
       <SectionCard
         withImage
         label="Tips & tricks"
