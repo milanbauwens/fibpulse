@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Switch, Text, TouchableOpacity, View } from 'react-native';
 
 import colors from '../../../../theme/colors';
+import { Icon } from '../../../Icon/Icon';
 
 const SettingsItem = ({
   type = 'normal' || 'error',
@@ -27,7 +28,7 @@ const SettingsItem = ({
             type === 'error' ? 'bg-red-100' : ' bg-turquoise-200'
           } rounded-full`}
         >
-          <MaterialCommunityIcons
+          <Icon
             name={iconName}
             size={20}
             color={type === 'error' ? colors.red[600] : colors.turquoise[700]}
