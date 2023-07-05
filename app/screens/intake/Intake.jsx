@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import { Animated, FlatList, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -7,6 +8,7 @@ import slides from '../../__content/intake.js';
 import IntakeItem from '../../components/Intake/IntakeItem.jsx';
 import IntakePaginator from '../../components/Intake/IntakePaginator.jsx';
 import { PrimaryButton } from '../../components/common/Buttons/index.jsx';
+import { updateMedicalProfile } from '../../core/db/modules/medical_profiles/api.js';
 
 const Intake = () => {
   const navigation = useNavigation();
@@ -14,6 +16,7 @@ const Intake = () => {
 
   const slidesRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selected, setSelected] = useState();
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
@@ -22,6 +25,7 @@ const Intake = () => {
   }).current;
 
   const scrollTo = async () => {
+    handleUpdate();
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
     } else {
@@ -32,6 +36,25 @@ const Intake = () => {
   const scrollBack = async () => {
     if (currentSlide < slides.length) {
       slidesRef.current.scrollToIndex({ index: currentSlide - 1 });
+    }
+  };
+
+  const column = slides[currentSlide].column;
+
+  // Update data
+  const queryClient = useQueryClient();
+  const mutation = useMutation((value) => updateMedicalProfile(column, value), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['medical_profile']);
+      setSelected();
+    },
+  });
+
+  const handleUpdate = async () => {
+    try {
+      await mutation.mutateAsync(selected);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -49,7 +72,9 @@ const Intake = () => {
         data={slides}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => <IntakeItem currentSlide={currentSlide} data={item} />}
+        renderItem={({ item }) => (
+          <IntakeItem onSelect={(selected) => setSelected(selected)} data={item} />
+        )}
         bounces={false}
         pagingEnabled
         scrollEnabled={false}

@@ -23,13 +23,13 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
   }, [data]);
 
   // Update data
-  const queryClient = useQueryClient();
-  const mutation = useMutation((value) => method(column, value), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['medical_profile']);
-      setIsVisible(false);
-    },
-  });
+    const queryClient = useQueryClient();
+    const mutation = useMutation((value) => method(column, value), {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['medical_profile']);
+        setIsVisible(false);
+      },
+    });
 
   const handleUpdate = async () => {
     try {
@@ -137,7 +137,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
         <Label title={label} />
         <View className="flex flex-row justify-between">
           <Text className="text-deepMarine-900 text-base max-w-[65vw]">
-            {type === 'multi' ? data.join(', ') : data}
+            {type === 'multi' && data ? data.join(', ') : data}
           </Text>
           <Icon name="chevron-right" size={20} />
         </View>

@@ -3,52 +3,22 @@ import { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
 import { AGES } from '../../__content/ages';
-import { supabase } from '../../core/db/initSupabase';
 import colors from '../../theme/colors';
 import { Icon } from '../Icon/Icon';
-import { useAuthContext } from '../auth/AuthProvider';
 import Input from '../common/Input/Input';
 import Popover from '../common/Popover/Popover';
 import { Paragraph, Title } from '../common/Typography';
 
-const IntakeItem = ({ data }) => {
+const IntakeItem = ({ data, onSelect }) => {
   const { width } = useWindowDimensions();
-  const { user } = useAuthContext();
 
-  const [selectedGender, setSelectedGender] = useState();
-  const [age, setAge] = useState();
-  const [selectedEpisodeFrequency, setSelectedEpisodeFrequency] = useState();
-  const [selectedEpisodeDuration, setSelectedEpisodeDuration] = useState();
-  const [selectedHeartDisorder, setSelectedHeartDisorder] = useState();
-  const [selectedRisks, setSelectedRisks] = useState([]);
-
-  const [ageIsFocused, setAgeIsFocused] = useState(false);
-
-  const handleFormSubmit = async () => {
-    const { error } = await supabase.from('medical_profiles').upsert({
-      user_id: user.id,
-      age,
-      gender: selectedGender,
-      episode_frequency: selectedEpisodeFrequency,
-      episode_duration: selectedEpisodeDuration,
-      heart_disorder: selectedHeartDisorder,
-      risk_factors: selectedRisks,
-      passed_intake: true,
-    });
-    if (error) {
-      console.log(error);
-    }
-  };
+  const [selected, setSelected] = useState(data.type === 'multiselect' ? [] : '');
 
   useEffect(() => {
-    handleFormSubmit();
-  }, [
-    selectedRisks,
-    selectedEpisodeFrequency,
-    selectedEpisodeDuration,
-    selectedHeartDisorder,
-    selectedGender,
-  ]);
+    onSelect(selected);
+  }, [selected]);
+
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <View style={{ width }} className="h-full bg-white mt-8 px-5">
@@ -61,26 +31,26 @@ const IntakeItem = ({ data }) => {
           <View className="flex flex-row flex-wrap gap-4">
             {data.options.map((option, index) => {
               const handleSelect = () => {
-                setSelectedRisks([...selectedRisks, option]);
+                setSelected([...selected, option]);
               };
 
               const handleDeselect = () => {
-                setSelectedRisks(selectedRisks.filter((risk) => risk !== option));
+                setSelected(selected.filter((risk) => risk !== option));
               };
 
               return (
                 <TouchableOpacity
                   key={index}
-                  onPress={selectedRisks.includes(option) ? handleDeselect : handleSelect}
+                  onPress={selected.includes(option) ? handleDeselect : handleSelect}
                   activeOpacity={1}
                   className={`px-4 py-3 min-h-[62px] flex items-center justify-center w-fit rounded-lg ${
-                    selectedRisks.includes(option) ? 'bg-deepMarine-500' : 'bg-deepMarine-100'
+                    selected.includes(option) ? 'bg-deepMarine-500' : 'bg-deepMarine-100'
                   }`}
                 >
                   <Text
                     style={{ fontFamily: 'Mulish-medium' }}
                     className={`text-base text-center ${
-                      selectedRisks.includes(option) ? 'text-white' : 'text-deepMarine-900'
+                      selected.includes(option) ? 'text-white' : 'text-deepMarine-900'
                     }`}
                   >
                     {option}
@@ -94,44 +64,14 @@ const IntakeItem = ({ data }) => {
         {data.type === 'select' && (
           <View className="flex flex-col gap-4">
             {data.options.map((option, index) => {
-              const isSelected =
-                selectedGender === option ||
-                selectedEpisodeFrequency === option ||
-                selectedEpisodeDuration === option ||
-                selectedHeartDisorder === option;
+              const isSelected = selected === option;
 
               const handleSelect = () => {
-                switch (data.question) {
-                  case 'Wat is uw geslacht?':
-                    setSelectedGender(option);
-                    break;
-                  case 'Welke hartritmestoornis werd bij u reeds vastgesteld?':
-                    setSelectedHeartDisorder(option);
-                    break;
-                  case 'Hoe lang duren deze momenten gemiddeld?':
-                    setSelectedEpisodeDuration(option);
-                    break;
-                  case 'Hoe vaak heeft u last van uw ritmestoornis?':
-                    setSelectedEpisodeFrequency(option);
-                    break;
-                }
+                setSelected(option);
               };
 
               const handleDeselect = () => {
-                switch (data.question) {
-                  case 'Wat is uw geslacht?':
-                    setSelectedGender('');
-                    break;
-                  case 'Welke hartritmestoornis werd bij u reeds vastgesteld?':
-                    setSelectedHeartDisorder('');
-                    break;
-                  case 'Hoe lang duren deze momenten gemiddeld?':
-                    setSelectedEpisodeDuration('');
-                    break;
-                  case 'Hoe vaak heeft u last van uw ritmestoornis?':
-                    setSelectedEpisodeFrequency('');
-                    break;
-                }
+                setSelected('');
               };
 
               return (
@@ -165,13 +105,13 @@ const IntakeItem = ({ data }) => {
         <View>
           <Input
             inputMode="none"
-            value={age ? `${age} jaar` : ''}
+            value={selected ? `${selected} jaar` : ''}
             icon="chevron-right"
-            onPressIn={() => setAgeIsFocused(true)}
+            onPressIn={() => setIsVisible(true)}
             disabled
           />
-          {ageIsFocused && (
-            <Popover animationType="slide" isVisible={ageIsFocused}>
+          {isVisible && (
+            <Popover animationType="slide" isVisible={isVisible}>
               <View className="bg-white border border-deepMarine-100 shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6">
                 <View className="flex flex-row justify-between items-center ">
                   <Text
@@ -181,7 +121,7 @@ const IntakeItem = ({ data }) => {
                     Leeftijd
                   </Text>
                   <TouchableOpacity
-                    onPress={() => setAgeIsFocused(false)}
+                    onPress={() => setIsVisible(false)}
                     activeOpacity={0.8}
                     className="w-8 h-8 flex items-center justify-center rounded-full"
                   >
@@ -191,8 +131,8 @@ const IntakeItem = ({ data }) => {
                 <Picker
                   selectionColor="rgba(22, 128, 135, 0.05)"
                   itemStyle={{ fontFamily: 'Mulish-medium' }}
-                  selectedValue={age ? age : 40}
-                  onValueChange={(itemValue) => setAge(itemValue)}
+                  selectedValue={selected ? selected : 40}
+                  onValueChange={(itemValue) => setSelected(itemValue)}
                 >
                   {AGES.map(({ label, value }) => (
                     <Picker.Item
