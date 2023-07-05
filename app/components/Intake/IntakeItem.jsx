@@ -1,12 +1,13 @@
+import { Picker } from '@react-native-picker/picker';
 import { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
+import { AGES } from '../../__content/ages';
 import { supabase } from '../../core/db/initSupabase';
 import colors from '../../theme/colors';
 import { Icon } from '../Icon/Icon';
 import { useAuthContext } from '../auth/AuthProvider';
 import Input from '../common/Input/Input';
-import Label from '../common/Label/Label';
 import Popover from '../common/Popover/Popover';
 import { Paragraph, Title } from '../common/Typography';
 
@@ -15,31 +16,18 @@ const IntakeItem = ({ data }) => {
   const { user } = useAuthContext();
 
   const [selectedGender, setSelectedGender] = useState();
-  const [date, setDate] = useState();
+  const [age, setAge] = useState();
   const [selectedEpisodeFrequency, setSelectedEpisodeFrequency] = useState();
   const [selectedEpisodeDuration, setSelectedEpisodeDuration] = useState();
   const [selectedHeartDisorder, setSelectedHeartDisorder] = useState();
   const [selectedRisks, setSelectedRisks] = useState([]);
 
-  const [dateIsFocused, setDateIsFocused] = useState(false);
-
-  // Date input states
-  // const [dayAN, setDayAN] = useState();
-  // const [monthAN, setMonthAN] = useState();
-  // const [yearAN, setYearAN] = useState();
-
-  // const handleDate = (event, date) => {
-  //   const {
-  //     type,
-  //     nativeEvent: { timestamp },
-  //   } = event;
-  //   setDate(date);
-  // };
+  const [ageIsFocused, setAgeIsFocused] = useState(false);
 
   const handleFormSubmit = async () => {
     const { error } = await supabase.from('medical_profiles').upsert({
       user_id: user.id,
-      date_of_birth: date,
+      age,
       gender: selectedGender,
       episode_frequency: selectedEpisodeFrequency,
       episode_duration: selectedEpisodeDuration,
@@ -175,32 +163,46 @@ const IntakeItem = ({ data }) => {
       </View>
       {data.type === 'date' && (
         <View>
-          <Label title="Datum" />
           <Input
             inputMode="none"
-            value="23"
-            icon="calendar-outline"
-            onPressIn={() => setDateIsFocused(true)}
+            value={age ? `${age} jaar` : ''}
+            icon="chevron-right"
+            onPressIn={() => setAgeIsFocused(true)}
             disabled
           />
-          {dateIsFocused && (
-            <Popover animationType="slide" isVisible={dateIsFocused}>
-              <View className="bg-white border border-deepMarine-100 shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6 pb-24">
+          {ageIsFocused && (
+            <Popover animationType="slide" isVisible={ageIsFocused}>
+              <View className="bg-white border border-deepMarine-100 shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6">
                 <View className="flex flex-row justify-between items-center ">
                   <Text
                     style={{ fontFamily: 'Bitter-semibold' }}
                     className="text-deepMarine-800 text-xl"
                   >
-                    Geboortedatum
+                    Leeftijd
                   </Text>
                   <TouchableOpacity
-                    onPress={() => setDateIsFocused(false)}
+                    onPress={() => setAgeIsFocused(false)}
                     activeOpacity={0.8}
-                    className="w-8 h-8 flex items-center justify-center bg-deepMarine-200 rounded-full"
+                    className="w-8 h-8 flex items-center justify-center rounded-full"
                   >
-                    <Icon name="close" size={20} color={colors.deepMarine[700]} />
+                    <Icon name="close" size={24} color={colors.deepMarine[700]} />
                   </TouchableOpacity>
                 </View>
+                <Picker
+                  selectionColor="rgba(22, 128, 135, 0.05)"
+                  itemStyle={{ fontFamily: 'Mulish-medium' }}
+                  selectedValue={age ? age : 40}
+                  onValueChange={(itemValue) => setAge(itemValue)}
+                >
+                  {AGES.map(({ label, value }) => (
+                    <Picker.Item
+                      color={colors.deepMarine[900]}
+                      key={value}
+                      label={label}
+                      value={value}
+                    />
+                  ))}
+                </Picker>
               </View>
             </Popover>
           )}

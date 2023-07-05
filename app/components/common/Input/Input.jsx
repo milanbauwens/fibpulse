@@ -6,6 +6,7 @@ import { Icon } from '../../Icon/Icon';
 const Input = ({ value, icon, error, inputMode, onFocus, onPressIn, disabled }) => (
   <View className="relative">
     <TextInput
+      editable={!disabled}
       className={`w-full rounded-lg bg-deepMarine-100 h-12 px-4 text-base text-deepMarine-900 ${
         error ? 'border-red-500 border bg-red-100' : ''
       }  outline-none transition-all duration-300`}

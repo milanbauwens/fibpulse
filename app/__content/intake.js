@@ -5,7 +5,7 @@ module.exports = [
     options: ['Man', 'Vrouw', 'Zeg ik liever niet'],
   },
   {
-    question: 'Wat is uw geboortedatum?',
+    question: 'Wat is uw leeftijd?',
     type: 'date',
   },
   {

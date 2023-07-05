@@ -1,8 +1,9 @@
 import { Picker } from '@react-native-picker/picker';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
+import { AGES } from '../../__content/ages';
 import Label from '../../components/common/Label/Label';
 import colors from '../../theme/colors';
 import { Icon } from '../Icon/Icon';
@@ -11,24 +12,15 @@ import Popover from '../common/Popover/Popover';
 
 const DataViewItem = ({ data, options, label, method, column, type, hasBorder = true }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(
-    type === 'multi' ? [] : type === 'data' ? new Date() : ''
-  );
+  const [selectedValue, setSelectedValue] = useState(type === 'multi' ? [] : '');
 
   useEffect(() => {
-    if (type === 'date' && isValidDate(data)) {
-      setSelectedValue(new Date(data));
-    } else if (type === 'multi') {
+    if (type === 'multi') {
       setSelectedValue(data ? [...data] : []);
     } else {
       setSelectedValue(data);
     }
   }, [data]);
-
-  function isValidDate(dateString) {
-    const date = new Date(dateString);
-    return date instanceof Date && !isNaN(date);
-  }
 
   // Update data
   const queryClient = useQueryClient();
@@ -80,7 +72,23 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
               ))}
             </Picker>
           )}
-          {type === 'date' && <KeyboardAvoidingView className="mt-12" />}
+          {type === 'date' && (
+            <Picker
+              selectionColor="rgba(22, 128, 135, 0.05)"
+              itemStyle={{ fontFamily: 'Mulish-medium' }}
+              selectedValue={selectedValue}
+              onValueChange={(itemValue) => setSelectedValue(itemValue)}
+            >
+              {AGES.map(({ label, value }) => (
+                <Picker.Item
+                  color={colors.deepMarine[900]}
+                  key={value}
+                  label={label}
+                  value={value}
+                />
+              ))}
+            </Picker>
+          )}
 
           {type === 'multi' && (
             <View className="flex flex-row flex-wrap gap-4 mt-8">
@@ -131,7 +139,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
           <Text className="text-deepMarine-900 text-base max-w-[65vw]">
             {type === 'multi' ? data.join(', ') : data}
           </Text>
-          <Icon name={type === 'date' ? 'calendar-outline' : 'chevron-right'} size={20} />
+          <Icon name="chevron-right" size={20} />
         </View>
       </TouchableOpacity>
     </>

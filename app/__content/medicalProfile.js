@@ -119,8 +119,4 @@ export const HEART_DISORDERS = [
     label: 'Een andere ritmestoornis',
     value: 'Een andere ritmestoornis',
   },
-  {
-    label: 'Zeg ik liever niet',
-    value: 'Zeg ik liever niet',
-  },
 ];
