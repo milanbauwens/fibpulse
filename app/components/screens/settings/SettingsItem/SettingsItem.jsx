@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Switch, Text, TouchableOpacity, View } from 'react-native';
 
 import colors from '../../../../theme/colors';
-import { Icon } from '../../../Icon/Icon';
+import { Icon } from '../../../common/Icon/Icon';
 
 const SettingsItem = ({
   type = 'normal' || 'error',

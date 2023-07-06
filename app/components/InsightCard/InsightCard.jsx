@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 
 import colors from '../../theme/colors';
-import { Icon } from '../Icon/Icon';
 import Card from '../common/Card/Card';
+import { Icon } from '../common/Icon/Icon';
 import { Paragraph } from '../common/Typography';
 
 const InsightCard = ({ variant, width, icon, children, isLast }) => {

@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../common/Icon/Icon';
 
 const Error = ({ error }) => {
   return (

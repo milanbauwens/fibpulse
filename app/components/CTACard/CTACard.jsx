@@ -1,7 +1,7 @@
 import { TouchableOpacity, View } from 'react-native';
 
-import { Icon } from '../../components/Icon/Icon';
 import Card from '../common/Card/Card';
+import { Icon } from '../common/Icon/Icon';
 import { Paragraph, Title } from '../common/Typography';
 
 const CTACard = ({ title, description, onPress }) => (

@@ -3,7 +3,7 @@ import { Animated, TouchableOpacity, View, useWindowDimensions } from 'react-nat
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import colors from '../../theme/colors';
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../common/Icon/Icon';
 
 export const OnboardingNavigator = ({ data, scrollX, scrollTo }) => {
   const { width } = useWindowDimensions();

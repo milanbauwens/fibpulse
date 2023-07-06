@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native'
 
 import { AGES } from '../../__content/ages';
 import colors from '../../theme/colors';
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../common/Icon/Icon';
 import Input from '../common/Input/Input';
 import Popover from '../common/Popover/Popover';
 import { Paragraph, Title } from '../common/Typography';

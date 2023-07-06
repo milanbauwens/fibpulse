@@ -3,7 +3,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import colors from '../../../theme/colors';
-import { Icon } from '../../Icon/Icon';
+import { Icon } from '../../common/Icon/Icon';
 
 const BackButton = ({ onPress }) => {
   const navigation = useNavigation();

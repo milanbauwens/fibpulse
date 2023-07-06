@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import colors from '../../../theme/colors';
-import { Icon } from '../../Icon/Icon';
+import { Icon } from '../../common/Icon/Icon';
 import Label from '../Label/Label';
 
 const Formgroup = forwardRef(

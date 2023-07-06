@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Icon } from '../components/Icon/Icon';
 import AuthProviderButton from '../components/common/Buttons/AuthProviderButton';
 import PrimaryButton from '../components/common/Buttons/PrimaryButton';
 import TertiairyButton from '../components/common/Buttons/TertiairyButton';
+import { Icon } from '../components/common/Icon/Icon';
 import { Display, Paragraph } from '../components/common/Typography';
 import CircleMd from '../components/svg/CircleMd';
 import CircleSm from '../components/svg/CircleSm';

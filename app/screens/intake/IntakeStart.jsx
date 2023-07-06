@@ -2,9 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Icon } from '../../components/Icon/Icon';
 import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons';
+import { Icon } from '../../components/common/Icon/Icon';
 import { Paragraph, Title } from '../../components/common/Typography';
 import IntakeIllustration from '../../components/svg/IntakeIllustration';
 import { supabase } from '../../core/db/initSupabase';

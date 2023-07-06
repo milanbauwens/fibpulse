@@ -7,9 +7,9 @@ import Home from '../../screens/Home';
 import { Episodes } from '../../screens/episodes';
 import { Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
-import { Icon } from '../Icon/Icon';
 import { useAuthContext } from '../auth/AuthProvider';
 import Header from '../common/Header/Header';
+import { Icon } from '../common/Icon/Icon';
 
 const BottomNavigation = () => {
   const bottomTab = createBottomTabNavigator();

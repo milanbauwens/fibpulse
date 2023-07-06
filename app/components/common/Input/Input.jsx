@@ -1,7 +1,7 @@
 import { TextInput, View } from 'react-native';
 
 import colors from '../../../theme/colors';
-import { Icon } from '../../Icon/Icon';
+import { Icon } from '../../common/Icon/Icon';
 
 const Input = ({ value, icon, error, inputMode, onFocus, onPressIn, disabled }) => (
   <View className="relative">

@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
-import { Icon } from '../../components/Icon/Icon';
+import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
+import { Icon } from '../../components/common/Icon/Icon';
 import { Title } from '../../components/common/Typography';
 import colors from '../../theme/colors';
 
@@ -25,6 +26,14 @@ const Overview = () => {
           <Icon name="plus" size={24} color={colors.deepMarine[500]} />
         </TouchableOpacity>
       </View>
+
+      <EpisodeCard
+        startHour="7:45"
+        endHour="8:00"
+        date="7 Januari"
+        activity="Sporten"
+        pulse={187}
+      />
     </ScrollView>
   );
 };

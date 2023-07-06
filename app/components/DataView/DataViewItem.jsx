@@ -6,8 +6,8 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { AGES } from '../../__content/ages';
 import Label from '../../components/common/Label/Label';
 import colors from '../../theme/colors';
-import { Icon } from '../Icon/Icon';
 import PrimaryButton from '../common/Buttons/PrimaryButton';
+import { Icon } from '../common/Icon/Icon';
 import Popover from '../common/Popover/Popover';
 
 const DataViewItem = ({ data, options, label, method, column, type, hasBorder = true }) => {

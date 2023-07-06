@@ -1,7 +1,7 @@
 import { Image, TouchableOpacity, View } from 'react-native';
 
-import { Icon } from '../Icon/Icon';
 import Card from '../common/Card/Card';
+import { Icon } from '../common/Icon/Icon';
 import Label from '../common/Label/Label';
 import Line from '../common/Line/Line';
 import { Paragraph, Title } from '../common/Typography';

@@ -3,8 +3,8 @@ import React from 'react';
 import { Animated, View, useWindowDimensions } from 'react-native';
 
 import colors from '../../theme/colors';
-import { Icon } from '../Icon/Icon';
 import BackButton from '../common/Buttons/BackButton';
+import { Icon } from '../common/Icon/Icon';
 
 const IntakePaginator = ({ data, currentSlide, scrollX, scrollBack }) => {
   const { width } = useWindowDimensions();
