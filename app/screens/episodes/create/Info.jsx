@@ -1,5 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -7,7 +5,6 @@ import { PrimaryButton } from '../../../components/common/Buttons';
 import { Paragraph, Title } from '../../../components/common/Typography';
 
 const Info = () => {
-  const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
 
   return (
@@ -17,7 +14,7 @@ const Info = () => {
       </View>
 
       <View className="w-[90%]">
-        <View className="flex flex-row items-baseline mb-8">
+        <View className="flex flex-row mb-8">
           <View className="w-8 h-8 flex items-center justify-center bg-turquoise-200 rounded-full">
             <Paragraph textColor="text-deepMarine-500" isStrong>
               1
@@ -31,7 +28,7 @@ const Info = () => {
           </View>
         </View>
 
-        <View className="flex flex-row items-baseline mb-8">
+        <View className="flex flex-row mb-8">
           <View className="w-8 h-8 flex items-center justify-center bg-turquoise-200 rounded-full">
             <Paragraph textColor="text-deepMarine-500" isStrong>
               2
@@ -45,7 +42,7 @@ const Info = () => {
           </View>
         </View>
 
-        <View className="flex flex-row items-baseline">
+        <View className="flex flex-row">
           <View className="w-8 h-8 flex items-center justify-center bg-turquoise-200 rounded-full">
             <Paragraph textColor="text-deepMarine-500" isStrong>
               3
@@ -62,10 +59,7 @@ const Info = () => {
       </View>
 
       <View style={{ bottom: bottom + 32 }} className="px-5 absolute left-0 right-0 m-auto">
-        <PrimaryButton
-          label="Oké, begrepen"
-          onPress={() => navigation.navigate('EpisodesCreate')}
-        />
+        <PrimaryButton label="Oké, begrepen" />
       </View>
     </SafeAreaView>
   );
