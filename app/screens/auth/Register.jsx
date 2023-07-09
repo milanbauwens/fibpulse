@@ -58,7 +58,11 @@ const Register = () => {
         <Title size="large">Maak een nieuw profiel</Title>
       </View>
       <KeyboardAwareScrollView overScrollMode="never" bounces={false} extraHeight={0}>
-        {signUpError && <Error error={signUpError} />}
+        {signUpError && (
+          <View className="mt-2">
+            <Error error={signUpError} />
+          </View>
+        )}
         <View className=" flex gap-y-6">
           <View>
             <Formgroup

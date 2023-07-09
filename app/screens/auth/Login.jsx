@@ -60,7 +60,11 @@ const Login = () => {
         enabled
         className="flex flex-col gap-y-6"
       >
-        {signInError && <Error error={signInError} />}
+        {signInError && (
+          <View className="mt-2">
+            <Error error={signInError} />
+          </View>
+        )}
 
         <View>
           <Formgroup
