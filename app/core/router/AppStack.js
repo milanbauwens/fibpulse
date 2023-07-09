@@ -11,7 +11,12 @@ import Header from '../../components/common/Header/Header';
 import Home from '../../screens/Home';
 import Landingscreen from '../../screens/Landingscreen';
 import { Onboarding } from '../../screens/Onboarding';
-import { EpisodeInfoScreen, EpisodeStartScreen, Episodes } from '../../screens/episodes';
+import {
+  EpisodeInfoScreen,
+  EpisodeStartScreen,
+  Episodes,
+  EpisodesDetail,
+} from '../../screens/episodes';
 import { Intake, IntakeStart } from '../../screens/intake';
 import { MedicalDataScreen, PersonalInformationScreen, Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
@@ -137,6 +142,16 @@ export const AppStack = () => {
           component={EpisodeInfoScreen}
           options={{
             headerShown: false,
+          }}
+        />
+
+        <AppStack.Screen
+          name="EpisodesDetail"
+          component={EpisodesDetail}
+          options={{
+            title: 'Hartmoment',
+            headerTitle: 'Hartmoment',
+            headerLeft: () => <BackButton />,
           }}
         />
 

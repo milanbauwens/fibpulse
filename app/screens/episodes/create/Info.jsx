@@ -10,7 +10,7 @@ const Info = () => {
   return (
     <SafeAreaView className="px-5 relative w-full h-screen bg-white">
       <View className="mt-6 mb-8">
-        <Title size="large">Enkele zaken voordat u een opname maakt</Title>
+        <Title size="large">Enkele zaken voordat u een hartmoment vastlegt</Title>
       </View>
 
       <View className="w-[90%]">
@@ -51,10 +51,10 @@ const Info = () => {
           <View className="pl-3">
             <Paragraph isStrong>Uw veiligheid waarborgen </Paragraph>
             <Paragraph>
-              Als de aanval uit de hand loopt, bel dan de <Paragraph isStrong>112</Paragraph> of ga
-              naar de dichtstbijzijnde spoeddienst.
+              Als uw hartslag uit de hand loopt, bel dan de <Paragraph isStrong>112</Paragraph> of
+              ga naar de dichtstbijzijnde spoeddienst.
             </Paragraph>
-          </View>
+          </View> 
         </View>
       </View>
 

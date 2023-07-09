@@ -93,7 +93,7 @@ const BottomNavigation = () => {
       <bottomTab.Screen
         name="Episodes"
         component={Episodes}
-        options={{ title: 'Opnames', headerTitle: 'Opnames' }}
+        options={{ title: 'Momenten', headerTitle: 'Hartmomenten' }}
       />
       <bottomTab.Screen
         name="Discover"

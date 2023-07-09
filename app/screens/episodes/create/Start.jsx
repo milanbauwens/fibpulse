@@ -17,7 +17,7 @@ const Start = () => {
         <CreateEpisodeIllustration className="mb-6 " />
         <View className="w-3/4">
           <Title size="large" textCenter>
-            Leg een nieuwe opname vast
+            Leg een nieuw hartmoment vast
           </Title>
         </View>
         <Paragraph className="text-center">
@@ -33,7 +33,7 @@ const Start = () => {
         </View>
         <View className="flex-1">
           <PrimaryButton
-            label="Start opname"
+            label="Ga van start"
             onPress={() => navigation.navigate('EpisodesCreateInfo')}
           />
         </View>

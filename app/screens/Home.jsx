@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { ScrollView, Text, View } from 'react-native';
 
 import CTACard from '../components/CTACard/CTACard';
@@ -8,6 +9,7 @@ import { Paragraph, Title } from '../components/common/Typography';
 
 const Home = () => {
   const { user } = useAuthContext();
+  const navigation = useNavigation();
 
   return (
     <ScrollView
@@ -24,28 +26,29 @@ const Home = () => {
             // TODO: Replace with actual days since last admission
             user.daysSinceLastAdmission || 4
           } dagen`}</Text>{' '}
-          geen opname
+          geen onregelmatige hartslag
         </Paragraph>
       </View>
       <View className="mb-6">
         <CTACard
-          title="Opname toevoegen"
-          description="Maak steeds een nieuwe opname bij een onregelmatige hartslag."
+          onPress={() => navigation.navigate('EpisodesCreateStart')}
+          title="Hartmoment toevoegen"
+          description="Leg steeds een moment vast, bij een onregelmatige hartslag."
         />
       </View>
       <SectionCard
         label="Dagboek"
-        title="Mijn opnames"
-        description="Door uw opnames bij te houden creëert u een beter overzicht over uw ritmestoornis."
-        cta="Bekijk alle opnames"
+        title="Mijn Hartmomenten"
+        description="Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis."
+        cta="Bekijk alle hartmomenten"
         icon="calendar-heart-outline"
       />
       <Insights />
       <SectionCard
         withImage
-        label="Tips & tricks"
-        title="Ontdek welke tips uw hart ten goede komen."
-        description="Wees bewust van de zaken die nefast zijn voor uw hart. Zo draagt u zorg voor uzelf."
+        label="Ontdek"
+        title="Een gezond hart nastreven"
+        description="Wees bewust van de zaken die nefast zijn voor uw hart."
         cta="Bekijk alle tips"
         icon="calendar-heart-outline"
       />

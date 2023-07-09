@@ -1,11 +1,21 @@
+import { useNavigation } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 
 import Badge from '../common/Badge/Badge';
 import Card from '../common/Card/Card';
 
-const EpisodeCard = ({ date, startHour, endHour, pulse, activity, slug }) => {
+const EpisodeCard = ({ date, startHour, endHour, pulse, activity, id }) => {
+  const navigation = useNavigation();
+
   return (
-    <Card className="bg-white border shadow-card-md border-deepMarine-100 p-4 rounded-lg">
+    <Card
+      onPress={() =>
+        navigation.navigate('EpisodesDetail', {
+          id,
+        })
+      }
+      className="bg-white border shadow-card-md border-deepMarine-100 p-4 rounded-lg"
+    >
       <View className="flex flex-row items-baseline mb-4">
         <Text
           style={{ fontFamily: 'Mulish-semibold' }}
