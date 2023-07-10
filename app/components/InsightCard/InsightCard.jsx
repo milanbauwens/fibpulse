@@ -22,7 +22,7 @@ const InsightCard = ({ variant, width, icon, children, isLast }) => {
         </View>
       </View>
 
-      <Paragraph className="max-w-[90%]">{children}</Paragraph>
+      <Paragraph className="flex-shrink">{children}</Paragraph>
     </Card>
   );
 };

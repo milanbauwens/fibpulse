@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getHeaderTitle } from '@react-navigation/elements';
 import React from 'react';
+import { View } from 'react-native';
 
 import Discover from '../../screens/Discover';
 import Home from '../../screens/Home';
@@ -50,8 +51,6 @@ const BottomNavigation = () => {
       shadowRadius: 8.0,
       backgroundColor: 'white',
       borderTopWidth: 0,
-      height: 84,
-      paddingTop: 8,
       paddingHorizontal: 24,
     },
 
@@ -79,7 +78,11 @@ const BottomNavigation = () => {
           break;
       }
 
-      return <Icon name={focused ? iconName : `${iconName}-outline`} size={24} color={color} />;
+      return (
+        <View className="pt-2">
+          <Icon name={focused ? iconName : `${iconName}-outline`} size={24} color={color} />
+        </View>
+      );
     },
   });
 
