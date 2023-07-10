@@ -1,5 +1,6 @@
 import { ScrollView, View } from 'react-native';
 
+import DiscoverCard from '../components/DiscoverCard/DiscoverCard';
 import { Title } from '../components/common/Typography';
 
 const Discover = () => {
@@ -13,6 +14,22 @@ const Discover = () => {
       <View className="mb-8">
         <Title size="large">Ontdek</Title>
       </View>
+
+      <DiscoverCard
+        category="Voeding"
+        content="Gevarieerde voeding even belangrijk is dan dagelijks dezelfde gezonde voeding?"
+        source={require('../../assets/images/woman-running.jpg')}
+      />
+      <DiscoverCard
+        category="Voeding"
+        content="Gevarieerde voeding even belangrijk is dan dagelijks dezelfde gezonde voeding?"
+        source={require('../../assets/images/woman-running.jpg')}
+      />
+      <DiscoverCard
+        category="Voeding"
+        content="Gevarieerde voeding even belangrijk is dan dagelijks dezelfde gezonde voeding?"
+        source={require('../../assets/images/woman-running.jpg')}
+      />
     </ScrollView>
   );
 };
