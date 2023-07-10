@@ -134,6 +134,30 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
+    case 'chevron-left':
+      icon = (
+        <Path
+          d="M15 6l-6 6 6 6"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'chevron-skip-back':
+      icon = (
+        <Path
+          d="M17.25 5v14m-10.5-1l4.938-4.75c.534-.428.801-.641.898-.9a1 1 0 000-.7c-.097-.259-.364-.472-.898-.9L6.75 6"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
     case 'eye-outline':
       icon = (
         <>

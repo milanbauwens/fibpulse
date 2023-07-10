@@ -42,15 +42,18 @@ const Home = () => {
         description="Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis."
         cta="Bekijk alle hartmomenten"
         icon="calendar-heart-outline"
+        onPress={() => navigation.navigate('EpisodesOverview')}
       />
       <Insights />
       <SectionCard
         withImage
+        source={require('../../assets/images/woman-running.jpg')}
         label="Ontdek"
         title="Een gezond hart nastreven"
         description="Wees bewust van de zaken die nefast zijn voor uw hart."
         cta="Bekijk alle tips"
         icon="calendar-heart-outline"
+        onPress={() => navigation.navigate('Discover')}
       />
     </ScrollView>
   );

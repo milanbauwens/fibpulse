@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
+import EpisodePaginator from '../../components/EpisodePaginator/EpisodePaginator';
 import { Icon } from '../../components/common/Icon/Icon';
 import { Title } from '../../components/common/Typography';
 import colors from '../../theme/colors';
@@ -26,6 +27,8 @@ const Overview = () => {
           <Icon name="plus" size={24} color={colors.deepMarine[500]} />
         </TouchableOpacity>
       </View>
+
+      <EpisodePaginator current="Januari 2023" />
 
       <EpisodeCard
         id={1}

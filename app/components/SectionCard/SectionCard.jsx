@@ -6,14 +6,19 @@ import Label from '../common/Label/Label';
 import Line from '../common/Line/Line';
 import { Paragraph, Title } from '../common/Typography';
 
-const SectionCard = ({ withImage = false, title, label, description, cta, onPress, children }) => (
+const SectionCard = ({
+  withImage = false,
+  source,
+  title,
+  label,
+  description,
+  cta,
+  onPress,
+  children,
+}) => (
   <Card className="w-full bg-white rounded-lg relative shadow-card-md border border-deepMarine-100 mb-6">
     {withImage && (
-      <Image
-        className="w-full h-36 rounded-t-lg"
-        style={{ resizeMode: 'cover' }}
-        source={require('../../../assets/images/woman-running.jpg')}
-      />
+      <Image className="w-full h-36 rounded-t-lg" style={{ resizeMode: 'cover' }} source={source} />
     )}
     <View className="p-4">
       <View>
