@@ -4,8 +4,10 @@ import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
 import EpisodePaginator from '../../components/EpisodePaginator/EpisodePaginator';
+import EmptyState from '../../components/common/EmptyState/EmptyState';
 import { Icon } from '../../components/common/Icon/Icon';
-import { Paragraph, Title } from '../../components/common/Typography';
+import { Title } from '../../components/common/Typography';
+import EpisodesEmptyState from '../../components/svg/EpisodesEmptyState';
 import { getEpisodesByUser } from '../../core/db/modules/episodes/api';
 import colors from '../../theme/colors';
 
@@ -37,31 +39,37 @@ const Overview = () => {
 
       <EpisodePaginator />
 
-      {!isLoading && episodes.data.length > 0 ? (
-        episodes.data.map(({ id, pulse, activity }) => (
-          <EpisodeCard
-            key={id}
-            id={id}
-            startHour="7:45"
-            endHour="8:00"
-            date="7 "
-            activity={activity}
-            pulse={pulse}
-          />
-        ))
-      ) : (
-        // TOOD: Add skeleton loader & empty states
-        <Paragraph>No episodes found</Paragraph>
-      )}
-
-      <EpisodeCard
-        id={1}
-        startHour="7:45"
-        endHour="8:00"
-        date="7 Januari"
-        activity="Sporten"
-        pulse={187}
-      />
+      {!isLoading ? (
+        <View>
+          {episodes.data.length > 0 ? (
+            episodes.data.map(({ id, pulse, activity }) => (
+              <EpisodeCard
+                key={id}
+                id={id}
+                startHour="7:45"
+                endHour="8:00"
+                date="7 "
+                activity={activity}
+                pulse={pulse}
+              />
+            ))
+          ) : (
+            <EmptyState
+              illustration={<EpisodesEmptyState />}
+              title="Een perfecte maand!"
+              description="Leg steeds een moment vast, wanneer u een onregelmatige hartslag heeft."
+              icon={
+                <View className="bg-deepMarine-600 w-6 h-6 rounded-full flex items-center justify-center">
+                  <Icon name="plus" size={18} color="white" />
+                </View>
+              }
+              cta="Voeg hartmoment toe"
+              onPress={() => navigation.navigate('EpisodesCreateStart')}
+            />
+          )}
+        </View>
+      ) : // TODO Skeleton loading
+      null}
     </ScrollView>
   );
 };

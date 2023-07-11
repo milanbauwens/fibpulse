@@ -5,7 +5,7 @@ export const updateEpisode = async (episodeId, column, value) => {
   const session = await getCurrentSession();
   const userID = session.user?.id;
 
-  if (!episodeId || !column || !value) {
+  if (!episodeId || !column || value === undefined) {
     return;
   }
 

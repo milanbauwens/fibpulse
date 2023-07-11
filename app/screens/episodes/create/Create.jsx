@@ -7,7 +7,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import slides from '../../../__content/episode.js';
 import { PrimaryButton } from '../../../components/common/Buttons/index.jsx';
 import { FlatlistItem, FlatlistPaginator } from '../../../components/common/Flatlist/index.js';
-import { createNewEpisode } from '../../../core/db/modules/episodes/api.js';
+import { updateEpisode } from '../../../core/db/modules/episodes/api.js';
 
 const Create = ({ route }) => {
   const { hasMeasuredPulse, episodeId } = route.params;
@@ -43,7 +43,7 @@ const Create = ({ route }) => {
   // Update data
   const column = slides[currentSlide].column;
   const queryClient = useQueryClient();
-  const mutation = useMutation((value) => createNewEpisode(episodeId, column, value), {
+  const mutation = useMutation((value) => updateEpisode(episodeId, column, value), {
     onSuccess: () => {
       queryClient.invalidateQueries(['episodes']);
       setSelected();
@@ -52,9 +52,9 @@ const Create = ({ route }) => {
 
   const handleUpdate = async () => {
     try {
-      await mutation.mutateAsync(selected ? selected : '');
+      await mutation.mutateAsync(selected);
     } catch (error) {
-      console.log(error);
+      console.log('handleUpdate', error);
     }
   };
 
