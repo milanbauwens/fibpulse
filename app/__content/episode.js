@@ -1,15 +1,25 @@
 module.exports = [
   {
-    question: 'Wat is uw geslacht?',
-    type: 'select',
-    column: 'gender',
-    options: ['Man', 'Vrouw', 'Zeg ik liever niet'],
+    question: 'Meet uw hartslag ',
+    description:
+      'Plaats twee vingers van uw linkerhand op uw rechterpols en tel gedurende 1 minuut het aantal slagen van uw hart.',
+    type: 'measurement',
   },
   {
-    question: 'Wat is uw leeftijd?',
-    column: 'age',
-    label: 'Leeftijd',
+    question: 'Welke hartslag heeft u kunnen waarnemen? ',
+    column: 'pulse',
+    label: 'Slagen per minuut',
     type: 'picker',
+  },
+  {
+    question: 'Wanneer begon uw onregelmatige hartslag? ',
+    type: 'datetime',
+    column: 'start_date',
+  },
+  {
+    question: 'Wanneer was uw hartslag opnieuw regelmatig? ',
+    column: 'end_date',
+    type: 'datetime',
   },
   {
     question: 'Welke hartritmestoornis werd bij u reeds vastgesteld?',

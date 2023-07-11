@@ -2,14 +2,15 @@ import { Picker } from '@react-native-picker/picker';
 import { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
-import { AGES } from '../../__content/ages';
-import colors from '../../theme/colors';
-import { Icon } from '../common/Icon/Icon';
-import Input from '../common/Input/Input';
-import Popover from '../common/Popover/Popover';
-import { Paragraph, Title } from '../common/Typography';
+import { AGES } from '../../../__content/ages';
+import colors from '../../../theme/colors';
+import { Icon } from '../Icon/Icon';
+import Input from '../Input/Input';
+import Label from '../Label/Label';
+import Popover from '../Popover/Popover';
+import { Paragraph, Title } from '../Typography';
 
-const IntakeItem = ({ data, onSelect }) => {
+const Item = ({ data, onSelect }) => {
   const { width } = useWindowDimensions();
 
   const [selected, setSelected] = useState(data.type === 'multiselect' ? [] : '');
@@ -43,7 +44,7 @@ const IntakeItem = ({ data, onSelect }) => {
                   key={index}
                   onPress={selected.includes(option) ? handleDeselect : handleSelect}
                   activeOpacity={1}
-                  className={`px-4 py-3 min-h-[62px] flex items-center justify-center w-fit rounded-lg ${
+                  className={`px-4 py-3 flex items-center justify-center w-fit rounded-lg ${
                     selected.includes(option) ? 'bg-deepMarine-500' : 'bg-deepMarine-100'
                   }`}
                 >
@@ -79,7 +80,7 @@ const IntakeItem = ({ data, onSelect }) => {
                   key={index}
                   onPress={isSelected ? handleDeselect : handleSelect}
                   activeOpacity={1}
-                  className="px-4 py-3 min-h-[62px] w-fit rounded-lg flex flex-row items-center justify-between bg-deepMarine-100"
+                  className="px-4 py-3  w-fit rounded-lg flex flex-row items-center justify-between bg-deepMarine-100"
                 >
                   <Text
                     style={{ fontFamily: 'Mulish-medium' }}
@@ -101,11 +102,12 @@ const IntakeItem = ({ data, onSelect }) => {
           </View>
         )}
       </View>
-      {data.type === 'date' && (
+      {data.type === 'picker' && (
         <View>
+          <Label title={data.label} />
           <Input
             inputMode="none"
-            value={selected ? `${selected} jaar` : ''}
+            value={selected ? `${selected}` : ''}
             icon="chevron-right"
             onPressIn={() => setIsVisible(true)}
             disabled
@@ -118,7 +120,7 @@ const IntakeItem = ({ data, onSelect }) => {
                     style={{ fontFamily: 'Bitter-semibold' }}
                     className="text-deepMarine-800 text-xl"
                   >
-                    Leeftijd
+                    {data.label}
                   </Text>
                   <TouchableOpacity
                     onPress={() => setIsVisible(false)}
@@ -152,4 +154,4 @@ const IntakeItem = ({ data, onSelect }) => {
   );
 };
 
-export default IntakeItem;
+export default Item;

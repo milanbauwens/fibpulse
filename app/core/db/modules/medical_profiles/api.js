@@ -17,6 +17,10 @@ export const updateMedicalProfile = async (column, value) => {
   const session = await getCurrentSession();
   const userID = session.user?.id;
 
+  if (column === undefined || value === undefined) {
+    return;
+  }
+
   return await supabase
     .from('medical_profiles')
     .update({
@@ -26,7 +30,7 @@ export const updateMedicalProfile = async (column, value) => {
     .throwOnError();
 };
 
-export const getIntakeCompletion = async (column, value) => {
+export const getIntakeCompletion = async () => {
   const session = await getCurrentSession();
   const userID = session.user?.id;
 

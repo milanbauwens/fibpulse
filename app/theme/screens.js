@@ -1,6 +1,6 @@
 module.exports = {
-  sm: { max: '32Opx' },
-  md: { min: '320px', max: '379px' },
-  lg: { min: '380px', max: '419px' },
-  xl: { min: '420px', max: '480px' },
+  sm: { max: '280px' },
+  md: { min: '281px', max: '320px' },
+  lg: { min: '321px', max: '380px' },
+  xl: { min: '381px' },
 };

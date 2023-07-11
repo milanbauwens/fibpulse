@@ -1,11 +1,14 @@
+import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { PrimaryButton } from '../../../components/common/Buttons';
 import { Paragraph, Title } from '../../../components/common/Typography';
 
-const Info = () => {
+const Info = ({ route }) => {
+  const { episodeId } = route.params;
   const { bottom } = useSafeAreaInsets();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView className="px-5 relative w-full h-screen bg-white">
@@ -54,12 +57,15 @@ const Info = () => {
               Als uw hartslag uit de hand loopt, bel dan de <Paragraph isStrong>112</Paragraph> of
               ga naar de dichtstbijzijnde spoeddienst.
             </Paragraph>
-          </View> 
+          </View>
         </View>
       </View>
 
       <View style={{ bottom: bottom + 32 }} className="px-5 absolute left-0 right-0 m-auto">
-        <PrimaryButton label="Oké, begrepen" />
+        <PrimaryButton
+          label="Oké, begrepen"
+          onPress={() => navigation.navigate('EpisodesCreatePulse', { episodeId })}
+        />
       </View>
     </SafeAreaView>
   );

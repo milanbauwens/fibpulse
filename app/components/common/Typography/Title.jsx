@@ -12,7 +12,7 @@ const Title = ({
     className={`
       ${size === 'small' && 'text-lg sm:text-base'} 
       ${size === 'medium' && 'text-xl sm:text-lg'} 
-      ${size === 'large' && 'text-2xl sm:text-lg'}
+      ${size === 'large' && 'text-2xl small:text-lg'}
      ${color} mb-1 ${textCenter && 'text-center'}`}
     {...props}
   >

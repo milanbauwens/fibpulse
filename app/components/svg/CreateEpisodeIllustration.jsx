@@ -4,7 +4,7 @@ import Svg, { Circle, Path, Rect } from 'react-native-svg';
 function CreateEpisodeIllustration(props) {
   return (
     <Svg
-      width={350}
+      width="100%"
       height={350}
       viewBox="0 0 350 350"
       fill="none"

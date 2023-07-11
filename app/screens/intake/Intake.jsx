@@ -5,9 +5,8 @@ import { Animated, FlatList, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import slides from '../../__content/intake.js';
-import IntakeItem from '../../components/Intake/IntakeItem.jsx';
-import IntakePaginator from '../../components/Intake/IntakePaginator.jsx';
 import { PrimaryButton } from '../../components/common/Buttons/index.jsx';
+import { FlatlistItem, FlatlistPaginator } from '../../components/common/Flatlist/index.js';
 import { updateMedicalProfile } from '../../core/db/modules/medical_profiles/api.js';
 
 const Intake = () => {
@@ -50,6 +49,9 @@ const Intake = () => {
     },
   });
 
+  // TODO
+  // When all slides are completed, update Medical Profile with status passed_intake to True
+
   const handleUpdate = async () => {
     try {
       await mutation.mutateAsync(selected);
@@ -60,12 +62,12 @@ const Intake = () => {
 
   return (
     <SafeAreaView className="relative h-full bg-white">
-      <IntakePaginator
+      <FlatlistPaginator
         currentSlide={currentSlide}
         data={slides}
         scrollX={scrollX}
         scrollTo={scrollTo}
-        scrollBack={scrollBack}
+        scrollBack={currentSlide === 0 ? () => navigation.navigate('IntakeStart') : scrollBack}
       />
 
       <FlatList
@@ -73,7 +75,7 @@ const Intake = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <IntakeItem onSelect={(selected) => setSelected(selected)} data={item} />
+          <FlatlistItem onSelect={(selected) => setSelected(selected)} data={item} />
         )}
         bounces={false}
         pagingEnabled

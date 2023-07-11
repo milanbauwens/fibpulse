@@ -12,7 +12,10 @@ import Home from '../../screens/Home';
 import Landingscreen from '../../screens/Landingscreen';
 import { Onboarding } from '../../screens/Onboarding';
 import {
+  EpisodeConfirmationScreen,
+  EpisodeCreateScreen,
   EpisodeInfoScreen,
+  EpisodePulseScreen,
   EpisodeStartScreen,
   Episodes,
   EpisodesDetail,
@@ -140,6 +143,27 @@ export const AppStack = () => {
         <AppStack.Screen
           name="EpisodesCreateInfo"
           component={EpisodeInfoScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <AppStack.Screen
+          name="EpisodesCreatePulse"
+          component={EpisodePulseScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <AppStack.Screen
+          name="EpisodesCreateConfirmation"
+          component={EpisodeConfirmationScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <AppStack.Screen
+          name="EpisodesCreate"
+          component={EpisodeCreateScreen}
           options={{
             headerShown: false,
           }}

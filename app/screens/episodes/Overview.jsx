@@ -1,14 +1,21 @@
 import { useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
 import EpisodePaginator from '../../components/EpisodePaginator/EpisodePaginator';
 import { Icon } from '../../components/common/Icon/Icon';
-import { Title } from '../../components/common/Typography';
+import { Paragraph, Title } from '../../components/common/Typography';
+import { getEpisodesByUser } from '../../core/db/modules/episodes/api';
 import colors from '../../theme/colors';
 
 const Overview = () => {
   const navigation = useNavigation();
+
+  const { data: episodes, isLoading } = useQuery({
+    queryKey: ['medical_profile'],
+    queryFn: getEpisodesByUser,
+  });
 
   return (
     <ScrollView
@@ -28,7 +35,24 @@ const Overview = () => {
         </TouchableOpacity>
       </View>
 
-      <EpisodePaginator current="Januari 2023" />
+      <EpisodePaginator />
+
+      {!isLoading && episodes.data.length > 0 ? (
+        episodes.data.map(({ id, pulse, activity }) => (
+          <EpisodeCard
+            key={id}
+            id={id}
+            startHour="7:45"
+            endHour="8:00"
+            date="7 "
+            activity={activity}
+            pulse={pulse}
+          />
+        ))
+      ) : (
+        // TOOD: Add skeleton loader & empty states
+        <Paragraph>No episodes found</Paragraph>
+      )}
 
       <EpisodeCard
         id={1}

@@ -4,7 +4,7 @@ import Svg, { Circle, Defs, G, LinearGradient, Path, Rect, Stop } from 'react-na
 function VerifiedEmail(props) {
   return (
     <Svg
-      width={350}
+      width="100%"
       height={350}
       viewBox="0 0 350 350"
       fill="none"
