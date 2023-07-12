@@ -25,3 +25,10 @@ export const getEpisodesByUser = async () => {
 
   return await supabase.from('episodes').select('*').eq('user_id', userID).throwOnError();
 };
+
+export const getEpisodeById = async (id) => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  return await supabase.from('episodes').select('*').match({ id, user_id }).single().throwOnError();
+};

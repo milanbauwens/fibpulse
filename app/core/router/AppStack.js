@@ -173,8 +173,6 @@ export const AppStack = () => {
           name="EpisodesDetail"
           component={EpisodesDetail}
           options={{
-            title: 'Hartmoment',
-            headerTitle: 'Hartmoment',
             headerLeft: () => <BackButton />,
           }}
         />
