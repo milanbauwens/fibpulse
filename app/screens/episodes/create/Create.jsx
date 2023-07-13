@@ -16,6 +16,7 @@ const Create = ({ route }) => {
   const { bottom } = useSafeAreaInsets();
 
   const slidesRef = useRef(null);
+  const [data] = useState(hasMeasuredPulse ? slides.slice(1) : slides);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selected, setSelected] = useState();
 
@@ -29,21 +30,21 @@ const Create = ({ route }) => {
 
   const scrollTo = async () => {
     handleUpdate();
-    if (currentSlide < slides.length - 1) {
+    if (currentSlide < data.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
-    } else if (currentSlide === slides.length - 1) {
+    } else if (currentSlide === data.length - 1) {
       navigation.navigate('EpisodesCreateConfirmation', { episodeId });
     }
   };
 
   const scrollBack = async () => {
-    if (currentSlide < slides.length) {
+    if (currentSlide < data.length) {
       slidesRef.current.scrollToIndex({ index: currentSlide - 1 });
     }
   };
 
   // Update data
-  const column = slides[currentSlide].column;
+  const column = data[currentSlide].column;
   const queryClient = useQueryClient();
   const mutation = useMutation((value) => updateEpisode(episodeId, column, value), {
     onSuccess: () => {
@@ -60,7 +61,7 @@ const Create = ({ route }) => {
     <SafeAreaView className="relative h-full bg-white">
       <FlatlistPaginator
         currentSlide={currentSlide}
-        data={hasMeasuredPulse ? slides.slice(1) : slides}
+        data={data}
         scrollX={scrollX}
         scrollTo={scrollTo}
         scrollBack={
@@ -71,7 +72,7 @@ const Create = ({ route }) => {
       />
 
       <FlatList
-        data={hasMeasuredPulse ? slides.slice(1) : slides}
+        data={data}
         onScrollToIndexFailed={() => {
           slidesRef.current.scrollToIndex({ index: 0, animated: true });
         }}
@@ -97,7 +98,7 @@ const Create = ({ route }) => {
         className="px-4 absolute left-0 right-0 m-auto flex flex-col justify-center"
       >
         <PrimaryButton
-          label={currentSlide === slides.length - 1 ? ' Hartmoment afronden' : 'Volgende'}
+          label={currentSlide === data.length - 1 ? ' Hartmoment afronden' : 'Volgende'}
           onPress={scrollTo}
         />
       </View>

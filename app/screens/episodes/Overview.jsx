@@ -42,17 +42,24 @@ const Overview = () => {
       {!isLoading ? (
         <View>
           {episodes.data.length > 0 ? (
-            episodes.data.map(({ id, pulse, activity }) => (
-              <EpisodeCard
-                key={id}
-                id={id}
-                startHour="7:45"
-                endHour="8:00"
-                date="7 "
-                activity={activity}
-                pulse={pulse}
-              />
-            ))
+            episodes.data.map(({ id, pulse, activity, created_at }) => {
+              const date = new Date(created_at);
+
+              return (
+                <EpisodeCard
+                  key={id}
+                  id={id}
+                  startHour="7:45"
+                  endHour="8:00"
+                  date={date.toLocaleDateString('nl', {
+                    day: 'numeric',
+                    month: 'long',
+                  })}
+                  activity={activity}
+                  pulse={pulse}
+                />
+              );
+            })
           ) : (
             <EmptyState
               illustration={<EpisodesEmptyState />}

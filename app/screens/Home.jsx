@@ -42,7 +42,7 @@ const Home = () => {
         description="Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis."
         cta="Bekijk alle hartmomenten"
         icon="calendar-heart-outline"
-        onPress={() => navigation.navigate('EpisodesOverview')}
+        onPress={() => navigation.navigate('Episodes')}
       />
       <Insights />
       <SectionCard

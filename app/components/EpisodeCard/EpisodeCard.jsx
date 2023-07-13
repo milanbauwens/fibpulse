@@ -14,7 +14,7 @@ const EpisodeCard = ({ date, startHour, endHour, pulse, activity, id }) => {
           episodeId: id,
         })
       }
-      className="bg-white border shadow-card-md border-deepMarine-100 p-4 rounded-lg"
+      className="bg-white border shadow-card-md border-deepMarine-100 p-4 rounded-lg mb-3"
     >
       <View className="flex flex-row items-baseline mb-4">
         <Text
