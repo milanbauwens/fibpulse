@@ -16,20 +16,22 @@ const Create = ({ route }) => {
   const { bottom } = useSafeAreaInsets();
 
   const slidesRef = useRef(null);
-  const [currentSlide, setCurrentSlide] = useState(hasMeasuredPulse ? 1 : 0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [selected, setSelected] = useState();
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
   const viewableItemsChanged = useRef(({ viewableItems }) => {
-    setCurrentSlide(viewableItems[0].index);
+    if (viewableItems && viewableItems.length > 0) {
+      setCurrentSlide(viewableItems[0].index);
+    }
   }).current;
 
   const scrollTo = async () => {
     handleUpdate();
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
-    } else {
+    } else if (currentSlide === slides.length - 1) {
       navigation.navigate('EpisodesCreateConfirmation', { episodeId });
     }
   };
@@ -51,30 +53,28 @@ const Create = ({ route }) => {
   });
 
   const handleUpdate = async () => {
-    try {
-      await mutation.mutateAsync(selected);
-    } catch (error) {
-      console.log('handleUpdate', error);
-    }
+    await mutation.mutateAsync(selected);
   };
 
   return (
     <SafeAreaView className="relative h-full bg-white">
       <FlatlistPaginator
         currentSlide={currentSlide}
-        data={slides}
+        data={hasMeasuredPulse ? slides.slice(1) : slides}
         scrollX={scrollX}
         scrollTo={scrollTo}
         scrollBack={
-          (!hasMeasuredPulse && currentSlide === 0) || (hasMeasuredPulse && currentSlide === 1)
+          currentSlide === 0
             ? () => navigation.navigate('EpisodesCreatePulse', { episodeId })
             : scrollBack
         }
       />
 
       <FlatList
-        initialScrollIndex={hasMeasuredPulse ? 1 : 0}
-        data={slides}
+        data={hasMeasuredPulse ? slides.slice(1) : slides}
+        onScrollToIndexFailed={() => {
+          slidesRef.current.scrollToIndex({ index: 0, animated: true });
+        }}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (

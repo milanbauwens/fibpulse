@@ -1,9 +1,17 @@
 import { Picker } from '@react-native-picker/picker';
 import { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
 import { AGES } from '../../../__content/ages';
 import colors from '../../../theme/colors';
+import {
+  SpotOther,
+  SpotSitting,
+  SpotSleeping,
+  SpotSports,
+  SpotStanding,
+  SpotWalking,
+} from '../../svg/spotIllustrations';
 import { Icon } from '../Icon/Icon';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
@@ -25,8 +33,9 @@ const Item = ({ data, onSelect }) => {
     <View style={{ width }} className="h-full bg-white mt-8 px-5">
       <View>
         <Title size="large">{data.question}</Title>
-        {data.type === 'multiselect' && <Paragraph>U kan meerdere factoren selecteren.</Paragraph>}
+        {data.description && <Paragraph>{data.description}</Paragraph>}
       </View>
+
       <View className="mt-8">
         {data.type === 'multiselect' && (
           <View className="flex flex-row flex-wrap gap-4">
@@ -62,46 +71,83 @@ const Item = ({ data, onSelect }) => {
           </View>
         )}
 
-        {data.type === 'select' && (
-          <View className="flex flex-col gap-4">
-            {data.options.map((option, index) => {
-              const isSelected = selected === option;
+        {(data.type === 'select' || data.type === 'spot-select') && (
+          <>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: 64 }}
+              className="flex h-4/6 flex-col gap-4"
+            >
+              {data.options.map((option, index) => {
+                const isSelected = selected === option;
 
-              const handleSelect = () => {
-                setSelected(option);
-              };
+                const handleSelect = () => {
+                  setSelected(option);
+                };
 
-              const handleDeselect = () => {
-                setSelected('');
-              };
+                const handleDeselect = () => {
+                  setSelected('');
+                };
 
-              return (
-                <TouchableOpacity
-                  key={index}
-                  onPress={isSelected ? handleDeselect : handleSelect}
-                  activeOpacity={1}
-                  className="px-4 py-3  w-fit rounded-lg flex flex-row items-center justify-between bg-deepMarine-100"
-                >
-                  <Text
-                    style={{ fontFamily: 'Mulish-medium' }}
-                    className="text-base text-turquoise-900"
+                // Determine the spot illustration
+                let spotIllustration;
+                switch (option) {
+                  case 'Slapen':
+                    spotIllustration = <SpotSleeping />;
+                    break;
+                  case 'Zitten':
+                    spotIllustration = <SpotSitting />;
+                    break;
+                  case 'Staan':
+                    spotIllustration = <SpotStanding />;
+                    break;
+                  case 'Andere':
+                    spotIllustration = <SpotOther />;
+                    break;
+                  case 'Wandelen':
+                    spotIllustration = <SpotWalking />;
+                    break;
+                  case 'Sporten':
+                    spotIllustration = <SpotSports />;
+                    break;
+                }
+
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={isSelected ? handleDeselect : handleSelect}
+                    activeOpacity={1}
+                    className={`px-4 py-3  w-fit rounded-lg flex flex-row items-center justify-between ${
+                      data.type === 'spot-select' ? 'bg-white shadow-card-md' : 'bg-deepMarine-100'
+                    } `}
                   >
-                    {option}
-                  </Text>
-
-                  {isSelected ? (
-                    <View className="w-8 h-8 flex items-center justify-center rounded-full bg-white border-2 border-deepMarine-500">
-                      <View className="w-4 h-4 rounded-full bg-deepMarine-500" />
+                    <View className="flex flex-row items-center">
+                      {data.type === 'spot-select' && (
+                        <View className="mr-4">{spotIllustration}</View>
+                      )}
+                      <Text
+                        style={{ fontFamily: 'Mulish-medium' }}
+                        className="text-base text-turquoise-900"
+                      >
+                        {option}
+                      </Text>
                     </View>
-                  ) : (
-                    <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200" />
-                  )}
-                </TouchableOpacity>
-              );
-            })}
-          </View>
+
+                    {isSelected ? (
+                      <View className="w-8 h-8 flex items-center justify-center rounded-full bg-white border-2 border-deepMarine-500">
+                        <View className="w-4 h-4 rounded-full bg-deepMarine-500" />
+                      </View>
+                    ) : (
+                      <View className="w-8 h-8 rounded-full bg-white border border-turquoise-200" />
+                    )}
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </>
         )}
       </View>
+
       {data.type === 'picker' && (
         <View>
           <Label title={data.label} />
@@ -148,6 +194,18 @@ const Item = ({ data, onSelect }) => {
               </View>
             </Popover>
           )}
+        </View>
+      )}
+
+      {data.type === 'textarea' && (
+        <View>
+          <Label title={data.label} />
+          <Input
+            onChangeText={(text) => setSelected(text)}
+            placeholder="Schrijf iets..."
+            variant="textarea"
+            inputMode="text"
+          />
         </View>
       )}
     </View>

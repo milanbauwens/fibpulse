@@ -3,11 +3,28 @@ import { TextInput, View } from 'react-native';
 import colors from '../../../theme/colors';
 import { Icon } from '../../common/Icon/Icon';
 
-const Input = ({ value, icon, error, inputMode, onFocus, onPressIn, disabled }) => (
+const Input = ({
+  variant,
+  value,
+  icon,
+  placeholder,
+  error,
+  inputMode,
+  onFocus,
+  onPressIn,
+  onChangeText,
+  disabled,
+}) => (
   <View className="relative">
     <TextInput
+      onChangeText={onChangeText}
+      multiline={variant === 'textarea'}
+      numberOfLines={variant === 'textarea' ? 4 : 1}
       editable={!disabled}
-      className={`w-full rounded-lg bg-deepMarine-100 h-12 px-4 text-base text-deepMarine-900 ${
+      placeholder={placeholder}
+      className={`w-full ${
+        variant === 'textarea' ? 'h-48' : 'h-12 '
+      } rounded-lg bg-deepMarine-100 px-4 text-base text-deepMarine-900 ${
         error ? 'border-red-500 border bg-red-100' : ''
       }  outline-none transition-all duration-300`}
       style={{

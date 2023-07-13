@@ -8,7 +8,8 @@ import { getEpisodeById } from '../../core/db/modules/episodes/api';
 const Detail = ({ route, navigation }) => {
   const { episodeId } = route.params;
 
-  // Set the title to the date of the episode
+  // TODO
+  // Set the title to the localized date of the episode
   useEffect(() => {
     navigation.setOptions({ title: episodeId });
   }, []);

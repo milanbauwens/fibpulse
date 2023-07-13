@@ -37,6 +37,7 @@ module.exports = [
   },
   {
     question: 'Welke risicofactoren zijn bij u van toepassing?',
+    description: 'U kan meerdere opties selecteren.',
     type: 'multiselect',
     column: 'risk_factors',
     options: [
