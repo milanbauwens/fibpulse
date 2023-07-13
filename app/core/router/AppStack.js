@@ -84,15 +84,16 @@ export const AppStack = () => {
               name="IntakeStart"
               component={IntakeStart}
               options={{
+                headerShown: false,
                 presentation: 'modal',
               }}
             />
             <AppStack.Screen
               name="Intake"
-              component={Intake}
               options={{
                 headerShown: false,
               }}
+              component={Intake}
             />
           </>
         ) : (
