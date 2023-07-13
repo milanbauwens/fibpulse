@@ -78,7 +78,7 @@ export const AppStack = () => {
   if (isLoggedIn) {
     return (
       <AppStack.Navigator screenOptions={screenOptions}>
-        {/* {prevRoute?.name === 'Register' ? (
+        {prevRoute?.name === 'Register' ? (
           <>
             <AppStack.Screen
               name="IntakeStart"
@@ -87,34 +87,23 @@ export const AppStack = () => {
                 presentation: 'modal',
               }}
             />
-            <AppStack.Screen name="Intake" component={Intake} />
+            <AppStack.Screen
+              name="Intake"
+              component={Intake}
+              options={{
+                headerShown: false,
+              }}
+            />
           </>
         ) : (
-          <AppStack.Screen name="Main" component={BottomNavigation} />
-        )} */}
-
-        <AppStack.Screen
-          name="IntakeStart"
-          component={IntakeStart}
-          options={{
-            presentation: 'modal',
-            headerShown: false,
-          }}
-        />
-        <AppStack.Screen
-          name="Intake"
-          component={Intake}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <AppStack.Screen
-          name="Main"
-          component={BottomNavigation}
-          options={{
-            headerShown: false,
-          }}
-        />
+          <AppStack.Screen
+            name="Main"
+            options={{
+              headerShown: false,
+            }}
+            component={BottomNavigation}
+          />
+        )}
 
         {/* Home */}
         <AppStack.Screen
