@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,14 +11,22 @@ import {
   RISK_FACTORS,
 } from '../../__content/medicalProfile.js';
 import DataView from '../../components/DataView/DataView';
+import EmptyState from '../../components/common/EmptyState/EmptyState';
 import LoadingIndicator from '../../components/common/Loading/Loading';
+import IntakeIllustration from '../../components/svg/IntakeIllustration';
 import {
   getMedicalProfile,
   updateMedicalProfile,
 } from '../../core/db/modules/medical_profiles/api';
 
 const MedicalDataScreen = () => {
-  const { data: medicalProfile, isLoading } = useQuery({
+  const navigation = useNavigation();
+
+  const {
+    data: medicalProfile,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['medical_profile'],
     queryFn: getMedicalProfile,
   });
@@ -74,7 +83,19 @@ const MedicalDataScreen = () => {
             <LoadingIndicator />
           </View>
         ) : (
-          <DataView data={formattedData} />
+          <>
+            {!error ? (
+              <DataView data={formattedData} />
+            ) : (
+              <EmptyState
+                illustration={<IntakeIllustration />}
+                title="Nog geen Medische gegevens"
+                description="Om uw profiel te vervolledigen, willen we nog graag enkele zaken over u weten. "
+                cta="voltooi uw medisch profiel"
+                onPress={() => navigation.navigate('MedicalIntakeStart')}
+              />
+            )}
+          </>
         )}
       </View>
     </SafeAreaView>

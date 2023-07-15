@@ -32,7 +32,7 @@ export const AppStack = () => {
   const [completedOnboarding, setCompletedOnboarding] = useState(false);
 
   const routes = navigation.getState()?.routes;
-  const prevRoute = routes && routes[routes.length - 2]; // -2 because -1 is the current route
+  const prevRoute = routes && routes[routes.length - 1];
 
   const checkOnboarding = async () => {
     try {
@@ -78,14 +78,13 @@ export const AppStack = () => {
   if (isLoggedIn) {
     return (
       <AppStack.Navigator screenOptions={screenOptions}>
-        {prevRoute?.name === 'Register' ? (
+        {prevRoute?.params?.screen === 'Register' ? (
           <>
             <AppStack.Screen
               name="IntakeStart"
               component={IntakeStart}
               options={{
                 headerShown: false,
-                presentation: 'modal',
               }}
             />
             <AppStack.Screen
@@ -96,15 +95,16 @@ export const AppStack = () => {
               component={Intake}
             />
           </>
-        ) : (
-          <AppStack.Screen
-            name="Main"
-            options={{
-              headerShown: false,
-            }}
-            component={BottomNavigation}
-          />
-        )}
+        ) : null}
+
+        {/* Main */}
+        <AppStack.Screen
+          name="Main"
+          options={{
+            headerShown: false,
+          }}
+          component={BottomNavigation}
+        />
 
         {/* Home */}
         <AppStack.Screen
@@ -114,7 +114,6 @@ export const AppStack = () => {
             headerShown: false,
           }}
         />
-
         {/* Episodes */}
         <AppStack.Screen
           name="Episodes"
@@ -158,7 +157,6 @@ export const AppStack = () => {
             headerShown: false,
           }}
         />
-
         <AppStack.Screen
           name="EpisodesDetail"
           component={EpisodesDetail}
@@ -166,7 +164,6 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
-
         {/* Settings */}
         <AppStack.Screen name="Settings" component={Settings} />
         <AppStack.Screen
@@ -186,6 +183,22 @@ export const AppStack = () => {
             headerTitle: 'Account',
             headerLeft: () => <BackButton />,
           }}
+        />
+
+        {/* Medical Profile */}
+        <AppStack.Screen
+          name="MedicalIntakeStart"
+          component={IntakeStart}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <AppStack.Screen
+          name="MedicalIntake"
+          options={{
+            headerShown: false,
+          }}
+          component={Intake}
         />
       </AppStack.Navigator>
     );
