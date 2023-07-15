@@ -15,7 +15,7 @@ const Overview = () => {
   const navigation = useNavigation();
 
   const { data: episodes, isLoading } = useQuery({
-    queryKey: ['medical_profile'],
+    queryKey: ['episodes'],
     queryFn: getEpisodesByUser,
   });
 
