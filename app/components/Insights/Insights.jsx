@@ -20,7 +20,7 @@ const Insights = () => {
       <InsightCard width={cardWith} variant="turquoise" icon="calendar-heart-outline">
         Al <Paragraph isStrong>4 dagen</Paragraph> geen onregelmatige hartslag.
       </InsightCard>
-      <InsightCard width={cardWith} variant="ochre" icon="run">
+      <InsightCard width={cardWith} variant="ochre" icon="kayak-outline">
         Al <Paragraph isStrong>2 keer</Paragraph> een moment na het sporten.
       </InsightCard>
       <InsightCard isLast variant="success" width={cardWith} icon="trend-down">

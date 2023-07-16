@@ -1,4 +1,4 @@
-import { Path, Svg } from 'react-native-svg';
+import { ClipPath, Defs, G, Path, Svg } from 'react-native-svg';
 
 import colors from '../../../theme/colors';
 
@@ -215,12 +215,131 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
-    case 'run':
+    case 'kayak-outline':
       icon = (
-        <Path
-          d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.17 12l.57-2.5 2.1 2v5c0 .55.45 1 1 1s1-.45 1-1v-5.64c0-.55-.22-1.07-.62-1.45l-1.48-1.41.6-3a7.321 7.321 0 004.36 2.41c.6.09 1.14-.39 1.14-1 0-.49-.36-.9-.85-.98-1.52-.25-2.78-1.15-3.45-2.33l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L7.21 7.76a2.01 2.01 0 00-1.22 1.85v2.37c0 .55.45 1 1 1s1-.45 1-1v-2.4l1.8-.7-1.6 8.1-3.92-.8c-.54-.11-1.07.24-1.18.78V17c-.11.54.24 1.07.78 1.18l4.11.82a2 2 0 002.34-1.52z"
-          fill={color}
-        />
+        <>
+          <G
+            clipPath="url(#clip0_1302_3007)"
+            stroke={color}
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <Path d="M6.414 6.414a2 2 0 000-2.828L5 2.172 2.172 5l1.414 1.414a2 2 0 002.828 0zM17.586 17.586a2 2 0 000 2.828L19 21.828 21.828 19l-1.414-1.414a2 2 0 00-2.828 0zM6.5 6.5l11 11M22 2.5C12.017 5.101 4.373 10.452 2 22c9.983-2.601 17.627-7.952 20-19.5zM6.5 12.5l5 5M12.5 6.5l5 5" />
+          </G>
+          <Defs>
+            <ClipPath id="clip0_1302_3007">
+              <Path fill="#fff" d="M0 0H24V24H0z" />
+            </ClipPath>
+          </Defs>
+        </>
+      );
+      break;
+
+    case 'chair-outline':
+      icon = (
+        <>
+          <G
+            clipPath="url(#clip0_1302_3010)"
+            stroke={color}
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <Path d="M5 11a2 2 0 012 2v2h10v-2a2 2 0 014 0v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4a2 2 0 012-2z" />
+            <Path d="M5 11V6a3 3 0 013-3h8a3 3 0 013 3v5M6 19v2M18 19v2" />
+          </G>
+          <Defs>
+            <ClipPath id="clip0_1302_3010">
+              <Path fill="#fff" d="M0 0H24V24H0z" />
+            </ClipPath>
+          </Defs>
+        </>
+      );
+      break;
+
+    case 'walk-outline':
+      icon = (
+        <>
+          <G
+            clipPath="url(#clip0_1302_3006)"
+            stroke={color}
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <Path d="M12 4a1 1 0 102 0 1 1 0 00-2 0zM7 21l3-4M16 21l-2-4-3-3 1-6" />
+            <Path d="M6 12l2-3 4-1 3 3 3 1" />
+          </G>
+          <Defs>
+            <ClipPath id="clip0_1302_3006">
+              <Path fill="#fff" d="M0 0H24V24H0z" />
+            </ClipPath>
+          </Defs>
+        </>
+      );
+      break;
+
+    case 'cactus-outline':
+      icon = (
+        <>
+          <G
+            clipPath="url(#clip0_1302_3009)"
+            stroke={color}
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <Path d="M6 9v1a3 3 0 003 3h1M18 8v5a3 3 0 01-3 3h-1M10 21V5a2 2 0 114 0v16M7 21h10" />
+          </G>
+          <Defs>
+            <ClipPath id="clip0_1302_3009">
+              <Path fill="#fff" d="M0 0H24V24H0z" />
+            </ClipPath>
+          </Defs>
+        </>
+      );
+      break;
+
+    case 'night-outline':
+      icon = (
+        <>
+          <G
+            clipPath="url(#clip0_1302_3008)"
+            stroke={color}
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <Path d="M12 3h.393a7.5 7.5 0 007.92 12.446A9 9 0 1112 2.992V3zM17 4a2 2 0 002 2 2 2 0 00-2 2 2 2 0 00-2-2 2 2 0 002-2zM19 11h2m-1-1v2" />
+          </G>
+          <Defs>
+            <ClipPath id="clip0_1302_3008">
+              <Path fill="#fff" d="M0 0H24V24H0z" />
+            </ClipPath>
+          </Defs>
+        </>
+      );
+      break;
+
+    case 'dots-horizontal':
+      icon = (
+        <>
+          <G
+            clipPath="url(#clip0_1303_2986)"
+            stroke={color}
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <Path d="M4 12a1 1 0 102 0 1 1 0 00-2 0zM11 12a1 1 0 102 0 1 1 0 00-2 0zM18 12a1 1 0 102 0 1 1 0 00-2 0z" />
+          </G>
+          <Defs>
+            <ClipPath id="clip0_1303_2986">
+              <Path fill="#fff" d="M0 0H24V24H0z" />
+            </ClipPath>
+          </Defs>
+        </>
       );
       break;
 
@@ -459,6 +578,18 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       icon = (
         <Path
           d="M15.5 11.5h-1l-1.5 3-2-6-1.5 3h-1m3.493-6.364c-2-2.338-5.333-2.966-7.838-.826s-2.858 5.719-.89 8.25c1.485 1.912 5.706 5.751 7.683 7.515.363.324.545.486.758.55.184.055.39.055.575 0 .212-.064.394-.226.757-.55 1.977-1.764 6.198-5.603 7.684-7.515 1.967-2.531 1.658-6.132-.89-8.25-2.549-2.118-5.84-1.512-7.839.826z"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'zap-outline':
+      icon = (
+        <Path
+          d="M13 2L4.093 12.688c-.348.418-.523.628-.525.804a.5.5 0 00.185.397c.138.111.41.111.955.111H12l-1 8 8.907-10.688c.348-.418.523-.628.525-.804a.5.5 0 00-.185-.397c-.138-.111-.41-.111-.955-.111H12l1-8z"
           stroke={color}
           strokeWidth={2}
           strokeLinecap="round"
