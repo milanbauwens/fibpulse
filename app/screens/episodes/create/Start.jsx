@@ -39,7 +39,7 @@ const Start = () => {
           Leg een nieuw hartmoment vast
         </Title>
       </View>
-      <Paragraph className="text-center">
+      <Paragraph styles="text-center">
         De volgende vragen bundelen alle ervaringen die u had tijdens uw onregelmatige hartslag.
       </Paragraph>
 

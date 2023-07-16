@@ -36,7 +36,7 @@ const EpisodePaginator = () => {
         </TouchableOpacity>
         <Icon size={24} />
       </View>
-      <Paragraph className="">{getFormattedMonthYear()}</Paragraph>
+      <Paragraph>{getFormattedMonthYear()}</Paragraph>
       <View className="flex flex-row ">
         <TouchableOpacity activeOpacity={0.8} className="mr-2" onPress={handleNext}>
           <Icon name="chevron-right" size={24} />

@@ -17,7 +17,7 @@ export const OnboardingItem = ({ item }) => {
       </View>
       <View className="mt-6 px-5">
         <Display>{item.title}</Display>
-        <Paragraph className="mb-4 max-w-xs">{item.description}</Paragraph>
+        <Paragraph styles="mb-4 max-w-xs">{item.description}</Paragraph>
       </View>
     </View>
   );

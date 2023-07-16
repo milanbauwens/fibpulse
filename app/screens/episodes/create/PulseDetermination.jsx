@@ -34,7 +34,7 @@ const PulseDetermination = ({ route }) => {
     <SafeAreaView className="px-5 relative w-full h-screen bg-white">
       <View className="mt-6 mb-4">
         <Title size="large">Heeft u een meting kunnen maken van uw hartslag? </Title>
-        <Paragraph className="max-w-[90%]">
+        <Paragraph styles="max-w-[90%]">
           U kunt dit bereiken met behulp van een smartwatch, hartslagmeter of door uw pols te meten.
         </Paragraph>
       </View>

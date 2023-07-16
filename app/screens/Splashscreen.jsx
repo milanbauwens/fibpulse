@@ -7,7 +7,7 @@ import colors from '../theme/colors';
 
 export function SplashscreenLoader({ children }) {
   const [isSplashReady, setSplashReady] = useState(false);
-  const [fontsLoaded] = useFonts({
+  const [loaded, error] = useFonts({
     // Mulish Fonts
     'Mulish-regular': require('../../assets/fonts/Mulish-Regular.ttf'),
     'Mulish-medium': require('../../assets/fonts/Mulish-Medium.ttf'),
@@ -22,16 +22,15 @@ export function SplashscreenLoader({ children }) {
 
   useEffect(() => {
     async function prepare() {
-      try {
-      } catch (e) {
-        console.error('Error:', e);
-      } finally {
+      if (loaded) {
         setSplashReady(true);
+      } else if (error) {
+        console.log(error);
       }
     }
 
     prepare();
-  }, []);
+  }, [loaded]);
 
   if (!isSplashReady) {
     return null;

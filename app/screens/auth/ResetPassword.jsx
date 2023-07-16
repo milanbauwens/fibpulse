@@ -41,7 +41,7 @@ const ResetPassword = () => {
     <SafeAreaView className=" bg-white h-full px-4">
       <BackButton onPress={() => navigation.navigate('Login')} />
       <Title size="large">Wachtwoord vergeten</Title>
-      <Paragraph className="mb-12">
+      <Paragraph styles="mb-12">
         Vul uw e-mail in en wij sturen u een mail om uw wachtwoord te herstellen.
       </Paragraph>
 

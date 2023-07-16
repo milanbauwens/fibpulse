@@ -16,7 +16,7 @@ const LifestyleCard = ({ category, content, imageURL }) => {
           {category}
         </Text>
         <Title size="medium">Wist je dat...</Title>
-        <Paragraph className="mt-[-4]">{content}</Paragraph>
+        <Paragraph styles="mt-[-4]">{content}</Paragraph>
       </View>
       <Image
         source={{ uri: imageURL }}

@@ -24,7 +24,7 @@ const SectionCard = ({
       <View>
         <Label title={label} />
         <Title size="medium">{title}</Title>
-        <Paragraph className={children ? 'mb-4' : ''}>{description}</Paragraph>
+        <Paragraph styles={children ? 'mb-4' : ''}>{description}</Paragraph>
       </View>
       {children}
       <View>
@@ -36,7 +36,7 @@ const SectionCard = ({
         >
           <View className="flex flex-row">
             <Icon name="calendar-outline" size={24} color="white" />
-            <Paragraph className="ml-2" textColor="text-white">
+            <Paragraph styles="ml-2" textColor="text-white">
               {cta}
             </Paragraph>
           </View>

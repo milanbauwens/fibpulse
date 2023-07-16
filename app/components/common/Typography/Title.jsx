@@ -4,20 +4,33 @@ const Title = ({
   size = 'small' || 'large' || 'medium',
   children,
   textCenter,
-  props,
   color = 'text-deepMarine-900',
-}) => (
-  <Text
-    style={{ fontFamily: 'Bitter-semibold' }}
-    className={`
-      ${size === 'small' && 'text-lg sm:text-base'} 
-      ${size === 'medium' && 'text-xl sm:text-lg'} 
-      ${size === 'large' && 'text-2xl small:text-lg'}
-     ${color} mb-1 ${textCenter && 'text-center'}`}
-    {...props}
-  >
-    {children}
-  </Text>
-);
+}) => {
+  let variant;
+
+  switch (size) {
+    case 'small':
+      variant = 'text-lg sm:text-base';
+      break;
+    case 'medium':
+      variant = 'text-xl sm:text-lg';
+      break;
+    case 'large':
+      variant = 'text-2xl small:text-lg';
+      break;
+    default:
+      variant = 'text-lg sm:text-base';
+      break;
+  }
+
+  return (
+    <Text
+      style={{ fontFamily: 'Bitter-semibold' }}
+      className={`${variant} ${color} mb-1 ${textCenter && 'text-center'}`}
+    >
+      {children}
+    </Text>
+  );
+};
 
 export default Title;

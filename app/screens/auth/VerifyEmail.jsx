@@ -34,7 +34,7 @@ const VerifyEmail = () => {
         <Title size="large" textCenter>
           Verifieer uw account
         </Title>
-        <Paragraph className="text-center">
+        <Paragraph styles="text-center">
           Om door te gaan, moet u uw e-mailadres verifiëren. Controleer uw inbox of spam en volg de
           stappen.
         </Paragraph>

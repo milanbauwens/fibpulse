@@ -21,7 +21,7 @@ const Confirmation = ({ route }) => {
         <Title textCenter size="large">
           Hartmoment vastgelegd!
         </Title>
-        <Paragraph className="text-center max-w-[90%]">
+        <Paragraph styles="text-center max-w-[90%]">
           Het moment is toegevoegd aan uw dagboek. Als u iets bent vergeten kan u deze steeds
           aanpassen.
         </Paragraph>

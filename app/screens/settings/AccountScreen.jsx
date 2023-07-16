@@ -43,7 +43,7 @@ const AccountScreen = () => {
           >
             Account Verwijderen?
           </Text>
-          <Paragraph className="mb-10" textColor="text-deepMarine-700">
+          <Paragraph styles="mb-10" textColor="text-deepMarine-700">
             Bent u zeker dat u uw account wil verwijderen? Deze stap is onomkeerbaar en alle
             vooruitgang zal verloren gaan.
           </Paragraph>

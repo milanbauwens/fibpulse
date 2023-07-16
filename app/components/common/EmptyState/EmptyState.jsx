@@ -10,7 +10,7 @@ const EmptyState = ({ illustration, title, description, icon, cta, onPress }) =>
       <Title size="medium" textCenter>
         {title}
       </Title>
-      <Paragraph className="text-center">{description}</Paragraph>
+      <Paragraph styles="text-center">{description}</Paragraph>
     </View>
     <PrimaryButton icon={icon} label={cta} onPress={onPress} />
   </View>

@@ -34,7 +34,7 @@ const IntakeStart = () => {
           Uw medisch profiel in kaart brengen
         </Title>
       </View>
-      <Paragraph className="text-center">
+      <Paragraph styles="text-center">
         Met uw medische gegevens, proberen we meer inzichten te krijgen in hoe uw ritmestoornis in
         elkaar zit.
       </Paragraph>
@@ -42,7 +42,7 @@ const IntakeStart = () => {
         <View className="rounded-full bg-turquoise-200 w-8 h-8 flex items-center justify-center">
           <Icon name="clock-outline" size={20} color={colors.turquoise[700]} />
         </View>
-        <Paragraph className="ml-3" textColor="text-deepMarine-900" isStrong>
+        <Paragraph styles="ml-3" textColor="text-deepMarine-900" isStrong>
           5-8 minuten
         </Paragraph>
       </View>
