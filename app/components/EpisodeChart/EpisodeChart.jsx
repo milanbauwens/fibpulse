@@ -6,6 +6,7 @@ import { LineChart } from 'react-native-chart-kit';
 import { getEpisodesByDate } from '../../core/db/modules/episodes/api';
 import colors from '../../theme/colors';
 import { Paragraph } from '../common/Typography';
+import { SpotEpisodes } from '../svg/spotIllustrations';
 
 const EpisodeChart = () => {
   const { width } = useWindowDimensions();
@@ -92,42 +93,51 @@ const EpisodeChart = () => {
         </Animated.View>
       </View>
 
-      <LineChart
-        data={{
-          labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
-          datasets: [
-            {
-              data: !isLoading ? Object.values(episodesByDay) : [0, 0, 0, 0, 0, 0, 0],
+      {!isLoading && episodes.data.length > 0 ? (
+        <LineChart
+          data={{
+            labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
+            datasets: [
+              {
+                data: !isLoading ? Object.values(episodesByDay) : [0, 0, 0, 0, 0, 0, 0],
+              },
+            ],
+          }}
+          width={width - 40 - 32} // minus screen padding and card padding
+          height={228}
+          chartConfig={{
+            propsForLabels: {
+              fontSize: 14,
+              fontWeight: 'semibold',
             },
-          ],
-        }}
-        width={width - 40 - 32} // minus screen padding and card padding
-        height={228}
-        chartConfig={{
-          propsForLabels: {
-            fontSize: 14,
-            fontWeight: 'semibold',
-          },
-          backgroundColor: 'white',
-          fillShadowGradientFrom: colors.ochre[500],
-          fillShadowGradientOpacity: 0.5,
-          backgroundGradientFrom: 'white',
-          backgroundGradientTo: 'white',
-          backgroundGradientFromOpacity: 0,
-          decimalPlaces: 0, // optional, defaults to 2dp
-          color: () => colors.ochre[400],
-          labelColor: () => colors.turquoise[700],
-          style: {
-            borderRadius: 16,
-          },
-          propsForDots: {
-            r: '6',
-            strokeWidth: '2',
-            stroke: colors.ochre[500],
-          },
-        }}
-        bezier
-      />
+            backgroundColor: 'white',
+            fillShadowGradientFrom: colors.ochre[500],
+            fillShadowGradientOpacity: 0.5,
+            backgroundGradientFrom: 'white',
+            backgroundGradientTo: 'white',
+            backgroundGradientFromOpacity: 0,
+            decimalPlaces: 0, // optional, defaults to 2dp
+            color: () => colors.ochre[400],
+            labelColor: () => colors.turquoise[700],
+            style: {
+              borderRadius: 16,
+            },
+            propsForDots: {
+              r: '6',
+              strokeWidth: '2',
+              stroke: colors.ochre[500],
+            },
+          }}
+          bezier
+        />
+      ) : (
+        <View className="h-48 flex flex-col bg-deepMarine-100 rounded-lg p-3 items-center justify-center">
+          <SpotEpisodes />
+          <Paragraph styles="text-center mt-2" textColor="text-turquoise-500">
+            Geen hartmomenten deze week
+          </Paragraph>
+        </View>
+      )}
     </>
   );
 };
