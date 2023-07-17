@@ -6,6 +6,7 @@ import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
 import EpisodePaginator from '../../components/EpisodePaginator/EpisodePaginator';
 import EmptyState from '../../components/common/EmptyState/EmptyState';
 import { Icon } from '../../components/common/Icon/Icon';
+import { EpisodeSkeleton } from '../../components/common/Skeleton';
 import { Title } from '../../components/common/Typography';
 import EpisodesEmptyState from '../../components/svg/EpisodesEmptyState';
 import { getEpisodesByUser } from '../../core/db/modules/episodes/api';
@@ -75,8 +76,9 @@ const Overview = () => {
             />
           )}
         </View>
-      ) : // TODO Skeleton loading
-      null}
+      ) : (
+        <EpisodeSkeleton count={4} />
+      )}
     </ScrollView>
   );
 };
