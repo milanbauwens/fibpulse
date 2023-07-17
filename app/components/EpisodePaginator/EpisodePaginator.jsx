@@ -27,6 +27,7 @@ const EpisodePaginator = ({ onChange }) => {
   };
 
   const handleReset = () => {
+    // Check if the next month and year is not in the future
     if (currentDate.getMonth() === new Date().getMonth()) return;
 
     setCurrentDate(new Date());
@@ -45,7 +46,7 @@ const EpisodePaginator = ({ onChange }) => {
         </TouchableOpacity>
         <Icon size={24} />
       </View>
-      <Paragraph>{getFormattedMonthYear()}</Paragraph>
+      <Paragraph isStrong>{getFormattedMonthYear()}</Paragraph>
       <View className="flex flex-row ">
         <TouchableOpacity activeOpacity={0.8} className="mr-2" onPress={handleNext}>
           <Icon name="chevron-right" size={24} />

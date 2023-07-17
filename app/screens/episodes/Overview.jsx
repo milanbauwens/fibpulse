@@ -34,7 +34,7 @@ const Overview = () => {
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate('EpisodesCreateStart')}
-          className="bg-turquoise-200 w-10 h-10 rounded-full flex items-center justify-center"
+          className="bg-turquoise-200 mb-1 w-10 h-10 rounded-full flex items-center justify-center"
         >
           <Icon name="plus" size={24} color={colors.deepMarine[500]} />
         </TouchableOpacity>

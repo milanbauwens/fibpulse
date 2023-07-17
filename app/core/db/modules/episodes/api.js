@@ -51,3 +51,10 @@ export const getEpisodesByDate = async (date) => {
     .lte('created_at', endDate.toISOString()) // Filter episodes created on or before the end of the month
     .throwOnError();
 };
+
+export const deleteEpisodeById = async (id) => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  return await supabase.from('episodes').delete().match({ id, user_id }).throwOnError();
+};

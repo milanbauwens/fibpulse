@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Animated, View, useWindowDimensions } from 'react-native';
 
@@ -6,9 +5,8 @@ import colors from '../../../theme/colors';
 import BackButton from '../Buttons/BackButton';
 import { Icon } from '../Icon/Icon';
 
-const Paginator = ({ data, currentSlide, scrollX, scrollBack }) => {
+const Paginator = ({ data, scrollX, scrollBack, onClose }) => {
   const { width } = useWindowDimensions();
-  const navigation = useNavigation();
 
   return (
     <View className="w-full relative flex justify-center items-center">
@@ -37,12 +35,7 @@ const Paginator = ({ data, currentSlide, scrollX, scrollBack }) => {
         </View>
       </View>
       <View className="absolute right-5 top-8">
-        <Icon
-          name="close"
-          size={32}
-          color={colors.turquoise[700]}
-          onPress={() => navigation.navigate('Main')}
-        />
+        <Icon name="close" size={32} color={colors.turquoise[700]} onPress={onClose} />
       </View>
     </View>
   );
