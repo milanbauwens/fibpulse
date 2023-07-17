@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { Icon } from '../common/Icon/Icon';
 import { Paragraph } from '../common/Typography';
 
-const EpisodePaginator = () => {
+const EpisodePaginator = ({ onChange }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    onChange(currentDate);
+  }, [currentDate, onChange]);
 
   const handlePrevious = () => {
     const previousDate = new Date(currentDate);
@@ -14,12 +18,17 @@ const EpisodePaginator = () => {
   };
 
   const handleNext = () => {
+    // Check if the next month is not in the future
+    if (currentDate.getMonth() === new Date().getMonth()) return;
+
     const nextDate = new Date(currentDate);
     nextDate.setMonth(nextDate.getMonth() + 1);
     setCurrentDate(nextDate);
   };
 
   const handleReset = () => {
+    if (currentDate.getMonth() === new Date().getMonth()) return;
+
     setCurrentDate(new Date());
   };
 

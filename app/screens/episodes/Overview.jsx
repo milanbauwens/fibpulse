@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
@@ -9,15 +10,16 @@ import { Icon } from '../../components/common/Icon/Icon';
 import { EpisodeSkeleton } from '../../components/common/Skeleton';
 import { Title } from '../../components/common/Typography';
 import EpisodesEmptyState from '../../components/svg/EpisodesEmptyState';
-import { getEpisodesByUser } from '../../core/db/modules/episodes/api';
+import { getEpisodesByDate } from '../../core/db/modules/episodes/api';
 import colors from '../../theme/colors';
 
 const Overview = () => {
   const navigation = useNavigation();
+  const [date, setDate] = useState(new Date());
 
   const { data: episodes, isLoading } = useQuery({
-    queryKey: ['episodes'],
-    queryFn: getEpisodesByUser,
+    queryKey: ['episodes', date.toISOString()],
+    queryFn: ({ queryKey }) => getEpisodesByDate(queryKey[1]),
   });
 
   return (
@@ -38,11 +40,11 @@ const Overview = () => {
         </TouchableOpacity>
       </View>
 
-      <EpisodePaginator />
+      <EpisodePaginator onChange={(date) => setDate(date)} />
 
       {!isLoading ? (
         <View>
-          {episodes.data.length > 0 ? (
+          {episodes && episodes.data.length > 0 ? (
             episodes.data.map(({ id, pulse, activity, created_at }) => {
               const date = new Date(created_at);
 

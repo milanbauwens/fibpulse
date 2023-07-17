@@ -121,8 +121,14 @@ const Detail = ({ route, navigation }) => {
           icon="activity-heart-outline"
           description="Uw hartslag is handmatig door u of door een medisch apparaat vastgesteld."
         >
-          <Paragraph>Slagen per minuut</Paragraph>
-          <Title size="large">{pulse}</Title>
+          {activity ? (
+            <>
+              <Paragraph>Slagen per minuut</Paragraph>
+              <Title size="large">{pulse}</Title>
+            </>
+          ) : (
+            <Paragraph>U heeft geen hartslag vastgesteld.</Paragraph>
+          )}
         </MeasureCard>
       </View>
 
@@ -133,9 +139,16 @@ const Detail = ({ route, navigation }) => {
           icon="zap-outline"
           description="U was volgende activiteit aan het uitoefenen."
         >
-          <Paragraph>u was aan het</Paragraph>
-          <Title size="large">{activity}</Title>
+          {activity ? (
+            <>
+              <Paragraph>u was aan het</Paragraph>
+              <Title size="large">{activity}</Title>
+            </>
+          ) : (
+            <Paragraph>U heeft geen activiteit aangeduid.</Paragraph>
+          )}
         </MeasureCard>
+
         <View className="mt-2 mb-6">
           <MeasureCard
             title="Symptomen"
@@ -143,31 +156,38 @@ const Detail = ({ route, navigation }) => {
             description="Tijdens uw hartmoment had u onderstaande symptomen in lichte of hevige vorm. "
           >
             <View className="flex flex-row flex-wrap">
-              {!isLoading &&
-                symptoms.length > 0 &&
-                symptoms.map((symptom, index) => (
-                  <View
-                    key={index}
-                    className=" mr-2 my-1 bg-turquoise-200 rounded-full flex flex-row items-start px-4 py-2"
-                  >
-                    <Text
-                      style={{ fontFamily: 'Mulish-bold' }}
-                      className="text-sm text-deepMarine-600"
+              {symptoms && symptoms.length > 0 ? (
+                <>
+                  {symptoms.map((symptom, index) => (
+                    <View
+                      key={index}
+                      className=" mr-2 my-1 bg-turquoise-200 rounded-full flex flex-row items-start px-4 py-2"
                     >
-                      {symptom}
-                    </Text>
-                  </View>
-                ))}
+                      <Text
+                        style={{ fontFamily: 'Mulish-bold' }}
+                        className="text-sm text-deepMarine-600"
+                      >
+                        {symptom}
+                      </Text>
+                    </View>
+                  ))}
+                </>
+              ) : (
+                <Paragraph>U heeft geen symptomen aangeduid</Paragraph>
+              )}
             </View>
           </MeasureCard>
         </View>
-        <View>
-          <Label title="Notities" />
 
-          <MeasureCard description="Enkele opmerkingen die u niet wou vergeten over uw hartmoment. ">
-            <Paragraph>{notes}</Paragraph>
-          </MeasureCard>
-        </View>
+        {notes && (
+          <View>
+            <Label title="Notities" />
+
+            <MeasureCard description="Enkele opmerkingen die u niet wou vergeten over uw hartmoment. ">
+              <Paragraph>{notes}</Paragraph>
+            </MeasureCard>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

@@ -32,3 +32,22 @@ export const getEpisodeById = async (id) => {
 
   return await supabase.from('episodes').select('*').match({ id, user_id }).single().throwOnError();
 };
+
+export const getEpisodesByDate = async (date) => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+  const dateObj = new Date(date);
+  const month = dateObj.getMonth() + 1;
+  const year = dateObj.getFullYear();
+
+  const startDate = new Date(year, month - 1, 1, 0, 0, 0, 0); // Start of the month
+  const endDate = new Date(year, month, 0, 23, 59, 59, 999); // End of the month
+
+  return await supabase
+    .from('episodes')
+    .select('*')
+    .match({ user_id })
+    .gte('created_at', startDate.toISOString()) // Filter episodes created on or after the start of the month
+    .lte('created_at', endDate.toISOString()) // Filter episodes created on or before the end of the month
+    .throwOnError();
+};
