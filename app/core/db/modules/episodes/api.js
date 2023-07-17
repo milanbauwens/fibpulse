@@ -52,6 +52,19 @@ export const getEpisodesByDate = async (date) => {
     .throwOnError();
 };
 
+export const getEpisodesByDateRange = async (startDate, endDate) => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  return await supabase
+    .from('episodes')
+    .select('*')
+    .match({ user_id })
+    .gte('created_at', startDate.toISOString()) // Filter episodes created on or after the start of the month
+    .lte('created_at', endDate.toISOString()) // Filter episodes created on or before the end of the month
+    .throwOnError();
+};
+
 export const deleteEpisodeById = async (id) => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;

@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScrollView, Text, View } from 'react-native';
 
 import CTACard from '../components/CTACard/CTACard';
+import EpisodeChart from '../components/EpisodeChart/EpisodeChart';
 import Insights from '../components/Insights/Insights';
 import SectionCard from '../components/SectionCard/SectionCard';
 import { useAuthContext } from '../components/auth/AuthProvider';
@@ -43,7 +44,9 @@ const Home = () => {
         cta="Bekijk alle hartmomenten"
         icon="calendar-heart-outline"
         onPress={() => navigation.navigate('Episodes')}
-      />
+      >
+        <EpisodeChart />
+      </SectionCard>
       <Insights />
       <SectionCard
         withImage
