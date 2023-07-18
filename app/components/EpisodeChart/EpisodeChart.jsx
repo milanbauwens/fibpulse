@@ -121,7 +121,7 @@ const EpisodeChart = () => {
                 },
                 propsForDots: {
                   r: '4',
-                  strokeWidth: '1',
+                  strokeWidth: '2',
                   stroke: colors.ochre[500],
                 },
               }}
