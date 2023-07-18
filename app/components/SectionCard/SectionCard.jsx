@@ -20,14 +20,14 @@ const SectionCard = ({
     {withImage && (
       <Image className="w-full h-36 rounded-t-lg" style={{ resizeMode: 'cover' }} source={source} />
     )}
-    <View>
-      <View className="p-4">
+    <View className="p-4">
+      <View>
         <Label title={label} />
         <Title size="medium">{title}</Title>
         <Paragraph styles={children ? 'mb-4' : ''}>{description}</Paragraph>
       </View>
       {children}
-      <View className="p-4">
+      <View>
         <Line />
         <TouchableOpacity
           className="bg-deepMarine-500 p-3 rounded-lg flex flex-row justify-between items-center"

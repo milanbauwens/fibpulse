@@ -53,7 +53,7 @@ const EpisodeChart = () => {
 
   return (
     <>
-      <View className=" px-4 flex flex-row items-center justify-between mb-7">
+      <View className="flex flex-row items-center justify-between mb-7">
         <Paragraph isStrong textColor="text-turquoise-500">
           {selectedView === 'week'
             ? `${startOfWeekDate.toLocaleDateString('nl', {
@@ -91,7 +91,7 @@ const EpisodeChart = () => {
         <View className="relative w-full">
           {episodes && episodes.data.length > 0 ? (
             <LineChart
-              className="w-full ml-[-20px]"
+              className="w-full ml-[-38px]"
               data={{
                 labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
                 datasets: [
