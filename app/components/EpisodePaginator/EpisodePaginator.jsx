@@ -18,13 +18,20 @@ const EpisodePaginator = ({ onChange }) => {
     setCurrentDate(previousDate);
   };
 
-  const handleNext = () => {
-    // Check if the next month and year is not in the future
+  const isInFuture = () => {
     if (
       currentDate.getMonth() === new Date().getMonth() &&
       currentDate.getFullYear() === new Date().getFullYear()
-    )
-      return;
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleNext = () => {
+    // Check if the next month and year is not in the future
+    if (isInFuture()) return;
 
     const nextDate = new Date(currentDate);
     nextDate.setMonth(nextDate.getMonth() + 1);
@@ -33,11 +40,7 @@ const EpisodePaginator = ({ onChange }) => {
 
   const handleReset = () => {
     // Check if the next month and year is not in the future
-    if (
-      currentDate.getMonth() === new Date().getMonth() &&
-      currentDate.getFullYear() === new Date().getFullYear()
-    )
-      return;
+    if (isInFuture()) return;
 
     setCurrentDate(new Date());
   };
