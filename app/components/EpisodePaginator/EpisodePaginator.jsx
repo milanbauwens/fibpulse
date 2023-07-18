@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
+import colors from '../../theme/colors';
 import { Icon } from '../common/Icon/Icon';
 import { Paragraph } from '../common/Typography';
 
@@ -18,8 +19,12 @@ const EpisodePaginator = ({ onChange }) => {
   };
 
   const handleNext = () => {
-    // Check if the next month is not in the future
-    if (currentDate.getMonth() === new Date().getMonth()) return;
+    // Check if the next month and year is not in the future
+    if (
+      currentDate.getMonth() === new Date().getMonth() &&
+      currentDate.getFullYear() === new Date().getFullYear()
+    )
+      return;
 
     const nextDate = new Date(currentDate);
     nextDate.setMonth(nextDate.getMonth() + 1);
@@ -28,7 +33,11 @@ const EpisodePaginator = ({ onChange }) => {
 
   const handleReset = () => {
     // Check if the next month and year is not in the future
-    if (currentDate.getMonth() === new Date().getMonth()) return;
+    if (
+      currentDate.getMonth() === new Date().getMonth() &&
+      currentDate.getFullYear() === new Date().getFullYear()
+    )
+      return;
 
     setCurrentDate(new Date());
   };
@@ -49,10 +58,28 @@ const EpisodePaginator = ({ onChange }) => {
       <Paragraph isStrong>{getFormattedMonthYear()}</Paragraph>
       <View className="flex flex-row ">
         <TouchableOpacity activeOpacity={0.8} className="mr-2" onPress={handleNext}>
-          <Icon name="chevron-right" size={24} />
+          <Icon
+            name="chevron-right"
+            size={24}
+            color={
+              currentDate.getMonth() === new Date().getMonth() &&
+              currentDate.getFullYear() === new Date().getFullYear()
+                ? colors.turquoise[400]
+                : colors.turquoise[700]
+            }
+          />
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.8} onPress={handleReset}>
-          <Icon name="chevron-skip-back" size={24} />
+          <Icon
+            name="chevron-skip-back"
+            size={24}
+            color={
+              currentDate.getMonth() === new Date().getMonth() &&
+              currentDate.getFullYear() === new Date().getFullYear()
+                ? colors.turquoise[400]
+                : colors.turquoise[700]
+            }
+          />
         </TouchableOpacity>
       </View>
     </View>
