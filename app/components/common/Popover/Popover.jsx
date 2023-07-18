@@ -22,7 +22,10 @@ const Popover = ({
         setModalVisible(!modalVisible);
       }}
     >
-      <View className="w-full h-full absolute justify-center items-center">{children}</View>
+      <Modal transparent visible={isVisible} animationType="fade">
+        <View className="w-full h-full bg-black opacity-25" />
+        <View className="w-full h-full absolute justify-center items-center">{children}</View>
+      </Modal>
     </Modal>
   );
 };

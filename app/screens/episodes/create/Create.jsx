@@ -75,24 +75,22 @@ const Create = ({ route }) => {
 
   return (
     <SafeAreaView className="relative h-full bg-white">
-      {isVisible && (
-        <Popover animationType="slide" isVisible={isVisible}>
-          <View className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4 w-11/12">
-            <Title size="medium">Hartmoment stopzetten?</Title>
-            <Paragraph styles="mb-8">
-              Als u hier stopt, zullen de tot nu toe ingevulde gegevens verloren gaan.
-            </Paragraph>
-            <View className="flex-1 flex flex-row items-center justify-center">
-              <View className="flex-1 mr-4">
-                <SecondaryButton label="Stoppen" onPress={handleDelete} />
-              </View>
-              <View className="flex-1">
-                <PrimaryButton label="Annuleren" onPress={() => setIsVisible(false)} />
-              </View>
+      <Popover animationType="slide" isVisible={isVisible}>
+        <View className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4 w-11/12">
+          <Title size="medium">Hartmoment stopzetten?</Title>
+          <Paragraph styles="mb-8">
+            Als u hier stopt, zullen de tot nu toe ingevulde gegevens verloren gaan.
+          </Paragraph>
+          <View className="flex-1 flex flex-row items-center justify-center">
+            <View className="flex-1 mr-4">
+              <SecondaryButton label="Stoppen" onPress={handleDelete} />
+            </View>
+            <View className="flex-1">
+              <PrimaryButton label="Annuleren" onPress={() => setIsVisible(false)} />
             </View>
           </View>
-        </Popover>
-      )}
+        </View>
+      </Popover>
 
       <FlatlistPaginator
         currentSlide={currentSlide}
@@ -106,7 +104,6 @@ const Create = ({ route }) => {
             : scrollBack
         }
       />
-
       <FlatList
         data={data}
         onScrollToIndexFailed={() => {
