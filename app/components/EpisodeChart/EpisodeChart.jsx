@@ -3,69 +3,63 @@ import { useState } from 'react';
 import { Animated, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
-import { getEpisodesByDate } from '../../core/db/modules/episodes/api';
+import { getEpisodesByDateRange } from '../../core/db/modules/episodes/api';
 import colors from '../../theme/colors';
+import ChartSkeleton from '../common/Skeleton/ChartSkeleton';
 import { Paragraph } from '../common/Typography';
 import { SpotEpisodes } from '../svg/spotIllustrations';
+import { getEpisodesCountByWeek } from './helpers/getEpisodesCountByWeek';
+import { getEpisodesCountByYear } from './helpers/getEpisodesCountByYear';
 
 const EpisodeChart = () => {
   const { width } = useWindowDimensions();
+  const dateObj = new Date();
+
+  const [selectedView, setSelectedView] = useState('week');
 
   const daysOfTheWeek = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
-  const WeeksOfTheMonth = ['W1', 'W2', 'W3', 'W4'];
+  const WeeksOfTheMonth = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
 
   // Determine start of the week
-  const dateObj = new Date();
   const startOfWeek = dateObj.getDate() - dateObj.getDay() + 1;
 
   // Get the dates for the start and end of the week
-  const startOfWeekDate = new Date(dateObj.setDate(startOfWeek));
-  const endOfWeekDate = new Date(dateObj.setDate(startOfWeekDate.getDate() + 6));
+  const startOfWeekDate = new Date(dateObj);
+  startOfWeekDate.setDate(startOfWeek);
+  startOfWeekDate.setHours(0, 0, 0, 0);
 
-  const [selectedView, setSelectedView] = useState('week');
+  const endOfWeek = startOfWeek + 6;
+  const endOfWeekDate = new Date(dateObj);
+  endOfWeekDate.setDate(endOfWeek);
+  endOfWeekDate.setHours(23, 59, 59, 999);
 
   const handleViewSelection = (view) => {
     if (view === 'week') {
       setSelectedView('week');
     } else {
-      setSelectedView('month');
+      setSelectedView('year');
     }
   };
 
-  const [date] = useState(new Date());
-
   const { data: episodes, isLoading } = useQuery({
-    queryKey: ['episodes', date.toISOString()],
-    queryFn: ({ queryKey }) => getEpisodesByDate(queryKey[1]),
+    queryKey: ['episodes', selectedView, dateObj.getFullYear(), startOfWeekDate, endOfWeekDate],
+    queryFn: ({ queryKey }) =>
+      getEpisodesByDateRange(queryKey[1], queryKey[2], queryKey[3], queryKey[4]),
   });
 
-  // Remap the episodes count to the days of the week (0-6)
-  const episodesByDay =
-    !isLoading &&
-    episodes.data.reduce((acc, episode) => {
-      const date = new Date(episode.created_at);
-      const day = date.getDay();
-
-      acc[day] = acc[day] ? acc[day] + 1 : 1;
-
-      // set value to 0 if there are no episodes on that day
-      for (let i = 0; i < 7; i++) {
-        if (!acc[i]) {
-          acc[i] = 0;
-        }
-      }
-
-      return acc;
-    }, {});
+  // Remap the data to the correct view (week or year)
+  const weekData = !isLoading && getEpisodesCountByWeek(episodes.data);
+  const yearData = !isLoading && getEpisodesCountByYear(episodes.data, 'year');
 
   return (
     <>
-      <View className="flex flex-row items-center justify-between mb-7">
+      <View className=" px-4 flex flex-row items-center justify-between mb-7">
         <Paragraph isStrong textColor="text-turquoise-500">
-          {startOfWeekDate.toLocaleDateString('nl', {
-            day: 'numeric',
-          })}
-          - {endOfWeekDate.toLocaleDateString('nl', { day: 'numeric', month: 'long' })}
+          {selectedView === 'week'
+            ? `${startOfWeekDate.toLocaleDateString('nl', {
+                day: 'numeric',
+              })} - ${endOfWeekDate.toLocaleDateString('nl', { day: 'numeric', month: 'long' })}`
+            : dateObj.getFullYear()}
         </Paragraph>
         <Animated.View className="rounded-full p-1 bg-deepMarine-100 flex flex-row">
           <TouchableOpacity
@@ -82,61 +76,68 @@ const EpisodeChart = () => {
           <TouchableOpacity
             activeOpacity={0.8}
             className={`${
-              selectedView === 'month' ? 'bg-deepMarine-600' : ''
+              selectedView === 'year' ? 'bg-deepMarine-600' : ''
             } px-6 h-7 rounded-full flex items-center justify-center`}
-            onPress={() => handleViewSelection('month')}
+            onPress={() => handleViewSelection('year')}
           >
-            <Paragraph textColor={selectedView === 'month' ? 'text-white' : 'text-turquoise-500'}>
-              Maand
+            <Paragraph textColor={selectedView === 'year' ? 'text-white' : 'text-turquoise-500'}>
+              Jaar
             </Paragraph>
           </TouchableOpacity>
         </Animated.View>
       </View>
 
-      {!isLoading && episodes.data.length > 0 ? (
-        <LineChart
-          data={{
-            labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
-            datasets: [
-              {
-                data: !isLoading ? Object.values(episodesByDay) : [0, 0, 0, 0, 0, 0, 0],
-              },
-            ],
-          }}
-          width={width - 40 - 32} // minus screen padding and card padding
-          height={228}
-          chartConfig={{
-            propsForLabels: {
-              fontSize: 14,
-              fontWeight: 'semibold',
-            },
-            backgroundColor: 'white',
-            fillShadowGradientFrom: colors.ochre[500],
-            fillShadowGradientOpacity: 0.5,
-            backgroundGradientFrom: 'white',
-            backgroundGradientTo: 'white',
-            backgroundGradientFromOpacity: 0,
-            decimalPlaces: 0, // optional, defaults to 2dp
-            color: () => colors.ochre[400],
-            labelColor: () => colors.turquoise[700],
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: '6',
-              strokeWidth: '2',
-              stroke: colors.ochre[500],
-            },
-          }}
-          bezier
-        />
-      ) : (
-        <View className="h-48 flex flex-col bg-deepMarine-100 rounded-lg p-3 items-center justify-center">
-          <SpotEpisodes />
-          <Paragraph styles="text-center mt-2" textColor="text-turquoise-500">
-            Geen hartmomenten deze week
-          </Paragraph>
+      {!isLoading ? (
+        <View className="relative w-full">
+          {episodes && episodes.data.length > 0 ? (
+            <LineChart
+              className="w-full ml-[-20px]"
+              data={{
+                labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
+                datasets: [
+                  {
+                    data: selectedView === 'week' ? weekData : yearData,
+                  },
+                ],
+              }}
+              width={width - 40} // minus screen padding
+              height={228}
+              chartConfig={{
+                propsForLabels: {
+                  fontSize: 14,
+                  fontWeight: 'semibold',
+                },
+                backgroundColor: 'white',
+                fillShadowGradientFrom: colors.ochre[500],
+                fillShadowGradientOpacity: 0.5,
+                backgroundGradientFrom: 'white',
+                backgroundGradientTo: 'white',
+                backgroundGradientFromOpacity: 0,
+                decimalPlaces: 0, // optional, defaults to 2dp
+                color: () => colors.ochre[400],
+                labelColor: () => colors.turquoise[700],
+                style: {
+                  borderRadius: 16,
+                },
+                propsForDots: {
+                  r: '4',
+                  strokeWidth: '1',
+                  stroke: colors.ochre[500],
+                },
+              }}
+              bezier
+            />
+          ) : (
+            <View className="h-56 flex flex-col bg-deepMarine-100 rounded-lg p-3 items-center justify-center">
+              <SpotEpisodes />
+              <Paragraph styles="text-center mt-2" textColor="text-turquoise-500">
+                Geen hartmomenten voor deze periode
+              </Paragraph>
+            </View>
+          )}
         </View>
+      ) : (
+        <ChartSkeleton />
       )}
     </>
   );
