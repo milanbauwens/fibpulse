@@ -11,6 +11,7 @@ const Formgroup = forwardRef(
     {
       rules = {},
       type,
+      value,
       inputName,
       label,
       control,
@@ -32,6 +33,7 @@ const Formgroup = forwardRef(
             control={control}
             name={inputName}
             rules={rules}
+            defaultValue={value}
             render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
               <>
                 <TextInput
@@ -42,6 +44,7 @@ const Formgroup = forwardRef(
                     fontFamily: 'Mulish-medium',
                     paddingTop: 0,
                     paddingBottom: 0,
+                    lineHeight: 20,
                   }}
                   value={value}
                   ref={ref}

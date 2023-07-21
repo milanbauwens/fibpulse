@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, View } from 'react-native';
 
-const Popover = ({
-  children,
-  isVisible,
-  transparent = true,
-  animationType = 'none' | 'slide' | 'fade',
-}) => {
+const Popover = ({ children, isVisible, transparent = true }) => {
   const [modalVisible, setModalVisible] = useState(isVisible);
 
   useEffect(() => {
@@ -15,7 +10,7 @@ const Popover = ({
 
   return (
     <Modal
-      animationType={animationType}
+      animationType="fade"
       transparent={transparent}
       visible={modalVisible}
       onRequestClose={() => {

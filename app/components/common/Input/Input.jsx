@@ -24,13 +24,14 @@ const Input = ({
       placeholder={placeholder}
       className={`w-full ${
         variant === 'textarea' ? 'h-48' : 'h-12 '
-      } rounded-lg bg-deepMarine-100 px-4 text-base text-deepMarine-900 ${
+      } rounded-lg bg-deepMarine-100 px-2 text-base text-deepMarine-900 ${
         error ? 'border-red-500 border bg-red-100' : ''
       }  outline-none transition-all duration-300`}
       style={{
         fontFamily: 'Mulish-medium',
-        paddingTop: 0,
-        paddingBottom: 0,
+        paddingTop: variant === 'textarea' ? 8 : 0,
+        paddingBottom: variant === 'textarea' ? 8 : 0,
+        lineHeight: variant === 'textarea' ? 24 : 20,
       }}
       value={value}
       inputMode={inputMode}
