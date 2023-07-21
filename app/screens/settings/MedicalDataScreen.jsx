@@ -1,7 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
   EPISODE_AMOUNTS,
@@ -76,7 +75,7 @@ const MedicalDataScreen = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white h-full w-full">
+    <View className="bg-white h-full w-full pt-4">
       <View className="px-4 bg-white h-full">
         {isLoading ? (
           <View className="h-5/6 w-full flex items-center justify-center">
@@ -98,7 +97,7 @@ const MedicalDataScreen = () => {
           </>
         )}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

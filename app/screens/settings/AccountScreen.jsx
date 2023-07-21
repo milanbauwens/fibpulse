@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Keyboard, Text, View } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
@@ -17,11 +17,7 @@ const AccountScreen = () => {
   const { bottom } = useSafeAreaInsets();
   const [isVisible, setIsVisible] = useState(false);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { control, handleSubmit } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -82,7 +78,7 @@ const AccountScreen = () => {
         </View>
       </Popover>
 
-      <SafeAreaView className="bg-white h-full w-full">
+      <View className="bg-white h-full w-full pt-4">
         <View className="px-4 ">
           <View className="mb-6">
             <Formgroup
@@ -150,7 +146,7 @@ const AccountScreen = () => {
             onPress={() => setIsVisible(true)}
           />
         </View>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

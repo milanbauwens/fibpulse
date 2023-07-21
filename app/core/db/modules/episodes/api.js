@@ -52,22 +52,6 @@ export const getEpisodesByDate = async (date) => {
     .throwOnError();
 };
 
-export const getEpisodesByWeek = async (start, end) => {
-  const session = await getCurrentSession();
-  const user_id = session.user?.id;
-
-  const startDate = new Date(0, 0, start, -1, 1, 0, 0, 0, 0); // Start of the period
-  const endDate = new Date(0, 0, end, 0, 23, 59, 59, 999); // End of the period
-
-  return await supabase
-    .from('episodes')
-    .select('*')
-    .match({ user_id })
-    .gte('created_at', startDate.toISOString()) // Filter episodes created on or after the start of the month
-    .lte('created_at', endDate.toISOString()) // Filter episodes created on or before the end of the month
-    .throwOnError();
-};
-
 export const getEpisodesByDateRange = async (type = 'week' || 'year', year, start, end) => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;
@@ -88,6 +72,19 @@ export const getEpisodesByDateRange = async (type = 'week' || 'year', year, star
     .gte('created_at', type === 'year' ? yearStart.toISOString() : weekStart.toISOString()) // Filter episodes created on or after the start of the month
     .lte('created_at', type === 'year' ? yearEnd.toISOString() : weekEnd.toISOString()) // Filter episodes created on or before the end of the month
     .throwOnError();
+};
+
+export const getLatestEpisode = async () => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  return await supabase
+    .from('episodes')
+    .select('*')
+    .match({ user_id })
+    .order('id', { ascending: false })
+    .limit(1)
+    .single();
 };
 
 export const deleteEpisodeById = async (id) => {

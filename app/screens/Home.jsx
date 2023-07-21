@@ -1,4 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 import CTACard from '../components/CTACard/CTACard';
@@ -7,10 +9,26 @@ import Insights from '../components/Insights/Insights';
 import SectionCard from '../components/SectionCard/SectionCard';
 import { useAuthContext } from '../components/auth/AuthProvider';
 import { Paragraph, Title } from '../components/common/Typography';
+import { getLatestEpisode } from '../core/db/modules/episodes/api';
+import { getDaysSinceLastEpisode } from '../core/utils/episode/getDaysSinceLastEpisode';
 
 const Home = () => {
   const { user } = useAuthContext();
   const navigation = useNavigation();
+
+  const [daysSince, setDaysSince] = useState(0); // TODO: Replace with actual days since last admission
+
+  // Get latest episode
+  const { data: episodes, isLoading } = useQuery({
+    queryKey: ['episodes'],
+    queryFn: getLatestEpisode,
+  });
+
+  useEffect(() => {
+    if (!isLoading && episodes.data) {
+      setDaysSince(getDaysSinceLastEpisode(episodes.data.created_at));
+    }
+  }, [episodes, isLoading]);
 
   return (
     <ScrollView
@@ -22,12 +40,8 @@ const Home = () => {
       <View className="mb-8">
         <Title size="large">{`Dag ${user.firstname}`}</Title>
         <Paragraph>
-          Al{' '}
-          <Text style={{ fontFamily: 'Mulish-bold' }}>{`${
-            // TODO: Replace with actual days since last admission
-            user.daysSinceLastAdmission || 4
-          } dagen`}</Text>{' '}
-          geen onregelmatige hartslag
+          Al <Text style={{ fontFamily: 'Mulish-bold' }}>{`${daysSince} dagen`}</Text> geen
+          onregelmatige hartslag
         </Paragraph>
       </View>
       <View className="mb-6">
