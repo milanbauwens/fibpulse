@@ -1,7 +1,7 @@
 export const getEpisodesCountByWeek = (data) => {
   const mappedData = data.reduce((acc, episode) => {
     const date = new Date(episode.created_at);
-    const day = date.getDay();
+    const day = date.getDay() - 1;
 
     acc[day] = acc[day] ? acc[day] + 1 : 1;
 

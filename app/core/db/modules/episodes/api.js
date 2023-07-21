@@ -75,32 +75,11 @@ export const getEpisodesByDateRange = async (type = 'week' || 'year', year, star
   const yearStart = new Date(year, 0, 1, 0, 0, 0, 0); // Start of the year
   const yearEnd = new Date(year, 11, 31, 23, 59, 59, 999); // End of the year
 
-  const startDate = new Date(start);
-  const endDate = new Date(end);
+  const weekStart = new Date(start);
+  weekStart.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
 
-  const weekStart = new Date(
-    startDate.getFullYear(),
-    startDate.getMonth(),
-    startDate.getDate() + 1,
-    1,
-    0,
-    0,
-    0,
-    0
-  );
-
-  // Start of the week
-  const weekEnd = new Date(
-    endDate.getFullYear(),
-    endDate.getMonth(),
-    endDate.getDate(),
-    23,
-    59,
-    59,
-    999
-  ); // End of the week
-
-  console.log(weekEnd.toLocaleDateString('nl', { month: 'long', day: 'numeric', year: 'numeric' }));
+  const weekEnd = new Date(end);
+  weekEnd.setHours(23, 59, 59, 999); // Set time to 23:59:59.999
 
   return await supabase
     .from('episodes')
