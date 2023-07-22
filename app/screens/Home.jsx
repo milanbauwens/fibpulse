@@ -10,10 +10,12 @@ import SectionCard from '../components/SectionCard/SectionCard';
 import { useAuthContext } from '../components/auth/AuthProvider';
 import { Paragraph, Title } from '../components/common/Typography';
 import { getLatestEpisode } from '../core/db/modules/episodes/api';
+import { useTranslations } from '../core/i18n/LocaleProvider';
 import { getDaysSinceLastEpisode } from '../core/utils/episode/getDaysSinceLastEpisode';
 
 const Home = () => {
   const { user } = useAuthContext();
+  const { t } = useTranslations();
   const navigation = useNavigation();
 
   const [daysSince, setDaysSince] = useState(0); // TODO: Replace with actual days since last admission
@@ -38,17 +40,24 @@ const Home = () => {
       className="w-full h-screen bg-white px-5"
     >
       <View className="mb-8">
-        <Title size="large">{`Dag ${user.firstname}`}</Title>
-        <Paragraph>
-          Al <Text style={{ fontFamily: 'Mulish-bold' }}>{`${daysSince} dagen`}</Text> geen
-          onregelmatige hartslag
-        </Paragraph>
+        <Title size="large">{`${t('greetings')} ${user.firstname}`}</Title>
+        {daysSince === 0 ? (
+          <Paragraph>
+            Nog <Text style={{ fontFamily: 'Mulish-bold' }}>geen dagen</Text> met een onregelmatige
+            hartslag
+          </Paragraph>
+        ) : (
+          <Paragraph>
+            Al <Text style={{ fontFamily: 'Mulish-bold' }}>{`${daysSince} dagen`}</Text> geen
+            onregelmatige hartslag
+          </Paragraph>
+        )}
       </View>
       <View className="mb-6">
         <CTACard
           onPress={() => navigation.navigate('EpisodesCreateStart')}
-          title="Hartmoment toevoegen"
-          description="Leg steeds een moment vast, bij een onregelmatige hartslag."
+          title={t('home.cta.title')}
+          description={t('home.cta.subtitle')}
         />
       </View>
       <SectionCard
