@@ -27,8 +27,10 @@ import AuthStack from './AuthStack';
 
 export const AppStack = () => {
   const navigation = useNavigation();
-  const AppStack = createNativeStackNavigator();
   const { isLoggedIn } = useAuthContext();
+
+  const AppStack = createNativeStackNavigator();
+
   const [completedOnboarding, setCompletedOnboarding] = useState(false);
 
   const routes = navigation.getState()?.routes;

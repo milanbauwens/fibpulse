@@ -1,9 +1,66 @@
 {
-  "greetings": "Hello",
   "home": {
+    "greeting": "Hello %{name}",
+    "daysSince": {
+      "null": "No days with an irregular heartbeat",
+      "default": "%{count} Days since last irregular heartbeat"
+    },
     "cta": {
       "title": "Add a heartmoment",
       "subtitle": "Always make a new moment when having an irregular heartbeat."
+    },
+    "episodes": {
+      "tag": "Diary",
+      "title": "My heartmoments",
+      "description": "Keep track of your moments and get more insight in your heart rhythm.",
+      "emptyState": "No heartmoments for this period",
+      "cta": "See all heartmoments"
+    },
+    "discover": {
+      "tag": "Discover",
+      "title": "Pursuing a healthy heart",
+      "description": "Be aware of the things that are giving your heart a hard time.",
+      "cta": "See all tips"
     }
+  },
+  "episodes": {
+    "title": "Heartmoments",
+    "emptyState": {
+      "title": "A perfect month!",
+      "description": "You didn't have any irregular heartbeats this month. Keep up the good work.",
+      "cta": "Add a heartmoment"
+    }
+  },
+  "settings": {
+    "profile": {
+      "title": "Profile",
+      "account": "Account",
+      "medicalProfile": "Medical profile"
+    },
+    "settings": {
+      "title": "Settings and preferences",
+      "notifications": "Notifications",
+      "language": "Language",
+      "security": "Security"
+    },
+    "help": {
+      "title": "Help and support",
+      "bug": "Report a bug",
+      "privacy": "Privacy policy",
+      "user": "User agreement"
+    },
+    "logout": "Log out"
+  },
+  "time": {
+    "day": "Day",
+    "month": "Month",
+    "week": "Week",
+    "year": "Year"
+  },
+  "navigation": {
+    "home": "Home",
+    "episodes": "Moments",
+    "discover": "Discover",
+    "profile": "Profile"
   }
 }

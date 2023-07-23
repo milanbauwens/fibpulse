@@ -1,9 +1,66 @@
 {
-  "greetings": "Dag",
   "home": {
+    "greeting": "Dag %{name}",
+    "daysSince": {
+      "null": "Nog geen dagen met een onregelmatige hartslag",
+      "default": "Al %{count} dagen geen onregelmatige hartslag"
+    },
     "cta": {
       "title": "Hartmoment toevoegen",
-      "subtitle": "Leg steeds een moment vast, als u een onregelmatige hartslag heeft."
+      "subtitle": "Leg steeds een moment vast bij een onregelmatige hartslag."
+    },
+    "episodes": {
+      "tag": "Dagboek",
+      "title": "Mijn hartmomenten",
+      "description": "Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis",
+      "emptyState": "Geen hartmomenten voor deze periode",
+      "cta": "Bekijk alle hartmomenten"
+    },
+    "discover": {
+      "tag": "Ontdek",
+      "title": "Een gezond hart nastreven",
+      "description": "Wees bewust van de zaken die nefast zijn voor uw hart.",
+      "cta": "Bekijk alle tips"
     }
+  },
+  "episodes": {
+    "title": "Hartmomenten",
+    "emptyState": {
+      "title": "Een perfecte maand!",
+      "description": "Leg steeds een moment vast, wannneer u een onregelmatige hartslag voelt.",
+      "cta": "Voeg hartmoment toe"
+    }
+  },
+  "settings": {
+    "profile": {
+      "title": "Profiel",
+      "account": "Account",
+      "medicalProfile": "Medisch profiel"
+    },
+    "settings": {
+      "title": "Instellingen en voorkeuren",
+      "notifications": "Meldingen",
+      "language": "Taal",
+      "security": "Beveiliging"
+    },
+    "help": {
+      "title": "Hulp",
+      "bug": "Rapporteer een probleem",
+      "privacy": "Privacybeleid",
+      "user": "Gebruikersvoorwaarden"
+    },
+    "logout": "Afmelden"
+  },
+  "time": {
+    "day": "Dag",
+    "month": "Maand",
+    "week": "Week",
+    "year": "Jaar"
+  },
+  "navigation": {
+    "home": "Overzicht",
+    "episodes": "Momenten",
+    "discover": "Ontdek",
+    "profile": "Profiel"
   }
 }

@@ -7,7 +7,9 @@ const LocaleContext = createContext();
 const LocaleProvider = ({ children }) => {
   const t = i18n.t.bind(i18n);
 
-  return <LocaleContext.Provider value={{ t }}>{children}</LocaleContext.Provider>;
+  const locale = i18n.locale;
+
+  return <LocaleContext.Provider value={{ t, locale }}>{children}</LocaleContext.Provider>;
 };
 
 export const useTranslations = () => {

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import CTACard from '../components/CTACard/CTACard';
 import EpisodeChart from '../components/EpisodeChart/EpisodeChart';
@@ -40,17 +40,11 @@ const Home = () => {
       className="w-full h-screen bg-white px-5"
     >
       <View className="mb-8">
-        <Title size="large">{`${t('greetings')} ${user.firstname}`}</Title>
+        <Title size="large">{t('home.greeting', { name: user.firstname })}</Title>
         {daysSince === 0 ? (
-          <Paragraph>
-            Nog <Text style={{ fontFamily: 'Mulish-bold' }}>geen dagen</Text> met een onregelmatige
-            hartslag
-          </Paragraph>
+          <Paragraph>{t('home.daysSince.null')}</Paragraph>
         ) : (
-          <Paragraph>
-            Al <Text style={{ fontFamily: 'Mulish-bold' }}>{`${daysSince} dagen`}</Text> geen
-            onregelmatige hartslag
-          </Paragraph>
+          <Paragraph>{t('home.daysSince.default', { count: daysSince })}</Paragraph>
         )}
       </View>
       <View className="mb-6">
@@ -60,11 +54,12 @@ const Home = () => {
           description={t('home.cta.subtitle')}
         />
       </View>
+
       <SectionCard
-        label="Dagboek"
-        title="Mijn Hartmomenten"
-        description="Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis."
-        cta="Bekijk alle hartmomenten"
+        label={t('home.episodes.tag')}
+        title={t('home.episodes.title')}
+        description={t('home.episodes.description')}
+        cta={t('home.episodes.cta')}
         icon="calendar-heart-outline"
         onPress={() => navigation.navigate('Episodes')}
       >
@@ -74,10 +69,10 @@ const Home = () => {
       <SectionCard
         withImage
         source={require('../../assets/images/woman-running.jpg')}
-        label="Ontdek"
-        title="Een gezond hart nastreven"
-        description="Wees bewust van de zaken die nefast zijn voor uw hart."
-        cta="Bekijk alle tips"
+        label={t('home.discover.tag')}
+        title={t('home.discover.title')}
+        description={t('home.discover.description')}
+        cta={t('home.discover.cta')}
         icon="calendar-heart-outline"
         onPress={() => navigation.navigate('Discover')}
       />

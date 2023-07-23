@@ -8,11 +8,13 @@ import Label from '../../components/common/Label/Label';
 import { Paragraph, Title } from '../../components/common/Typography';
 import SettingsItem from '../../components/screens/settings/SettingsItem/SettingsItem';
 import { signOut } from '../../core/db/modules/auth/api';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 
 const Settings = () => {
   const navigation = useNavigation();
   const { user } = useAuthContext();
   const { bottom } = useSafeAreaInsets();
+  const { t } = useTranslations();
 
   const [notifactionState, setNotificationState] = useState(false);
 
@@ -27,46 +29,46 @@ const Settings = () => {
 
       <View className="mb-6">
         <View className="mb-2">
-          <Label title="Profiel" />
+          <Label title={t('settings.profile.title')} />
         </View>
         <SettingsItem
           iconName="user-outline"
-          title="Account"
+          title={t('settings.profile.account')}
           onPress={() => navigation.navigate('Profile')}
         />
         <SettingsItem
           iconName="medical-cross-outline"
-          title="Medisch profiel"
+          title={t('settings.profile.medicalProfile')}
           onPress={() => navigation.navigate('MedicalProfile')}
         />
       </View>
 
       <View className="mb-6">
         <View className="mb-2">
-          <Label title="Instellingen & voorkeuren" />
+          <Label title={t('settings.settings.title')} />
         </View>
         <SettingsItem
           iconName="bell-outline"
-          title="Meldingen"
+          title={t('settings.settings.notifications')}
           withToggle
           toggleState={notifactionState}
         />
-        <SettingsItem iconName="translate" title="Taal" />
-        <SettingsItem iconName="lock-unlocked-outline" title="Beveiliging" />
+        <SettingsItem iconName="translate" title={t('settings.settings.language')} />
+        <SettingsItem iconName="lock-unlocked-outline" title={t('settings.settings.security')} />
       </View>
 
       <View className="mb-16">
         <View className="mb-2">
-          <Label title="Help" />
+          <Label title={t('settings.help.title')} />
         </View>
 
-        <SettingsItem iconName="announcement-outline" title="Rapporteer een probleem" />
-        <SettingsItem iconName="file-check-outline" title="Privacy verklaring" />
-        <SettingsItem iconName="file-check-outline" title="Gebruikersvoorwaarden" />
+        <SettingsItem iconName="announcement-outline" title={t('settings.help.bug')} />
+        <SettingsItem iconName="file-check-outline" title={t('settings.help.privacy')} />
+        <SettingsItem iconName="file-check-outline" title={t('settings.help.user')} />
         <SettingsItem
           type="error"
           iconName="log-out"
-          title="Afmelden"
+          title={t('settings.logout')}
           onPress={async () => await signOut()}
         />
       </View>

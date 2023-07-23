@@ -4,6 +4,7 @@ import { Animated, TouchableOpacity, View, useWindowDimensions } from 'react-nat
 import { LineChart } from 'react-native-chart-kit';
 
 import { getEpisodesByDateRange } from '../../core/db/modules/episodes/api';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 import ChartSkeleton from '../common/Skeleton/ChartSkeleton';
 import { Paragraph } from '../common/Typography';
@@ -13,6 +14,8 @@ import { getEpisodesCountByYear } from './helpers/getEpisodesCountByYear';
 
 const EpisodeChart = () => {
   const { width } = useWindowDimensions();
+  const { t, locale } = useTranslations();
+
   const dateObj = new Date();
 
   const [selectedView, setSelectedView] = useState('week');
@@ -56,9 +59,11 @@ const EpisodeChart = () => {
       <View className="flex flex-row items-center justify-between mb-7">
         <Paragraph isStrong textColor="text-turquoise-500">
           {selectedView === 'week'
-            ? `${startOfWeekDate.toLocaleDateString('nl', {
+            ? `${startOfWeekDate.toLocaleDateString(locale, {
                 day: 'numeric',
-              })} - ${endOfWeekDate.toLocaleDateString('nl', { day: 'numeric', month: 'long' })}`
+              })} - ${endOfWeekDate.toLocaleDateString(locale, {
+                day: 'numeric',
+              })} ${endOfWeekDate.toLocaleDateString(locale, { month: 'long' })}`
             : dateObj.getFullYear()}
         </Paragraph>
         <Animated.View className="rounded-full p-1 bg-deepMarine-100 flex flex-row">
@@ -70,7 +75,7 @@ const EpisodeChart = () => {
             onPress={() => handleViewSelection('week')}
           >
             <Paragraph textColor={selectedView === 'week' ? 'text-white' : 'text-turquoise-500'}>
-              Week
+              {t('time.week')}
             </Paragraph>
           </TouchableOpacity>
           <TouchableOpacity
@@ -81,7 +86,7 @@ const EpisodeChart = () => {
             onPress={() => handleViewSelection('year')}
           >
             <Paragraph textColor={selectedView === 'year' ? 'text-white' : 'text-turquoise-500'}>
-              Jaar
+              {t('time.year')}
             </Paragraph>
           </TouchableOpacity>
         </Animated.View>
@@ -131,7 +136,7 @@ const EpisodeChart = () => {
             <View className="h-56 flex flex-col bg-deepMarine-100 rounded-lg p-3 items-center justify-center">
               <SpotEpisodes />
               <Paragraph styles="text-center mt-2" textColor="text-turquoise-500">
-                Geen hartmomenten voor deze periode
+                {t('home.episodes.emptyState')}
               </Paragraph>
             </View>
           )}

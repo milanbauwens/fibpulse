@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 import { Icon } from '../common/Icon/Icon';
 import { Paragraph } from '../common/Typography';
 
 const EpisodePaginator = ({ onChange }) => {
+  const { locale } = useTranslations();
   const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const EpisodePaginator = ({ onChange }) => {
 
   const getFormattedMonthYear = () => {
     const options = { month: 'long', year: 'numeric' };
-    return currentDate.toLocaleDateString('nl', options);
+    return currentDate.toLocaleDateString(locale, options);
   };
 
   return (

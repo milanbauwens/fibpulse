@@ -11,10 +11,13 @@ import { EpisodeSkeleton } from '../../components/common/Skeleton';
 import { Title } from '../../components/common/Typography';
 import EpisodesEmptyState from '../../components/svg/EpisodesEmptyState';
 import { getEpisodesByDate } from '../../core/db/modules/episodes/api';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 
 const Overview = () => {
   const navigation = useNavigation();
+  const { t } = useTranslations();
+
   const [date, setDate] = useState(new Date());
 
   const { data: episodes, isLoading } = useQuery({
@@ -66,14 +69,14 @@ const Overview = () => {
           ) : (
             <EmptyState
               illustration={<EpisodesEmptyState />}
-              title="Een perfecte maand!"
-              description="Leg steeds een moment vast, wanneer u een onregelmatige hartslag heeft."
+              title={t('episodes.emptyState.title')}
+              description={t('episodes.emptyState.description')}
               icon={
                 <View className="bg-deepMarine-600 w-6 h-6 rounded-full flex items-center justify-center">
                   <Icon name="plus" size={18} color="white" />
                 </View>
               }
-              cta="Voeg hartmoment toe"
+              cta={t('episodes.emptyState.cta')}
               onPress={() => navigation.navigate('EpisodesCreateStart')}
             />
           )}

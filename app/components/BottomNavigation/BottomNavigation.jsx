@@ -3,6 +3,7 @@ import { getHeaderTitle } from '@react-navigation/elements';
 import React from 'react';
 import { View } from 'react-native';
 
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import Discover from '../../screens/Discover';
 import Home from '../../screens/Home';
 import { Episodes } from '../../screens/episodes';
@@ -14,6 +15,8 @@ import { Icon } from '../common/Icon/Icon';
 
 const BottomNavigation = () => {
   const bottomTab = createBottomTabNavigator();
+
+  const { t } = useTranslations();
   const { user } = useAuthContext();
 
   const screenOptions = ({ route }) => ({
@@ -91,22 +94,25 @@ const BottomNavigation = () => {
       <bottomTab.Screen
         name="Overview"
         component={Home}
-        options={{ title: 'Overzicht', headerTitle: 'Overzicht' }}
+        options={{ title: t('navigation.home'), headerTitle: t('navigation.home') }}
       />
       <bottomTab.Screen
         name="Episodes"
         component={Episodes}
-        options={{ title: 'Momenten', headerTitle: 'Hartmomenten' }}
+        options={{ title: t('navigation.episodes'), headerTitle: t('navigation.episodes') }}
       />
       <bottomTab.Screen
         name="Discover"
         component={Discover}
-        options={{ title: 'Ontdek', headerTitle: 'Ontdek' }}
+        options={{ title: t('navigation.discover'), headerTitle: t('navigation.discover') }}
       />
       <bottomTab.Screen
         name="Settings"
         component={Settings}
-        options={{ title: 'Profiel', headerTitle: `${user.firstname} ${user.lastname}` }}
+        options={{
+          title: t('navigation.profile'),
+          headerTitle: `${user.firstname} ${user.lastname}`,
+        }}
       />
     </bottomTab.Navigator>
   );
