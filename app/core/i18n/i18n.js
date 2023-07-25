@@ -6,7 +6,6 @@ import { translations } from './translations';
 const i18n = new I18n(translations);
 
 i18n.locale = Localization.locale;
-  
 i18n.enableFallback = true;
 i18n.defaultLocale = 'en';
 

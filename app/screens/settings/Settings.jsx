@@ -53,7 +53,11 @@ const Settings = () => {
           withToggle
           toggleState={notifactionState}
         />
-        <SettingsItem iconName="translate" title={t('settings.settings.language')} />
+        <SettingsItem
+          iconName="translate"
+          title={t('settings.settings.language')}
+          onPress={() => navigation.navigate('Language')}
+        />
         <SettingsItem iconName="lock-unlocked-outline" title={t('settings.settings.security')} />
       </View>
 

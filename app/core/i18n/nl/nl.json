@@ -273,6 +273,24 @@
       "account": "Account",
       "medicalProfile": "Medisch profiel"
     },
+    "language": {
+      "title": "De taal van de applicatie wijzigen",
+      "description": "Volg onderstaande stappen om uw taalvoorkeur te wijzigen.",
+      "navigate": {
+        "title": "Ga naar instellingen",
+        "description": {
+          "ios": "Algemeen > Taal en Regio.",
+          "android": "Systeem > Taal en input > Talen."
+        }
+      },
+      "set": {
+        "title": "Selecteer een taal",
+        "description": {
+          "ios": "U kunt een nieuwe taal toevoegen of de volgorde van talen herschikken om een nieuwe standaardtaal in te stellen. De taal die als eerste wordt weergegeven, wordt automatisch ingesteld als uw standaardtaal.",
+          "android": "U kunt een nieuwe taal toevoegen of de volgorde van talen herschikken om een nieuwe standaardtaal in te stellen. De taal die als eerste wordt weergegeven, wordt automatisch ingesteld als uw standaardtaal. Vergeet uw gewijzigde voorkeuren niet op te slaan."
+        }
+      }
+    },
     "settings": {
       "title": "Instellingen en voorkeuren",
       "notifications": "Meldingen",
@@ -300,7 +318,8 @@
     "profile": "Profiel",
     "settings": "Instellingen",
     "medicalProfile": "Medisch profiel",
-    "Account": "Account"
+    "account": "Account",
+    "language": "Taal"
   },
   "input": {
     "firstname": "Voornaam",

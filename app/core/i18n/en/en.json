@@ -274,6 +274,24 @@
       "account": "Account",
       "medicalProfile": "Medical profile"
     },
+    "language": {
+      "title": "Changing the language of the app",
+      "description": "Follow the next steps to change your language preferences.",
+      "navigate": {
+        "title": "Go to settings",
+        "description": {
+          "ios": "General > Language & Region.",
+          "android": "System > Languages & input > Languages."
+        }
+      },
+      "set": {
+        "title": "Choose a language",
+        "description": {
+          "ios": "You can add a new language or rearrange the order of languages to set a new default language. The language displayed first will be automatically set as your default language.",
+          "android": "You can add a new language or rearrange the order of languages to set a new default language. The language displayed first will be automatically set as your default language. Don't forget to save your changes."
+        }
+      }
+    },
     "settings": {
       "title": "Settings and preferences",
       "notifications": "Notifications",
@@ -301,7 +319,8 @@
     "profile": "Profile",
     "settings": "Settings",
     "medicalProfile": "Medical profile",
-    "Account": "Account"
+    "account": "Account",
+    "language": "Language"
   },
   "input": {
     "firstname": "Firstname",

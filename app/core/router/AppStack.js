@@ -21,7 +21,12 @@ import {
   EpisodesDetail,
 } from '../../screens/episodes';
 import { Intake, IntakeStart } from '../../screens/intake';
-import { MedicalDataScreen, PersonalInformationScreen, Settings } from '../../screens/settings';
+import {
+  LanguageScreen,
+  MedicalDataScreen,
+  PersonalInformationScreen,
+  Settings,
+} from '../../screens/settings';
 import colors from '../../theme/colors';
 import { useTranslations } from '../i18n/LocaleProvider';
 import AuthStack from './AuthStack';
@@ -185,6 +190,15 @@ export const AppStack = () => {
           options={{
             title: t('navigation.account'),
             headerTitle: t('navigation.account'),
+            headerLeft: () => <BackButton />,
+          }}
+        />
+        <AppStack.Screen
+          name="Language"
+          component={LanguageScreen}
+          options={{
+            title: t('navigation.language'),
+            headerTitle: t('navigation.language'),
             headerLeft: () => <BackButton />,
           }}
         />
