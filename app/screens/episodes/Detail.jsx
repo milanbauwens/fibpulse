@@ -84,7 +84,7 @@ const Detail = ({ route, navigation }) => {
             <View className="mb-6 flex flex-row items-center">
               <Icon name="calendar-heart-outline" size={20} />
               <Paragraph isStrong styles="ml-2">
-                Begin
+                {t('episodes.detail.start')}
               </Paragraph>
             </View>
             <View>
@@ -96,7 +96,7 @@ const Detail = ({ route, navigation }) => {
             <View className="mb-6 flex flex-row items-center">
               <Icon name="calendar-check-outline" size={20} />
               <Paragraph isStrong styles="ml-2">
-                Einde
+                {t('episodes.detail.end')}
               </Paragraph>
             </View>
             <View>
@@ -122,45 +122,45 @@ const Detail = ({ route, navigation }) => {
       </View>
 
       <View className="mb-6">
-        <Label title="Metingen" />
+        <Label title={t('episodes.detail.measurement')} />
         <MeasureCard
-          title="Hartslag"
+          title={t('episodes.detail.pulse.title')}
           icon="activity-heart-outline"
-          description="Uw hartslag is handmatig door u of door een medisch apparaat vastgesteld."
+          description={t('episodes.detail.pulse.description')}
         >
           {activity ? (
             <>
-              <Paragraph>Slagen per minuut</Paragraph>
+              <Paragraph>{t('episodes.detail.pulse.unit')}</Paragraph>
               <Title size="large">{pulse}</Title>
             </>
           ) : (
-            <Paragraph>U heeft geen hartslag vastgesteld.</Paragraph>
+            <Paragraph>{t('episodes.detail.pulse.empty')}</Paragraph>
           )}
         </MeasureCard>
       </View>
 
       <View>
-        <Label title="Vaststellingen" />
+        <Label title={t('episodes.detail.status')} />
         <MeasureCard
-          title="Activiteit"
+          title={t('episodes.detail.activity.title')}
           icon="zap-outline"
-          description="U was volgende activiteit aan het uitoefenen."
+          description={t('episodes.detail.activity.description')}
         >
           {activity ? (
             <>
-              <Paragraph>u was aan het</Paragraph>
+              <Paragraph>{t('episodes.detail.activity.unit')}</Paragraph>
               <Title size="large">{t(`episodes.intake.activity.options.${activity}`)}</Title>
             </>
           ) : (
-            <Paragraph>U heeft geen activiteit aangeduid.</Paragraph>
+            <Paragraph>{t('episodes.detail.activity.empty')}</Paragraph>
           )}
         </MeasureCard>
 
         <View className="mt-2 mb-6">
           <MeasureCard
-            title="Symptomen"
+            title={t('episodes.detail.symptoms.title')}
             icon="file-heart-outline"
-            description="Tijdens uw hartmoment had u onderstaande symptomen in lichte of hevige vorm. "
+            description={t('episodes.detail.symptoms.description')}
           >
             <View className="flex flex-row flex-wrap">
               {symptoms && symptoms.length > 0 ? (
@@ -180,7 +180,7 @@ const Detail = ({ route, navigation }) => {
                   ))}
                 </>
               ) : (
-                <Paragraph>U heeft geen symptomen aangeduid</Paragraph>
+                <Paragraph>{t('episodes.detail.symptoms.empty')}</Paragraph>
               )}
             </View>
           </MeasureCard>
@@ -188,9 +188,9 @@ const Detail = ({ route, navigation }) => {
 
         {notes && (
           <View>
-            <Label title="Notities" />
+            <Label title={t('episodes.detail.notes.title')} />
 
-            <MeasureCard description="Enkele opmerkingen die u niet wou vergeten over uw hartmoment. ">
+            <MeasureCard description={t('episodes.detail.notes.description')}>
               <Paragraph>{notes}</Paragraph>
             </MeasureCard>
           </View>

@@ -1,4 +1,19 @@
 {
+  "onboarding": {
+    "skip": "Overslaan",
+    "insights": {
+      "title": "Een beter inzicht in uw ritmestoornis",
+      "description": "Door de hartritmestoornis op te volgen, krijgen u en uw arts meer inzichten over hoe deze bij u evolueert."
+    },
+    "lifestyle": {
+      "title": "Leef volgens een gezonde levensstijl",
+      "description": "Ontdek hoe tips over slaap, evenwichtige voeding en stress bijdragen tot een gezonde levensstijl voor uw hart."
+    },
+    "enjoy": {
+      "title": "Minder zorgen, meer genieten",
+      "description": "Het is voor ons belangrijk dat u zich kan focussen op de mooie dingen die het leven te bieden heeft."
+    }
+  },
   "landing": {
     "title": "Laat uw hartritmestoornis niet de bovenhand nemen",
     "description": "Begin vandaag nog met een dagboek bij te houden over uw hartritmestoornis.",
@@ -219,6 +234,33 @@
           "primary": "Ja, al gedaan",
           "secondary": "Nee, nog niet"
         }
+      }
+    },
+    "detail": {
+      "start": "Begin",
+      "end": "Einde",
+      "measurement": "Metingen",
+      "status": "Vaststellingen",
+      "pulse": {
+        "title": "Hartslag",
+        "description": "Uw hartslag is handmatig of door een medisch apparaat vastgesteld.",
+        "unit": "Slagen per minuut",
+        "empty": "Er werd geen hartslag vastgesteld."
+      },
+      "activity": {
+        "title": "Activiteit",
+        "description": "Net voor uw hartmoment, was u volgende activiteit aan het doen.",
+        "unit": "U was aan het",
+        "empty": "  U heeft geen activiteit aangeduid."
+      },
+      "symptoms": {
+        "title": "Symptomen",
+        "description": "Tijdens uw hartmoment had u onderstaande symptomen in lichte of hevige vorm.",
+        "empty": "U heeft geen symptomen aangeduid."
+      },
+      "notes": {
+        "title": "Notities",
+        "description": "Enkele opmerkingen die u niet wou vergeten over uw hartmoment."
       }
     }
   },

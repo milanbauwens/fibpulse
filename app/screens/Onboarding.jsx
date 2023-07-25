@@ -6,19 +6,22 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import slides from '../__content/walkthrough';
 import { OnboardingItem, OnboardingNavigator } from '../components/Onboarding';
+import { useTranslations } from '../core/i18n/LocaleProvider';
 
 export const Onboarding = () => {
   const navigation = useNavigation();
+  const { t } = useTranslations();
+
   const slidesRef = useRef(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+
+  const [currentSlide, setCurrentSlide] = useState(0);
   const insets = useSafeAreaInsets();
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentSlide(viewableItems[0].index);
   }).current;
-
-  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
   const scrollTo = async () => {
     if (currentSlide < slides.length - 1) {
@@ -54,7 +57,7 @@ export const Onboarding = () => {
           }}
         >
           <Text className="text-deepMarine-900 text-sm" style={{ fontFamily: 'Mulish-medium' }}>
-            Overslaan
+            {t('onboarding.skip')}
           </Text>
         </TouchableOpacity>
       </View>

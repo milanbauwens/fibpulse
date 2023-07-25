@@ -1,10 +1,12 @@
 import React from 'react';
 import { Image, View, useWindowDimensions } from 'react-native';
 
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { Display, Paragraph } from '../common/Typography';
 
 export const OnboardingItem = ({ item }) => {
   const { width } = useWindowDimensions();
+  const { t } = useTranslations();
 
   return (
     <View style={{ width }} className="flex">
@@ -16,8 +18,8 @@ export const OnboardingItem = ({ item }) => {
         />
       </View>
       <View className="mt-6 px-5">
-        <Display>{item.title}</Display>
-        <Paragraph styles="mb-4 max-w-xs">{item.description}</Paragraph>
+        <Display>{t(`onboarding.${item.key}.title`)}</Display>
+        <Paragraph styles="mb-4 max-w-xs">{t(`onboarding.${item.key}.description`)}</Paragraph>
       </View>
     </View>
   );

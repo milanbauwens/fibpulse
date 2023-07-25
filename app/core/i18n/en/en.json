@@ -1,4 +1,19 @@
 {
+  "onboarding": {
+    "skip": "Continue",
+    "insights": {
+      "title": "A better understanding of your heart dissorder",
+      "description": "By monitoring the heart dissorder, you and your doctor gain more insights into how it evolves."
+    },
+    "lifestyle": {
+      "title": "Live according to a healthy lifestyle",
+      "description": "Discover how tips on sleep, balanced nutrition, and stress contribute to a healthy lifestyle for your heart."
+    },
+    "enjoy": {
+      "title": "Worry less, enjoy more",
+      "description": "It's important for us that you can focus on the beautiful things life has to offer."
+    }
+  },
   "landing": {
     "title": "Don't let your heart dissorder take the upper hand.",
     "description": "Take the first step and start a diary about your heart dissorder today.",
@@ -220,6 +235,33 @@
           "primary": "Yes, I have",
           "secondary": "No, I haven't"
         }
+      }
+    },
+    "detail": {
+      "start": "Start",
+      "end": "End",
+      "measurement": "Measurements",
+      "status": "Observations",
+      "pulse": {
+        "title": "Pulse",
+        "description": "Your heart rate is determined manually or by a medical device.",
+        "unit": "Beats per minute",
+        "empty": "There was no pulse measurement."
+      },
+      "activity": {
+        "title": "Activity",
+        "description": "You were doing the following activity just before your heartmoment.",
+        "unit": "U were",
+        "empty": "U didn't indicate an activity."
+      },
+      "symptoms": {
+        "title": "Symptoms",
+        "description": "During your heartmoment, you experienced the following symptoms in mild or severe form.",
+        "empty": "U didn't indicate any symptoms."
+      },
+      "notes": {
+        "title": "Notes",
+        "description": "Some notes you didn't want to forget about your heartmoment."
       }
     }
   },
