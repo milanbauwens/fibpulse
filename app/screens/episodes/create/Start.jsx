@@ -8,11 +8,13 @@ import { PrimaryButton, SecondaryButton } from '../../../components/common/Butto
 import { Paragraph, Title } from '../../../components/common/Typography';
 import CreateEpisodeIllustration from '../../../components/svg/CreateEpisodeIllustration';
 import { supabase } from '../../../core/db/initSupabase';
+import { useTranslations } from '../../../core/i18n/LocaleProvider';
 
 const Start = () => {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
   const { user } = useAuthContext();
+  const { t } = useTranslations();
 
   const handleStart = async () => {
     const { error, data } = await supabase
@@ -36,22 +38,23 @@ const Start = () => {
 
       <View className="w-3/4 mx-auto">
         <Title size="large" textCenter>
-          Leg een nieuw hartmoment vast
+          {t('episodes.create.start.title')}
         </Title>
       </View>
-      <Paragraph styles="text-center">
-        De volgende vragen bundelen alle ervaringen die u had tijdens uw onregelmatige hartslag.
-      </Paragraph>
+      <Paragraph styles="text-center">{t('episodes.create.start.description')}</Paragraph>
 
       <View
         style={{ bottom: bottom + 32 }}
         className="flex-1 flex flex-row items-center px-5 absolute left-0 right-0 m-auto justify-center"
       >
         <View className="flex-1 mr-4">
-          <SecondaryButton label="Annuleren" onPress={() => navigation.goBack()} />
+          <SecondaryButton
+            label={t('episodes.create.start.cta.secondary')}
+            onPress={() => navigation.goBack()}
+          />
         </View>
         <View className="flex-1">
-          <PrimaryButton label="Ga van start" onPress={handleStart} />
+          <PrimaryButton label={t('episodes.create.start.cta.primary')} onPress={handleStart} />
         </View>
       </View>
     </SafeAreaView>

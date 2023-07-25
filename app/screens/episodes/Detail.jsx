@@ -9,10 +9,13 @@ import Label from '../../components/common/Label/Label';
 import Paragraph from '../../components/common/Typography/Paragraph';
 import Title from '../../components/common/Typography/Title';
 import { getEpisodeById } from '../../core/db/modules/episodes/api';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 
 const Detail = ({ route, navigation }) => {
   const { episodeId } = route.params;
+
+  const { t, locale } = useTranslations();
 
   // Fetch data of the episode
   const { data: episode, isLoading } = useQuery({
@@ -27,21 +30,25 @@ const Detail = ({ route, navigation }) => {
 
     switch (format) {
       case 'full':
-        return dateObject.toLocaleDateString('nl', {
+        return dateObject.toLocaleDateString(locale, {
           day: 'numeric',
           month: 'long',
           year: 'numeric',
         });
       case 'short':
-        return dateObject.toLocaleDateString('nl', {
+        return dateObject.toLocaleDateString(locale, {
           day: '2-digit',
           month: 'short',
           year: 'numeric',
         });
       case 'time':
-        return dateObject.toLocaleDateString('nl', { timeStyle: 'short' });
+        return dateObject.toLocaleTimeString(locale, {
+          hour: '2-digit',
+          minute: '2-digit',
+          hourCycle: 'h24',
+        });
       default:
-        return dateObject.toLocaleDateString('nl', {
+        return dateObject.toLocaleDateString(locale, {
           day: 'numeric',
           month: 'long',
           year: 'numeric',
@@ -142,7 +149,7 @@ const Detail = ({ route, navigation }) => {
           {activity ? (
             <>
               <Paragraph>u was aan het</Paragraph>
-              <Title size="large">{activity}</Title>
+              <Title size="large">{t(`episodes.intake.activity.options.${activity}`)}</Title>
             </>
           ) : (
             <Paragraph>U heeft geen activiteit aangeduid.</Paragraph>
@@ -167,7 +174,7 @@ const Detail = ({ route, navigation }) => {
                         style={{ fontFamily: 'Mulish-bold' }}
                         className="text-sm text-deepMarine-600"
                       >
-                        {symptom}
+                        {t(`episodes.intake.symptoms.options.${symptom}`)}
                       </Text>
                     </View>
                   ))}

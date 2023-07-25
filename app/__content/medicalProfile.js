@@ -1,122 +1,122 @@
 export const GENDERS = [
   {
-    label: 'Man',
-    value: 'Man',
+    label: 'man',
+    value: 'man',
   },
   {
-    label: 'Vrouw',
-    value: 'Vrouw',
+    label: 'woman',
+    value: 'woman',
   },
   {
-    label: 'Zeg ik liever niet',
-    value: 'Zeg ik liever niet',
+    label: 'other',
+    value: 'other',
   },
 ];
 
 export const EPISODE_AMOUNTS = [
   {
-    label: 'Minder dan 1 keer per jaar',
-    value: 'Minder dan 1 keer per jaar',
+    label: 'less',
+    value: 'less',
   },
   {
-    label: 'Jaarlijks',
-    value: 'Jaarlijks',
+    label: 'yearly',
+    value: 'yearly',
   },
   {
-    label: 'Maandelijks',
-    value: 'Maandelijks',
+    label: 'monthly',
+    value: 'monthly',
   },
   {
-    label: 'Wekelijks',
-    value: 'Wekelijks',
+    label: 'weekly',
+    value: 'weekly',
   },
   {
-    label: 'Dagelijks',
-    value: 'Dagelijks',
+    label: 'daily',
+    value: 'daily',
   },
 ];
 
 export const EPISODE_DURATIONS = [
   {
-    label: 'Minder dan 1 minuut',
-    value: 'Minder dan 1 minuut',
+    label: 'less',
+    value: 'less',
   },
   {
-    label: 'Enkele minuten',
-    value: 'Enkele minuten',
+    label: 'minutes',
+    value: 'minutes',
   },
   {
-    label: 'Enkele uren',
-    value: 'Enkele uren',
+    label: 'hours',
+    value: 'hours',
   },
   {
-    label: 'Een dag',
-    value: 'Een dag',
+    label: 'day',
+    value: 'day',
   },
   {
-    label: 'Enkele dagen',
-    value: 'Enkele dagen',
+    label: 'days',
+    value: 'days',
   },
 ];
 
 export const RISK_FACTORS = [
   {
-    label: 'Stress',
-    value: 'Stress',
+    label: 'stress',
+    value: 'stress',
   },
   {
-    label: 'Slaapapneu',
-    value: 'Slaapapneu',
+    label: 'apnea',
+    value: 'apnea',
   },
   {
-    label: 'Roken',
-    value: 'Roken',
+    label: 'smoking',
+    value: 'smoking',
   },
   {
-    label: 'Diabetes',
-    value: 'Diabetes',
+    label: 'diabetes',
+    value: 'diabetes',
   },
   {
-    label: 'Overgewicht',
-    value: 'Overgewicht',
+    label: 'overweight',
+    value: 'overweight',
   },
   {
-    label: 'Alcohol',
-    value: 'Alcohol',
+    label: 'alcohol',
+    value: 'alcohol',
   },
   {
-    label: 'Chronische ziektes',
-    value: 'Chronsche ziektes',
+    label: 'chronical',
+    value: 'chronical',
   },
   {
-    label: 'Vaatziektes',
-    value: 'Vaatziektes',
+    label: 'vascularDiseases',
+    value: 'vascularDiseases',
   },
   {
-    label: 'Hoge bloeddruk',
-    value: 'Hoge bloeddruk',
+    label: 'cholesterol',
+    value: 'cholesterol',
   },
   {
-    label: 'Hoge cholesterol',
-    value: 'Hoge cholesterol',
+    label: 'bloodpressure',
+    value: 'bloodpressure',
   },
   {
-    label: 'Familiegeschiedenis',
-    value: 'Familiegeschiedenis',
+    label: 'family',
+    value: 'family',
   },
   {
-    label: 'Duursport',
-    value: 'Duursport',
+    label: 'sports',
+    value: 'sports',
   },
 ];
 
 export const HEART_DISORDERS = [
   {
-    label: 'Voorkamerfibrillatie',
-    value: 'Voorkamerfibrillatie',
+    label: 'afib',
+    value: 'afib',
   },
   {
-    label: 'Een andere ritmestoornis',
-    value: 'Een andere ritmestoornis',
+    label: 'other',
+    value: 'other',
   },
 ];

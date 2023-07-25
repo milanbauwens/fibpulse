@@ -11,12 +11,14 @@ import Popover from '../../../components/common/Popover/Popover.jsx';
 import Paragraph from '../../../components/common/Typography/Paragraph.jsx';
 import Title from '../../../components/common/Typography/Title.jsx';
 import { deleteEpisodeById, updateEpisode } from '../../../core/db/modules/episodes/api.js';
+import { useTranslations } from '../../../core/i18n/LocaleProvider.jsx';
 
 const Create = ({ route }) => {
   const { hasMeasuredPulse, episodeId } = route.params;
 
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
+  const { t } = useTranslations();
 
   const slidesRef = useRef(null);
   const [data] = useState(hasMeasuredPulse ? slides.slice(1) : slides);
@@ -77,16 +79,20 @@ const Create = ({ route }) => {
     <SafeAreaView className="relative h-full bg-white">
       <Popover animationType="slide" isVisible={isVisible}>
         <View className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4 w-11/12">
-          <Title size="medium">Hartmoment stopzetten?</Title>
-          <Paragraph styles="mb-8">
-            Als u hier stopt, zullen de tot nu toe ingevulde gegevens verloren gaan.
-          </Paragraph>
+          <Title size="medium">{t('episodes.create.cancel.title')}</Title>
+          <Paragraph styles="mb-8">{t('episodes.create.cancel.description')} </Paragraph>
           <View className="flex-1 flex flex-row items-center justify-center">
             <View className="flex-1 mr-4">
-              <SecondaryButton label="Stoppen" onPress={handleDelete} />
+              <SecondaryButton
+                label={t('episodes.create.cancel.cta.secondary')}
+                onPress={handleDelete}
+              />
             </View>
             <View className="flex-1">
-              <PrimaryButton label="Annuleren" onPress={() => setIsVisible(false)} />
+              <PrimaryButton
+                label={t('episodes.create.cancel.cta.primary')}
+                onPress={() => setIsVisible(false)}
+              />
             </View>
           </View>
         </View>
@@ -112,7 +118,11 @@ const Create = ({ route }) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <FlatlistItem onSelect={(selected) => setSelected(selected)} data={item} />
+          <FlatlistItem
+            type="episodes.intake"
+            onSelect={(selected) => setSelected(selected)}
+            data={item}
+          />
         )}
         bounces={false}
         pagingEnabled
@@ -131,7 +141,11 @@ const Create = ({ route }) => {
         className="px-4 absolute left-0 right-0 m-auto flex flex-col justify-center"
       >
         <PrimaryButton
-          label={currentSlide === data.length - 1 ? ' Hartmoment afronden' : 'Volgende'}
+          label={
+            currentSlide === data.length - 1
+              ? t('episodes.create.finish')
+              : t('episodes.create.next')
+          }
           onPress={scrollTo}
         />
       </View>

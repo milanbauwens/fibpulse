@@ -1,10 +1,13 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import { useTranslations } from '../../../core/i18n/LocaleProvider';
 import Facebook from '../../svg/icons/Facebook';
 import Google from '../../svg/icons/Google';
 
 const AuthProviderButton = ({ provider = 'google' | 'facebook', onPress, disabled = false }) => {
+  const { t } = useTranslations();
+
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -19,7 +22,9 @@ const AuthProviderButton = ({ provider = 'google' | 'facebook', onPress, disable
           style={{ fontFamily: 'Bitter-semibold' }}
           className="text-base text-center text-deepMarine-700"
         >
-          Doorgaan met {provider.charAt(0).toUpperCase() + provider.slice(1)}
+          {t('landing.continue', {
+            provider: provider.charAt(0).toUpperCase() + provider.slice(1),
+          })}
         </Text>
       </View>
     </TouchableOpacity>

@@ -1,4 +1,29 @@
 {
+  "landing": {
+    "title": "Don't let your heart dissorder take the upper hand.",
+    "description": "Take the first step and start a diary about your heart dissorder today.",
+    "agreement": "By continuing, you agree to our",
+    "and": "and",
+    "or": "or",
+    "terms": "terms",
+    "privacy": "privacy policy",
+    "cta": "Already have an account?",
+    "continue": "Continue with %{provider}",
+    "login": "Log in"
+  },
+  "login": {
+    "title": "Log in to your account",
+    "cta": "Log in",
+    "forgot": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "register": "Register"
+  },
+  "register": {
+    "title": "Create an account",
+    "cta": "Register",
+    "doAccount": "Already have an account?",
+    "login": "Log in"
+  },
   "home": {
     "greeting": "Hello %{name}",
     "daysSince": {
@@ -23,13 +48,183 @@
       "cta": "See all tips"
     }
   },
+  "medicalProfile": {
+    "next": "Next",
+    "finish": "Finish your profile",
+    "start": {
+      "title": "Share your health story with us",
+      "description": "We aim to gain more insights into your heart dissorder with your medical data.",
+      "time": "%{start} - %{end} minutes",
+      "cta": {
+        "secondary": "Do this later",
+        "primary": "Get started"
+      }
+    },
+    "gender": {
+      "question": "What is your gender?",
+      "options": {
+        "man": "Man",
+        "woman": "Woman",
+        "other": "I'd rather not say"
+      }
+    },
+    "age": {
+      "question": "What is your age?"
+    },
+    "heartDisease": {
+      "question": "Which heart dissorder do you have?",
+      "options": {
+        "afib": "Atrial fibrillation",
+        "other": "Other heart dissorder"
+      }
+    },
+    "frequency": {
+      "question": "How often do you have an irregular heartbeat?",
+      "options": {
+        "less": "Less than once a year",
+        "yearly": "Yearly",
+        "monthly": "Monthly",
+        "weekly": "Weekly",
+        "daily": "Daily"
+      }
+    },
+    "duration": {
+      "question": "How long do these moments last?",
+      "options": {
+        "less": "Less than 1 minute",
+        "minutes": "Up to several minutes",
+        "hours": "Up to 1 hour",
+        "day": "Up to 1 day",
+        "days": "Up to several days"
+      }
+    },
+    "riskfactors": {
+      "question": "Which of the following risk factors are applicable to you?",
+      "description": "You can select multiple options.",
+      "options": {
+        "stress": "Stress",
+        "apnea": "Sleep apnea",
+        "smoking": "Smoking",
+        "diabetes": "Diabetes",
+        "overweight": "Overweight",
+        "alcohol": "Alcohol",
+        "chronical": "Chronical diseases",
+        "vascularDiseases": "Vascular diseases",
+        "cholesterol": "High cholesterol",
+        "bloodpressure": "High blood pressure",
+        "family": "Family history",
+        "sports": "Endurance sports"
+      }
+    }
+  },
   "episodes": {
     "title": "Heartmoments",
     "emptyState": {
       "title": "A perfect month!",
       "description": "You didn't have any irregular heartbeats this month. Keep up the good work.",
       "cta": "Add a heartmoment"
+    },
+    "intake": {
+      "measure": {
+        "question": "Measure your heartbeat",
+        "description": "Place two finger of your right hand on your left wrist and measure your heartbeat for 1 minute."
+      },
+      "pulse": {
+        "question": "Which pulse did you measure?",
+        "description": "You can measure your pulse by using your smartwatch, or by placing two fingers on your wrist."
+      },
+      "start": {
+        "question": "When did your irregular heartbeat start?"
+      },
+      "end": {
+        "question": "When did your heartbeat became regular again?"
+      },
+      "activity": {
+        "question": "What were you doing when your heartbeat became irregular?",
+        "options": {
+          "sleeping": "Sleeping",
+          "sitting": "Sitting",
+          "standing": "Standing",
+          "walking": "Walking",
+          "sports": "Doing sports",
+          "other": "Other"
+        }
+      },
+      "symptoms": {
+        "question": "Select all symptoms that you experienced",
+        "description": "U can select multiple symptoms.",
+        "options": {
+          "none": "No symptoms",
+          "chestPain": "Chest pain",
+          "lightHeaded": "Light headed",
+          "breathing": "Breathing problems",
+          "faint": "Fainting",
+          "dizzy": "Dizzy",
+          "fatigued": "Fatigued",
+          "confused": "Confused",
+          "other": "Other symptoms"
+        }
+      },
+      "notes": {
+        "question": "Write something down about this heartmoment",
+        "description": "This question is optional."
+      }
+    },
+    "confirmation": {
+      "title": "Heartmoment registered!",
+      "description": "The hearmoment has been added to your diary. You can view and change it at any time.",
+      "cta": {
+        "primary": "See moment",
+        "secondary": "Go back home"
+      }
+    },
+    "create": {
+      "next": "Next",
+      "finish": "Save heartmoment",
+      "cancel": {
+        "title": "Quit heartmoment?",
+        "description": "By quiting this heartmoment, you will lose all the data you have entered so far.",
+        "cta": {
+          "primary": "Cancel",
+          "secondary": "Quit"
+        }
+      },
+      "start": {
+        "title": "Register a new heartmoment",
+        "description": "The next couple of questions will help you collect some experiences and feelings you had during your heartmoment.",
+        "cta": {
+          "primary": "Get started",
+          "secondary": "Cancel"
+        }
+      },
+      "info": {
+        "title": "Some things to keep in mind when creating a heartmoment",
+        "safety": {
+          "title": "Safety first",
+          "description": "Always make sure you are in a safe environment when having an irregular heartbeat. If you are not, make sure you get to a safe place first."
+        },
+        "help": {
+          "title": "Help is always nearby",
+          "description": "If you are in a safe place, make sure you have someone nearby who can help you if needed."
+        },
+        "doctor": {
+          "title": "Contact your doctor",
+          "description": "If your irregular heartbeat gets out of hand, make sure you contact 112 or visit the nearest hospital."
+        },
+        "cta": "Got it"
+      },
+      "pulse": {
+        "title": "Where you able to measure your heartbeat?",
+        "description": "You can measure your pulse by using your smartwatch, or by placing two fingers on your wrist.",
+        "cta": {
+          "primary": "Yes, I have",
+          "secondary": "No, I haven't"
+        }
+      }
     }
+  },
+  "discover": {
+    "title": "Discover"
   },
   "settings": {
     "profile": {
@@ -61,6 +256,40 @@
     "home": "Home",
     "episodes": "Moments",
     "discover": "Discover",
-    "profile": "Profile"
+    "profile": "Profile",
+    "settings": "Settings",
+    "medicalProfile": "Medical profile",
+    "Account": "Account"
+  },
+  "input": {
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "email": "E-mail",
+    "password": "Password",
+    "gender": "Gender",
+    "age": "Age",
+    "heartdisease": "Heart disease",
+    "episodeDuration": "Avg. duration heartmoment",
+    "episodeFrequency": "Avg. frequency heartmoment",
+    "riskfactors": "Risk factors",
+    "textarea": {
+      "placeholder": "Write something down..."
+    }
+  },
+  "error": {
+    "email": {
+      "required": "E-mail is required",
+      "invalid": "E-mail is invalid"
+    },
+    "password": {
+      "required": "Password is required",
+      "length": "Password must be at least 6 characters long"
+    },
+    "firstname": {
+      "required": "Firstname is required"
+    },
+    "lastname": {
+      "required": "Lastname is required"
+    }
   }
 }

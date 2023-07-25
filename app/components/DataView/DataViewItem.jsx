@@ -5,14 +5,26 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { AGES } from '../../__content/ages';
 import Label from '../../components/common/Label/Label';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 import PrimaryButton from '../common/Buttons/PrimaryButton';
 import { Icon } from '../common/Icon/Icon';
 import Popover from '../common/Popover/Popover';
 
-const DataViewItem = ({ data, options, label, method, column, type, hasBorder = true }) => {
+const DataViewItem = ({ data, options, label, method, tag, column, type, hasBorder = true }) => {
+  const { t } = useTranslations();
+
   const [isVisible, setIsVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(type === 'multi' ? [] : '');
+  const [localizedArray, setLocalizedArray] = useState([]);
+
+  useEffect(() => {
+    // Localize data in Array
+    if (type === 'multi') {
+      const localizedData = data && data.map((item) => t(`medicalProfile.${tag}.options.${item}`));
+      setLocalizedArray(localizedData);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (type === 'multi') {
@@ -23,13 +35,13 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
   }, [data]);
 
   // Update data
-    const queryClient = useQueryClient();
-    const mutation = useMutation((value) => method(column, value), {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['medical_profile']);
-        setIsVisible(false);
-      },
-    });
+  const queryClient = useQueryClient();
+  const mutation = useMutation((value) => method(column, value), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['medical_profile']);
+      setIsVisible(false);
+    },
+  });
 
   const handleUpdate = async () => {
     try {
@@ -45,7 +57,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
         <View className="bg-white shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6 pb-12">
           <View className="flex flex-row justify-between items-center ">
             <Text style={{ fontFamily: 'Bitter-semibold' }} className="text-deepMarine-800 text-xl">
-              {label}
+              {t(`input.${label}`)}
             </Text>
             <TouchableOpacity
               onPress={() => setIsVisible(false)}
@@ -66,7 +78,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
                 <Picker.Item
                   color={colors.deepMarine[900]}
                   key={index}
-                  label={label}
+                  label={t(`medicalProfile.${tag}.options.${label}`)}
                   value={value}
                 />
               ))}
@@ -116,7 +128,7 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
                         selectedValue.includes(value) ? 'text-white' : 'text-deepMarine-900'
                       }`}
                     >
-                      {label}
+                      {t(`medicalProfile.${tag}.options.${label}`)}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -134,10 +146,14 @@ const DataViewItem = ({ data, options, label, method, column, type, hasBorder = 
         onPress={() => setIsVisible(true)}
         className={`${hasBorder && 'border-b border-deepMarine-200'} py-4`}
       >
-        <Label title={label} />
+        <Label title={t(`input.${label}`)} />
         <View className="flex flex-row justify-between">
           <Text className="text-deepMarine-900 text-base max-w-[65vw]">
-            {type === 'multi' && data ? data.join(', ') : data}
+            {type === 'multi' && data
+              ? localizedArray.join(', ')
+              : tag === 'age' && data
+              ? data
+              : t(`medicalProfile.${tag}.options.${data}`)}
           </Text>
           <Icon name="chevron-right" size={20} />
         </View>

@@ -1,4 +1,29 @@
 {
+  "landing": {
+    "title": "Laat uw hartritmestoornis niet de bovenhand nemen",
+    "description": "Begin vandaag nog met een dagboek bij te houden over uw hartritmestoornis.",
+    "agreement": "Door zich te registreren, gaat u akkoord met onze",
+    "and": "en",
+    "or": "of",
+    "terms": "gebruikersvoorwaarden",
+    "privacy": "privacybeleid",
+    "cta": "Heeft u al een account?",
+    "continue": "Doorgaan met %{provider}",
+    "login": "Inloggen"
+  },
+  "login": {
+    "title": "Log in bij uw account",
+    "cta": "Inloggen",
+    "forgot": "Wachtwoord vergeten?",
+    "noAccount": "Nog geen account?",
+    "register": "Registreren"
+  },
+  "register": {
+    "title": "Maak een nieuw profiel",
+    "cta": "Registreren",
+    "doAccount": "Heeft u al een profiel?",
+    "login": "Inloggen"
+  },
   "home": {
     "greeting": "Dag %{name}",
     "daysSince": {
@@ -23,13 +48,182 @@
       "cta": "Bekijk alle tips"
     }
   },
+  "medicalProfile": {
+    "next": "Volgende",
+    "finish": "Voltooi uw profiel",
+    "start": {
+      "title": "Uw medisch profiel in kaart brengen",
+      "description": "Met uw medische gegevens proberen we meer inzichten te krijgen in uw hartritmestoornis.",
+      "time": "%{start} - %{end} minuten",
+      "cta": {
+        "secondary": "Doe dit later",
+        "primary": "Ga van start"
+      }
+    },
+    "gender": {
+      "question": "Wat is uw geslacht?",
+      "options": {
+        "man": "Man",
+        "woman": "Vrouw",
+        "other": "Zeg ik liever niet"
+      }
+    },
+    "age": {
+      "question": "Wat is uw leeftijd?"
+    },
+    "heartDisease": {
+      "question": "Welke hartritmestoornis werd bij u reeds vastgesteld?",
+      "options": {
+        "afib": "Voorkamerfibrilatie",
+        "other": "Een andere ritmestoornis"
+      }
+    },
+    "frequency": {
+      "question": "Hoe vaak heeft u last van uw ritmestoornis?",
+      "options": {
+        "less": "Minder dan 1 keer per jaar",
+        "yearly": "Jaarlijks",
+        "monthly": "Maandelijks",
+        "weekly": "Wekelijks",
+        "daily": "Dagelijks"
+      }
+    },
+    "duration": {
+      "question": "Hoe lang duren deze momenten gemiddeld?",
+      "options": {
+        "less": "Minder dan 1 minuut",
+        "minutes": "Enkele minuten",
+        "hours": "Enkele uren",
+        "day": "Een hele dag",
+        "days": "Enkele dagen"
+      }
+    },
+    "riskfactors": {
+      "question": "Welke risicofactoren zijn bij u van toepassing?",
+      "description": "U kan meerdere opties selecteren.",
+      "options": {
+        "stress": "Stress",
+        "apnea": "Slaapapneu",
+        "smoking": "Roken",
+        "diabetes": "Diabetes",
+        "overweight": "Overgewicht",
+        "alcohol": "Alcohol",
+        "chronical": "Chronische ziekte",
+        "vascularDiseases": "Vaatziekten",
+        "cholesterol": "Hoge cholesterol",
+        "bloodpressure": "Hoge bloeddruk",
+        "family": "Familiegeschiedenis",
+        "sports": "Duursport"
+      }
+    }
+  },
   "episodes": {
     "title": "Hartmomenten",
     "emptyState": {
       "title": "Een perfecte maand!",
       "description": "Leg steeds een moment vast, wannneer u een onregelmatige hartslag voelt.",
       "cta": "Voeg hartmoment toe"
+    },
+    "intake": {
+      "measure": {
+        "question": "Meet uw hartslag",
+        "description": "Plaats twee vingers van uw linkerhand op uw rechterpols en tel gedurende 1 minuut het aantal slagen van uw hart."
+      },
+      "pulse": {
+        "question": "Welke hartslag heeft u kunnen waarnemen?"
+      },
+      "start": {
+        "question": "Wanneer begon uw onregelmatige hartslag?"
+      },
+      "end": {
+        "question": "Wanneer was uw hartslag opnieuw regelmatig?"
+      },
+      "activity": {
+        "question": "Wat was u net voor het hartmoment aan het doen?",
+        "options": {
+          "sleeping": "Slapen",
+          "sitting": "Zitten",
+          "standing": "Staan",
+          "walking": "Wandelen",
+          "sports": "Sporten",
+          "other": "Andere"
+        }
+      },
+      "symptoms": {
+        "question": "Duid de symptomen aan die aanwezig waren",
+        "description": "U kan meerdere symptomen selecteren.",
+        "options": {
+          "none": "Geen opmerkelijk symptomen",
+          "chestPain": "Pijn op de borst",
+          "lightHeaded": "Licht in het hoofd",
+          "breathing": "Kortademigheid",
+          "faint": "Flauwvallen",
+          "dizzy": "Duizelig",
+          "fatigued": "Vermoeidheid",
+          "confused": "Verward",
+          "other": "Andere symptomen"
+        }
+      },
+      "notes": {
+        "question": "Voeg een opmerking toe aan dit hartmoment",
+        "description": "Deze vraag is optioneel."
+      }
+    },
+    "confirmation": {
+      "title": "Hartmoment vastgelegd!",
+      "description": "Het moment is toegevoegd aan uw dagboek. Als u iets bent vergeten kan u deze steeds aanpassen.",
+      "cta": {
+        "primary": "Bekijk moment",
+        "secondary": "Naar overzicht"
+      }
+    },
+    "create": {
+      "next": "Volgende",
+      "finish": "Hartmoment afronden",
+      "cancel": {
+        "title": "Hartmoment stopzetten",
+        "description": "Als u hier stopt, zullen de tot nu toe ingevulde gegevens verloren gaan.",
+        "cta": {
+          "primary": "Annuleer",
+          "secondary": "Stoppen"
+        }
+      },
+      "start": {
+        "title": "Leg een nieuw hartmoment vast",
+        "description": "De volgende vragen bundelen alle ervaringen die u had tijdens uw onregelmatige hartslag.",
+        "cta": {
+          "primary": "Ga van start",
+          "secondary": "Annuleer"
+        }
+      },
+      "info": {
+        "title": "Enkele zaken voordat u een hartmoment vastlegt",
+        "safety": {
+          "title": "Uw veiligheid waarborgen",
+          "description": "Neem even de tijd om tot rust te komen en onderbreek wat u aan het doen was."
+        },
+        "help": {
+          "title": "Schakel hulp in",
+          "description": "Het is aangeraden om iemand uit uw omgeving te contacteren wanneer u een hartmoment ervaart."
+        },
+        "doctor": {
+          "title": "Contacteer een arts",
+          "description": "Als uw onregelmatige hartslag uit de hand loopt, bel dan de 112 of ga naar de dichtstbijzijnde spoeddienst."
+        },
+        "cta": "Begrepen"
+      },
+      "pulse": {
+        "title": "Heeft u een meting kunnen maken van uw hartslag?",
+        "description": "U kan dit bereiken met behulp van een smartwatch, hartslagmeter of door handmatig uw pols te meten.",
+        "cta": {
+          "primary": "Ja, al gedaan",
+          "secondary": "Nee, nog niet"
+        }
+      }
     }
+  },
+  "discover": {
+    "title": "Ontdek"
   },
   "settings": {
     "profile": {
@@ -61,6 +255,40 @@
     "home": "Overzicht",
     "episodes": "Momenten",
     "discover": "Ontdek",
-    "profile": "Profiel"
+    "profile": "Profiel",
+    "settings": "Instellingen",
+    "medicalProfile": "Medisch profiel",
+    "Account": "Account"
+  },
+  "input": {
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "gender": "Geslacht",
+    "age": "Leeftijd",
+    "heartdisease": "Ritmestoornis",
+    "episodeDuration": "Gem. duur hartmoment",
+    "episodeFrequency": "Gem. frequentie hartmoment",
+    "riskfactors": "Risicofactoren",
+    "textarea": {
+      "placeholder": "Schrijf iets..."
+    }
+  },
+  "error": {
+    "email": {
+      "required": "Vul een e-mailadres in",
+      "invalid": "Vul een geldig e-mailadres in"
+    },
+    "password": {
+      "required": "Vul een wachtwoord in",
+      "length": "Wachtwoord moet minstens 6 karakters lang zijn"
+    },
+    "firstname": {
+      "required": "Vul een voornaam in"
+    },
+    "lastname": {
+      "required": "Vul een achternaam in"
+    }
   }
 }

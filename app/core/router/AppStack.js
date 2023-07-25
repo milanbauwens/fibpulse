@@ -23,11 +23,13 @@ import {
 import { Intake, IntakeStart } from '../../screens/intake';
 import { MedicalDataScreen, PersonalInformationScreen, Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
+import { useTranslations } from '../i18n/LocaleProvider';
 import AuthStack from './AuthStack';
 
 export const AppStack = () => {
   const navigation = useNavigation();
   const { isLoggedIn } = useAuthContext();
+  const { t } = useTranslations();
 
   const AppStack = createNativeStackNavigator();
 
@@ -172,8 +174,8 @@ export const AppStack = () => {
           name="MedicalProfile"
           component={MedicalDataScreen}
           options={{
-            title: 'Medisch profiel',
-            headerTitle: 'Medisch profiel',
+            title: t('navigation.medicalProfile'),
+            headerTitle: t('navigation.medicalProfile'),
             headerLeft: () => <BackButton />,
           }}
         />
@@ -181,8 +183,8 @@ export const AppStack = () => {
           name="Profile"
           component={PersonalInformationScreen}
           options={{
-            title: 'Account',
-            headerTitle: 'Account',
+            title: t('navigation.account'),
+            headerTitle: t('navigation.account'),
             headerLeft: () => <BackButton />,
           }}
         />

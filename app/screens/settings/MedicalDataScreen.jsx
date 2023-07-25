@@ -31,45 +31,51 @@ const MedicalDataScreen = () => {
   });
 
   const formattedData = {
-    Geslacht: {
+    gender: {
       data: medicalProfile?.data?.gender,
       options: GENDERS,
       type: 'single',
       column: 'gender',
+      tag: 'gender',
       method: updateMedicalProfile,
     },
-    Leeftijd: {
+    age: {
       data: medicalProfile?.data?.age,
       column: 'age',
       type: 'date',
+      tag: 'age',
       method: updateMedicalProfile,
     },
-    Ritmestoornis: {
+    heartdisease: {
       data: medicalProfile?.data?.heart_disorder,
       options: HEART_DISORDERS,
       column: 'heart_disorder',
       type: 'single',
+      tag: 'heartDisease',
       method: updateMedicalProfile,
     },
-    'Episode frequentie': {
+    episodeFrequency: {
       data: medicalProfile?.data?.episode_frequency,
       options: EPISODE_AMOUNTS,
       column: 'episode_frequency',
       type: 'single',
+      tag: 'frequency',
       method: updateMedicalProfile,
     },
-    'Episode duur': {
+    episodeDuration: {
       data: medicalProfile?.data?.episode_duration,
       options: EPISODE_DURATIONS,
       column: 'episode_duration',
       type: 'single',
+      tag: 'duration',
       method: updateMedicalProfile,
     },
-    Risicofactoren: {
+    riskfactors: {
       data: medicalProfile?.data?.risk_factors,
       options: RISK_FACTORS,
       column: 'risk_factors',
       type: 'multi',
+      tag: 'riskfactors',
       method: updateMedicalProfile,
     },
   };

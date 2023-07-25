@@ -10,15 +10,19 @@ import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Title } from '../../components/common/Typography';
 import Error from '../../components/errors/Error';
 import { supabase } from '../../core/db/initSupabase';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const Register = () => {
   const navigation = useNavigation();
+  const { t } = useTranslations();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const [isLoading, setIsLoading] = useState(false);
   const [signUpError, setSignUpError] = useState();
 
@@ -55,7 +59,7 @@ const Register = () => {
     <SafeAreaView className="bg-white h-full px-5">
       <BackButton onPress={() => navigation.navigate('Landing')} />
       <View className="bg-white z-[2] mb-6">
-        <Title size="large">Maak een nieuw profiel</Title>
+        <Title size="large">{t('register.title')}</Title>
       </View>
       <KeyboardAwareScrollView overScrollMode="never" bounces={false} extraHeight={0}>
         {signUpError && (
@@ -66,9 +70,9 @@ const Register = () => {
         <View className=" flex gap-y-6">
           <View>
             <Formgroup
-              rules={{ required: 'Vul een voornaam in.' }}
+              rules={{ required: t('error.firstname.required') }}
               control={control}
-              label="Voornaam"
+              label={t('input.firstname')}
               ref={firstnameInputRef}
               returnKeyType="next"
               autoCapitalize="words"
@@ -79,9 +83,9 @@ const Register = () => {
           </View>
           <View>
             <Formgroup
-              rules={{ required: 'Vul een naam in.' }}
+              rules={{ required: t('error.lastname.required') }}
               control={control}
-              label="Naam"
+              label={t('input.lastname')}
               ref={nameInputRef}
               returnKeyType="next"
               autoCapitalize="words"
@@ -93,14 +97,14 @@ const Register = () => {
           <View>
             <Formgroup
               rules={{
-                required: 'Vul een e-mail in.',
+                required: t('error.email.required'),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: 'Vul een geldig e-mailadres in.',
+                  message: t('error.email.invalid'),
                 },
               }}
               control={control}
-              label="E-mail"
+              label={t('input.email')}
               ref={emailInputRef}
               returnKeyType="next"
               autoComplete="off"
@@ -113,14 +117,14 @@ const Register = () => {
           <View>
             <Formgroup
               rules={{
-                required: 'Vul een wachtwoord in.',
+                required: t('error.password.required'),
                 minLength: {
                   value: 6,
-                  message: 'Wachtwoord moet minstens 6 karakters lang zijn.',
+                  message: t('error.password.length'),
                 },
               }}
               control={control}
-              label="Wachtwoord"
+              label={t('input.password')}
               inputName="userPassword"
               ref={passwordInputRef}
               returnKeyType="done"
@@ -134,13 +138,13 @@ const Register = () => {
         <View className="mb-6 mt-12">
           <PrimaryButton
             isLoading={isLoading}
-            label="Registreren"
+            label={t('register.cta')}
             onPress={handleSubmit(handleRegister)}
           />
         </View>
         <TertiairyButton
-          label="Heeft u al een profiel?"
-          action="Inloggen."
+          label={t('register.doAccount')}
+          action={t('register.login')}
           onPress={() => navigation.navigate('Login')}
         />
       </KeyboardAwareScrollView>

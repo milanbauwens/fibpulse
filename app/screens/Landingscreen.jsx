@@ -12,11 +12,14 @@ import CircleSm from '../components/svg/CircleSm';
 import Ellipse from '../components/svg/Ellipse';
 import Logo from '../components/svg/Logo';
 import { signInWithProvider } from '../core/db/modules/auth/api';
+import { useTranslations } from '../core/i18n/LocaleProvider';
 import { handleAuthError } from '../core/utils/auth/handleAuthError';
 
 const Landingscreen = () => {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
+  const { t } = useTranslations();
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -44,10 +47,8 @@ const Landingscreen = () => {
       <CircleSm className="absolute bottom-4 right-0" />
 
       <View className="mx-auto px-5">
-        <Display>Laat uw hartritmestoornis niet de bovenhand nemen.</Display>
-        <Paragraph>
-          Begin vandaag nog met een dagboek bij te houden over uw hartritmestoornis.
-        </Paragraph>
+        <Display>{t('landing.title')}</Display>
+        <Paragraph>{t('landing.description')} </Paragraph>
       </View>
 
       <View style={{ bottom: bottom + 8 }} className="absolute w-full mx-auto px-5">
@@ -68,7 +69,7 @@ const Landingscreen = () => {
             style={{ fontFamily: 'Mulish-regular' }}
             className="flex-shrink mx-4 text-deepMarine-200 text-sm"
           >
-            Of
+            {t('landing.or')}
           </Text>
           <View className="flex-grow border-t border-deepMarine-200" />
         </View>
@@ -76,7 +77,7 @@ const Landingscreen = () => {
         <View className="mb-2">
           <PrimaryButton
             icon={<Icon name="mail-outline" size={24} color="white" />}
-            label="Doorgaan met E-mail"
+            label={t('landing.continue', { provider: 'E-mail' })}
             onPress={() => navigation.navigate('Auth', { screen: 'Register' })}
           />
         </View>
@@ -84,23 +85,23 @@ const Landingscreen = () => {
           className="text-xs text-deepMarine-700 mb-10 text-center"
           style={{ fontFamily: 'Mulish-medium' }}
         >
-          Door zich te registreren, gaat u akkoord met onze{' '}
+          {t('landing.agreement')}{' '}
           <Link to="/Login">
             <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
-              Gebruiksvoorwaarden
+              {t('landing.terms')}
             </Text>
           </Link>{' '}
-          en{' '}
+          {t('landing.and')}{' '}
           <Link to="/Login">
             <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
-              Privacy verklaring.
+              {t('landing.privacy')}
             </Text>
           </Link>
         </Text>
 
         <TertiairyButton
-          label="Heeft u al een account?"
-          action="Inloggen."
+          label={t('landing.cta')}
+          action={t('landing.login')}
           onPress={() => navigation.navigate('Auth', { screen: 'Login' })}
         />
       </View>

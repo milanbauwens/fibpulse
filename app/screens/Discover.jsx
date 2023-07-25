@@ -2,8 +2,11 @@ import { ScrollView, View } from 'react-native';
 
 import DiscoverCard from '../components/DiscoverCard/DiscoverCard';
 import { Title } from '../components/common/Typography';
+import { useTranslations } from '../core/i18n/LocaleProvider';
 
 const Discover = () => {
+  const { t } = useTranslations();
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -12,7 +15,7 @@ const Discover = () => {
       className="w-full h-screen bg-white px-5"
     >
       <View className="mb-8">
-        <Title size="large">Ontdek</Title>
+        <Title size="large">{t('discover.title')}</Title>
       </View>
 
       <DiscoverCard

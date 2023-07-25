@@ -33,7 +33,7 @@ const Overview = () => {
       className="w-full h-screen bg-white px-5"
     >
       <View className="mb-8 flex flex-row justify-between items-center">
-        <Title size="large">Hartmomenten</Title>
+        <Title size="large">{t('episodes.title')}</Title>
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate('EpisodesCreateStart')}

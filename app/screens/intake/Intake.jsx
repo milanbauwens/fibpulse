@@ -8,10 +8,12 @@ import slides from '../../__content/intake.js';
 import { PrimaryButton } from '../../components/common/Buttons/index.jsx';
 import { FlatlistItem, FlatlistPaginator } from '../../components/common/Flatlist/index.js';
 import { updateMedicalProfile } from '../../core/db/modules/medical_profiles/api.js';
+import { useTranslations } from '../../core/i18n/LocaleProvider.jsx';
 
 const Intake = () => {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
+  const { t } = useTranslations();
 
   const slidesRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -75,7 +77,11 @@ const Intake = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <FlatlistItem onSelect={(selected) => setSelected(selected)} data={item} />
+          <FlatlistItem
+            type="medicalProfile"
+            onSelect={(selected) => setSelected(selected)}
+            data={item}
+          />
         )}
         bounces={false}
         pagingEnabled
@@ -94,7 +100,9 @@ const Intake = () => {
         className="px-4 absolute left-0 right-0 m-auto flex flex-col justify-center"
       >
         <PrimaryButton
-          label={currentSlide === slides.length - 1 ? ' Voltooi uw profiel' : 'Volgende'}
+          label={
+            currentSlide === slides.length - 1 ? t('medicalProfile.finish') : 'medicalProfile.next'
+          }
           onPress={scrollTo}
         />
       </View>

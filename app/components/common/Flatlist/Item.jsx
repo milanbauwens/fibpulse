@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
 import { AGES } from '../../../__content/ages';
+import { useTranslations } from '../../../core/i18n/LocaleProvider';
 import colors from '../../../theme/colors';
 import {
   SpotOther,
@@ -18,8 +19,9 @@ import Label from '../Label/Label';
 import Popover from '../Popover/Popover';
 import { Paragraph, Title } from '../Typography';
 
-const Item = ({ data, onSelect }) => {
+const Item = ({ type, data, onSelect }) => {
   const { width } = useWindowDimensions();
+  const { t } = useTranslations();
 
   const [selected, setSelected] = useState(data.type === 'multiselect' ? [] : '');
 
@@ -32,8 +34,8 @@ const Item = ({ data, onSelect }) => {
   return (
     <View style={{ width }} className="h-full bg-white mt-8 px-5">
       <View>
-        <Title size="large">{data.question}</Title>
-        {data.description && <Paragraph>{data.description}</Paragraph>}
+        <Title size="large">{t(`${type}.${data.question}.question`)}</Title>
+        {data.description && <Paragraph>{t(`${type}.${data.question}.description`)}</Paragraph>}
       </View>
 
       <View className="mt-8">
@@ -63,7 +65,7 @@ const Item = ({ data, onSelect }) => {
                       selected.includes(option) ? 'text-white' : 'text-deepMarine-900'
                     }`}
                   >
-                    {option}
+                    {t(`${type}.${data.question}.options.${option}`)}
                   </Text>
                 </TouchableOpacity>
               );
@@ -92,22 +94,22 @@ const Item = ({ data, onSelect }) => {
                 // Determine the spot illustration
                 let spotIllustration;
                 switch (option) {
-                  case 'Slapen':
+                  case 'sleeping':
                     spotIllustration = <SpotSleeping />;
                     break;
-                  case 'Zitten':
+                  case 'sitting':
                     spotIllustration = <SpotSitting />;
                     break;
-                  case 'Staan':
+                  case 'standing':
                     spotIllustration = <SpotStanding />;
                     break;
-                  case 'Andere':
+                  case 'other':
                     spotIllustration = <SpotOther />;
                     break;
-                  case 'Wandelen':
+                  case 'walking':
                     spotIllustration = <SpotWalking />;
                     break;
-                  case 'Sporten':
+                  case 'sports':
                     spotIllustration = <SpotSports />;
                     break;
                 }
@@ -129,7 +131,7 @@ const Item = ({ data, onSelect }) => {
                         style={{ fontFamily: 'Mulish-medium' }}
                         className="text-base text-turquoise-900"
                       >
-                        {option}
+                        {t(`${type}.${data.question}.options.${option}`)}
                       </Text>
                     </View>
 
@@ -202,7 +204,7 @@ const Item = ({ data, onSelect }) => {
           <Label title={data.label} />
           <Input
             onChangeText={(text) => setSelected(text)}
-            placeholder="Schrijf iets..."
+            placeholder={t('input.textarea.placeholder')}
             variant="textarea"
             inputMode="text"
           />

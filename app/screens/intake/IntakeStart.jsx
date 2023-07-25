@@ -8,11 +8,13 @@ import { Icon } from '../../components/common/Icon/Icon';
 import { Paragraph, Title } from '../../components/common/Typography';
 import IntakeIllustration from '../../components/svg/IntakeIllustration';
 import { supabase } from '../../core/db/initSupabase';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 
 const IntakeStart = () => {
   const navigation = useNavigation();
   const { user } = useAuthContext();
+  const { t } = useTranslations();
   const { bottom } = useSafeAreaInsets();
 
   const handleStart = async () => {
@@ -31,19 +33,16 @@ const IntakeStart = () => {
       <IntakeIllustration className="mb-6" />
       <View className="w-3/4 mx-auto">
         <Title size="large" textCenter>
-          Uw medisch profiel in kaart brengen
+          {t('medicalProfile.start.title')}
         </Title>
       </View>
-      <Paragraph styles="text-center">
-        Met uw medische gegevens, proberen we meer inzichten te krijgen in hoe uw ritmestoornis in
-        elkaar zit.
-      </Paragraph>
+      <Paragraph styles="text-center">{t('medicalProfile.start.description')}</Paragraph>
       <View className="flex items-center justify-center flex-row mt-5">
         <View className="rounded-full bg-turquoise-200 w-8 h-8 flex items-center justify-center">
           <Icon name="clock-outline" size={20} color={colors.turquoise[700]} />
         </View>
         <Paragraph styles="ml-3" textColor="text-deepMarine-900" isStrong>
-          5-8 minuten
+          {t('medicalProfile.start.time', { start: 5, end: 8 })}
         </Paragraph>
       </View>
       <View
@@ -51,10 +50,13 @@ const IntakeStart = () => {
         className="flex-1 flex flex-row items-center px-5 absolute left-0 right-0 m-auto justify-center"
       >
         <View className="flex-1 mr-4">
-          <SecondaryButton label="Doe dit later" onPress={() => navigation.navigate('Main')} />
+          <SecondaryButton
+            label={t('medicalProfile.start.cta.secondary')}
+            onPress={() => navigation.navigate('Main')}
+          />
         </View>
         <View className="flex-1">
-          <PrimaryButton label="Ga van start" onPress={handleStart} />
+          <PrimaryButton label={t('medicalProfile.start.cta.primary')} onPress={handleStart} />
         </View>
       </View>
     </SafeAreaView>

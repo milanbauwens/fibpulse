@@ -16,10 +16,13 @@ import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Title } from '../../components/common/Typography';
 import Error from '../../components/errors/Error';
 import { supabase } from '../../core/db/initSupabase';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const Login = () => {
   const navigation = useNavigation();
+  const { t } = useTranslations();
+
   const {
     control,
     handleSubmit,
@@ -53,7 +56,7 @@ const Login = () => {
     <SafeAreaView className="bg-white h-full px-5">
       <BackButton onPress={() => navigation.navigate('Landing')} />
       <View className="bg-white z-[2] mb-6">
-        <Title size="large">Log in bij uw account</Title>
+        <Title size="large">{t('login.title')}</Title>
       </View>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -69,14 +72,14 @@ const Login = () => {
         <View>
           <Formgroup
             rules={{
-              required: 'Vul een e-mail in.',
+              required: t('error.email.required'),
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: 'Vul een geldig e-mailadres in.',
+                message: t('error.email.invalid'),
               },
             }}
             control={control}
-            label="E-mail"
+            label={t('input.email')}
             returnKeyType="next"
             autoCapitalize="none"
             keyboardType="email-address"
@@ -88,14 +91,14 @@ const Login = () => {
         <View>
           <Formgroup
             rules={{
-              required: 'Vul een wachtwoord in.',
+              required: t('error.password.required'),
               minLength: {
                 value: 6,
-                message: 'Wachtwoord moet minstens 6 karakters lang zijn.',
+                message: t('error.password.length'),
               },
             }}
             control={control}
-            label="Wachtwoord"
+            label={t('input.password')}
             inputName="userPassword"
             ref={passwordInputRef}
             returnKeyType="done"
@@ -116,18 +119,22 @@ const Login = () => {
               className="text-right pr-2 text-base text-deepMarine-900"
               style={{ fontFamily: 'Mulish-medium' }}
             >
-              Wachtwoord vergeten?
+              {t('login.forgot')}
             </Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
 
       <View className="mb-6">
-        <PrimaryButton onPress={handleSubmit(handleLogin)} isLoading={isLoading} label="Inloggen" />
+        <PrimaryButton
+          onPress={handleSubmit(handleLogin)}
+          isLoading={isLoading}
+          label={t('login.cta')}
+        />
       </View>
       <TertiairyButton
-        label="Nog geen account?"
-        action="Registreren."
+        label={t('login.noAccount')}
+        action={t('login.register')}
         onPress={() => navigation.navigate('Register')}
       />
     </SafeAreaView>
