@@ -86,13 +86,13 @@ const Landingscreen = () => {
           style={{ fontFamily: 'Mulish-medium' }}
         >
           {t('landing.agreement')}{' '}
-          <Link to="/Login">
+          <Link to="/Terms">
             <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
               {t('landing.terms')}
             </Text>
           </Link>{' '}
           {t('landing.and')}{' '}
-          <Link to="/Login">
+          <Link to="/Privacy">
             <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
               {t('landing.privacy')}
             </Text>

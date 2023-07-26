@@ -294,7 +294,7 @@
         "title": "Do you want to delete your account?",
         "description": "By deleting your account, you will lose all your data and you will no longer be able to use the app.",
         "secondary": "Cancel",
-        "primary": "Delete account"
+        "primary": "Delete"
       }
     },
     "language": {
@@ -325,9 +325,77 @@
       "title": "Help and support",
       "bug": "Report a bug",
       "privacy": "Privacy policy",
-      "user": "User agreement"
+      "terms": "Terms and conditions"
     },
     "logout": "Log out"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "This Privacy Policy explains how we collect, use, and disclose your personal information when you use our app.",
+    "collect": {
+      "title": "Information We Collect",
+      "description": "We collect personal information provided during account registration, including your name, email address, and password. Additionally, we also collect medical profile information, such as your year of birth, heart condition, gender, risk factors that increase the risk of heart condition, average duration of an attack, and the frequency of your attacks."
+    },
+    "use": {
+      "title": "How We Use Your Information",
+      "description": "We use your personal information to provide and improve our app services, personalize your experience, and communicate with you."
+    },
+    "security": {
+      "title": "Data Security",
+      "description": "We employ industry-standard security measures to protect your personal information from unauthorized access or disclosure."
+    },
+    "storage": {
+      "title": "Data Retention",
+      "description": "We will retain your personal information as long as necessary to fulfill the purposes outlined in this Privacy Policy or as required by law. If your account is deleted, all associated data will also be removed."
+    },
+    "thirdParty": {
+      "title": "Third-Party Services",
+      "description": "We may use third-party services to enhance app functionality. These services are governed by their own privacy policies."
+    },
+    "changes": {
+      "title": "User Choices",
+      "description": "You can view, update, or delete your personal information within the app's settings. If this is not possible, you can always contact us using the contact details provided at the bottom of this Privacy Policy."
+    },
+    "updates": {
+      "title": "Updates to the Privacy Policy",
+      "description": "We may update this Privacy Policy from time to time. Any changes will be posted on this page."
+    },
+    "contact": "Contact us"
+  },
+  "terms": {
+    "title": "User Terms",
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "description": "By using our app, you agree to be bound by these User Terms, our Privacy Policy, and any other guidelines or rules applicable to specific services we may provide."
+    },
+    "personalInformation": {
+      "title": "Personal Information",
+      "description": "You agree to provide accurate and complete information during the registration process. It is your responsibility to keep your account information up-to-date."
+    },
+    "medicalInformation": {
+      "title": "Medical Information",
+      "description": "You understand and consent to providing your medical profile information for the purpose of enhancing your user experience within the app."
+    },
+    "security": {
+      "title": "Security",
+      "description": "You are responsible for maintaining the confidentiality of your account and password. If you suspect unauthorized access to your account, please notify us immediately."
+    },
+    "prohibitedConduct": {
+      "title": "Prohibited Conduct",
+      "description": "You shall not use the app for any illegal, abusive, or unauthorized purpose."
+    },
+    "intellectualProperty": {
+      "title": "Intellectual Property",
+      "description": "All content and materials within the app are protected by intellectual property rights and are owned or licensed by us."
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "description": "The app provides information for educational purposes only and should not be considered medical advice. Always consult a healthcare professional for medical concerns."
+    },
+    "changes": {
+      "title": "Changes to User Terms",
+      "description": "We reserve the right to modify these User Terms at any time. Your continued use of the app after such modifications will constitute your agreement to the updated terms."
+    }
   },
   "time": {
     "day": "Day",
@@ -343,7 +411,9 @@
     "settings": "Settings",
     "medicalProfile": "Medical profile",
     "account": "Account",
-    "language": "Language"
+    "language": "Language",
+    "terms": "Terms and conditions",
+    "privacy": "Privacy policy"
   },
   "input": {
     "firstname": "Firstname",

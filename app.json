@@ -6,7 +6,7 @@
     "scheme": "fibpulse",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -16,9 +16,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/a32b5503-7a1e-40e7-ad8f-e958348387ee"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.milanbauwens.fibpulse"
     },
@@ -38,8 +36,6 @@
       }
     },
     "runtimeVersion": "exposdk:48.0.0",
-    "plugins": [
-      "expo-localization"
-    ]
+    "plugins": ["expo-localization"]
   }
 }

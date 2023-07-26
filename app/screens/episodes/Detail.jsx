@@ -28,7 +28,8 @@ const Detail = ({ route, navigation }) => {
     queryFn: ({ queryKey }) => getEpisodeById(queryKey[1]),
   });
 
-  const { created_at, pulse, activity, symptoms, notes } = !isLoading && episode.data;
+  const { created_at, start_date, end_date, pulse, activity, symptoms, notes } =
+    !isLoading && episode.data;
 
   const formatDate = (date, format = 'full' | 'short' | 'time') => {
     const dateObject = new Date(date);
@@ -66,8 +67,8 @@ const Detail = ({ route, navigation }) => {
   useEffect(() => {
     if (!isLoading) {
       navigation.setOptions({
-        title: formatDate(created_at),
-        headerTitle: formatDate(created_at),
+        title: formatDate(start_date),
+        headerTitle: formatDate(start_date),
         headerRight: () => (
           <TouchableOpacity
             onPress={() => setIsVisible(true)}
@@ -159,7 +160,7 @@ const Detail = ({ route, navigation }) => {
         className="w-full h-screen bg-white px-5"
       >
         <View className="mb-6">
-          <Title size="large">{formatDate(created_at)}</Title>
+          <Title size="large">{formatDate(start_date)}</Title>
         </View>
 
         <View>
@@ -172,8 +173,8 @@ const Detail = ({ route, navigation }) => {
                 </Paragraph>
               </View>
               <View>
-                <Paragraph styles="mb-1">{formatDate(created_at, 'short')}</Paragraph>
-                <Title size="large">{formatDate(created_at, 'time')}</Title>
+                <Paragraph styles="mb-1">{formatDate(start_date, 'short')}</Paragraph>
+                <Title size="large">{formatDate(start_date, 'time')}</Title>
               </View>
             </View>
             <View className="flex-1 ml-2 bg-deepMarine-100 rounded-lg p-3">
@@ -184,8 +185,8 @@ const Detail = ({ route, navigation }) => {
                 </Paragraph>
               </View>
               <View>
-                <Paragraph styles="mb-1">{formatDate(created_at, 'short')}</Paragraph>
-                <Title size="large">{formatDate(created_at, 'time')}</Title>
+                <Paragraph styles="mb-1">{formatDate(end_date, 'short')}</Paragraph>
+                <Title size="large">{formatDate(end_date, 'time')}</Title>
               </View>
             </View>
           </View>

@@ -8,7 +8,7 @@ module.exports = [
     question: 'pulse',
     column: 'pulse',
     label: 'label',
-    type: 'picker',
+    type: 'number',
   },
   {
     question: 'start',

@@ -1,34 +1,32 @@
 import { useNavigation } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 
+import { useTranslations } from '../../core/i18n/LocaleProvider';
 import Badge from '../common/Badge/Badge';
 import Card from '../common/Card/Card';
 
-const EpisodeCard = ({ date, startHour, endHour, pulse, activity, id }) => {
+const EpisodeCard = ({ date, startHour, endHour, pulse = '???', activity, id }) => {
   const navigation = useNavigation();
-  let icon;
+  const { t } = useTranslations();
 
+  let icon;
   switch (activity) {
-    case 'Slapen':
+    case 'sleeping':
       icon = 'night-outline';
       break;
-    case 'Zitten':
+    case 'sitting':
       icon = 'chair-outline';
       break;
-    case 'Staan':
+    case 'standing':
       icon = 'cactus-outline';
       break;
-    case 'Wandelen':
+    case 'walking':
       icon = 'walk-outline';
       break;
-    case 'Sporten':
+    case 'sports':
       icon = 'kayak-outline';
       break;
-    case 'Andere':
-      icon = 'dots-horizontal';
-      break;
-
-    default:
+    case 'other':
       icon = 'dots-horizontal';
       break;
   }
@@ -55,7 +53,14 @@ const EpisodeCard = ({ date, startHour, endHour, pulse, activity, id }) => {
       </View>
       <View className="flex flex-row items-center">
         <Badge variant="turquoise" icon="activity-heart-outline" label={`${pulse} spm`} />
-        <Badge marginLeft="ml-2" variant="ochre" icon={icon} label={activity} />
+        {activity && (
+          <Badge
+            marginLeft="ml-2"
+            variant="ochre"
+            icon={icon}
+            label={t(`episodes.intake.activity.options.${activity}`)}
+          />
+        )}
       </View>
     </Card>
   );

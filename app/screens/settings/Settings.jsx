@@ -67,8 +67,16 @@ const Settings = () => {
         </View>
 
         <SettingsItem iconName="announcement-outline" title={t('settings.help.bug')} />
-        <SettingsItem iconName="file-check-outline" title={t('settings.help.privacy')} />
-        <SettingsItem iconName="file-check-outline" title={t('settings.help.user')} />
+        <SettingsItem
+          iconName="file-check-outline"
+          title={t('settings.help.privacy')}
+          onPress={() => navigation.navigate('Privacy')}
+        />
+        <SettingsItem
+          iconName="file-check-outline"
+          title={t('settings.help.terms')}
+          onPress={() => navigation.navigate('Terms')}
+        />
         <SettingsItem
           type="error"
           iconName="log-out"

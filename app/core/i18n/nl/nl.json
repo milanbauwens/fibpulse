@@ -294,7 +294,7 @@
         "title": "Account verwijderen?",
         "description": "Opgepast! Deze stap is definitief en alle gegevens zullen verloren gaan.",
         "secondary": "Annuleer",
-        "primary": "Verwijder account"
+        "primary": "Verwijderen"
       }
     },
     "language": {
@@ -325,9 +325,77 @@
       "title": "Hulp",
       "bug": "Rapporteer een probleem",
       "privacy": "Privacybeleid",
-      "user": "Gebruikersvoorwaarden"
+      "terms": "Gebruikersvoorwaarden"
     },
     "logout": "Afmelden"
+  },
+  "privacy": {
+    "title": "Privacybeleid",
+    "description": "Dit Privacybeleid legt uit hoe we uw persoonlijke informatie verzamelen, gebruiken en bekendmaken wanneer u onze app gebruikt.",
+    "collect": {
+      "title": "Informatie die we verzamelen",
+      "description": "We verzamelen persoonlijke informatie die u verstrekt tijdens het aanmaken van een account, zoals uw naam, e-mailadres en wachtwoord. Daarnaast verzamelen we ook medische profielinformatie, zoals uw geboortejaar, hartaandoening, geslacht, factoren die het risico op een hartaandoening vergroten, gemiddelde duur van een aanval en de frequentie van uw aanvallen."
+    },
+    "use": {
+      "title": "Hoe we uw informatie gebruiken",
+      "description": "We gebruiken uw persoonlijke informatie om onze app-services te leveren en te verbeteren, uw ervaring te personaliseren en met u te communiceren."
+    },
+    "security": {
+      "title": "Gegevensbeveiliging",
+      "description": "We gebruiken industriestandaard beveiligingsmaatregelen om uw persoonlijke informatie te beschermen tegen ongeautoriseerde toegang of openbaarmaking."
+    },
+    "storage": {
+      "title": "Gegevensbewaring",
+      "description": "We bewaren uw persoonlijke informatie zolang als nodig is om de doeleinden uiteengezet in dit Privacybeleid te vervullen, of zoals vereist door de wet. Indien uw account verwijderd wordt, zullen ook alle gegevens mee verwijderd worden."
+    },
+    "thirdParty": {
+      "title": "Diensten van Derden",
+      "description": "We kunnen gebruikmaken van diensten van derden om de functionaliteit van de app te verbeteren. Deze diensten worden beheerst door hun eigen privacybeleid."
+    },
+    "changes": {
+      "title": "Gebruikerskeuzes",
+      "description": "U kunt uw persoonlijke informatie bekijken, bijwerken of verwijderen in de instellingen van de app. Indien dit niet mogelijk is, kan u ons steeds contacteren via de contactgegevens onderaan dit Privacybeleid."
+    },
+    "updates": {
+      "title": "Updates van het Privacybeleid",
+      "description": "We kunnen dit Privacybeleid van tijd tot tijd bijwerken. Eventuele wijzigingen worden op deze pagina geplaatst."
+    },
+    "contact": "Contacteer ons"
+  },
+  "terms": {
+    "title": "Gebruiksvoorwaarden",
+    "acceptance": {
+      "title": "Aanvaarding van Gebruiksvoorwaarden",
+      "description": "Door het gebruik van onze app gaat u akkoord met deze Gebruiksvoorwaarden, ons Privacybeleid en andere richtlijnen die van toepassing kunnen zijn op specifieke services die wij aanbieden."
+    },
+    "personalInformation": {
+      "title": "Persoonlijke Informatie",
+      "description": "U stemt ermee in om tijdens het registratieproces accurate en volledige informatie te verstrekken. Het is uw verantwoordelijkheid om uw accountinformatie up-to-date te houden."
+    },
+    "medicalInformation": {
+      "title": "Medische Informatie",
+      "description": "U begrijpt en stemt ermee in uw medische profielinformatie te verstrekken met als doel uw gebruikerservaring in de app te verbeteren."
+    },
+    "security": {
+      "title": "Beveiliging",
+      "description": "U bent verantwoordelijk voor het vertrouwelijk houden van uw account en wachtwoord. Als u ongeautoriseerde toegang tot uw account vermoedt, meld dit dan onmiddellijk."
+    },
+    "prohibitedConduct": {
+      "title": "Verboden Gedrag",
+      "description": "U mag de app niet gebruiken voor illegale, misbruikende of ongeautoriseerde doeleinden."
+    },
+    "intellectualProperty": {
+      "title": "Intellectueel Eigendom",
+      "description": "Alle inhoud en materialen binnen de app zijn beschermd door intellectuele eigendomsrechten en zijn eigendom van ons of in licentie gegeven door ons."
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "description": "De app biedt uitsluitend informatie voor educatieve doeleinden en mag niet worden beschouwd als medisch advies. Raadpleeg altijd een zorgverlener voor medische kwesties."
+    },
+    "changes": {
+      "title": "Wijzigingen in Gebruiksvoorwaarden",
+      "description": "We behouden het recht voor om deze Gebruiksvoorwaarden op elk moment te wijzigen. Uw voortgezet gebruik van de app na dergelijke wijzigingen betekent uw akkoord met de bijgewerkte voorwaarden."
+    }
   },
   "time": {
     "day": "Dag",
@@ -343,7 +411,9 @@
     "settings": "Instellingen",
     "medicalProfile": "Medisch profiel",
     "account": "Account",
-    "language": "Taal"
+    "language": "Taal",
+    "terms": "Gebruikersvoorwaarden",
+    "privacy": "Privacybeleid"
   },
   "input": {
     "firstname": "Voornaam",

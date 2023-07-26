@@ -1,6 +1,14 @@
 import { Picker } from '@react-native-picker/picker';
 import { useEffect, useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import {
+  Keyboard,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
+} from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import { YEARS } from '../../../__content/ages';
 import { useTranslations } from '../../../core/i18n/LocaleProvider';
@@ -21,9 +29,34 @@ import { Paragraph, Title } from '../Typography';
 
 const Item = ({ type, data, onSelect }) => {
   const { width } = useWindowDimensions();
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
 
   const [selected, setSelected] = useState(data.type === 'multiselect' ? [] : '');
+
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+
+  const [time, setTime] = useState();
+  const [date, setDate] = useState(new Date());
+
+  const handleDateConfirm = (date) => {
+    setDate(new Date(date));
+    setDatePickerVisibility(false);
+  };
+
+  const handleTimeConfirm = (time) => {
+    setTime(new Date(time));
+    setTimePickerVisibility(false);
+  };
+
+  useEffect(() => {
+    if (data.type === 'datetime') {
+      if (time && date) {
+        date.setHours(time.getHours(), time.getMinutes());
+        setSelected(date.toISOString());
+      }
+    }
+  }, [time, date]);
 
   useEffect(() => {
     onSelect(selected);
@@ -199,6 +232,63 @@ const Item = ({ type, data, onSelect }) => {
         </View>
       )}
 
+      {data.type === 'datetime' && (
+        <View>
+          <View className="mb-6">
+            <Label title="Datum" />
+            <Input
+              inputMode="none"
+              value={
+                date
+                  ? date.toLocaleDateString(locale, {
+                      month: '2-digit',
+                      year: 'numeric',
+                      day: '2-digit',
+                    })
+                  : ''
+              }
+              icon="calendar-outline"
+              onPressIn={() => setDatePickerVisibility(true)}
+              disabled
+            />
+            <DateTimePickerModal
+              date={date}
+              isVisible={isDatePickerVisible}
+              mode="date"
+              locale={locale}
+              onConfirm={handleDateConfirm}
+              onCancel={() => setDatePickerVisibility(false)}
+            />
+          </View>
+
+          <View>
+            <Label title="Tijd" />
+            <Input
+              inputMode="none"
+              value={
+                time
+                  ? time.toLocaleTimeString(locale, {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hourCycle: 'h24',
+                    })
+                  : ''
+              }
+              icon="clock-outline"
+              onPressIn={() => setTimePickerVisibility(true)}
+              disabled
+            />
+            <DateTimePickerModal
+              isVisible={isTimePickerVisible}
+              mode="time"
+              locale="en_GB"
+              onConfirm={handleTimeConfirm}
+              onCancel={() => setTimePickerVisibility(false)}
+            />
+          </View>
+        </View>
+      )}
+
       {data.type === 'textarea' && (
         <View>
           <Label title={data.label} />
@@ -207,6 +297,17 @@ const Item = ({ type, data, onSelect }) => {
             placeholder={t('input.textarea.placeholder')}
             variant="textarea"
             inputMode="text"
+          />
+        </View>
+      )}
+
+      {data.type === 'number' && (
+        <View>
+          <Label title={t(`${type}.${data.question}.label`)} />
+          <Input
+            onChangeText={(text) => setSelected(text)}
+            inputMode="numeric"
+            onSubmitEditing={() => Keyboard.dismiss()}
           />
         </View>
       )}

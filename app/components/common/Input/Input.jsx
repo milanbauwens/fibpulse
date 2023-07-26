@@ -13,6 +13,7 @@ const Input = ({
   onFocus,
   onPressIn,
   onChangeText,
+  onSubmitEditing,
   disabled,
 }) => (
   <View className="relative">
@@ -38,6 +39,7 @@ const Input = ({
       onFocus={onFocus}
       secureTextEntry={false}
       onPressIn={onPressIn}
+      onSubmitEditing={onSubmitEditing}
       aria-disabled={disabled}
     />
     <View className="absolute right-2 h-6 w-6 top-3 flex items-center justify-center text-turquoise-700">

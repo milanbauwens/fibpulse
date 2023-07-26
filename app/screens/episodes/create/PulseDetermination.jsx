@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { PrimaryButton, SecondaryButton } from '../../../components/common/Buttons';
+import {
+  PrimaryButton,
+  SecondaryButton,
+  TertiairyButton,
+} from '../../../components/common/Buttons';
 import { Icon } from '../../../components/common/Icon/Icon';
 import Popover from '../../../components/common/Popover/Popover';
 import { Paragraph, Title } from '../../../components/common/Typography';
@@ -57,15 +61,16 @@ const PulseDetermination = ({ route }) => {
           <Paragraph styles="mb-8">{t('episodes.create.cancel.description')} </Paragraph>
           <View className="flex-1 flex flex-row items-center justify-center">
             <View className="flex-1 mr-4">
-              <SecondaryButton
-                label={t('episodes.create.cancel.cta.secondary')}
-                onPress={handleDelete}
-              />
-            </View>
-            <View className="flex-1">
               <PrimaryButton
                 label={t('episodes.create.cancel.cta.primary')}
                 onPress={() => setIsVisible(false)}
+              />
+            </View>
+            <View className="flex-1">
+              <TertiairyButton
+                action={t('episodes.create.cancel.cta.secondary')}
+                onPress={handleDelete}
+                type="error"
               />
             </View>
           </View>

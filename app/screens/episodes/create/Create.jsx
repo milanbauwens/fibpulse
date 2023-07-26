@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Animated, FlatList, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import slides from '../../../__content/episode.js';
-import { PrimaryButton, SecondaryButton } from '../../../components/common/Buttons/index.jsx';
+import { PrimaryButton, TertiairyButton } from '../../../components/common/Buttons/index.jsx';
 import { FlatlistItem, FlatlistPaginator } from '../../../components/common/Flatlist/index.js';
 import Popover from '../../../components/common/Popover/Popover.jsx';
 import Paragraph from '../../../components/common/Typography/Paragraph.jsx';
@@ -23,6 +23,7 @@ const Create = ({ route }) => {
   const slidesRef = useRef(null);
   const [data] = useState(hasMeasuredPulse ? slides.slice(1) : slides);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [selected, setSelected] = useState();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -39,6 +40,7 @@ const Create = ({ route }) => {
     handleUpdate();
     if (currentSlide < data.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
+      setIsDisabled(true);
     } else if (currentSlide === data.length - 1) {
       navigation.navigate('EpisodesCreateConfirmation', { episodeId });
     }
@@ -67,6 +69,15 @@ const Create = ({ route }) => {
     },
   });
 
+  useEffect(() => {
+    if (!column || column === 'notes') {
+      setIsDisabled(false);
+    }
+    if (selected) {
+      setIsDisabled(false);
+    }
+  }, [selected, column]);
+
   const handleUpdate = async () => {
     await mutation.mutateAsync(selected);
   };
@@ -83,15 +94,16 @@ const Create = ({ route }) => {
           <Paragraph styles="mb-8">{t('episodes.create.cancel.description')} </Paragraph>
           <View className="flex-1 flex flex-row items-center justify-center">
             <View className="flex-1 mr-4">
-              <SecondaryButton
-                label={t('episodes.create.cancel.cta.secondary')}
-                onPress={handleDelete}
-              />
-            </View>
-            <View className="flex-1">
               <PrimaryButton
                 label={t('episodes.create.cancel.cta.primary')}
                 onPress={() => setIsVisible(false)}
+              />
+            </View>
+            <View className="flex-1">
+              <TertiairyButton
+                action={t('episodes.create.cancel.cta.secondary')}
+                onPress={handleDelete}
+                type="error"
               />
             </View>
           </View>
@@ -127,7 +139,7 @@ const Create = ({ route }) => {
         bounces={false}
         pagingEnabled
         scrollEnabled={false}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, index) => index.toString()}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
           useNativeDriver: false,
         })}
@@ -141,7 +153,7 @@ const Create = ({ route }) => {
         className="px-4 absolute left-0 right-0 m-auto flex flex-col justify-center"
       >
         <PrimaryButton
-          isDisabled={!selected}
+          isDisabled={isDisabled}
           label={
             currentSlide === data.length - 1
               ? t('episodes.create.finish')

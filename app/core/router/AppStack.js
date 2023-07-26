@@ -11,6 +11,8 @@ import Header from '../../components/common/Header/Header';
 import Home from '../../screens/Home';
 import Landingscreen from '../../screens/Landingscreen';
 import { Onboarding } from '../../screens/Onboarding';
+import Privacy from '../../screens/Privacy';
+import Terms from '../../screens/Terms';
 import {
   EpisodeConfirmationScreen,
   EpisodeCreateScreen,
@@ -209,6 +211,24 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
+        <AppStack.Screen
+          name="Privacy"
+          component={Privacy}
+          options={{
+            title: t('navigation.privacy'),
+            headerTitle: t('navigation.privacy'),
+            headerLeft: () => <BackButton />,
+          }}
+        />
+        <AppStack.Screen
+          name="Terms"
+          component={Terms}
+          options={{
+            title: t('navigation.terms'),
+            headerTitle: t('navigation.terms'),
+            headerLeft: () => <BackButton />,
+          }}
+        />
 
         {/* Medical Profile */}
         <AppStack.Screen
@@ -229,10 +249,39 @@ export const AppStack = () => {
     );
   } else {
     return (
-      <AppStack.Navigator screenOptions={{ headerShown: false }}>
-        {completedOnboarding ? null : <AppStack.Screen name="Onboarding" component={Onboarding} />}
-        <AppStack.Screen name="Landing" component={Landingscreen} />
-        <AppStack.Screen name="Auth" component={AuthStack} />
+      <AppStack.Navigator screenOptions={screenOptions}>
+        {completedOnboarding ? null : (
+          <AppStack.Screen
+            name="Onboarding"
+            component={Onboarding}
+            options={{ headerShown: false }}
+          />
+        )}
+        <AppStack.Screen
+          name="Landing"
+          component={Landingscreen}
+          options={{ headerShown: false }}
+        />
+        <AppStack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
+
+        <AppStack.Screen
+          name="Privacy"
+          component={Privacy}
+          options={{
+            title: t('navigation.privacy'),
+            headerTitle: t('navigation.privacy'),
+            headerLeft: () => <BackButton />,
+          }}
+        />
+        <AppStack.Screen
+          name="Terms"
+          component={Terms}
+          options={{
+            title: t('navigation.terms'),
+            headerTitle: t('navigation.terms'),
+            headerLeft: () => <BackButton />,
+          }}
+        />
       </AppStack.Navigator>
     );
   }
