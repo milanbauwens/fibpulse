@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-import { AGES } from '../../__content/ages';
+import { YEARS } from '../../__content/ages';
 import Label from '../../components/common/Label/Label';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
@@ -51,6 +51,18 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
     }
   };
 
+  const showData = () => {
+    if (data) {
+      if (type === 'multi') {
+        return localizedArray.join(', ');
+      } else if (type === 'date') {
+        return data;
+      } else {
+        return t(`medicalProfile.${tag}.options.${selectedValue}`);
+      }
+    }
+  };
+
   return (
     <>
       <Popover animationType="slide" isVisible={isVisible}>
@@ -91,7 +103,7 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
               selectedValue={selectedValue}
               onValueChange={(itemValue) => setSelectedValue(itemValue)}
             >
-              {AGES.map(({ label, value }) => (
+              {YEARS.map(({ label, value }) => (
                 <Picker.Item
                   color={colors.deepMarine[900]}
                   key={value}
@@ -148,13 +160,7 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
       >
         <Label title={t(`input.${label}`)} />
         <View className="flex flex-row justify-between">
-          <Text className="text-deepMarine-900 text-base max-w-[65vw]">
-            {type === 'multi' && data
-              ? localizedArray.join(', ')
-              : tag === 'age' && data
-              ? data
-              : t(`medicalProfile.${tag}.options.${data}`)}
-          </Text>
+          <Text className="text-deepMarine-900 text-base max-w-[65vw]">{showData()}</Text>
           <Icon name="chevron-right" size={20} />
         </View>
       </TouchableOpacity>

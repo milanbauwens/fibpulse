@@ -2,7 +2,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useEffect, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 
-import { AGES } from '../../../__content/ages';
+import { YEARS } from '../../../__content/ages';
 import { useTranslations } from '../../../core/i18n/LocaleProvider';
 import colors from '../../../theme/colors';
 import {
@@ -152,7 +152,7 @@ const Item = ({ type, data, onSelect }) => {
 
       {data.type === 'picker' && (
         <View>
-          <Label title={data.label} />
+          <Label title={t(`medicalProfile.${data.question}.label`)} />
           <Input
             inputMode="none"
             value={selected ? `${selected}` : ''}
@@ -168,7 +168,7 @@ const Item = ({ type, data, onSelect }) => {
                     style={{ fontFamily: 'Bitter-semibold' }}
                     className="text-deepMarine-800 text-xl"
                   >
-                    {data.label}
+                    {t(`medicalProfile.${data.question}.label`)}
                   </Text>
                   <TouchableOpacity
                     onPress={() => setIsVisible(false)}
@@ -184,7 +184,7 @@ const Item = ({ type, data, onSelect }) => {
                   selectedValue={selected ? selected : 40}
                   onValueChange={(itemValue) => setSelected(itemValue)}
                 >
-                  {AGES.map(({ label, value }) => (
+                  {YEARS.map(({ label, value }) => (
                     <Picker.Item
                       color={colors.deepMarine[900]}
                       key={value}

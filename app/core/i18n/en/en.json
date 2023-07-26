@@ -83,8 +83,9 @@
         "other": "I'd rather not say"
       }
     },
-    "age": {
-      "question": "What is your age?"
+    "birthYear": {
+      "question": "What is your birth year?",
+      "label": "Birth year"
     },
     "heartDisease": {
       "question": "Which heart dissorder do you have?",
@@ -328,7 +329,7 @@
     "email": "E-mail",
     "password": "Password",
     "gender": "Gender",
-    "age": "Age",
+    "birthYear": "Birth year",
     "heartdisease": "Heart disease",
     "episodeDuration": "Avg. duration heartmoment",
     "episodeFrequency": "Avg. frequency heartmoment",

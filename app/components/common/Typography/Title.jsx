@@ -19,7 +19,7 @@ const Title = ({
       variant = 'text-2xl small:text-lg';
       break;
     default:
-      variant = 'text-lg sm:text-base';
+      variant = 'text-xl sm:text-base';
       break;
   }
 

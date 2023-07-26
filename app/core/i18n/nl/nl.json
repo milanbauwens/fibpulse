@@ -83,8 +83,9 @@
         "other": "Zeg ik liever niet"
       }
     },
-    "age": {
-      "question": "Wat is uw leeftijd?"
+    "birthYear": {
+      "question": "Wat is uw geboortejaar?",
+      "label": "Geboortejaar"
     },
     "heartDisease": {
       "question": "Welke hartritmestoornis werd bij u reeds vastgesteld?",
@@ -327,7 +328,7 @@
     "email": "E-mail",
     "password": "Wachtwoord",
     "gender": "Geslacht",
-    "age": "Leeftijd",
+    "birthYear": "Geboortejaar",
     "heartdisease": "Ritmestoornis",
     "episodeDuration": "Gem. duur hartmoment",
     "episodeFrequency": "Gem. frequentie hartmoment",

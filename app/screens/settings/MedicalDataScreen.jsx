@@ -39,11 +39,11 @@ const MedicalDataScreen = () => {
       tag: 'gender',
       method: updateMedicalProfile,
     },
-    age: {
-      data: medicalProfile?.data?.age,
-      column: 'age',
+    birthYear: {
+      data: medicalProfile?.data?.year_of_birth,
+      column: 'year_of_birth',
       type: 'date',
-      tag: 'age',
+      tag: 'birthYear',
       method: updateMedicalProfile,
     },
     heartdisease: {

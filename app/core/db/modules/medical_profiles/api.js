@@ -7,7 +7,9 @@ export const getMedicalProfile = async () => {
 
   return await supabase
     .from('medical_profiles')
-    .select('age, gender, episode_duration, episode_frequency, heart_disorder, risk_factors')
+    .select(
+      'year_of_birth, gender, episode_duration, episode_frequency, heart_disorder, risk_factors'
+    )
     .eq('user_id', userID)
     .single()
     .throwOnError();
