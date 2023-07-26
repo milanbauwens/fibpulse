@@ -241,7 +241,17 @@
     "detail": {
       "start": "Start",
       "end": "End",
-      "delete": "Delete heartmoment",
+      "delete": {
+        "title": "Delete heartmoment",
+        "confirmation": {
+          "title": "Delete this heartmoment?",
+          "description": "By deleting this heartmoment, you will lose all the data you have entered so far. This action cannot be undone.",
+          "cta": {
+            "primary": "Cancel",
+            "secondary": "Delete"
+          }
+        }
+      },
       "edit": "Make changes",
       "measurement": "Measurements",
       "status": "Observations",
