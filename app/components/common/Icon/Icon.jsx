@@ -1,4 +1,4 @@
-import { ClipPath, Defs, G, Path, Svg } from 'react-native-svg';
+import { ClipPath, Defs, G, Path, Rect, Svg } from 'react-native-svg';
 
 import colors from '../../../theme/colors';
 
@@ -301,6 +301,31 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
+    case 'edit':
+      icon = (
+        <>
+          <Path
+            d="M20 6.8c0-1.68 0-2.52-.327-3.162a3 3 0 00-1.311-1.311C17.72 2 16.88 2 15.2 2H8.8c-1.68 0-2.52 0-3.162.327a3 3 0 00-1.311 1.311C4 4.28 4 5.12 4 6.8v10.4c0 1.68 0 2.52.327 3.162a3 3 0 001.311 1.311C6.28 22 7.12 22 8.8 22M14 11H8m2 4H8m8-8H8"
+            stroke="#168087"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <Path
+            d="M12.196 19.315c.024-.215.036-.323.069-.424.029-.09.07-.174.121-.253.059-.088.135-.165.289-.319l6.887-6.887a1.475 1.475 0 012.086 2.086l-6.887 6.888c-.154.153-.23.23-.319.288a1.045 1.045 0 01-.253.122c-.1.032-.208.044-.424.068L12 21.08l.196-1.765z"
+            fill="#A2CCCF"
+          />
+          <Path
+            d="M20.084 15.083l-2.086-2.086M12 21.08l1.765-.196c.216-.024.323-.036.424-.068.09-.03.175-.07.253-.122.089-.058.165-.135.319-.288l6.887-6.888a1.475 1.475 0 10-2.086-2.086l-6.887 6.888c-.154.153-.23.23-.289.318a1.04 1.04 0 00-.121.253c-.033.1-.045.209-.069.424L12 21.08z"
+            stroke="#168087"
+            strokeWidth={1.56458}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      );
+      break;
+
     case 'night-outline':
       icon = (
         <>
@@ -400,6 +425,21 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
           strokeLinecap="round"
           strokeLinejoin="round"
         />
+      );
+      break;
+
+    case 'trash':
+      icon = (
+        <>
+          <Rect x={8} y={2} width={8} height={4} rx={1} fill="#FED7D7" />
+          <Path
+            d="M16 6v-.8c0-1.12 0-1.68-.218-2.108a2 2 0 00-.874-.874C14.48 2 13.92 2 12.8 2h-1.6c-1.12 0-1.68 0-2.108.218a2 2 0 00-.874.874C8 3.52 8 4.08 8 5.2V6m2 5.5v5m4-5v5M3 6h18m-2 0v11.2c0 1.68 0 2.52-.327 3.162a3 3 0 01-1.311 1.311C16.72 22 15.88 22 14.2 22H9.8c-1.68 0-2.52 0-3.162-.327a3 3 0 01-1.311-1.311C5 19.72 5 18.88 5 17.2V6"
+            stroke="#DD1515"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
       );
       break;
 

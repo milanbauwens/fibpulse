@@ -141,6 +141,7 @@ const Create = ({ route }) => {
         className="px-4 absolute left-0 right-0 m-auto flex flex-col justify-center"
       >
         <PrimaryButton
+          isDisabled={!selected}
           label={
             currentSlide === data.length - 1
               ? t('episodes.create.finish')

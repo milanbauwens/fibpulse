@@ -146,7 +146,8 @@
         "description": "Plaats twee vingers van uw linkerhand op uw rechterpols en tel gedurende 1 minuut het aantal slagen van uw hart."
       },
       "pulse": {
-        "question": "Welke hartslag heeft u kunnen waarnemen?"
+        "question": "Welke hartslag heeft u kunnen waarnemen?",
+        "label": "Slagen per minuut"
       },
       "start": {
         "question": "Wanneer begon uw onregelmatige hartslag?"
@@ -240,6 +241,18 @@
     "detail": {
       "start": "Begin",
       "end": "Einde",
+      "delete": {
+        "title": "Hartmoment verwijderen",
+        "confirmation": {
+          "title": "Hartmoment verwijderen?",
+          "description": "U staat op het punt om dit hartmoment te verwijderen. U zal dit niet meer kunnen herstellen.",
+          "cta": {
+            "primary": "Annuleer",
+            "secondary": "Verwijderen"
+          }
+        }
+      },
+      "edit": "Wijzigen",
       "measurement": "Metingen",
       "status": "Vaststellingen",
       "pulse": {
@@ -273,6 +286,16 @@
       "title": "Profiel",
       "account": "Account",
       "medicalProfile": "Medisch profiel"
+    },
+    "account": {
+      "save": "Wijzigingen opslaan",
+      "delete": "Account verwijderen",
+      "cta": {
+        "title": "Account verwijderen?",
+        "description": "Opgepast! Deze stap is definitief en alle gegevens zullen verloren gaan.",
+        "secondary": "Annuleer",
+        "primary": "Verwijder account"
+      }
     },
     "language": {
       "title": "De taal van de applicatie wijzigen",

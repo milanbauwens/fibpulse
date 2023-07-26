@@ -1,12 +1,15 @@
 import React from 'react';
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 
-const PrimaryButton = ({ label, onPress, isLoading, icon }) => {
+const PrimaryButton = ({ label, onPress, isLoading, isDisabled, icon }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
+      disabled={isDisabled}
       activeOpacity={0.8}
-      className="flex flex-row items-center justify-center h-12 bg-deepMarine-500 px-[16px] rounded-lg "
+      className={`flex flex-row items-center justify-center h-12 ${
+        isDisabled ? ' bg-deepMarine-200' : 'bg-deepMarine-500'
+      } px-[16px] rounded-lg `}
     >
       {!isLoading ? (
         <>

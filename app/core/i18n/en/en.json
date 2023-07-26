@@ -241,6 +241,8 @@
     "detail": {
       "start": "Start",
       "end": "End",
+      "delete": "Delete heartmoment",
+      "edit": "Make changes",
       "measurement": "Measurements",
       "status": "Observations",
       "pulse": {
@@ -274,6 +276,16 @@
       "title": "Profile",
       "account": "Account",
       "medicalProfile": "Medical profile"
+    },
+    "account": {
+      "save": "Save changes",
+      "delete": "Delete account",
+      "cta": {
+        "title": "Do you want to delete your account?",
+        "description": "By deleting your account, you will lose all your data and you will no longer be able to use the app.",
+        "secondary": "Cancel",
+        "primary": "Delete account"
+      }
     },
     "language": {
       "title": "Changing the language of the app",

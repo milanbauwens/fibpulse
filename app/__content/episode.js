@@ -7,7 +7,7 @@ module.exports = [
   {
     question: 'pulse',
     column: 'pulse',
-    label: 'Slagen per minuut',
+    label: 'label',
     type: 'picker',
   },
   {

@@ -80,7 +80,14 @@ export const AppStack = () => {
     header: ({ navigation, route, options }) => {
       const title = getHeaderTitle(options, route.name);
 
-      return <Header headerLeft={options.headerLeft} {...navigation} title={title} />;
+      return (
+        <Header
+          headerLeft={options.headerLeft}
+          headerRight={options.headerRight}
+          {...navigation}
+          title={title}
+        />
+      );
     },
   });
 

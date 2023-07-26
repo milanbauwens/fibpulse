@@ -152,7 +152,7 @@ const Item = ({ type, data, onSelect }) => {
 
       {data.type === 'picker' && (
         <View>
-          <Label title={t(`medicalProfile.${data.question}.label`)} />
+          <Label title={t(`${type}.${data.question}.label`)} />
           <Input
             inputMode="none"
             value={selected ? `${selected}` : ''}
@@ -168,7 +168,7 @@ const Item = ({ type, data, onSelect }) => {
                     style={{ fontFamily: 'Bitter-semibold' }}
                     className="text-deepMarine-800 text-xl"
                   >
-                    {t(`medicalProfile.${data.question}.label`)}
+                    {t(`${type}.${data.question}.label`)}
                   </Text>
                   <TouchableOpacity
                     onPress={() => setIsVisible(false)}
