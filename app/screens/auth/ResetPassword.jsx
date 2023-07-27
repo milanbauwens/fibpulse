@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import * as Linking from 'expo-linking';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Keyboard, KeyboardAvoidingView, Text, View } from 'react-native';
@@ -23,7 +24,11 @@ const ResetPassword = () => {
   const handleResetPassword = async (formData) => {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase.auth.resetPasswordForEmail(formData.userEmail);
+      const redirectURL = Linking.createURL('/Login');
+
+      const { data, error } = await supabase.auth.resetPasswordForEmail(formData.userEmail, {
+        redirectTo: redirectURL,
+      });
       if (error) {
         const authError = handleAuthError(error);
         setResetPasswordError(authError);
@@ -38,7 +43,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <SafeAreaView className=" bg-white h-full px-4">
+    <SafeAreaView className=" bg-white h-full px-5">
       <BackButton onPress={() => navigation.navigate('Login')} />
       <Title size="large">Wachtwoord vergeten</Title>
       <Paragraph styles="mb-12">

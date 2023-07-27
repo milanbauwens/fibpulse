@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 import Card from '../components/common/Card/Card';
 import { Paragraph } from '../components/common/Typography';
 import Title from '../components/common/Typography/Title';
-import PrivacyIllustration from '../components/svg/PrivacyIllustration';
+import TermsIllustration from '../components/svg/TermsIllustration';
 import { useTranslations } from '../core/i18n/LocaleProvider';
 
 const Terms = () => {
@@ -17,7 +17,7 @@ const Terms = () => {
       className="w-full h-screen bg-white px-5"
     >
       <View className="mb-8">
-        <PrivacyIllustration />
+        <TermsIllustration />
       </View>
 
       <View className="mb-6">
