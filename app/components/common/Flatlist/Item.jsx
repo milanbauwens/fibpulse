@@ -36,8 +36,51 @@ const Item = ({ type, data, onSelect }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 
+  const [seconds, setSeconds] = useState(60);
+  const [timerActive, setTimerActive] = useState(false);
+
   const [time, setTime] = useState();
   const [date, setDate] = useState(new Date());
+
+  // stopwatch function based on chat-gpt input
+
+  useEffect(() => {
+    let interval;
+
+    if (data.type === 'measurement') {
+      if (timerActive) {
+        interval = setInterval(() => {
+          setSeconds((prevSeconds) => {
+            if (prevSeconds === 0) {
+              clearInterval(interval);
+              setTimerActive(false);
+              return 0;
+            } else {
+              return prevSeconds - 1;
+            }
+          });
+        }, 1000);
+      } else if (seconds !== 60) {
+        clearInterval(interval);
+      }
+    }
+
+    return () => {
+      clearInterval(interval);
+      if (seconds === 0) {
+        setTimerActive(false);
+      }
+    };
+  }, [timerActive, seconds]);
+
+  const handleTimerStartPause = () => {
+    setTimerActive((prevTimerActive) => !prevTimerActive);
+  };
+
+  const handleTimerReset = () => {
+    setTimerActive(false);
+    setSeconds(60);
+  };
 
   const handleDateConfirm = (date) => {
     setDate(new Date(date));
@@ -180,6 +223,29 @@ const Item = ({ type, data, onSelect }) => {
               })}
             </ScrollView>
           </>
+        )}
+
+        {data.type === 'measurement' && (
+          <View className="w-full flex flex-row items-center justify-around">
+            <TouchableOpacity activeOpacity={0.8} onPress={handleTimerStartPause}>
+              <Icon
+                name={timerActive ? 'pause' : 'play-outline'}
+                size={24}
+                color={colors.turquoise[700]}
+              />
+            </TouchableOpacity>
+            <View className="flex flex-row items-center">
+              <View className="p-3 bg-ochre-300 rounded-lg">
+                <Title size="large">{Math.floor(seconds / 10)}</Title>
+              </View>
+              <View className="p-3 bg-ochre-300 rounded-lg ml-2">
+                <Title size="large">{seconds % 10}</Title>
+              </View>
+            </View>
+            <TouchableOpacity activeOpacity={0.8} onPress={handleTimerReset}>
+              <Icon name="loop" size={24} color={colors.turquoise[700]} />
+            </TouchableOpacity>
+          </View>
         )}
       </View>
 

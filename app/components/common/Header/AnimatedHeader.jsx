@@ -4,8 +4,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AnimatedHeader = ({ title, headerRight, scrollY }) => {
   const { top } = useSafeAreaInsets();
-  const paddingTop = top + 12;
 
+  const paddingTop = top + 12;
   const animatedScrollY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -30,29 +30,30 @@ const AnimatedHeader = ({ title, headerRight, scrollY }) => {
   });
 
   // Calculate the opacity of the text based on the scroll position
-  const textOpacity = animatedScrollY.interpolate({
+  const opacity = animatedScrollY.interpolate({
     inputRange: [0, MAX_HEADER_HEIGHT - 100],
     outputRange: [1, 0],
     extrapolate: 'clamp',
-    easing: (x) => x * x,
   });
 
   return (
     <>
       <Animated.View
-        style={{ paddingTop, height: headerHeight }}
-        className="w-full relative bg-white flex-row items-center justify-between px-5"
+        style={{
+          paddingTop,
+          height: headerHeight,
+        }}
+        className="w-full relative bg-white flex-row  justify-between px-5"
       >
         <Animated.Text
-          style={{ fontFamily: 'Bitter-semibold', opacity: textOpacity }}
+          style={{ fontFamily: 'Bitter-semibold', opacity }}
           className="text-2xl text-deepMarine-900"
         >
           {title}
         </Animated.Text>
-        <Animated.View style={{ opacity: textOpacity }}>{headerRightComponent}</Animated.View>
+        <Animated.View style={{ opacity }}>{headerRightComponent}</Animated.View>
       </Animated.View>
     </>
   );
 };
-
 export default AnimatedHeader;

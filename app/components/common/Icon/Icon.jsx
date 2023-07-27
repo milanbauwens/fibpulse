@@ -19,6 +19,42 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
+    case 'play-outline':
+      icon = (
+        <Path
+          d="M5.576 5.467c0-.971 0-1.457.203-1.724a1 1 0 01.738-.395c.335-.02.739.25 1.547.788l10.515 7.01c.668.445 1.002.668 1.118.948a1 1 0 010 .767c-.116.28-.45.503-1.118.948l-10.515 7.01c-.808.539-1.212.808-1.547.788a1 1 0 01-.738-.395c-.203-.267-.203-.753-.203-1.724V5.468z"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'loop':
+      icon = (
+        <Path
+          d="M9.123 20.245A8.5 8.5 0 0019.938 8.228l-.25-.433M5.213 16.728A8.5 8.5 0 0116.03 4.711M3.07 16.81l2.732.733.732-2.732m12.086-4.668l.732-2.732 2.732.732"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'pause':
+      icon = (
+        <Path
+          d="M7 20V4m10 16V4"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
     case 'compass-outline':
       icon = (
         <>

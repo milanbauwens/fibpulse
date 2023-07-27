@@ -57,7 +57,7 @@ const Home = ({ navigation }) => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: 24 }}
       style={{ paddingTop: 0 }}
-      scrollEventThrottle={6}
+      scrollEventThrottle={16}
       className="w-full h-screen bg-white px-5"
     >
       <View className="mb-8">
