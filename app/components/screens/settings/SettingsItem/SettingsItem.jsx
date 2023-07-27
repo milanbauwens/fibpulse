@@ -20,7 +20,7 @@ const SettingsItem = ({
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
-      className="w-full flex flex-row items-center justify-between mb-6"
+      className="w-full flex flex-row items-center justify-between mb-5"
     >
       <View className="flex flex-row items-center">
         <View

@@ -5,10 +5,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const Header = ({ title, headerLeft, headerRight }) => {
   const { top } = useSafeAreaInsets();
   const paddingTop = top + 8;
-
   const headerLeftComponent = headerLeft && headerLeft();
   const headerRightComponent = headerRight && headerRight();
-
   return (
     <Animated.View
       style={{ paddingTop }}
@@ -26,5 +24,4 @@ const Header = ({ title, headerLeft, headerRight }) => {
     </Animated.View>
   );
 };
-
 export default Header;

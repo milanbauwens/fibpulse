@@ -6,7 +6,7 @@ module.exports = [
     options: ['man', 'woman', 'other'],
   },
   {
-    column: 'date_of_birth',
+    column: 'year_of_birth',
     label: 'label',
     question: 'birthYear',
     type: 'picker',

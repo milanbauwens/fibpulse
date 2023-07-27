@@ -101,7 +101,9 @@ const Intake = () => {
       >
         <PrimaryButton
           label={
-            currentSlide === slides.length - 1 ? t('medicalProfile.finish') : 'medicalProfile.next'
+            currentSlide === slides.length - 1
+              ? t('medicalProfile.finish')
+              : t('medicalProfile.next')
           }
           onPress={scrollTo}
         />

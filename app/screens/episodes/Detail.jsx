@@ -62,8 +62,6 @@ const Detail = ({ route, navigation }) => {
     }
   };
 
-  // TODO
-  // Set the title to the localized date of the episode
   useEffect(() => {
     if (!isLoading) {
       navigation.setOptions({

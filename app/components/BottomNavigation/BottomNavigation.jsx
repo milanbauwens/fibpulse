@@ -10,7 +10,7 @@ import { Episodes } from '../../screens/episodes';
 import { Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
 import { useAuthContext } from '../auth/AuthProvider';
-import Header from '../common/Header/Header';
+import AnimatedHeader from '../common/Header/AnimatedHeader';
 import { Icon } from '../common/Icon/Icon';
 
 const BottomNavigation = () => {
@@ -60,7 +60,14 @@ const BottomNavigation = () => {
     header: ({ navigation, route, options }) => {
       const title = getHeaderTitle(options, route.name);
 
-      return <Header {...navigation} title={title} />;
+      return (
+        <AnimatedHeader
+          {...navigation}
+          headerRight={options.headerRight}
+          scrollY={options.scrollY}
+          title={title}
+        />
+      );
     },
 
     tabBarIcon: ({ focused, color }) => {
@@ -94,12 +101,15 @@ const BottomNavigation = () => {
       <bottomTab.Screen
         name="Overview"
         component={Home}
-        options={{ title: t('navigation.home'), headerTitle: t('navigation.home') }}
+        options={{
+          title: t('navigation.home'),
+          headerTitle: t('home.greeting', { name: user.firstname }),
+        }}
       />
       <bottomTab.Screen
         name="Episodes"
         component={Episodes}
-        options={{ title: t('navigation.episodes'), headerTitle: t('navigation.episodes') }}
+        options={{ title: t('navigation.episodes'), headerTitle: t('episodes.title') }}
       />
       <bottomTab.Screen
         name="Discover"
