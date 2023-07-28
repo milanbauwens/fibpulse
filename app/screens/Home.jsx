@@ -65,9 +65,19 @@ const Home = ({ navigation }) => {
     >
       <View className="mb-8">
         {daysSince === 0 ? (
-          <Paragraph>{t('home.daysSince.null')}</Paragraph>
+          <Paragraph>
+            {`${t('home.daysSince.null.first')} `}
+            <Paragraph isStrong>{t('home.daysSince.null.count')}</Paragraph>
+            {` ${t('home.daysSince.null.last')}`}
+          </Paragraph>
         ) : (
-          <Paragraph>{t('home.daysSince.default', { count: daysSince })}</Paragraph>
+          <Paragraph>
+            {`${t('home.daysSince.default.first')} `}
+            <Paragraph isStrong>{`${daysSince} ${
+              daysSince === 1 ? t('home.daysSince.day') : t('home.daysSince.days')
+            }`}</Paragraph>
+            {` ${t('home.daysSince.default.last')}`}
+          </Paragraph>
         )}
       </View>
       <View className="mb-6">
@@ -88,7 +98,15 @@ const Home = ({ navigation }) => {
       >
         <EpisodeChart />
       </SectionCard>
-      <Insights />
+
+      <SectionCard
+        label={t('home.insights.tag')}
+        title={t('home.insights.title')}
+        description={t('home.insights.description')}
+      >
+        <Insights />
+      </SectionCard>
+
       <SectionCard
         withImage
         source={require('../../assets/images/woman-running.jpg')}

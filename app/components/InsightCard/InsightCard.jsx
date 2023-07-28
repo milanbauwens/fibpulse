@@ -5,12 +5,11 @@ import Card from '../common/Card/Card';
 import { Icon } from '../common/Icon/Icon';
 import { Paragraph } from '../common/Typography';
 
-const InsightCard = ({ variant, width, icon, children, isLast }) => {
+const InsightCard = ({ variant, icon, children, isLast }) => {
   return (
     <Card
-      style={{ width: width - 24 }}
-      className={`bg-white border border-deepMarine-100 p-4 flex flex-row items-center ${
-        isLast ? '' : 'mr-6'
+      className={`bg-white shadow-card-md border w-full border-deepMarine-100 p-4 flex flex-row items-center ${
+        isLast ? '' : 'mb-3'
       }`}
     >
       <View className="mr-3">

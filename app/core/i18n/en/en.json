@@ -42,8 +42,17 @@
   "home": {
     "greeting": "Hello %{name}",
     "daysSince": {
-      "null": "No days with an irregular heartbeat",
-      "default": "%{count} Days since last irregular heartbeat"
+      "days": "days",
+      "day": "day",
+      "null": {
+        "first": "Still",
+        "count": "no days",
+        "last": "without an irregular heartbeat"
+      },
+      "default": {
+        "first": "Already",
+        "last": "without an irregular heartbeat"
+      }
     },
     "cta": {
       "title": "Add a heartmoment",

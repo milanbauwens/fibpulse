@@ -31,7 +31,7 @@ const AnimatedHeader = ({ title, headerRight, scrollY }) => {
 
   // Calculate the opacity of the text based on the scroll position
   const opacity = animatedScrollY.interpolate({
-    inputRange: [0, MIN_HEADER_HEIGHT],
+    inputRange: [0, 12],
     outputRange: [1, 0],
     extrapolate: 'clamp',
   });

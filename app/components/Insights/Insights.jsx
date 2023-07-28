@@ -1,32 +1,89 @@
-import { ScrollView, useWindowDimensions } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
+import { View } from 'react-native';
 
+import {
+  getHighestAmountOfActivities,
+  getHighestAmountOfSymptoms,
+} from '../../core/db/modules/episodes/api';
+import { useTranslations } from '../../core/i18n/LocaleProvider';
+import { getAmountPerActivity } from '../../core/utils/episode/GetAmountPerActivity';
+import { getAmountPerSymptom } from '../../core/utils/episode/getAmountPerSymptom';
 import InsightCard from '../InsightCard/InsightCard';
-import { Paragraph } from '../common/Typography';
+import Card from '../common/Card/Card';
+import { Paragraph, Title } from '../common/Typography';
 
 const Insights = () => {
-  const { width } = useWindowDimensions();
+  const { t } = useTranslations();
+  const { data: activities, isLoading: activityLoading } = useQuery(
+    ['activities'],
+    getHighestAmountOfActivities
+  );
+  const { data: symptoms, isLoading: symptomsLoading } = useQuery(
+    ['symptoms'],
+    getHighestAmountOfSymptoms
+  );
 
-  const cardWith = width * 0.75;
+  const { count, activity } =
+    !activityLoading && activities.data.length > 0 && getAmountPerActivity(activities.data);
+  const symptom =
+    !symptomsLoading && symptoms.data.length > 0 && getAmountPerSymptom(symptoms.data);
+
+  let icon;
+  switch (activity) {
+    case 'sleeping':
+      icon = 'night-outline';
+      break;
+    case 'sitting':
+      icon = 'chair-outline';
+      break;
+    case 'standing':
+      icon = 'cactus-outline';
+      break;
+    case 'walking':
+      icon = 'walk-outline';
+      break;
+    case 'sports':
+      icon = 'kayak-outline';
+      break;
+    case 'other':
+      icon = 'dots-horizontal';
+      break;
+  }
 
   return (
-    <ScrollView
-      horizontal
-      style={{ paddingBottom: 24 }}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      decelerationRate={0}
-      snapToInterval={cardWith}
-    >
-      <InsightCard width={cardWith} variant="turquoise" icon="calendar-heart-outline">
-        Al <Paragraph isStrong>4 dagen</Paragraph> geen onregelmatige hartslag.
-      </InsightCard>
-      <InsightCard width={cardWith} variant="ochre" icon="kayak-outline">
-        Al <Paragraph isStrong>2 keer</Paragraph> een moment na het sporten.
-      </InsightCard>
-      <InsightCard isLast variant="success" width={cardWith} icon="trend-down">
-        U had dit jaar <Paragraph isStrong>minder</Paragraph> momenten dan in 2022.
-      </InsightCard>
-    </ScrollView>
+    <>
+      {!symptomsLoading &&
+      !activityLoading &&
+      activities.data.length > 0 &&
+      symptoms.data.length > 0 ? (
+        <View>
+          {/* <InsightCard width={cardWith} variant="turquoise" icon="calendar-heart-outline">
+         <Paragraph isStrong>4 dagen</Paragraph> geen onregelmatige hartslag.
+      </InsightCard> */}
+          <InsightCard variant="ochre" icon={icon}>
+            Al <Paragraph isStrong>{count} keer</Paragraph> een moment na het{' '}
+            {t(`episodes.intake.activity.options.${activity}`).toLocaleLowerCase()}.
+          </InsightCard>
+          <InsightCard isLast variant="turquoise" icon="file-heart-outline">
+            {symptom === 'none' ? (
+              <Paragraph>U gaf aan niet vaak symptomen te hebben. </Paragraph>
+            ) : (
+              <>
+                <Paragraph isStrong>{t(`episodes.intake.symptoms.options.${symptom}`)}</Paragraph>{' '}
+                is uw voornaamste symptoom.
+              </>
+            )}
+          </InsightCard>
+        </View>
+      ) : (
+        <Card className="bg-deepMarine-100 rounded-lg shadow-card-md p-3 h-52 flex items-center justify-center">
+          <Title size="small" textCenter>
+            {t('home.insights.emptyState.title')}
+          </Title>
+          <Paragraph styles="text-center">{t('home.insights.emptyState.description')}</Paragraph>
+        </Card>
+      )}
+    </>
   );
 };
 

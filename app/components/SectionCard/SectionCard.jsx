@@ -28,20 +28,24 @@ const SectionCard = ({
       </View>
       {children}
       <View>
-        <Line />
-        <TouchableOpacity
-          className="bg-deepMarine-500 p-3 rounded-lg flex flex-row justify-between items-center"
-          activeOpacity={1}
-          onPress={onPress}
-        >
-          <View className="flex flex-row">
-            <Icon name="calendar-outline" size={24} color="white" />
-            <Paragraph styles="ml-2" textColor="text-white">
-              {cta}
-            </Paragraph>
-          </View>
-          <Icon name="chevron-right" size={24} color="white" />
-        </TouchableOpacity>
+        {cta && (
+          <>
+            <Line />
+            <TouchableOpacity
+              className="bg-deepMarine-500 p-3 rounded-lg flex flex-row justify-between items-center"
+              activeOpacity={1}
+              onPress={onPress}
+            >
+              <View className="flex flex-row">
+                <Icon name="calendar-outline" size={24} color="white" />
+                <Paragraph styles="ml-2" textColor="text-white">
+                  {cta}
+                </Paragraph>
+              </View>
+              <Icon name="chevron-right" size={24} color="white" />
+            </TouchableOpacity>
+          </>
+        )}
       </View>
     </View>
   </Card>

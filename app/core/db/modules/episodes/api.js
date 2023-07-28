@@ -3,7 +3,7 @@ import { getCurrentSession } from '../auth/api';
 
 export const updateEpisode = async (episodeId, column, value) => {
   const session = await getCurrentSession();
-  const userID = session.user?.id;
+  const user_id = session.user?.id;
 
   if (!episodeId || !column || value === undefined) {
     return;
@@ -14,16 +14,30 @@ export const updateEpisode = async (episodeId, column, value) => {
     .update({
       [column]: value,
     })
-    .match({ id: episodeId, user_id: userID })
+    .match({ id: episodeId, user_id })
     .single()
     .throwOnError();
 };
 
 export const getEpisodesByUser = async () => {
   const session = await getCurrentSession();
-  const userID = session.user?.id;
+  const user_id = session.user?.id;
 
-  return await supabase.from('episodes').select('*').eq('user_id', userID).throwOnError();
+  return await supabase.from('episodes').select('*').eq('user_id', user_id).throwOnError();
+};
+
+export const getHighestAmountOfActivities = async () => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  return await supabase.from('episodes').select('activity').match({ user_id }).throwOnError();
+};
+
+export const getHighestAmountOfSymptoms = async () => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  return await supabase.from('episodes').select('symptoms').match({ user_id }).throwOnError();
 };
 
 export const getEpisodeById = async (id) => {
