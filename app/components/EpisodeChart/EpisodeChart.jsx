@@ -6,7 +6,7 @@ import { LineChart } from 'react-native-chart-kit';
 import { getEpisodesByDateRange } from '../../core/db/modules/episodes/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
-import ChartSkeleton from '../common/Skeleton/ChartSkeleton';
+import { ChartSkeleton } from '../common/Skeleton';
 import { Paragraph } from '../common/Typography';
 import { SpotEpisodes } from '../svg/spotIllustrations';
 import { getEpisodesCountByWeek } from './helpers/getEpisodesCountByWeek';

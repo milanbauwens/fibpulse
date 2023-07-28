@@ -59,11 +59,24 @@
       "subtitle": "Always make a new moment when having an irregular heartbeat."
     },
     "episodes": {
-      "tag": "Diary",
+      "tag": "Heart disorder",
       "title": "My heartmoments",
       "description": "Keep track of your moments and get more insight in your heart rhythm.",
       "emptyState": "No heartmoments for this period",
       "cta": "See all heartmoments"
+    },
+    "insights": {
+      "tag": "Heart disorder",
+      "title": "Insights",
+      "description": "We found following insights in your heartmoments.",
+      "emptyState": {
+        "title": "No insights available yet",
+        "description": "When you add more heartmoments, we can provide you with more insights."
+      },
+      "symptoms": {
+        "default": "is your most common symptom",
+        "emptyState": "U normally don't experience much symptoms."
+      }
     },
     "discover": {
       "tag": "Discover",

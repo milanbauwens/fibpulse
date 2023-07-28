@@ -14,10 +14,14 @@ import { Paragraph, Title } from '../common/Typography';
 
 const Insights = () => {
   const { t } = useTranslations();
+
+  // Fetch activities
   const { data: activities, isLoading: activityLoading } = useQuery(
     ['activities'],
     getHighestAmountOfActivities
   );
+
+  // Fetch symptoms
   const { data: symptoms, isLoading: symptomsLoading } = useQuery(
     ['symptoms'],
     getHighestAmountOfSymptoms
@@ -57,20 +61,21 @@ const Insights = () => {
       activities.data.length > 0 &&
       symptoms.data.length > 0 ? (
         <View>
-          {/* <InsightCard width={cardWith} variant="turquoise" icon="calendar-heart-outline">
-         <Paragraph isStrong>4 dagen</Paragraph> geen onregelmatige hartslag.
-      </InsightCard> */}
           <InsightCard variant="ochre" icon={icon}>
-            Al <Paragraph isStrong>{count} keer</Paragraph> een moment na het{' '}
-            {t(`episodes.intake.activity.options.${activity}`).toLocaleLowerCase()}.
+            {t('home.insights.activity.start')}{' '}
+            <Paragraph isStrong>{t('home.insights.activity.count', { count })}</Paragraph>{' '}
+            {t('home.insights.activity.last')}{' '}
+            <Paragraph isStrong>
+              {t(`episodes.intake.activity.options.${activity}`).toLocaleLowerCase()}.
+            </Paragraph>
           </InsightCard>
           <InsightCard isLast variant="turquoise" icon="file-heart-outline">
             {symptom === 'none' ? (
-              <Paragraph>U gaf aan niet vaak symptomen te hebben. </Paragraph>
+              <Paragraph>{t('home.insights.symptoms.emptyState')}</Paragraph>
             ) : (
               <>
                 <Paragraph isStrong>{t(`episodes.intake.symptoms.options.${symptom}`)}</Paragraph>{' '}
-                is uw voornaamste symptoom.
+                {t('home.insights.symptoms.default')}
               </>
             )}
           </InsightCard>
