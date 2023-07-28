@@ -4,8 +4,8 @@ import Svg, { Circle, ClipPath, Defs, Ellipse, G, Mask, Path, Rect } from 'react
 function Standing(props) {
   return (
     <Svg
-      width={64}
-      height={64}
+      width={48}
+      height={48}
       viewBox="0 0 125 125"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

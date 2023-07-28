@@ -80,7 +80,7 @@
       "activity": {
         "start": "Al",
         "count": "%{count} keer",
-        "last": "tijdens het"
+        "last": "een moment na het"
       }
     },
     "discover": {

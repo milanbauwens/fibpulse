@@ -76,6 +76,11 @@
       "symptoms": {
         "default": "is your most common symptom",
         "emptyState": "U normally don't experience much symptoms."
+      },
+      "activity": {
+        "start": "Already",
+        "count": "%{count}",
+        "last": "moments after"
       }
     },
     "discover": {
