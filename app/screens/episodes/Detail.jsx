@@ -1,8 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { printToFileAsync } from 'expo-print';
+import { shareAsync } from 'expo-sharing';
 import { useEffect, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import MeasureCard from '../../components/MeasureCard/MeasureCard';
+import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
 import Card from '../../components/common/Card/Card';
 import { Icon } from '../../components/common/Icon/Icon';
@@ -11,13 +14,17 @@ import Popover from '../../components/common/Popover/Popover';
 import Paragraph from '../../components/common/Typography/Paragraph';
 import Title from '../../components/common/Typography/Title';
 import { deleteEpisodeById, getEpisodeById } from '../../core/db/modules/episodes/api';
+import { getMedicalProfile } from '../../core/db/modules/medical_profiles/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
+import { formatDate } from '../../core/utils/formatData';
+import { episodeHTML } from '../../templates/episodeHTML';
 import colors from '../../theme/colors';
 
 const Detail = ({ route, navigation }) => {
   const { episodeId } = route.params;
 
   const { t, locale } = useTranslations();
+  const { user } = useAuthContext();
 
   const [isVisible, setIsVisible] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
@@ -28,60 +35,53 @@ const Detail = ({ route, navigation }) => {
     queryFn: ({ queryKey }) => getEpisodeById(queryKey[1]),
   });
 
-  const { created_at, start_date, end_date, pulse, activity, symptoms, notes } =
-    !isLoading && episode.data;
+  // Fetch data of the medical profile
+  const { data: medicalProfile } = useQuery({
+    queryKey: ['medicalProfile'],
+    queryFn: getMedicalProfile,
+  });
 
-  const formatDate = (date, format = 'full' | 'short' | 'time') => {
-    const dateObject = new Date(date);
+  const {
+    created_at,
+    start_date,
+    end_date,
+    pulse,
+    activity,
+    symptoms,
+    notes,
+    is_medical_approved,
+  } = !isLoading && episode.data;
 
-    switch (format) {
-      case 'full':
-        return dateObject.toLocaleDateString(locale, {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        });
-      case 'short':
-        return dateObject.toLocaleDateString(locale, {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        });
-      case 'time':
-        return dateObject.toLocaleTimeString(locale, {
-          hour: '2-digit',
-          minute: '2-digit',
-          hourCycle: 'h24',
-        });
-      default:
-        return dateObject.toLocaleDateString(locale, {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        });
-    }
+  // Data for the PDF
+  const pdfData = {
+    startDate: formatDate(start_date, 'full', locale),
+    fullName: `${user.firstname} ${user.lastname}`,
+    heartDisorder:
+      t(`medicalProfile.heartDisease.options.${medicalProfile?.data?.heart_disorder}`) ||
+      'Onbekend',
+    yearOfBirth: medicalProfile?.data?.year_of_birth || 'Onbekend',
+    pulse,
+    activity: t(`episodes.intake.activity.options.${activity}`),
+    symptoms:
+      symptoms && symptoms.map((symptom) => t(`episodes.intake.symptoms.options.${symptom}`)),
+    notes: notes || 'Geen opmerkingen',
+    isMedicalApproved: is_medical_approved ? 'Ja' : 'Nee',
+    start: `${formatDate(start_date, 'time', locale)} - ${formatDate(start_date, 'full', locale)}`,
+    end: `${formatDate(end_date, 'time', locale)} - ${formatDate(end_date, 'full', locale)}`,
   };
 
-  useEffect(() => {
-    if (!isLoading) {
-      navigation.setOptions({
-        title: formatDate(start_date),
-        headerTitle: formatDate(start_date),
-        headerRight: () => (
-          <TouchableOpacity
-            onPress={() => setIsVisible(true)}
-            activeOpacity={0.8}
-            className="mb-8 mt-2"
-          >
-            <Icon name="dots-horizontal" size={28} color={colors.turquoise[700]} />
-          </TouchableOpacity>
-        ),
-      });
-    }
-  }, [created_at, isLoading, navigation]);
+  // Generate PDF for sharing with doctors
+  const generatePdf = async () => {
+    const file = await printToFileAsync({
+      html: episodeHTML(pdfData),
+      base64: false,
+    });
 
+    await shareAsync(file.uri);
+  };
+
+  // Delete epsiode
   const queryClient = useQueryClient();
-
   const deletion = useMutation((id) => deleteEpisodeById(id), {
     onSuccess: () => {
       queryClient.invalidateQueries(['episodes']);
@@ -94,6 +94,25 @@ const Detail = ({ route, navigation }) => {
   const handleDelete = async () => {
     await deletion.mutateAsync(episodeId);
   };
+
+  // Set navigation options with episode data
+  useEffect(() => {
+    if (!isLoading) {
+      navigation.setOptions({
+        title: formatDate(start_date, 'full', locale),
+        headerTitle: formatDate(start_date, 'full', locale),
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => setIsVisible(true)}
+            activeOpacity={0.8}
+            className="mb-8 mt-2"
+          >
+            <Icon name="dots-horizontal" size={28} color={colors.turquoise[700]} />
+          </TouchableOpacity>
+        ),
+      });
+    }
+  }, [created_at, isLoading, navigation]);
 
   return (
     <>
@@ -132,8 +151,15 @@ const Detail = ({ route, navigation }) => {
               </TouchableOpacity>
             </View>
 
+            <TouchableOpacity
+              onPress={generatePdf}
+              className="px-3 w-full mb-8 flex flex-row items-center "
+            >
+              <Icon name="save" size={24} />
+              <Paragraph styles="ml-5 text-lg">{t('episodes.detail.save')}</Paragraph>
+            </TouchableOpacity>
             <TouchableOpacity className="px-3 w-full mb-8 flex flex-row items-center ">
-              <Icon name="edit" size={28} color={colors.deepMarine[700]} />
+              <Icon name="edit-outline" size={24} />
               <Paragraph styles="ml-5 text-lg">{t('episodes.detail.edit')}</Paragraph>
             </TouchableOpacity>
             <TouchableOpacity
@@ -142,7 +168,7 @@ const Detail = ({ route, navigation }) => {
               }}
               className="w-full px-3 flex flex-row items-center "
             >
-              <Icon name="trash" size={28} color={colors.deepMarine[700]} />
+              <Icon name="trash" size={24} color={colors.deepMarine[700]} />
               <Paragraph textColor="text-red-600" styles="ml-5 text-lg">
                 {t('episodes.detail.delete.title')}
               </Paragraph>
@@ -158,7 +184,7 @@ const Detail = ({ route, navigation }) => {
         className="w-full h-screen bg-white px-5"
       >
         <View className="mb-6">
-          <Title size="large">{formatDate(start_date)}</Title>
+          <Title size="large">{formatDate(start_date, 'full', locale)}</Title>
         </View>
 
         <View>
@@ -171,8 +197,8 @@ const Detail = ({ route, navigation }) => {
                 </Paragraph>
               </View>
               <View>
-                <Paragraph styles="mb-1">{formatDate(start_date, 'short')}</Paragraph>
-                <Title size="large">{formatDate(start_date, 'time')}</Title>
+                <Paragraph styles="mb-1">{formatDate(start_date, 'short', locale)}</Paragraph>
+                <Title size="large">{formatDate(start_date, 'time', locale)}</Title>
               </View>
             </View>
             <View className="flex-1 ml-2 bg-deepMarine-100 rounded-lg p-3">
@@ -183,8 +209,8 @@ const Detail = ({ route, navigation }) => {
                 </Paragraph>
               </View>
               <View>
-                <Paragraph styles="mb-1">{formatDate(end_date, 'short')}</Paragraph>
-                <Title size="large">{formatDate(end_date, 'time')}</Title>
+                <Paragraph styles="mb-1">{formatDate(end_date, 'short', locale)}</Paragraph>
+                <Title size="large">{formatDate(end_date, 'time', locale)}</Title>
               </View>
             </View>
           </View>
@@ -211,10 +237,19 @@ const Detail = ({ route, navigation }) => {
             icon="activity-heart-outline"
             description={t('episodes.detail.pulse.description')}
           >
-            {activity ? (
+            {pulse ? (
               <>
                 <Paragraph>{t('episodes.detail.pulse.unit')}</Paragraph>
                 <Title size="large">{pulse}</Title>
+
+                {!is_medical_approved && (
+                  <View className="w-full flex flex-row items-center mt-3 p-3 rounded-lg bg-ochre-500">
+                    <Icon name="alert-triangle" size={24} color={colors.ochre[900]} />
+                    <Paragraph textColor="text-ochre-900" isStrong styles="ml-3">
+                      Handmatige meting
+                    </Paragraph>
+                  </View>
+                )}
               </>
             ) : (
               <Paragraph>{t('episodes.detail.pulse.empty')}</Paragraph>

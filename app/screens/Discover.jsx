@@ -14,7 +14,10 @@ const Discover = ({ navigation }) => {
 
   const handleScroll = (event) => {
     const offsetY = event.nativeEvent.contentOffset.y;
-    setScrollY(offsetY);
+
+    if (offsetY < 60) {
+      setScrollY(offsetY);
+    }
   };
 
   return (

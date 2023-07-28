@@ -170,7 +170,7 @@
         "question": "Duid de symptomen aan die aanwezig waren",
         "description": "U kan meerdere symptomen selecteren.",
         "options": {
-          "none": "Geen opmerkelijk symptomen",
+          "none": "Geen opmerkelijke symptomen",
           "chestPain": "Pijn op de borst",
           "lightHeaded": "Licht in het hoofd",
           "breathing": "Kortademigheid",
@@ -253,6 +253,7 @@
         }
       },
       "edit": "Wijzigen",
+      "save": "Opslaan als pdf",
       "measurement": "Metingen",
       "status": "Vaststellingen",
       "pulse": {

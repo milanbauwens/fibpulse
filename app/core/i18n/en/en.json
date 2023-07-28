@@ -2,8 +2,8 @@
   "onboarding": {
     "skip": "Continue",
     "insights": {
-      "title": "A better understanding of your heart dissorder",
-      "description": "By monitoring the heart dissorder, you and your doctor gain more insights into how it evolves."
+      "title": "A better understanding of your heart disorder",
+      "description": "By monitoring the heart disorder, you and your doctor gain more insights into how it evolves."
     },
     "lifestyle": {
       "title": "Live according to a healthy lifestyle",
@@ -15,8 +15,8 @@
     }
   },
   "landing": {
-    "title": "Don't let your heart dissorder take the upper hand.",
-    "description": "Take the first step and start a diary about your heart dissorder today.",
+    "title": "Don't let your heart disorder take the upper hand.",
+    "description": "Take the first step and start a diary about your heart disorder today.",
     "agreement": "By continuing, you agree to our",
     "and": "and",
     "or": "or",
@@ -68,7 +68,7 @@
     "finish": "Finish your profile",
     "start": {
       "title": "Share your health story with us",
-      "description": "We aim to gain more insights into your heart dissorder with your medical data.",
+      "description": "We aim to gain more insights into your heart disorder with your medical data.",
       "time": "%{start} - %{end} minutes",
       "cta": {
         "secondary": "Do this later",
@@ -88,10 +88,10 @@
       "label": "Birth year"
     },
     "heartDisease": {
-      "question": "Which heart dissorder do you have?",
+      "question": "Which heart disorder do you have?",
       "options": {
         "afib": "Atrial fibrillation",
-        "other": "Other heart dissorder"
+        "other": "Other heart disorder"
       }
     },
     "frequency": {
@@ -253,6 +253,7 @@
         }
       },
       "edit": "Make changes",
+      "save": "Save as pdf",
       "measurement": "Measurements",
       "status": "Observations",
       "pulse": {
