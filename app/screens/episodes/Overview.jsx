@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Animated, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { Animated, TouchableOpacity, View } from 'react-native';
 
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
 import EpisodePaginator from '../../components/EpisodePaginator/EpisodePaginator';
@@ -14,9 +14,9 @@ import colors from '../../theme/colors';
 
 const Overview = ({ navigation }) => {
   const { t } = useTranslations();
-  const { height } = useWindowDimensions();
 
-  const [scrollY, setScrollY] = useState(0);
+  const scrollY = new Animated.Value(0);
+
   const [date, setDate] = useState(new Date());
 
   const { data: episodes, isLoading } = useQuery({
@@ -26,7 +26,6 @@ const Overview = ({ navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      scrollY,
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate('EpisodesCreateStart')}
@@ -39,19 +38,18 @@ const Overview = ({ navigation }) => {
     });
   }, [scrollY]);
 
-  const handleScroll = (event) => {
-    const offsetY = event.nativeEvent.contentOffset.y;
-
-    if (offsetY < 60) {
-      setScrollY(offsetY);
-    }
-  };
-
   return (
     <Animated.ScrollView
       showsVerticalScrollIndicator={false}
       scrollEventThrottle={16}
-      onScroll={handleScroll}
+      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+        useNativeDriver: true,
+        listener: (event) => {
+          navigation.setOptions({
+            scrollY: event.nativeEvent.contentOffset.y,
+          });
+        },
+      })}
       contentContainerStyle={{ paddingBottom: 24 }}
       style={{ paddingTop: 16 }}
       className="w-full h-screen bg-white px-5"

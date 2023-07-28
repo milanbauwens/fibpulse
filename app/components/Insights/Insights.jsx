@@ -6,7 +6,7 @@ import {
   getHighestAmountOfSymptoms,
 } from '../../core/db/modules/episodes/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
-import { getAmountPerActivity } from '../../core/utils/episode/GetAmountPerActivity';
+import { getAmountPerActivity } from '../../core/utils/episode/getAmountPerActivity';
 import { getAmountPerSymptom } from '../../core/utils/episode/getAmountPerSymptom';
 import InsightCard from '../InsightCard/InsightCard';
 import Card from '../common/Card/Card';

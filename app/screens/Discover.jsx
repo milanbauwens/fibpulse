@@ -1,28 +1,20 @@
-import { useEffect, useState } from 'react';
 import { Animated, View } from 'react-native';
 
 import DiscoverCard from '../components/DiscoverCard/DiscoverCard';
 
 const Discover = ({ navigation }) => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    navigation.setOptions({
-      scrollY,
-    });
-  }, [scrollY]);
-
-  const handleScroll = (event) => {
-    const offsetY = event.nativeEvent.contentOffset.y;
-
-    if (offsetY < 60) {
-      setScrollY(offsetY);
-    }
-  };
+  const scrollY = new Animated.Value(0);
 
   return (
     <Animated.ScrollView
-      onScroll={handleScroll}
+      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+        useNativeDriver: true,
+        listener: (event) => {
+          navigation.setOptions({
+            scrollY: event.nativeEvent.contentOffset.y,
+          });
+        },
+      })}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: 24 }}

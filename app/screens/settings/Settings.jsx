@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Animated, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -14,25 +13,18 @@ const Settings = ({ navigation }) => {
   const { bottom } = useSafeAreaInsets();
   const { t } = useTranslations();
 
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    navigation.setOptions({
-      scrollY,
-    });
-  }, [scrollY]);
-
-  const handleScroll = (event) => {
-    const offsetY = event.nativeEvent.contentOffset.y;
-
-    if (offsetY < 60) {
-      setScrollY(offsetY);
-    }
-  };
+  const scrollY = new Animated.Value(0);
 
   return (
     <Animated.ScrollView
-      onScroll={handleScroll}
+      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+        useNativeDriver: true,
+        listener: (event) => {
+          navigation.setOptions({
+            scrollY: event.nativeEvent.contentOffset.y,
+          });
+        },
+      })}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={false}
       style={{ paddingTop: 0 }}

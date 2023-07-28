@@ -17,7 +17,6 @@ const Home = ({ navigation }) => {
   const { t } = useTranslations();
 
   const [daysSince, setDaysSince] = useState(0); // TODO: Replace with actual days since last admission
-  const [scrollY, setScrollY] = useState(0);
 
   // Get latest episode
   const { data: episodes, isLoading } = useQuery({
@@ -31,9 +30,11 @@ const Home = ({ navigation }) => {
     }
   }, [episodes, isLoading]);
 
+  // Handle scroll event
+  const scrollY = new Animated.Value(0);
+
   useEffect(() => {
     navigation.setOptions({
-      scrollY,
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate('EpisodesCreateStart')}
@@ -44,22 +45,20 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
       ),
     });
-  }, [scrollY]);
-
-  const handleScroll = (event) => {
-    const offsetY = event.nativeEvent.contentOffset.y;
-
-    if (offsetY < 60) {
-      setScrollY(offsetY);
-    }
-  };
+  }, []);
 
   return (
     <Animated.ScrollView
-      onScroll={handleScroll}
+      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+        useNativeDriver: true,
+        listener: (event) => {
+          navigation.setOptions({
+            scrollY: event.nativeEvent.contentOffset.y,
+          });
+        },
+      })}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: 24 }}
-      style={{ paddingTop: 0 }}
       scrollEventThrottle={16}
       className="w-full h-screen bg-white px-5"
     >
