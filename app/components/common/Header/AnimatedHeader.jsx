@@ -24,14 +24,14 @@ const AnimatedHeader = ({ title, headerRight, scrollY }) => {
 
   // Calculate the header height based on the scroll position
   const headerHeight = animatedScrollY.interpolate({
-    inputRange: [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
+    inputRange: [0, 45],
     outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
     extrapolate: 'clamp',
   });
 
   // Calculate the opacity of the text based on the scroll position
   const opacity = animatedScrollY.interpolate({
-    inputRange: [0, 12],
+    inputRange: [0, 20],
     outputRange: [1, 0],
     extrapolate: 'clamp',
   });

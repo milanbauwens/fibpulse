@@ -1,4 +1,4 @@
-export const getAmountPerSymptom = (data) => {
+export const getMostCommonSymptom = (data) => {
   // Flatten the symptoms data to get a single array of all symptoms
   const allSymptoms = data.flatMap((entry) => entry.symptoms);
 

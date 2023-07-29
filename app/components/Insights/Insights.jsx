@@ -6,8 +6,10 @@ import {
   getHighestAmountOfSymptoms,
 } from '../../core/db/modules/episodes/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
-import { getAmountPerActivity } from '../../core/utils/episode/getAmountPerActivity';
-import { getAmountPerSymptom } from '../../core/utils/episode/getAmountPerSymptom';
+import { getMostCommonActivity } from '../../core/utils/episode/getMostCommonActivity';
+import {
+  getMostCommonSymptom
+} from '../../core/utils/episode/getMostCommonSymptom';
 import InsightCard from '../InsightCard/InsightCard';
 import EmptyStateCard from '../common/EmptyStateCard/EmptyStateCard';
 import { Paragraph } from '../common/Typography';
@@ -28,9 +30,9 @@ const Insights = () => {
   );
 
   const { count, activity } =
-    !activityLoading && activities.data.length > 0 && getAmountPerActivity(activities.data);
+    !activityLoading && activities.data.length > 0 && getMostCommonActivity(activities.data);
   const symptom =
-    !symptomsLoading && symptoms.data.length > 0 && getAmountPerSymptom(symptoms.data);
+    !symptomsLoading && symptoms.data.length > 0 && getMostCommonSymptom(symptoms.data);
 
   let icon;
   switch (activity) {
