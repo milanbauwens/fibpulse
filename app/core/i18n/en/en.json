@@ -176,8 +176,8 @@
         "description": "Place two finger of your right hand on your left wrist and measure your heartbeat for 1 minute."
       },
       "pulse": {
-        "question": "Which pulse did you measure?",
-        "description": "You can measure your pulse by using your smartwatch, or by placing two fingers on your wrist."
+        "label": "Beats per minute",
+        "question": "Which pulse did you measure?"
       },
       "start": {
         "question": "When did your irregular heartbeat start?"

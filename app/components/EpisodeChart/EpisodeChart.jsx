@@ -96,7 +96,7 @@ const EpisodeChart = () => {
         <View className="relative w-full">
           {episodes && episodes.data.length > 0 ? (
             <LineChart
-              className="w-full ml-[-38px]"
+              className="w-full ml-[-35px]"
               data={{
                 labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
                 datasets: [
@@ -112,28 +112,30 @@ const EpisodeChart = () => {
                   },
                 ],
               }}
-              width={width - 40} // minus screen padding
+              width={width - 50} // minus screen padding
               height={228}
               chartConfig={{
                 propsForLabels: {
                   fontSize: 14,
-                  fontWeight: 'semibold',
+                  fontWeight: 400,
                 },
-                backgroundColor: 'white',
+                backgroundColor: '#FFF',
                 fillShadowGradientFrom: colors.ochre[500],
                 fillShadowGradientOpacity: 0.5,
-                backgroundGradientFrom: 'white',
-                backgroundGradientTo: 'white',
-                backgroundGradientFromOpacity: 0,
-                decimalPlaces: 0, // optional, defaults to 2dp
-                color: () => colors.ochre[400],
-                labelColor: () => colors.turquoise[700],
+                backgroundGradientFrom: '#FFF',
+                backgroundGradientTo: '#FFF',
+                backgroundGradientFromOpacity: 0, // optional, defaults to 2dp
+                backgroundGradientToOpacity: 0.5,
                 style: {
                   borderRadius: 16,
                 },
+                decimalPlaces: 0,
+                color: () => colors.ochre[400],
+                labelColor: () => colors.turquoise[700],
+
                 propsForDots: {
-                  r: '4',
-                  strokeWidth: '2',
+                  r: 4,
+                  strokeWidth: 2,
                   stroke: colors.ochre[500],
                 },
               }}
@@ -143,7 +145,7 @@ const EpisodeChart = () => {
             <EmptyStateCard
               icon="activity"
               description={t('home.episodes.emptyState.description')}
-              title={t('home .episodes.emptyState.title')}
+              title={t('home.episodes.emptyState.title')}
             />
           )}
         </View>

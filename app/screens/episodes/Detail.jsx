@@ -153,17 +153,22 @@ const Detail = ({ route, navigation }) => {
             </View>
 
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={generatePdf}
               className="px-3 w-full mb-8 flex flex-row items-center "
             >
               <Icon name="save" size={24} />
               <Paragraph styles="ml-5 text-lg">{t('episodes.detail.save')}</Paragraph>
             </TouchableOpacity>
-            <TouchableOpacity className="px-3 w-full mb-8 flex flex-row items-center ">
+            <TouchableOpacity
+              activeOpacity={0.8}
+              className="px-3 w-full mb-8 flex flex-row items-center "
+            >
               <Icon name="edit-outline" size={24} />
               <Paragraph styles="ml-5 text-lg">{t('episodes.detail.edit')}</Paragraph>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 setDeleteConfirmation(true);
               }}

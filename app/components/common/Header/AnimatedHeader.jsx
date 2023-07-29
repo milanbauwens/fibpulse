@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AnimatedHeader = ({ title, headerRight, scrollY }) => {
@@ -17,7 +17,7 @@ const AnimatedHeader = ({ title, headerRight, scrollY }) => {
   const headerRightComponent = headerRight && headerRight();
 
   // The maximum height of the header when it is fully expanded
-  const MAX_HEADER_HEIGHT = 112;
+  const MAX_HEADER_HEIGHT = Platform.OS === 'ios' ? 112 : 80;
 
   // The minimum height of the header when it is fully collapsed
   const MIN_HEADER_HEIGHT = 32;

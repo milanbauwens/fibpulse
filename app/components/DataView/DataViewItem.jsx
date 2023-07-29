@@ -1,7 +1,7 @@
 import { Picker } from '@react-native-picker/picker';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { YEARS } from '../../__content/ages';
 import Label from '../../components/common/Label/Label';
@@ -17,6 +17,8 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
   const [isVisible, setIsVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(type === 'multi' ? [] : '');
   const [localizedArray, setLocalizedArray] = useState([]);
+
+  const pickerRef = useRef();
 
   useEffect(() => {
     // Localize data in Array
@@ -79,39 +81,48 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
               <Icon name="close" size={24} color={colors.turquoise[700]} />
             </TouchableOpacity>
           </View>
+
           {type === 'single' && (
-            <Picker
-              selectionColor="rgba(22, 128, 135, 0.05)"
-              itemStyle={{ fontFamily: 'Mulish-medium' }}
-              selectedValue={selectedValue}
-              onValueChange={(itemValue) => setSelectedValue(itemValue)}
-            >
-              {options.map(({ label, value }, index) => (
-                <Picker.Item
-                  color={colors.deepMarine[900]}
-                  key={index}
-                  label={t(`medicalProfile.${tag}.options.${label}`)}
-                  value={value}
-                />
-              ))}
-            </Picker>
+            <TouchableOpacity activeOpacity={0.8} onPress={() => pickerRef.current.focus()}>
+              <Picker
+                style={Platform.OS === 'ios' ? styles.iosStyles : styles.androidStyles}
+                ref={pickerRef}
+                onBlur={() => pickerRef.current.blur()}
+                selectionColor="rgba(22, 128, 135, 0.05)"
+                selectedValue={selectedValue}
+                onValueChange={(itemValue) => setSelectedValue(itemValue)}
+              >
+                {options.map(({ label, value }, index) => (
+                  <Picker.Item
+                    color={colors.deepMarine[900]}
+                    key={index}
+                    label={t(`medicalProfile.${tag}.options.${label}`)}
+                    value={value}
+                  />
+                ))}
+              </Picker>
+            </TouchableOpacity>
           )}
           {type === 'date' && (
-            <Picker
-              selectionColor="rgba(22, 128, 135, 0.05)"
-              itemStyle={{ fontFamily: 'Mulish-medium' }}
-              selectedValue={selectedValue}
-              onValueChange={(itemValue) => setSelectedValue(itemValue)}
-            >
-              {YEARS.map(({ label, value }) => (
-                <Picker.Item
-                  color={colors.deepMarine[900]}
-                  key={value}
-                  label={label}
-                  value={value}
-                />
-              ))}
-            </Picker>
+            <TouchableOpacity activeOpacity={0.8} onPress={() => pickerRef.current.focus()}>
+              <Picker
+                ref={pickerRef}
+                style={Platform.OS === 'ios' ? styles.iosStyles : styles.androidStyles}
+                selectionColor="rgba(22, 128, 135, 0.05)"
+                itemStyle={{ fontFamily: 'Mulish-medium' }}
+                selectedValue={selectedValue}
+                onValueChange={(itemValue) => setSelectedValue(itemValue)}
+              >
+                {YEARS.map(({ label, value }) => (
+                  <Picker.Item
+                    color={colors.deepMarine[900]}
+                    key={value}
+                    label={label}
+                    value={value}
+                  />
+                ))}
+              </Picker>
+            </TouchableOpacity>
           )}
 
           {type === 'multi' && (
@@ -167,5 +178,19 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  androidStyles: {
+    marginTop: 32,
+    width: '100%',
+    backgroundColor: colors.deepMarine[100],
+    color: colors.turquoise[700],
+    fontFamily: 'Mulish-medium',
+    borderRadius: 8,
+  },
+  iosStyles: {
+    fontFamily: 'Mulish-medium',
+  },
+});
 
 export default DataViewItem;

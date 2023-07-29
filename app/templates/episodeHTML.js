@@ -123,7 +123,7 @@ export const episodeHTML = (data) => {
       <div class="user-data">
         <p class="text--medium text--mb">Gegevens gebruiker:</p>
         <div class="container--bg">
-          <div style="background: blue;">
+          <div>
             <p class="text--bold">Naam</p>
             <p class="text--medium">${data.fullName}</p>
           </div>

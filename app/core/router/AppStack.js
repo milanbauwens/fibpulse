@@ -60,7 +60,7 @@ export const AppStack = () => {
     checkOnboarding();
   }, []);
 
-  const screenOptions = ({ route }) => ({
+  const screenOptions = () => ({
     headerShown: true,
     headerStyle: {
       shadowOffset: {

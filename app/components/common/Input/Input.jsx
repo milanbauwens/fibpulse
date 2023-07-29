@@ -16,6 +16,7 @@ const Input = ({
   onChangeText,
   onSubmitEditing,
   disabled,
+  showSoftInputOnFocus,
 }) => (
   <View className="relative">
     <TextInput
@@ -43,6 +44,7 @@ const Input = ({
       onPressIn={onPressIn}
       onSubmitEditing={onSubmitEditing}
       aria-disabled={disabled}
+      showSoftInputOnFocus={showSoftInputOnFocus}
     />
     <View className="absolute right-2 h-6 w-6 top-3 flex items-center justify-center text-turquoise-700">
       <Icon name={icon} size={24} color={colors.turquoise[700]} />

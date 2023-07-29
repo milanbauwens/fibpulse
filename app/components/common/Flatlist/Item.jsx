@@ -160,8 +160,8 @@ const Item = ({ type, data, onSelect }) => {
                   key={index}
                   onPress={isSelected ? handleDeselect : handleSelect}
                   activeOpacity={1}
-                  className={`px-4 py-3  w-fit rounded-lg flex flex-row items-center justify-between mb-4 ${
-                    data.type === 'spot-select' ? 'bg-white shadow-card-md' : 'bg-deepMarine-100'
+                  className={`px-4 py-3 w-fit rounded-lg border border-deepMarine-100 flex shadow-card-md flex-row items-center justify-between mb-4 ${
+                    data.type === 'spot-select' ? 'bg-white' : 'bg-deepMarine-100'
                   } `}
                 >
                   <View className="flex flex-row items-center">
@@ -315,8 +315,8 @@ const Item = ({ type, data, onSelect }) => {
                     : ''
                 }
                 icon="calendar-outline"
-                onPressIn={() => setDatePickerVisibility(true)}
-                disabled
+                showSoftInputOnFocus={false}
+                onFocus={() => setDatePickerVisibility(true)}
               />
               <DateTimePickerModal
                 date={date}
@@ -342,8 +342,8 @@ const Item = ({ type, data, onSelect }) => {
                     : ''
                 }
                 icon="clock-outline"
-                onPressIn={() => setTimePickerVisibility(true)}
-                disabled
+                showSoftInputOnFocus={false}
+                onFocus={() => setTimePickerVisibility(true)}
               />
               <DateTimePickerModal
                 isVisible={isTimePickerVisible}

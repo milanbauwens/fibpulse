@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useWindowDimensions } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
 
 function DeleteAccount(props) {
+  const { width } = useWindowDimensions();
+
   return (
     <Svg
-      width="auto"
+      width={width - 32 - 32}
       height={250}
       viewBox="0 0 350 250"
       fill="none"
