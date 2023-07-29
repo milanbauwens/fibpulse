@@ -119,7 +119,7 @@ const Item = ({ type, data, onSelect }) => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 250, paddingHorizontal: 20 }}
-            className="w-full flex h-full flex-col gap-4"
+            className="w-full flex h-full flex-col"
           >
             {data.options.map((option, index) => {
               const isSelected = selected === option;
@@ -160,7 +160,7 @@ const Item = ({ type, data, onSelect }) => {
                   key={index}
                   onPress={isSelected ? handleDeselect : handleSelect}
                   activeOpacity={1}
-                  className={`px-4 py-3  w-fit rounded-lg flex flex-row items-center justify-between ${
+                  className={`px-4 py-3  w-fit rounded-lg flex flex-row items-center justify-between mb-4 ${
                     data.type === 'spot-select' ? 'bg-white shadow-card-md' : 'bg-deepMarine-100'
                   } `}
                 >
@@ -360,8 +360,10 @@ const Item = ({ type, data, onSelect }) => {
           <View>
             <Label title={data.label} />
             <Input
+              returnKeyType="done"
               onChangeText={(text) => setSelected(text)}
               placeholder={t('input.textarea.placeholder')}
+              onSubmitEditing={() => Keyboard.dismiss()}
               variant="textarea"
               inputMode="text"
             />
@@ -374,6 +376,7 @@ const Item = ({ type, data, onSelect }) => {
             <Input
               onChangeText={(text) => setSelected(text)}
               inputMode="numeric"
+              returnKeyType="done"
               onSubmitEditing={() => Keyboard.dismiss()}
             />
           </View>

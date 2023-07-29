@@ -671,6 +671,30 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
+    case 'search':
+      icon = (
+        <Path
+          d="M21 21l-4.35-4.35M11 6a5 5 0 015 5m3 0a8 8 0 11-16 0 8 8 0 0116 0z"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'activity':
+      icon = (
+        <Path
+          d="M22 12h-4l-3 9L9 3l-3 9H2"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
     case 'alert-triangle':
       icon = (
         <Path

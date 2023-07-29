@@ -1,4 +1,3 @@
-export { default as SpotEpisodes } from './Episodes.jsx';
 export { default as SpotOther } from './Other.jsx';
 export { default as SpotSitting } from './Sitting.jsx';
 export { default as SpotSleeping } from './Sleep.jsx';

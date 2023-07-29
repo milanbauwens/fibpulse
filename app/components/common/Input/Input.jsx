@@ -11,6 +11,7 @@ const Input = ({
   error,
   inputMode,
   onFocus,
+  returnKeyType,
   onPressIn,
   onChangeText,
   onSubmitEditing,
@@ -38,6 +39,7 @@ const Input = ({
       inputMode={inputMode}
       onFocus={onFocus}
       secureTextEntry={false}
+      returnKeyType={returnKeyType}
       onPressIn={onPressIn}
       onSubmitEditing={onSubmitEditing}
       aria-disabled={disabled}

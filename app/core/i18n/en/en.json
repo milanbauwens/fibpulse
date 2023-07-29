@@ -62,7 +62,10 @@
       "tag": "Heart disorder",
       "title": "My heartmoments",
       "description": "Keep track of your moments and get more insight in your heart rhythm.",
-      "emptyState": "No heartmoments for this period",
+      "emptyState": {
+        "title": "No heartmoments yet",
+        "description": "U haven't had an irregular heartbeat during this period."
+      },
       "cta": "See all heartmoments"
     },
     "insights": {

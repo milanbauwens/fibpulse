@@ -6,9 +6,9 @@ import { LineChart } from 'react-native-chart-kit';
 import { getEpisodesByDateRange } from '../../core/db/modules/episodes/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
+import EmptyStateCard from '../common/EmptyStateCard/EmptyStateCard';
 import { ChartSkeleton } from '../common/Skeleton';
 import { Paragraph } from '../common/Typography';
-import { SpotEpisodes } from '../svg/spotIllustrations';
 import { getEpisodesCountByWeek } from './helpers/getEpisodesCountByWeek';
 import { getEpisodesCountByYear } from './helpers/getEpisodesCountByYear';
 
@@ -101,7 +101,14 @@ const EpisodeChart = () => {
                 labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
                 datasets: [
                   {
-                    data: selectedView === 'week' ? weekData : yearData,
+                    data:
+                      selectedView === 'week'
+                        ? weekData.length > 0
+                          ? weekData
+                          : [0, 0, 0, 0, 0, 0, 0]
+                        : yearData.length > 0
+                        ? yearData
+                        : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                   },
                 ],
               }}
@@ -133,12 +140,11 @@ const EpisodeChart = () => {
               bezier
             />
           ) : (
-            <View className="h-56 flex flex-col bg-deepMarine-100 rounded-lg p-3 items-center justify-center">
-              <SpotEpisodes />
-              <Paragraph styles="text-center mt-2" textColor="text-turquoise-500">
-                {t('home.episodes.emptyState')}
-              </Paragraph>
-            </View>
+            <EmptyStateCard
+              icon="activity"
+              description={t('home.episodes.emptyState.description')}
+              title={t('home .episodes.emptyState.title')}
+            />
           )}
         </View>
       ) : (

@@ -62,7 +62,10 @@
       "tag": "Ritmestoornis",
       "title": "Mijn hartmomenten",
       "description": "Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis",
-      "emptyState": "Geen hartmomenten voor deze periode",
+      "emptyState": {
+        "title": "Geen hartmomenten gevonden",
+        "description": "U heeft deze periode nog geen hartmomenten toegevoegd."
+      },
       "cta": "Bekijk alle hartmomenten"
     },
     "insights": {
@@ -70,7 +73,7 @@
       "title": "Inzichten",
       "description": "Onderstaande zaken zijn voortgekomen uit uw hartmomenten.",
       "emptyState": {
-        "title": "Nog geen inzichten beschikbaar",
+        "title": "Geen inzichten beschikbaar",
         "description": "Zodra u enkele hartmomenten toevoegt, zullen hier meer zaken te zien zijn."
       },
       "symptoms": {

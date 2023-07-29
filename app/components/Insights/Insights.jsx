@@ -9,8 +9,8 @@ import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { getAmountPerActivity } from '../../core/utils/episode/getAmountPerActivity';
 import { getAmountPerSymptom } from '../../core/utils/episode/getAmountPerSymptom';
 import InsightCard from '../InsightCard/InsightCard';
-import Card from '../common/Card/Card';
-import { Paragraph, Title } from '../common/Typography';
+import EmptyStateCard from '../common/EmptyStateCard/EmptyStateCard';
+import { Paragraph } from '../common/Typography';
 
 const Insights = () => {
   const { t } = useTranslations();
@@ -81,12 +81,11 @@ const Insights = () => {
           </InsightCard>
         </View>
       ) : (
-        <Card className="bg-deepMarine-100 rounded-lg shadow-card-md p-3 h-52 flex items-center justify-center">
-          <Title size="small" textCenter>
-            {t('home.insights.emptyState.title')}
-          </Title>
-          <Paragraph styles="text-center">{t('home.insights.emptyState.description')}</Paragraph>
-        </Card>
+        <EmptyStateCard
+          icon="search"
+          description={t('home.insights.emptyState.description')}
+          title={t('home.insights.emptyState.title')}
+        />
       )}
     </>
   );
