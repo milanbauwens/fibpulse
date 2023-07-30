@@ -11,7 +11,7 @@ export const OnboardingItem = ({ item }) => {
   return (
     <View style={{ width }} className="flex items-center px-5">
       {item.illustration}
-      <View className="mb-8">
+      <View style={{ marginTop: -24 }} className="mb-8">
         <Title size="large" textCenter>
           {t(`onboarding.${item.key}.title`)}
         </Title>

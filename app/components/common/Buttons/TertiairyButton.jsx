@@ -16,7 +16,7 @@ const TertiairyButton = ({ type, label, action, onPress, props }) => {
       >
         {label}{' '}
         <Text
-          className={`${type === 'error' ? 'text-red-600' : 'text-deepMarine-600'} `}
+          className={`${type === 'error' ? 'text-red-600' : 'text-deepMarine-500'} `}
           style={{ fontFamily: 'Bitter-semibold' }}
         >
           {action}

@@ -10,10 +10,11 @@ import { EpisodeSkeleton } from '../../components/common/Skeleton';
 import EpisodesEmptyState from '../../components/svg/EpisodesEmptyState';
 import { getEpisodesByDate } from '../../core/db/modules/episodes/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
+import { formatDate } from '../../core/utils/formatData';
 import colors from '../../theme/colors';
 
 const Overview = ({ navigation }) => {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
 
   const scrollY = new Animated.Value(0);
 
@@ -50,7 +51,7 @@ const Overview = ({ navigation }) => {
           });
         },
       })}
-      contentContainerStyle={{ paddingBottom: 24 }}
+      contentContainerStyle={{ paddingBottom: 48 }}
       style={{ paddingTop: 16 }}
       className="w-full h-screen bg-white px-5"
     >
@@ -59,16 +60,17 @@ const Overview = ({ navigation }) => {
       {!isLoading ? (
         <View>
           {episodes && episodes.data.length > 0 ? (
-            episodes.data.map(({ id, pulse, activity, created_at }) => {
-              const date = new Date(created_at);
+            episodes.data.map(({ id, pulse, activity, start_date, end_date }) => {
+              const startDate = new Date(start_date);
+              const endDate = new Date(end_date);
 
               return (
                 <EpisodeCard
                   key={id}
                   id={id}
-                  startHour="7:45"
-                  endHour="8:00"
-                  date={date.toLocaleDateString('nl', {
+                  startHour={formatDate(startDate, 'time', locale)}
+                  endHour={formatDate(endDate, 'time', locale)}
+                  date={startDate.toLocaleDateString(locale, {
                     day: 'numeric',
                     month: 'long',
                   })}

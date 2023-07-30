@@ -78,12 +78,12 @@ const PulseDetermination = ({ route }) => {
       </Popover>
 
       <View className="flex flex-row mt-8 mb-4">
-        <View className="">
+        <View className="flex-1">
           <Title size="large">{t('episodes.create.pulse.title')}</Title>
-          <Paragraph styles="max-w-[90%]">{t('episodes.create.pulse.description')} </Paragraph>
+          <Paragraph>{t('episodes.create.pulse.description')} </Paragraph>
         </View>
 
-        <TouchableOpacity activeOpacity={0.8} onPress={() => setIsVisible(true)}>
+        <TouchableOpacity activeOpacity={0.8} className="ml-3" onPress={() => setIsVisible(true)}>
           <Icon name="close" size={32} />
         </TouchableOpacity>
       </View>
