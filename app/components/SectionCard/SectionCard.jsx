@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 import Card from '../common/Card/Card';
 import { Icon } from '../common/Icon/Icon';
@@ -7,8 +7,8 @@ import Line from '../common/Line/Line';
 import { Paragraph, Title } from '../common/Typography';
 
 const SectionCard = ({
-  withImage = false,
-  source,
+  withIllustration = false,
+  illustration,
   title,
   label,
   description,
@@ -17,8 +17,10 @@ const SectionCard = ({
   children,
 }) => (
   <Card className="w-full bg-white rounded-lg relative shadow-card-md border border-deepMarine-100 mb-6">
-    {withImage && (
-      <Image className="w-full h-36 rounded-t-lg" style={{ resizeMode: 'cover' }} source={source} />
+    {withIllustration && (
+      <View className="w-full h-44 rounded-t-lg bg-ochre-300 flex items-center">
+        <View className=" w-64 mt-[-42]">{illustration}</View>
+      </View>
     )}
     <View className="p-4">
       <View>

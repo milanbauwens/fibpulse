@@ -8,6 +8,7 @@ import Insights from '../components/Insights/Insights';
 import SectionCard from '../components/SectionCard/SectionCard';
 import { Icon } from '../components/common/Icon/Icon';
 import { Paragraph } from '../components/common/Typography';
+import { LifestyleIllustration } from '../components/svg/onboarding';
 import { getLatestEpisode } from '../core/db/modules/episodes/api';
 import { useTranslations } from '../core/i18n/LocaleProvider';
 import { getDaysSinceLastEpisode } from '../core/utils/episode/getDaysSinceLastEpisode';
@@ -107,8 +108,8 @@ const Home = ({ navigation }) => {
       </SectionCard>
 
       <SectionCard
-        withImage
-        source={require('../../assets/images/woman-running.jpg')}
+        withIllustration
+        illustration={<LifestyleIllustration />}
         label={t('home.discover.tag')}
         title={t('home.discover.title')}
         description={t('home.discover.description')}
