@@ -17,6 +17,7 @@ import Title from '../../components/common/Typography/Title';
 import { deleteEpisodeById, getEpisodeById } from '../../core/db/modules/episodes/api';
 import { getMedicalProfile } from '../../core/db/modules/medical_profiles/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
+import { getEpisodeDurationSentence } from '../../core/utils/episode/getEpisodeDuration';
 import { formatDate } from '../../core/utils/formatData';
 import { episodeHTML } from '../../templates/episodeHTML';
 import colors from '../../theme/colors';
@@ -230,12 +231,15 @@ const Detail = ({ route, navigation }) => {
                   style={{ backgroundColor: colors.turquoise[200] }}
                   className="w-10 h-10 flex items-center justify-center rounded-full"
                 >
-                  <Icon name="calendar-outline" size={24} />
+                  <Icon name="clock-outline" size={24} />
                 </View>
               </View>
               <Paragraph styles="flex-shrink">
-                U had hiervoor al <Paragraph isStrong>56 dagen</Paragraph> geen hartmoment meer
-                gehad.
+                {t('episodes.detail.duration')}{' '}
+                <Paragraph isStrong>
+                  {getEpisodeDurationSentence(start_date, end_date, locale)}
+                </Paragraph>
+                .
               </Paragraph>
             </Card>
           </View>

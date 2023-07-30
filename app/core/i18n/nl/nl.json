@@ -271,6 +271,7 @@
     "detail": {
       "start": "Begin",
       "end": "Einde",
+      "duration": "Dit hartmoment duurde ongeveer",
       "delete": {
         "title": "Hartmoment verwijderen",
         "confirmation": {
