@@ -23,7 +23,12 @@ export const getEpisodesByUser = async () => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;
 
-  return await supabase.from('episodes').select('*').eq('user_id', user_id).throwOnError();
+  return await supabase
+    .from('episodes')
+    .select('*')
+    .order('start_date', { ascending: false })
+    .match({ user_id })
+    .throwOnError();
 };
 
 export const getHighestAmountOfActivities = async () => {
@@ -61,8 +66,9 @@ export const getEpisodesByDate = async (date) => {
     .from('episodes')
     .select('*')
     .match({ user_id })
-    .gte('created_at', startDate.toISOString()) // Filter episodes created on or after the start of the month
-    .lte('created_at', endDate.toISOString()) // Filter episodes created on or before the end of the month
+    .order('start_date', { ascending: false })
+    .gte('start_date', startDate.toISOString()) // Filter episodes created on or after the start of the month
+    .lte('start_date', endDate.toISOString()) // Filter episodes created on or before the end of the month
     .throwOnError();
 };
 
@@ -73,18 +79,12 @@ export const getEpisodesByDateRange = async (type = 'week' || 'year', year, star
   const yearStart = new Date(year, 0, 1, 0, 0, 0, 0); // Start of the year
   const yearEnd = new Date(year, 11, 31, 23, 59, 59, 999); // End of the year
 
-  const weekStart = new Date(start);
-  weekStart.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
-
-  const weekEnd = new Date(end);
-  weekEnd.setHours(23, 59, 59, 999); // Set time to 23:59:59.999
-
   return await supabase
     .from('episodes')
     .select('*')
     .match({ user_id })
-    .gte('created_at', type === 'year' ? yearStart.toISOString() : weekStart.toISOString()) // Filter episodes created on or after the start of the month
-    .lte('created_at', type === 'year' ? yearEnd.toISOString() : weekEnd.toISOString()) // Filter episodes created on or before the end of the month
+    .gte('created_at', type === 'year' ? yearStart.toISOString() : start.toISOString()) // Filter episodes created on or after the start of the month
+    .lte('created_at', type === 'year' ? yearEnd.toISOString() : end.toISOString()) // Filter episodes created on or before the end of the month
     .throwOnError();
 };
 

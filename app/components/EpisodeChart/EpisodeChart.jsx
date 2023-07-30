@@ -6,7 +6,6 @@ import { LineChart } from 'react-native-chart-kit';
 import { getEpisodesByDateRange } from '../../core/db/modules/episodes/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
-import EmptyStateCard from '../common/EmptyStateCard/EmptyStateCard';
 import { ChartSkeleton } from '../common/Skeleton';
 import { Paragraph } from '../common/Typography';
 import { getEpisodesCountByWeek } from './helpers/getEpisodesCountByWeek';
@@ -16,24 +15,23 @@ const EpisodeChart = () => {
   const { width } = useWindowDimensions();
   const { t, locale } = useTranslations();
 
-  const dateObj = new Date();
-
   const [selectedView, setSelectedView] = useState('week');
 
   const daysOfTheWeek = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
   const WeeksOfTheMonth = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
 
-  // Determine start of the week
-  const startOfWeek = dateObj.getDate() - dateObj.getDay() + 1;
+  // Get the date for the start of the week (Monday) on the current week
+  const dateObj = new Date();
 
-  // Get the dates for the start and end of the week
-  const startOfWeekDate = new Date(dateObj);
-  startOfWeekDate.setDate(startOfWeek);
+  const startOfWeekDate = new Date(
+    dateObj.setDate(dateObj.getDate() - dateObj.getDay() + (dateObj.getDay() === 0 ? -6 : 1))
+  );
   startOfWeekDate.setHours(0, 0, 0, 0);
 
-  const endOfWeek = startOfWeek + 6;
-  const endOfWeekDate = new Date(dateObj);
-  endOfWeekDate.setDate(endOfWeek);
+  // Get the date for the end of the week (Sunday) on the current week
+  const endOfWeekDate = new Date(
+    dateObj.setDate(dateObj.getDate() - dateObj.getDay() + (dateObj.getDay() === 0 ? 0 : 7))
+  );
   endOfWeekDate.setHours(23, 59, 59, 999);
 
   const handleViewSelection = (view) => {
@@ -94,60 +92,52 @@ const EpisodeChart = () => {
 
       {!isLoading ? (
         <View className="relative w-full">
-          {episodes && episodes.data.length > 0 ? (
-            <LineChart
-              className="w-full ml-[-35px]"
-              data={{
-                labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
-                datasets: [
-                  {
-                    data:
-                      selectedView === 'week'
-                        ? weekData.length > 0
-                          ? weekData
-                          : [0, 0, 0, 0, 0, 0, 0]
-                        : yearData.length > 0
-                        ? yearData
-                        : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  },
-                ],
-              }}
-              width={width - 50} // minus screen padding
-              height={228}
-              chartConfig={{
-                propsForLabels: {
-                  fontSize: 14,
-                  fontWeight: 400,
+          <LineChart
+            className="w-full ml-[-35px]"
+            data={{
+              labels: selectedView === 'week' ? daysOfTheWeek : WeeksOfTheMonth,
+              datasets: [
+                {
+                  data:
+                    selectedView === 'week'
+                      ? weekData.length > 0
+                        ? weekData
+                        : [0, 0, 0, 0, 0, 0, 0]
+                      : yearData.length > 0
+                      ? yearData
+                      : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 },
-                backgroundColor: '#FFF',
-                fillShadowGradientFrom: colors.ochre[500],
-                fillShadowGradientOpacity: 0.5,
-                backgroundGradientFrom: '#FFF',
-                backgroundGradientTo: '#FFF',
-                backgroundGradientFromOpacity: 0, // optional, defaults to 2dp
-                backgroundGradientToOpacity: 0.5,
-                style: {
-                  borderRadius: 16,
-                },
-                decimalPlaces: 0,
-                color: () => colors.ochre[400],
-                labelColor: () => colors.turquoise[700],
+              ],
+            }}
+            width={width - 50} // minus screen padding
+            height={228}
+            chartConfig={{
+              propsForLabels: {
+                fontSize: 14,
+                fontWeight: 400,
+              },
+              backgroundColor: '#FFF',
+              fillShadowGradientFrom: colors.ochre[500],
+              fillShadowGradientOpacity: 0.5,
+              backgroundGradientFrom: '#FFF',
+              backgroundGradientTo: '#FFF',
+              backgroundGradientFromOpacity: 0, // optional, defaults to 2dp
+              backgroundGradientToOpacity: 0.5,
+              style: {
+                borderRadius: 16,
+              },
+              decimalPlaces: 0,
+              color: () => colors.ochre[400],
+              labelColor: () => colors.turquoise[700],
 
-                propsForDots: {
-                  r: 4,
-                  strokeWidth: 2,
-                  stroke: colors.ochre[500],
-                },
-              }}
-              bezier
-            />
-          ) : (
-            <EmptyStateCard
-              icon="activity"
-              description={t('home.episodes.emptyState.description')}
-              title={t('home.episodes.emptyState.title')}
-            />
-          )}
+              propsForDots: {
+                r: 4,
+                strokeWidth: 2,
+                stroke: colors.ochre[500],
+              },
+            }}
+            bezier
+          />
         </View>
       ) : (
         <ChartSkeleton />
