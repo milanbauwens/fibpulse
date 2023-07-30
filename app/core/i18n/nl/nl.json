@@ -2,15 +2,15 @@
   "onboarding": {
     "skip": "Overslaan",
     "insights": {
-      "title": "Een beter inzicht in uw ritmestoornis",
-      "description": "Door de hartritmestoornis op te volgen, krijgen u en uw arts meer inzichten over hoe deze bij u evolueert."
+      "title": "Laat uw ritmestoornis niet de bovenhand nemen",
+      "description": "Door de hartritmestoornis op te volgen, krijgen u en uw arts een beter beeld over hoe deze bij u evolueert."
     },
     "lifestyle": {
-      "title": "Leef volgens een gezonde levensstijl",
+      "title": "Leef een gezonde levensstijl voor uw hart",
       "description": "Ontdek hoe tips over slaap, evenwichtige voeding en stress bijdragen tot een gezonde levensstijl voor uw hart."
     },
     "enjoy": {
-      "title": "Minder zorgen, meer genieten",
+      "title": "Meer tijd om het leven te ontdekken",
       "description": "Het is voor ons belangrijk dat u zich kan focussen op de mooie dingen die het leven te bieden heeft."
     }
   },

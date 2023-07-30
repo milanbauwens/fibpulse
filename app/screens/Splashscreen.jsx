@@ -85,7 +85,7 @@ function AnimatedSplashScreen({ children }) {
           style={[
             StyleSheet.absoluteFill,
             {
-              backgroundColor: colors.turquoise[200],
+              backgroundColor: colors.deepMarine[100],
               transform: [
                 {
                   translateX: moveX,

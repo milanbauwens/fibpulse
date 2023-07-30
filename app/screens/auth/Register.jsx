@@ -1,7 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
+import { Link, useNavigation } from '@react-navigation/native';
 import React, { createRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Keyboard, View } from 'react-native';
+import { Keyboard, Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -135,7 +135,25 @@ const Register = () => {
             />
           </View>
         </View>
+
         <View className="mb-6 mt-12">
+          <Text
+            className="text-xs text-deepMarine-700 mb-4 text-center"
+            style={{ fontFamily: 'Mulish-medium' }}
+          >
+            {t('landing.agreement')}{' '}
+            <Link to="/Terms">
+              <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
+                {t('landing.terms')}
+              </Text>
+            </Link>{' '}
+            {t('landing.and')}{' '}
+            <Link to="/Privacy">
+              <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
+                {t('landing.privacy')}
+              </Text>
+            </Link>
+          </Text>
           <PrimaryButton
             isLoading={isLoading}
             label={t('register.cta')}

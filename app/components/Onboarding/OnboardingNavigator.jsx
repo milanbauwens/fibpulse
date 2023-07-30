@@ -1,19 +1,13 @@
 import React from 'react';
-import { Animated, TouchableOpacity, View, useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Animated, View, useWindowDimensions } from 'react-native';
 
 import colors from '../../theme/colors';
-import { Icon } from '../common/Icon/Icon';
 
-export const OnboardingNavigator = ({ data, scrollX, scrollTo }) => {
+export const OnboardingNavigator = ({ data, scrollX }) => {
   const { width } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
 
   return (
-    <View
-      className="w-full absolute flex flex-row items-center justify-between px-5 h-12 mt-8"
-      style={{ bottom: insets.bottom + 32 }}
-    >
+    <View className=" w-full flex items-center justify-between px-5">
       <View className="flex flex-row gap-x-3">
         {data.map((_, index) => {
           const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
@@ -39,13 +33,6 @@ export const OnboardingNavigator = ({ data, scrollX, scrollTo }) => {
           );
         })}
       </View>
-      <TouchableOpacity
-        onPress={scrollTo}
-        activeOpacity={0.8}
-        className="flex rounded-full justify-center items-center w-[72px] h-[72px] bg-deepMarine-500"
-      >
-        <Icon name="arrow-right" size={32} color="white" />
-      </TouchableOpacity>
     </View>
   );
 };

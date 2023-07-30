@@ -1,14 +1,20 @@
+import {
+  DiscoverIllustration,
+  HeartIllustration,
+  LifestyleIllustration,
+} from '..//components/svg/onboarding';
+
 module.exports = [
   {
     key: 'insights',
-    image: require('../../assets/images/doctor-checking-pulse-on-woman.jpg'),
+    illustration: <HeartIllustration />,
   },
   {
     key: 'lifestyle',
-    image: require('../../assets/images/man-running-in-urban-environment.jpg'),
+    illustration: <LifestyleIllustration />,
   },
   {
     key: 'enjoy',
-    image: require('../../assets/images/man-and-woman-hugging-child.jpg'),
+    illustration: <DiscoverIllustration />,
   },
 ];

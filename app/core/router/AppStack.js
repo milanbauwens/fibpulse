@@ -1,8 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useEffect, useState } from 'react';
 
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
 import { useAuthContext } from '../../components/auth/AuthProvider';
@@ -10,7 +8,6 @@ import { BackButton } from '../../components/common/Buttons';
 import Header from '../../components/common/Header/Header';
 import Home from '../../screens/Home';
 import Landingscreen from '../../screens/Landingscreen';
-import { Onboarding } from '../../screens/Onboarding';
 import Privacy from '../../screens/Privacy';
 import Terms from '../../screens/Terms';
 import {
@@ -40,25 +37,8 @@ export const AppStack = () => {
 
   const AppStack = createNativeStackNavigator();
 
-  const [completedOnboarding, setCompletedOnboarding] = useState(false);
-
   const routes = navigation.getState()?.routes;
   const prevRoute = routes && routes[routes.length - 1];
-
-  const checkOnboarding = async () => {
-    try {
-      const onboarding = await AsyncStorage.getItem('@viewedOnboarding');
-      if (onboarding !== null) {
-        setCompletedOnboarding(true);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    checkOnboarding();
-  }, []);
 
   const screenOptions = () => ({
     headerShown: true,
@@ -250,13 +230,6 @@ export const AppStack = () => {
   } else {
     return (
       <AppStack.Navigator screenOptions={screenOptions}>
-        {completedOnboarding ? null : (
-          <AppStack.Screen
-            name="Onboarding"
-            component={Onboarding}
-            options={{ headerShown: false }}
-          />
-        )}
         <AppStack.Screen
           name="Landing"
           component={Landingscreen}

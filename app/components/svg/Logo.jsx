@@ -3,8 +3,8 @@ import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 function Logo(props) {
   return (
     <Svg
-      width={48}
-      height={50}
+      width={32}
+      height={30}
       viewBox="0 0 48 50"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

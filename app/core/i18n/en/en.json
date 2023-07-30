@@ -1,22 +1,19 @@
 {
   "onboarding": {
-    "skip": "Continue",
     "insights": {
-      "title": "A better understanding of your heart disorder",
+      "title": "Don't let your heart disorder take the upper hand.",
       "description": "By monitoring the heart disorder, you and your doctor gain more insights into how it evolves."
     },
     "lifestyle": {
-      "title": "Live according to a healthy lifestyle",
+      "title": "Live a healthy lifestyle for your heart",
       "description": "Discover how tips on sleep, balanced nutrition, and stress contribute to a healthy lifestyle for your heart."
     },
     "enjoy": {
-      "title": "Worry less, enjoy more",
-      "description": "It's important for us that you can focus on the beautiful things life has to offer."
+      "title": "Discover more about what life has to offer",
+      "description": "For us, them most important thing is for you to focus on all the beautiful things life has to offer."
     }
   },
   "landing": {
-    "title": "Don't let your heart disorder take the upper hand.",
-    "description": "Take the first step and start a diary about your heart disorder today.",
     "agreement": "By continuing, you agree to our",
     "and": "and",
     "or": "or",
