@@ -1,6 +1,6 @@
 export const getEpisodesCountByYear = (data) => {
   const mappedData = data.reduce((acc, episode) => {
-    const date = new Date(episode.created_at);
+    const date = new Date(episode.start_date);
     const month = date.getMonth();
 
     acc[month] = acc[month] ? acc[month] + 1 : 1;

@@ -27,7 +27,7 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     if (!isLoading && episodes.data) {
-      setDaysSince(getDaysSinceLastEpisode(episodes.data.created_at));
+      setDaysSince(getDaysSinceLastEpisode(episodes.data.start_date));
     }
   }, [episodes, isLoading]);
 

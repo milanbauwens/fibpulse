@@ -83,8 +83,8 @@ export const getEpisodesByDateRange = async (type = 'week' || 'year', year, star
     .from('episodes')
     .select('*')
     .match({ user_id })
-    .gte('created_at', type === 'year' ? yearStart.toISOString() : start.toISOString()) // Filter episodes created on or after the start of the month
-    .lte('created_at', type === 'year' ? yearEnd.toISOString() : end.toISOString()) // Filter episodes created on or before the end of the month
+    .gte('start_date', type === 'year' ? yearStart.toISOString() : start.toISOString()) // Filter episodes created on or after the start of the month
+    .lte('start_date', type === 'year' ? yearEnd.toISOString() : end.toISOString()) // Filter episodes created on or before the end of the month
     .throwOnError();
 };
 
@@ -96,7 +96,7 @@ export const getLatestEpisode = async () => {
     .from('episodes')
     .select('*')
     .match({ user_id })
-    .order('id', { ascending: false })
+    .order('start_date', { ascending: false })
     .limit(1)
     .single();
 };
