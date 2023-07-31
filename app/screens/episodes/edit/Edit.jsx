@@ -204,7 +204,7 @@ const Edit = ({ route }) => {
       <FeedbackMessage
         isVisible={isVisible}
         icon="check"
-        content="Wijzigingen succesvol opgeslagen"
+        content={t('edit.success')}
         onHide={() => setIsVisible(false)}
       />
 
@@ -213,7 +213,7 @@ const Edit = ({ route }) => {
           style={{ bottom: bottom + 32 }}
           className=" px-5 absolute w-full left-0 right-0 m-auto flex-col justify-center"
         >
-          <PrimaryButton label="Wijzigingen opslaan" onPress={handleSubmit} />
+          <PrimaryButton label={t('edit.title')} onPress={handleSubmit} />
         </View>
       </View>
     </>

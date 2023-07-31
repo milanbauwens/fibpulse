@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useFormState } from 'react-hook-form';
 import { Keyboard, KeyboardAvoidingView, Platform, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
 import Formgroup from '../../components/common/Formgroup/Formgroup';
+import { Icon } from '../../components/common/Icon/Icon';
 import Popover from '../../components/common/Popover/Popover';
 import { Paragraph } from '../../components/common/Typography';
 import DeleteAccount from '../../components/svg/DeleteAccount';
@@ -19,9 +20,12 @@ const AccountScreen = () => {
   const { t } = useTranslations();
 
   const [isVisible, setIsVisible] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const { control, handleSubmit } = useForm();
+
+  const { isSubmitted } = useFormState({ control });
 
   const handleUpdateProfile = async ({ firstname, lastname, email }) => {
     setIsLoading(true);
@@ -37,6 +41,7 @@ const AccountScreen = () => {
       console.error(error);
     } finally {
       setIsLoading(false);
+      setIsSuccess(true);
     }
   };
 
@@ -142,7 +147,8 @@ const AccountScreen = () => {
             </View>
           </View>
           <PrimaryButton
-            label={t('settings.account.save')}
+            icon={isSubmitted ? <Icon name="check" size={24} color="white" /> : null}
+            label={isSubmitted ? t('edit.success') : t('settings.account.save')}
             onPress={handleSubmit(handleUpdateProfile)}
             isLoading={isLoading}
           />

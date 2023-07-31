@@ -461,6 +461,10 @@
       "placeholder": "Write something down..."
     }
   },
+  "edit": {
+    "title": "Save changes",
+    "success": "Changes saved"
+  },
   "error": {
     "email": {
       "required": "E-mail is required",

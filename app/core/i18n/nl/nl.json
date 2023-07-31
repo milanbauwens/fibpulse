@@ -447,6 +447,10 @@
     "terms": "Gebruikersvoorwaarden",
     "privacy": "Privacybeleid"
   },
+  "edit": {
+    "title": "Wijzigingen opslaan",
+    "success": "Succesvol opgeslagen"
+  },
   "input": {
     "firstname": "Voornaam",
     "lastname": "Achternaam",
