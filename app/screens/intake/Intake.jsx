@@ -10,7 +10,9 @@ import { FlatlistItem, FlatlistPaginator } from '../../components/common/Flatlis
 import { updateMedicalProfile } from '../../core/db/modules/medical_profiles/api.js';
 import { useTranslations } from '../../core/i18n/LocaleProvider.jsx';
 
-const Intake = () => {
+const Intake = ({ route }) => {
+  const { fromSettings } = route.params || { fromSettings: false };
+
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
   const { t } = useTranslations();
@@ -30,7 +32,7 @@ const Intake = () => {
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
     } else {
-      navigation.navigate('Main');
+      await setPassedIntake.mutateAsync();
     }
   };
 
@@ -41,6 +43,7 @@ const Intake = () => {
   };
 
   const column = slides[currentSlide].column;
+  const passedIntakeColumn = 'passed_intake';
 
   // Update data
   const queryClient = useQueryClient();
@@ -50,9 +53,16 @@ const Intake = () => {
       setSelected();
     },
   });
-
-  // TODO
-  // When all slides are completed, update Medical Profile with status passed_intake to True
+  const setPassedIntake = useMutation(() => updateMedicalProfile(passedIntakeColumn, true), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('medical_profile');
+      if (fromSettings) {
+        navigation.navigate('Main', { screen: 'Settings' });
+      } else {
+        navigation.navigate('Main');
+      }
+    },
+  });
 
   const handleUpdate = async () => {
     try {

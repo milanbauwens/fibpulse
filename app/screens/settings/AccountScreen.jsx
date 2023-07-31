@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Keyboard, Text, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAuthContext } from '../../components/auth/AuthProvider';
@@ -83,7 +83,11 @@ const AccountScreen = () => {
         </View>
       </Popover>
 
-      <View className="bg-white h-full w-full pt-4">
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        enabled
+        className="bg-white h-full w-full pt-4"
+      >
         <View className="px-4 ">
           <View className="mb-6">
             <Formgroup
@@ -151,7 +155,7 @@ const AccountScreen = () => {
             onPress={() => setIsVisible(true)}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </>
   );
 };

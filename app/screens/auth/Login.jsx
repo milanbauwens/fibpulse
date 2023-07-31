@@ -1,14 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { createRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Keyboard, Text, TouchableOpacity, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { BackButton, PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
@@ -58,9 +52,10 @@ const Login = () => {
       <View className="bg-white z-[2] mb-6">
         <Title size="large">{t('login.title')}</Title>
       </View>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        enabled
+      <KeyboardAwareScrollView
+        overScrollMode="never"
+        bounces={false}
+        extraHeight={0}
         className="flex flex-col gap-y-6"
       >
         {signInError && (
@@ -123,7 +118,7 @@ const Login = () => {
             </Text>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
 
       <View className="mb-6">
         <PrimaryButton

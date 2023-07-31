@@ -8,7 +8,7 @@ export const getMedicalProfile = async () => {
   return await supabase
     .from('medical_profiles')
     .select(
-      'year_of_birth, gender, episode_duration, episode_frequency, heart_disorder, risk_factors'
+      'year_of_birth, gender, episode_duration, episode_frequency, heart_disorder, risk_factors, passed_intake'
     )
     .match({ user_id })
     .single()

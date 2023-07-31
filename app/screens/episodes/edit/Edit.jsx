@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { Keyboard, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, Text, TouchableOpacity, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { PrimaryButton } from '../../../components/common/Buttons';
@@ -98,11 +99,12 @@ const Edit = ({ route }) => {
   return (
     <>
       {!isLoading && (
-        <ScrollView
+        <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 164 }}
           style={{ paddingTop: 16 }}
           className="w-full h-screen bg-white px-5"
+          overScrollMode="never"
         >
           <View className="mb-11">
             <Question number={1} title={t('episodes.intake.pulse.question')} />
@@ -196,7 +198,7 @@ const Edit = ({ route }) => {
               onChangeText={(value) => setNotes(value)}
             />
           </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
       )}
 
       <FeedbackMessage

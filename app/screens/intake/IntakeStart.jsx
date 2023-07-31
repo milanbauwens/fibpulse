@@ -11,21 +11,21 @@ import { supabase } from '../../core/db/initSupabase';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 
-const IntakeStart = () => {
+const IntakeStart = ({ route }) => {
+  const { fromSettings } = route.params || { fromSettings: false };
+
   const navigation = useNavigation();
   const { user } = useAuthContext();
   const { t } = useTranslations();
   const { bottom } = useSafeAreaInsets();
 
-  const handleStart = async () => {
+  const createMedicalProfile = async () => {
     const { error } = await supabase.from('medical_profiles').upsert({
       user_id: user.id,
     });
     if (error) {
       console.log(error);
     }
-
-    navigation.navigate('Intake');
   };
 
   return (
@@ -52,11 +52,25 @@ const IntakeStart = () => {
         <View className="flex-1 mr-4">
           <SecondaryButton
             label={t('medicalProfile.start.cta.secondary')}
-            onPress={() => navigation.navigate('Main')}
+            onPress={async () => {
+              await createMedicalProfile();
+              navigation.navigate('Main');
+            }}
           />
         </View>
         <View className="flex-1">
-          <PrimaryButton label={t('medicalProfile.start.cta.primary')} onPress={handleStart} />
+          <PrimaryButton
+            label={t('medicalProfile.start.cta.primary')}
+            onPress={async () => {
+              await createMedicalProfile();
+
+              if (fromSettings) {
+                navigation.navigate('MedicalIntake');
+              } else {
+                navigation.navigate('Intake', { fromSettings });
+              }
+            }}
+          />
         </View>
       </View>
     </SafeAreaView>

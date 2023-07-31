@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import {
   EPISODE_AMOUNTS,
@@ -21,11 +21,7 @@ import {
 const MedicalDataScreen = () => {
   const navigation = useNavigation();
 
-  const {
-    data: medicalProfile,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data: medicalProfile, isLoading } = useQuery({
     queryKey: ['medical_profile'],
     queryFn: getMedicalProfile,
   });
@@ -81,7 +77,12 @@ const MedicalDataScreen = () => {
   };
 
   return (
-    <View className="bg-white h-full w-full pt-4">
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: 24 }}
+      scrollEventThrottle={16}
+      className="bg-white h-full w-full pt-4"
+    >
       <View className="px-4 bg-white h-full">
         {isLoading ? (
           <View className="h-5/6 w-full flex items-center justify-center">
@@ -89,7 +90,7 @@ const MedicalDataScreen = () => {
           </View>
         ) : (
           <>
-            {!error ? (
+            {medicalProfile.data.passed_intake ? (
               <DataView data={formattedData} />
             ) : (
               <EmptyState
@@ -97,13 +98,13 @@ const MedicalDataScreen = () => {
                 title="Nog geen Medische gegevens"
                 description="Om uw profiel te vervolledigen, willen we nog graag enkele zaken over u weten. "
                 cta="voltooi uw medisch profiel"
-                onPress={() => navigation.navigate('MedicalIntakeStart')}
+                onPress={() => navigation.navigate('MedicalIntakeStart', { fromSettings: true })}
               />
             )}
           </>
         )}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
