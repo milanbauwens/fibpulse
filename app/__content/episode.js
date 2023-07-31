@@ -29,6 +29,7 @@ module.exports = [
   {
     question: 'symptoms',
     description: 'descriptions',
+    translationKey: 'episodes.intake.symptoms.options.',
     type: 'multiselect',
     column: 'symptoms',
     options: [

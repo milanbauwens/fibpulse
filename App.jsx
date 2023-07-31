@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import AuthProvider from './app/components/auth/AuthProvider';
 import LocaleProvider from './app/core/i18n/LocaleProvider';
-import { AppStack } from './app/core/router/AppStack';
+import { Stack } from './app/core/router/AppStack';
 import { SplashscreenLoader } from './app/screens/Splashscreen';
 
 // Keep the splash screen visible while app is loading
@@ -22,7 +22,7 @@ export default function App() {
           <LocaleProvider>
             <AuthProvider>
               <NavigationContainer>
-                <AppStack />
+                <Stack />
               </NavigationContainer>
             </AuthProvider>
           </LocaleProvider>

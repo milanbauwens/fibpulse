@@ -13,6 +13,7 @@ import Terms from '../../screens/Terms';
 import {
   EpisodeConfirmationScreen,
   EpisodeCreateScreen,
+  EpisodeEditScreen,
   EpisodeInfoScreen,
   EpisodePulseScreen,
   EpisodeStartScreen,
@@ -30,12 +31,12 @@ import colors from '../../theme/colors';
 import { useTranslations } from '../i18n/LocaleProvider';
 import AuthStack from './AuthStack';
 
-export const AppStack = () => {
+export const Stack = () => {
   const navigation = useNavigation();
   const { isLoggedIn } = useAuthContext();
   const { t } = useTranslations();
 
-  const AppStack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   const routes = navigation.getState()?.routes;
   const prevRoute = routes && routes[routes.length - 1];
@@ -75,17 +76,17 @@ export const AppStack = () => {
 
   if (isLoggedIn) {
     return (
-      <AppStack.Navigator screenOptions={screenOptions}>
+      <Stack.Navigator screenOptions={screenOptions}>
         {prevRoute?.params?.screen === 'Register' ? (
           <>
-            <AppStack.Screen
+            <Stack.Screen
               name="IntakeStart"
               component={IntakeStart}
               options={{
                 headerShown: false,
               }}
             />
-            <AppStack.Screen
+            <Stack.Screen
               name="Intake"
               options={{
                 headerShown: false,
@@ -96,7 +97,7 @@ export const AppStack = () => {
         ) : null}
 
         {/* Main */}
-        <AppStack.Screen
+        <Stack.Screen
           name="Main"
           options={{
             headerShown: false,
@@ -105,7 +106,7 @@ export const AppStack = () => {
         />
 
         {/* Home */}
-        <AppStack.Screen
+        <Stack.Screen
           name="Home"
           component={Home}
           options={{
@@ -113,58 +114,68 @@ export const AppStack = () => {
           }}
         />
         {/* Episodes */}
-        <AppStack.Screen
+        <Stack.Screen
           name="Episodes"
           component={Episodes}
           options={{
             headerShown: false,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="EpisodesCreateStart"
           component={EpisodeStartScreen}
           options={{
             headerShown: false,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="EpisodesCreateInfo"
           component={EpisodeInfoScreen}
           options={{
             headerShown: false,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="EpisodesCreatePulse"
           component={EpisodePulseScreen}
           options={{
             headerShown: false,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="EpisodesCreateConfirmation"
           component={EpisodeConfirmationScreen}
           options={{
             headerShown: false,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="EpisodesCreate"
           component={EpisodeCreateScreen}
           options={{
             headerShown: false,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="EpisodesDetail"
           component={EpisodesDetail}
           options={{
             headerLeft: () => <BackButton />,
           }}
         />
+        <Stack.Screen
+          name="EpisodesEdit"
+          component={EpisodeEditScreen}
+          options={{
+            title: 'Wijzigen',
+            headerTitle: 'Wijzigen',
+            headerLeft: () => <BackButton />,
+          }}
+        />
+
         {/* Settings */}
-        <AppStack.Screen name="Settings" component={Settings} />
-        <AppStack.Screen
+        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen
           name="MedicalProfile"
           component={MedicalDataScreen}
           options={{
@@ -173,7 +184,7 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="Profile"
           component={PersonalInformationScreen}
           options={{
@@ -182,7 +193,7 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="Language"
           component={LanguageScreen}
           options={{
@@ -191,7 +202,7 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="Privacy"
           component={Privacy}
           options={{
@@ -200,7 +211,7 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="Terms"
           component={Terms}
           options={{
@@ -211,33 +222,29 @@ export const AppStack = () => {
         />
 
         {/* Medical Profile */}
-        <AppStack.Screen
+        <Stack.Screen
           name="MedicalIntakeStart"
           component={IntakeStart}
           options={{
             headerShown: false,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="MedicalIntake"
           options={{
             headerShown: false,
           }}
           component={Intake}
         />
-      </AppStack.Navigator>
+      </Stack.Navigator>
     );
   } else {
     return (
-      <AppStack.Navigator screenOptions={screenOptions}>
-        <AppStack.Screen
-          name="Landing"
-          component={Landingscreen}
-          options={{ headerShown: false }}
-        />
-        <AppStack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
+      <Stack.Navigator screenOptions={screenOptions}>
+        <Stack.Screen name="Landing" component={Landingscreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
 
-        <AppStack.Screen
+        <Stack.Screen
           name="Privacy"
           component={Privacy}
           options={{
@@ -246,7 +253,7 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
-        <AppStack.Screen
+        <Stack.Screen
           name="Terms"
           component={Terms}
           options={{
@@ -255,7 +262,7 @@ export const AppStack = () => {
             headerLeft: () => <BackButton />,
           }}
         />
-      </AppStack.Navigator>
+      </Stack.Navigator>
     );
   }
 };

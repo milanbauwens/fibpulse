@@ -113,6 +113,18 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
+    case 'check':
+      icon = (
+        <Path
+          d="M20 6L9 17l-5-5"
+          stroke="#F2F7F7"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
     case 'calendar-outline':
       icon = (
         <Path

@@ -34,6 +34,7 @@ module.exports = [
     description: 'description',
     type: 'multiselect',
     column: 'risk_factors',
+    translationKey: 'medicalProfile.riskfactors.options.',
     options: [
       'stress',
       'apnea',

@@ -57,13 +57,13 @@ const Create = ({ route }) => {
   const queryClient = useQueryClient();
   const mutation = useMutation((value) => updateEpisode(episodeId, column, value), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['episodes']);
+      queryClient.invalidateQueries('episodes');
       setSelected();
     },
   });
   const deletion = useMutation((id) => deleteEpisodeById(id), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['episodes']);
+      queryClient.invalidateQueries('episodes');
       setIsVisible(false);
       navigation.navigate('Main');
     },

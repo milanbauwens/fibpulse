@@ -8,7 +8,6 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import { YEARS } from '../../../__content/ages';
 import { useTranslations } from '../../../core/i18n/LocaleProvider';
@@ -21,26 +20,22 @@ import {
   SpotStanding,
   SpotWalking,
 } from '../../svg/spotIllustrations';
+import DateTimePicker from '../DateTimePicker/DateTimePicker';
 import { Icon } from '../Icon/Icon';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
+import MultiSelect from '../MultiSelect/MultiSelect';
 import Popover from '../Popover/Popover';
 import { Paragraph, Title } from '../Typography';
 
 const Item = ({ type, data, onSelect }) => {
-  const { width, height } = useWindowDimensions();
-  const { t, locale } = useTranslations();
+  const { width } = useWindowDimensions();
+  const { t } = useTranslations();
 
   const [selected, setSelected] = useState(data.type === 'multiselect' ? [] : '');
 
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
-
   const [seconds, setSeconds] = useState(60);
   const [timerActive, setTimerActive] = useState(false);
-
-  const [time, setTime] = useState();
-  const [date, setDate] = useState(new Date());
 
   // stopwatch function based on chat-gpt input
 
@@ -81,25 +76,6 @@ const Item = ({ type, data, onSelect }) => {
     setTimerActive(false);
     setSeconds(60);
   };
-
-  const handleDateConfirm = (date) => {
-    setDate(new Date(date));
-    setDatePickerVisibility(false);
-  };
-
-  const handleTimeConfirm = (time) => {
-    setTime(new Date(time));
-    setTimePickerVisibility(false);
-  };
-
-  useEffect(() => {
-    if (data.type === 'datetime') {
-      if (time && date) {
-        date.setHours(time.getHours(), time.getMinutes());
-        setSelected(date.toISOString());
-      }
-    }
-  }, [time, date]);
 
   useEffect(() => {
     onSelect(selected);
@@ -193,37 +169,11 @@ const Item = ({ type, data, onSelect }) => {
       <View className="px-5">
         <View className="mt-8">
           {data.type === 'multiselect' && (
-            <View className="flex flex-row flex-wrap gap-4">
-              {data.options.map((option, index) => {
-                const handleSelect = () => {
-                  setSelected([...selected, option]);
-                };
-
-                const handleDeselect = () => {
-                  setSelected(selected.filter((risk) => risk !== option));
-                };
-
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={selected.includes(option) ? handleDeselect : handleSelect}
-                    activeOpacity={1}
-                    className={`px-4 py-3 flex items-center justify-center w-fit rounded-lg ${
-                      selected.includes(option) ? 'bg-deepMarine-500' : 'bg-deepMarine-100'
-                    }`}
-                  >
-                    <Text
-                      style={{ fontFamily: 'Mulish-medium' }}
-                      className={`text-base text-center ${
-                        selected.includes(option) ? 'text-white' : 'text-deepMarine-900'
-                      }`}
-                    >
-                      {t(`${type}.${data.question}.options.${option}`)}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+            <MultiSelect
+              data={data.options}
+              onChange={(values) => setSelected(values)}
+              translationKey={data.translationKey}
+            />
           )}
 
           {data.type === 'measurement' && (
@@ -300,60 +250,12 @@ const Item = ({ type, data, onSelect }) => {
         )}
 
         {data.type === 'datetime' && (
-          <View>
-            <View className="mb-6">
-              <Label title="Datum" />
-              <Input
-                inputMode="none"
-                value={
-                  date
-                    ? date.toLocaleDateString(locale, {
-                        month: '2-digit',
-                        year: 'numeric',
-                        day: '2-digit',
-                      })
-                    : ''
-                }
-                icon="calendar-outline"
-                showSoftInputOnFocus={false}
-                onFocus={() => setDatePickerVisibility(true)}
-              />
-              <DateTimePickerModal
-                date={date}
-                isVisible={isDatePickerVisible}
-                mode="date"
-                locale={locale}
-                onConfirm={handleDateConfirm}
-                onCancel={() => setDatePickerVisibility(false)}
-              />
-            </View>
-
-            <View>
-              <Label title="Tijd" />
-              <Input
-                inputMode="none"
-                value={
-                  time
-                    ? time.toLocaleTimeString(locale, {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hourCycle: 'h24',
-                      })
-                    : ''
-                }
-                icon="clock-outline"
-                showSoftInputOnFocus={false}
-                onFocus={() => setTimePickerVisibility(true)}
-              />
-              <DateTimePickerModal
-                isVisible={isTimePickerVisible}
-                mode="time"
-                locale="en_GB"
-                onConfirm={handleTimeConfirm}
-                onCancel={() => setTimePickerVisibility(false)}
-              />
-            </View>
-          </View>
+          <DateTimePicker
+            initialDate={new Date()}
+            onChange={(dateTime) => {
+              setSelected(dateTime);
+            }}
+          />
         )}
 
         {data.type === 'textarea' && (

@@ -5,4 +5,5 @@ export { default as EpisodeCreateScreen } from './create/Create';
 export { default as EpisodeInfoScreen } from './create/Info';
 export { default as EpisodePulseScreen } from './create/PulseDetermination';
 export { default as EpisodeStartScreen } from './create/Start';
+export { default as EpisodeEditScreen } from './edit/Edit';
 

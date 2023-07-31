@@ -86,7 +86,7 @@ const Detail = ({ route, navigation }) => {
   const queryClient = useQueryClient();
   const deletion = useMutation((id) => deleteEpisodeById(id), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['episodes']);
+      queryClient.invalidateQueries('episodes');
       setDeleteConfirmation(false);
       setIsVisible(false);
       navigation.navigate('Main', { screen: 'Episodes' });
@@ -164,6 +164,10 @@ const Detail = ({ route, navigation }) => {
             <TouchableOpacity
               activeOpacity={0.8}
               className="px-3 w-full mb-8 flex flex-row items-center "
+              onPress={() => {
+                setIsVisible(false);
+                navigation.navigate('EpisodesEdit', { episodeId });
+              }}
             >
               <Icon name="edit-outline" size={24} />
               <Paragraph styles="ml-5 text-lg">{t('episodes.detail.edit')}</Paragraph>

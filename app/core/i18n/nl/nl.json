@@ -453,6 +453,8 @@
     "email": "E-mail",
     "password": "Wachtwoord",
     "gender": "Geslacht",
+    "date": "Datum",
+    "time": "Tijd",
     "birthYear": "Geboortejaar",
     "heartdisease": "Ritmestoornis",
     "episodeDuration": "Gem. duur hartmoment",

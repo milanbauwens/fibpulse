@@ -46,7 +46,7 @@ const Intake = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation((value) => updateMedicalProfile(column, value), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['medical_profile']);
+      queryClient.invalidateQueries('medical_profile');
       setSelected();
     },
   });

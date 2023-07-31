@@ -9,6 +9,7 @@ import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 import PrimaryButton from '../common/Buttons/PrimaryButton';
 import { Icon } from '../common/Icon/Icon';
+import MultiSelect from '../common/MultiSelect/MultiSelect';
 import Popover from '../common/Popover/Popover';
 
 const DataViewItem = ({ data, options, label, method, tag, column, type, hasBorder = true }) => {
@@ -40,7 +41,7 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
   const queryClient = useQueryClient();
   const mutation = useMutation((value) => method(column, value), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['medical_profile']);
+      queryClient.invalidateQueries('medical_profile');
       setIsVisible(false);
     },
   });
@@ -126,36 +127,13 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
           )}
 
           {type === 'multi' && (
-            <View className="flex flex-row flex-wrap gap-4 mt-8">
-              {options.map(({ label, value }, index) => {
-                const handleSelect = () => {
-                  setSelectedValue([...selectedValue, value]);
-                };
-
-                const handleDeselect = () => {
-                  setSelectedValue(selectedValue.filter((risk) => risk !== value));
-                };
-
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={selectedValue.includes(value) ? handleDeselect : handleSelect}
-                    activeOpacity={1}
-                    className={`px-4 py-3 min-h-[62px] flex items-center justify-center w-fit rounded-lg ${
-                      selectedValue.includes(value) ? 'bg-deepMarine-500' : 'bg-deepMarine-100'
-                    }`}
-                  >
-                    <Text
-                      style={{ fontFamily: 'Mulish-medium' }}
-                      className={`text-base text-center ${
-                        selectedValue.includes(value) ? 'text-white' : 'text-deepMarine-900'
-                      }`}
-                    >
-                      {t(`medicalProfile.${tag}.options.${label}`)}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
+            <View className=" mt-8">
+              <MultiSelect
+                data={options}
+                initialData={selectedValue}
+                translationKey={`medicalProfile.${tag}.options.`}
+                onChange={(value) => setSelectedValue(value)}
+              />
             </View>
           )}
           <View className="mt-12">

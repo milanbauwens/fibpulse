@@ -35,21 +35,21 @@ export const getEpisodeDurationSentence = (startDate, endDate, locale) => {
   const parts = [];
 
   if (days === 1) {
-    parts.push(`1 ${locale === 'nl' ? 'dag' : 'day'}`);
+    parts.push(`1 ${locale === 'nl-BE' ? 'dag' : 'day'}`);
   } else if (days > 1) {
-    parts.push(`${days} ${locale === 'nl' ? 'dagen' : 'days'}`);
+    parts.push(`${days} ${locale === 'nl-BE' ? 'dagen' : 'days'}`);
   }
 
   if (hours === 1) {
-    parts.push(`1 ${locale === 'nl' ? 'uur' : 'hour'}`);
+    parts.push(`1 ${locale === 'nl-BE' ? 'uur' : 'hour'}`);
   } else if (hours > 1) {
-    parts.push(`${hours} ${locale === 'nl' ? 'uur' : 'hours'}`);
+    parts.push(`${hours} ${locale === 'nl-BE' ? 'uur' : 'hours'}`);
   }
 
   if (minutes === 1) {
-    parts.push(`1 ${locale === 'nl' ? 'minuut' : 'minute'}`);
+    parts.push(`1 ${locale === 'nl-BE' ? 'minuut' : 'minute'}`);
   } else if (minutes > 1) {
-    parts.push(`${minutes} ${locale === 'nl' ? 'minuten' : 'minutes'}`);
+    parts.push(`${minutes} ${locale === 'nl-BE' ? 'minuten' : 'minutes'}`);
   }
 
   return parts.join(', ');

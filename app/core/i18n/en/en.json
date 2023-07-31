@@ -450,6 +450,8 @@
     "email": "E-mail",
     "password": "Password",
     "gender": "Gender",
+    "date": "Date",
+    "time": "Time",
     "birthYear": "Birth year",
     "heartdisease": "Heart disease",
     "episodeDuration": "Avg. duration heartmoment",

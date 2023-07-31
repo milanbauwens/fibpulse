@@ -60,54 +60,18 @@ export const EPISODE_DURATIONS = [
 ];
 
 export const RISK_FACTORS = [
-  {
-    label: 'stress',
-    value: 'stress',
-  },
-  {
-    label: 'apnea',
-    value: 'apnea',
-  },
-  {
-    label: 'smoking',
-    value: 'smoking',
-  },
-  {
-    label: 'diabetes',
-    value: 'diabetes',
-  },
-  {
-    label: 'overweight',
-    value: 'overweight',
-  },
-  {
-    label: 'alcohol',
-    value: 'alcohol',
-  },
-  {
-    label: 'chronical',
-    value: 'chronical',
-  },
-  {
-    label: 'vascularDiseases',
-    value: 'vascularDiseases',
-  },
-  {
-    label: 'cholesterol',
-    value: 'cholesterol',
-  },
-  {
-    label: 'bloodpressure',
-    value: 'bloodpressure',
-  },
-  {
-    label: 'family',
-    value: 'family',
-  },
-  {
-    label: 'sports',
-    value: 'sports',
-  },
+  'stress',
+  'apnea',
+  'smoking',
+  'diabetes',
+  'overweight',
+  'alcohol',
+  'chronical',
+  'vascularDiseases',
+  'bloodpressure',
+  'cholesterol',
+  'family',
+  'sports',
 ];
 
 export const HEART_DISORDERS = [
