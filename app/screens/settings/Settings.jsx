@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Animated, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -12,6 +13,7 @@ const Settings = ({ navigation }) => {
   const { user } = useAuthContext();
   const { bottom } = useSafeAreaInsets();
   const { t } = useTranslations();
+  const QueryClient = useQueryClient();
 
   const scrollY = new Animated.Value(0);
 
@@ -82,7 +84,10 @@ const Settings = ({ navigation }) => {
           type="error"
           iconName="log-out"
           title={t('settings.logout')}
-          onPress={async () => await signOut()}
+          onPress={async () => {
+            QueryClient.removeQueries();
+            await signOut();
+          }}
         />
       </View>
 
