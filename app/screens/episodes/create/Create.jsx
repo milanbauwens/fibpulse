@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, FlatList, View } from 'react-native';
+import { Animated, FlatList, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import slides from '../../../__content/episode.js';
@@ -19,6 +19,7 @@ const Create = ({ route }) => {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
   const { t } = useTranslations();
+  const { width } = useWindowDimensions();
 
   const slidesRef = useRef(null);
   const [data] = useState(hasMeasuredPulse ? slides.slice(1) : slides);
@@ -89,7 +90,10 @@ const Create = ({ route }) => {
   return (
     <SafeAreaView className="relative h-full bg-white">
       <Popover animationType="slide" isVisible={isVisible}>
-        <View className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4 w-11/12">
+        <View
+          style={{ width: width - 32 }}
+          className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4"
+        >
           <Title size="medium">{t('episodes.create.cancel.title')}</Title>
           <Paragraph styles="mb-8">{t('episodes.create.cancel.description')} </Paragraph>
           <View className="flex-1 flex flex-row items-center justify-center">

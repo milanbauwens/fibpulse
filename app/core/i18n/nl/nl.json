@@ -154,6 +154,7 @@
         "diabetes": "Diabetes",
         "overweight": "Overgewicht",
         "alcohol": "Alcohol",
+        "menopause": "Menopauze",
         "chronical": "Chronische ziekte",
         "vascularDiseases": "Vaatziekten",
         "cholesterol": "Hoge cholesterol",
@@ -311,7 +312,13 @@
     }
   },
   "discover": {
-    "title": "Ontdek"
+    "title": "Ontdek",
+    "sources": "Bronnen",
+    "categories": {
+      "health": "Gezondheid",
+      "activity": "Activiteit",
+      "food": "Voeding"
+    }
   },
   "settings": {
     "profile": {

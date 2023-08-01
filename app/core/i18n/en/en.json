@@ -151,6 +151,7 @@
         "diabetes": "Diabetes",
         "overweight": "Overweight",
         "alcohol": "Alcohol",
+        "menopause": "Menopause",
         "chronical": "Chronical diseases",
         "vascularDiseases": "Vascular diseases",
         "cholesterol": "High cholesterol",
@@ -308,7 +309,13 @@
     }
   },
   "discover": {
-    "title": "Discover"
+    "title": "Discover",
+    "sources": "Sources",
+    "categories": {
+      "health": "Health",
+      "activity": "Activity",
+      "food": "Food"
+    }
   },
   "settings": {
     "profile": {

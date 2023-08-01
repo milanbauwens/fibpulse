@@ -11,6 +11,7 @@ import PrimaryButton from '../common/Buttons/PrimaryButton';
 import { Icon } from '../common/Icon/Icon';
 import MultiSelect from '../common/MultiSelect/MultiSelect';
 import Popover from '../common/Popover/Popover';
+import { Title } from '../common/Typography';
 
 const DataViewItem = ({ data, options, label, method, tag, column, type, hasBorder = true }) => {
   const { t } = useTranslations();
@@ -71,9 +72,7 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
       <Popover animationType="slide" isVisible={isVisible}>
         <View className="bg-white shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6 pb-12">
           <View className="flex flex-row justify-between items-center ">
-            <Text style={{ fontFamily: 'Bitter-semibold' }} className="text-deepMarine-800 text-xl">
-              {t(`input.${label}`)}
-            </Text>
+            <Title size="medium">{t(`input.${label}`)}</Title>
             <TouchableOpacity
               onPress={() => setIsVisible(false)}
               activeOpacity={0.8}

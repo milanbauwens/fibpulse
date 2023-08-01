@@ -524,6 +524,15 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       );
       break;
 
+    case 'food':
+      icon = (
+        <Path
+          d="M18.246 22a.731.731 0 01-.746-.75V14h-1.375c-.412 0-.766-.147-1.06-.44a1.445 1.445 0 01-.44-1.06V6.375c0-1.317.4-2.375 1.2-3.175.8-.8 1.858-1.2 3.175-1.2v19.25c0 .212-.072.39-.217.534a.732.732 0 01-.537.216zM7.87 22a.731.731 0 01-.746-.75V12.8c-.867-.183-1.604-.62-2.213-1.313C4.304 10.796 4 9.965 4 8.994V2.75c0-.212.072-.39.217-.534A.732.732 0 014.754 2a.731.731 0 01.746.75V9h1.625V2.75c0-.212.072-.39.217-.534A.732.732 0 017.879 2a.731.731 0 01.746.75V9h1.625V2.75c0-.212.072-.39.217-.534A.732.732 0 0111.004 2a.731.731 0 01.746.75v6.243c0 .971-.304 1.803-.912 2.495-.609.691-1.346 1.129-2.213 1.312v8.45c0 .212-.072.39-.217.534a.732.732 0 01-.537.216z"
+          fill={color}
+        />
+      );
+      break;
+
     case 'announcement-outline':
       icon = (
         <Path
@@ -654,6 +663,30 @@ export const Icon = ({ name, size, color = colors.turquoise[700], onPress, props
       icon = (
         <Path
           d="M12 8v4m0 4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10z"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'info-circle-outline':
+      icon = (
+        <Path
+          d="M12 16v-4m0-4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10z"
+          stroke={color}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      );
+      break;
+
+    case 'external-outline':
+      icon = (
+        <Path
+          d="M21 9V3m0 0h-6m6 0l-9 9m-2-9H7.8c-1.68 0-2.52 0-3.162.327a3 3 0 00-1.311 1.311C3 5.28 3 6.12 3 7.8v8.4c0 1.68 0 2.52.327 3.162a3 3 0 001.311 1.311C5.28 21 6.12 21 7.8 21h8.4c1.68 0 2.52 0 3.162-.327a3 3 0 001.311-1.311C21 18.72 21 17.88 21 16.2V14"
           stroke={color}
           strokeWidth={2}
           strokeLinecap="round"

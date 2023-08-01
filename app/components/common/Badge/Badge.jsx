@@ -11,10 +11,20 @@ const Badge = ({ variant, icon, label, marginLeft }) => {
     >
       {icon && (
         <View className="mr-2">
-          <Icon name={icon} size={20} color={colors[variant][600]} />
+          <Icon
+            name={icon}
+            size={20}
+            color={variant === 'turquoise' ? colors.deepMarine[500] : colors[variant][600]}
+          />
         </View>
       )}
-      <Text style={{ fontFamily: 'Mulish-bold', color: colors[variant][600] }} className="text-sm">
+      <Text
+        style={{
+          fontFamily: 'Mulish-bold',
+          color: variant === 'turquoise' ? colors.deepMarine[500] : colors[variant][600],
+        }}
+        className="text-sm"
+      >
         {label}
       </Text>
     </View>

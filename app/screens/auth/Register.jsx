@@ -61,7 +61,11 @@ const Register = () => {
       <View className="bg-white z-[2] mb-6">
         <Title size="large">{t('register.title')}</Title>
       </View>
-      <KeyboardAwareScrollView overScrollMode="never" bounces={false} extraHeight={0}>
+      <KeyboardAwareScrollView
+        showsVerticalScrollIndicator={false}
+        overScrollMode="never"
+        extraHeight={0}
+      >
         {signUpError && (
           <View className="mt-2">
             <Error error={signUpError} />

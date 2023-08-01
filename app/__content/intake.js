@@ -42,6 +42,7 @@ module.exports = [
       'diabetes',
       'overweight',
       'alcohol',
+      'menopause',
       'chronical',
       'vascularDiseases',
       'bloodpressure',

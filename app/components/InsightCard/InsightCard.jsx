@@ -17,7 +17,11 @@ const InsightCard = ({ variant, icon, children, isLast }) => {
           style={{ backgroundColor: colors[variant][200] }}
           className="w-10 h-10 flex items-center justify-center rounded-full"
         >
-          <Icon name={icon} size={24} color={colors[variant][700]} />
+          <Icon
+            name={icon}
+            size={24}
+            color={variant === 'turquoise' ? colors.deepMarine[500] : colors[variant][700]}
+          />
         </View>
       </View>
 

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
@@ -22,6 +22,7 @@ const PulseDetermination = ({ route }) => {
   const { bottom } = useSafeAreaInsets();
   const navigation = useNavigation();
   const { t } = useTranslations();
+  const { width } = useWindowDimensions();
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -56,7 +57,10 @@ const PulseDetermination = ({ route }) => {
   return (
     <SafeAreaView className="px-5 relative w-full h-screen bg-white">
       <Popover animationType="slide" isVisible={isVisible}>
-        <View className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4 w-11/12">
+        <View
+          style={{ width: width - 32 }}
+          className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4"
+        >
           <Title size="medium">{t('episodes.create.cancel.title')}</Title>
           <Paragraph styles="mb-8">{t('episodes.create.cancel.description')} </Paragraph>
           <View className="flex-1 flex flex-row items-center justify-center">

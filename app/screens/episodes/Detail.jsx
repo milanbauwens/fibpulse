@@ -235,7 +235,7 @@ const Detail = ({ route, navigation }) => {
                   style={{ backgroundColor: colors.turquoise[200] }}
                   className="w-10 h-10 flex items-center justify-center rounded-full"
                 >
-                  <Icon name="clock-outline" size={24} />
+                  <Icon name="clock-outline" size={24} color={colors.deepMarine[500]} />
                 </View>
               </View>
               <Paragraph styles="flex-shrink">

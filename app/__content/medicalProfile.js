@@ -66,6 +66,7 @@ export const RISK_FACTORS = [
   'diabetes',
   'overweight',
   'alcohol',
+  'menopause',
   'chronical',
   'vascularDiseases',
   'bloodpressure',
