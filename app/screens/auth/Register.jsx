@@ -158,17 +158,19 @@ const Register = () => {
               </Text>
             </Link>
           </Text>
-          <PrimaryButton
-            isLoading={isLoading}
-            label={t('register.cta')}
-            onPress={handleSubmit(handleRegister)}
+          <View className="mb-2">
+            <PrimaryButton
+              isLoading={isLoading}
+              label={t('register.cta')}
+              onPress={handleSubmit(handleRegister)}
+            />
+          </View>
+          <TertiairyButton
+            label={t('register.doAccount')}
+            action={t('register.login')}
+            onPress={() => navigation.navigate('Login')}
           />
         </View>
-        <TertiairyButton
-          label={t('register.doAccount')}
-          action={t('register.login')}
-          onPress={() => navigation.navigate('Login')}
-        />
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );

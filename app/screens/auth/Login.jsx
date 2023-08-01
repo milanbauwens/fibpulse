@@ -17,11 +17,7 @@ const Login = () => {
   const navigation = useNavigation();
   const { t } = useTranslations();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { control, handleSubmit } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
   const [signInError, setSignInError] = useState();
@@ -104,34 +100,35 @@ const Login = () => {
           />
         </View>
 
-        <View>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            className="mb-4 w-full mt-4"
-            onPress={() => navigation.navigate('ResetPassword')}
-          >
-            <Text
-              className="text-right pr-2 text-base text-deepMarine-900"
-              style={{ fontFamily: 'Mulish-medium' }}
+        <View className="mb-2">
+          <View>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              className="mb-4 w-full mt-4"
+              onPress={() => navigation.navigate('ResetPassword')}
             >
-              {t('login.forgot')}
-            </Text>
-          </TouchableOpacity>
+              <Text
+                className="text-right pr-2 text-base text-deepMarine-900"
+                style={{ fontFamily: 'Mulish-medium' }}
+              >
+                {t('login.forgot')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View className="mb-2">
+            <PrimaryButton
+              onPress={handleSubmit(handleLogin)}
+              isLoading={isLoading}
+              label={t('login.cta')}
+            />
+          </View>
+          <TertiairyButton
+            label={t('login.noAccount')}
+            action={t('login.register')}
+            onPress={() => navigation.navigate('Register')}
+          />
         </View>
       </KeyboardAwareScrollView>
-
-      <View className="mb-6">
-        <PrimaryButton
-          onPress={handleSubmit(handleLogin)}
-          isLoading={isLoading}
-          label={t('login.cta')}
-        />
-      </View>
-      <TertiairyButton
-        label={t('login.noAccount')}
-        action={t('login.register')}
-        onPress={() => navigation.navigate('Register')}
-      />
     </SafeAreaView>
   );
 };
