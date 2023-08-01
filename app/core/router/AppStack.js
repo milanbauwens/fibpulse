@@ -42,6 +42,7 @@ export const Stack = () => {
   const prevRoute = routes && routes[routes.length - 1];
 
   const screenOptions = () => ({
+    gestureEnabled: false,
     headerShown: true,
     headerStyle: {
       shadowOffset: {

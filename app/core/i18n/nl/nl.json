@@ -96,6 +96,14 @@
   "medicalProfile": {
     "next": "Volgende",
     "finish": "Voltooi uw profiel",
+    "cancel": {
+      "title": "Medisch profiel onderbreken?",
+      "description": "Uw medisch profiel is nog niet volledig ingevuld. Indien u stopt, kan u dit steeds verder aanvullen in de instellingen.",
+      "cta": {
+        "secondary": "Doe dit later",
+        "primary": "Annuleer"
+      }
+    },
     "start": {
       "title": "Uw medisch profiel in kaart brengen",
       "description": "Met uw medische gegevens proberen we meer inzichten te krijgen in uw hartritmestoornis.",
@@ -474,6 +482,9 @@
     "textarea": {
       "placeholder": "Schrijf iets..."
     }
+  },
+  "actions": {
+    "save": "Opslaan"
   },
   "error": {
     "email": {

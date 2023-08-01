@@ -136,7 +136,7 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
             </View>
           )}
           <View className="mt-12">
-            <PrimaryButton onPress={handleUpdate} label="Opslaan" />
+            <PrimaryButton onPress={handleUpdate} label={t('actions.save')} />
           </View>
         </View>
       </Popover>

@@ -8,6 +8,7 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { YEARS } from '../../../__content/ages';
 import { useTranslations } from '../../../core/i18n/LocaleProvider';
@@ -20,6 +21,7 @@ import {
   SpotStanding,
   SpotWalking,
 } from '../../svg/spotIllustrations';
+import { PrimaryButton } from '../Buttons';
 import DateTimePicker from '../DateTimePicker/DateTimePicker';
 import { Icon } from '../Icon/Icon';
 import Input from '../Input/Input';
@@ -31,6 +33,7 @@ import { Paragraph, Title } from '../Typography';
 const Item = ({ type, data, onSelect }) => {
   const { width } = useWindowDimensions();
   const { t } = useTranslations();
+  const { bottom } = useSafeAreaInsets();
 
   const [selected, setSelected] = useState(data.type === 'multiselect' ? [] : '');
 
@@ -210,42 +213,44 @@ const Item = ({ type, data, onSelect }) => {
               onPressIn={() => setIsVisible(true)}
               disabled
             />
-            {isVisible && (
-              <Popover animationType="slide" isVisible={isVisible}>
-                <View className="bg-white border border-deepMarine-100 shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6">
-                  <View className="flex flex-row justify-between items-center ">
-                    <Text
-                      style={{ fontFamily: 'Bitter-semibold' }}
-                      className="text-deepMarine-800 text-xl"
-                    >
-                      {t(`${type}.${data.question}.label`)}
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => setIsVisible(false)}
-                      activeOpacity={0.8}
-                      className="w-8 h-8 flex items-center justify-center rounded-full"
-                    >
-                      <Icon name="close" size={24} color={colors.deepMarine[700]} />
-                    </TouchableOpacity>
-                  </View>
-                  <Picker
-                    selectionColor="rgba(22, 128, 135, 0.05)"
-                    itemStyle={{ fontFamily: 'Mulish-medium' }}
-                    selectedValue={selected ? selected : 40}
-                    onValueChange={(itemValue) => setSelected(itemValue)}
+
+            <Popover animationType="slide" isVisible={isVisible}>
+              <View className="bg-white border border-deepMarine-100 shadow-top-md absolute bottom-0 w-full h-fit rounded-t-3xl px-4 py-6">
+                <View className="flex flex-row justify-between items-center ">
+                  <Text
+                    style={{ fontFamily: 'Bitter-semibold' }}
+                    className="text-deepMarine-800 text-xl"
                   >
-                    {YEARS.map(({ label, value }) => (
-                      <Picker.Item
-                        color={colors.deepMarine[900]}
-                        key={value}
-                        label={label}
-                        value={value}
-                      />
-                    ))}
-                  </Picker>
+                    {t(`${type}.${data.question}.label`)}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => setIsVisible(false)}
+                    activeOpacity={0.8}
+                    className="w-8 h-8 flex items-center justify-center rounded-full"
+                  >
+                    <Icon name="close" size={24} color={colors.deepMarine[700]} />
+                  </TouchableOpacity>
                 </View>
-              </Popover>
-            )}
+                <Picker
+                  selectionColor="rgba(22, 128, 135, 0.05)"
+                  itemStyle={{ fontFamily: 'Mulish-medium' }}
+                  selectedValue={selected ? selected : 40}
+                  onValueChange={(itemValue) => setSelected(itemValue)}
+                >
+                  {YEARS.map(({ label, value }) => (
+                    <Picker.Item
+                      color={colors.deepMarine[900]}
+                      key={value}
+                      label={label}
+                      value={value}
+                    />
+                  ))}
+                </Picker>
+                <View style={{ paddingBottom: bottom + 8 }} className="mt-8 pb-[-24]">
+                  <PrimaryButton onPress={() => setIsVisible(false)} label={t('actions.save')} />
+                </View>
+              </View>
+            </Popover>
           </View>
         )}
 

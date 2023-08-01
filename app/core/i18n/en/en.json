@@ -92,6 +92,14 @@
   },
   "medicalProfile": {
     "next": "Next",
+    "cancel": {
+      "title": "Do you want to quit?",
+      "description": "You can always finish your profile later from the settings menu.",
+      "cta": {
+        "secondary": "Do this later",
+        "primary": "Keep going"
+      }
+    },
     "finish": "Finish your profile",
     "start": {
       "title": "Share your health story with us",
@@ -471,6 +479,9 @@
   "edit": {
     "title": "Save changes",
     "success": "Changes saved"
+  },
+  "actions": {
+    "save": "Save"
   },
   "error": {
     "email": {

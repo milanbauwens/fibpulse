@@ -20,6 +20,7 @@ const BottomNavigation = () => {
   const { user } = useAuthContext();
 
   const screenOptions = ({ route }) => ({
+    gestureEnabled: false,
     headerShown: true,
     headerStyle: {
       shadowOffset: {

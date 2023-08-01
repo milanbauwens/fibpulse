@@ -1,12 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
-import { Animated, FlatList, View } from 'react-native';
+import { Animated, FlatList, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import slides from '../../__content/intake.js';
-import { PrimaryButton } from '../../components/common/Buttons/index.jsx';
+import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons/index.jsx';
 import { FlatlistItem, FlatlistPaginator } from '../../components/common/Flatlist/index.js';
+import Popover from '../../components/common/Popover/Popover.jsx';
+import Paragraph from '../../components/common/Typography/Paragraph.jsx';
+import Title from '../../components/common/Typography/Title.jsx';
 import { updateMedicalProfile } from '../../core/db/modules/medical_profiles/api.js';
 import { useTranslations } from '../../core/i18n/LocaleProvider.jsx';
 
@@ -15,11 +18,13 @@ const Intake = ({ route }) => {
 
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
   const { t } = useTranslations();
 
   const slidesRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selected, setSelected] = useState();
+  const [isVisible, setIsVisible] = useState(false);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
@@ -72,14 +77,49 @@ const Intake = ({ route }) => {
     }
   };
 
+  const handleClose = () => {
+    setIsVisible(false);
+    if (fromSettings) {
+      navigation.navigate('Main', { screen: 'Settings' });
+    } else {
+      navigation.navigate('Main');
+    }
+  };
+
   return (
     <SafeAreaView className="relative h-full bg-white">
+      <Popover animationType="slide" isVisible={isVisible}>
+        <View
+          style={{ width: width - 32 }}
+          className="bg-white border border-deepMarine-100 shadow-card-md absolute rounded-lg p-4"
+        >
+          <Title size="medium">{t('medicalProfile.cancel.title')}</Title>
+          <Paragraph styles="mb-8">{t('medicalProfile.cancel.description')} </Paragraph>
+          <View className="flex-1 flex flex-row items-center justify-center">
+            <View className="flex-1 mr-4">
+              <PrimaryButton
+                label={t('medicalProfile.cancel.cta.primary')}
+                onPress={() => setIsVisible(false)}
+              />
+            </View>
+            <View className="flex-1">
+              <TertiairyButton
+                action={t('medicalProfile.cancel.cta.secondary')}
+                onPress={handleClose}
+                type="error"
+              />
+            </View>
+          </View>
+        </View>
+      </Popover>
+
       <FlatlistPaginator
         currentSlide={currentSlide}
         data={slides}
         scrollX={scrollX}
         scrollTo={scrollTo}
         scrollBack={currentSlide === 0 ? () => navigation.navigate('IntakeStart') : scrollBack}
+        onClose={() => setIsVisible(true)}
       />
 
       <FlatList
