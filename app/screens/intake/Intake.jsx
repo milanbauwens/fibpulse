@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Animated, FlatList, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -25,6 +25,7 @@ const Intake = ({ route }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selected, setSelected] = useState();
   const [isVisible, setIsVisible] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
@@ -69,11 +70,20 @@ const Intake = ({ route }) => {
     },
   });
 
+  useEffect(() => {
+    if (!column) {
+      setIsDisabled(false);
+    }
+    if (selected) {
+      setIsDisabled(false);
+    }
+  }, [selected, column]);
+
   const handleUpdate = async () => {
     try {
       await mutation.mutateAsync(selected);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -150,6 +160,7 @@ const Intake = ({ route }) => {
         className="px-4 absolute left-0 right-0 m-auto flex flex-col justify-center"
       >
         <PrimaryButton
+          isDisabled={isDisabled}
           label={
             currentSlide === slides.length - 1
               ? t('medicalProfile.finish')
