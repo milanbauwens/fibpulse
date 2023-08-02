@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import { Keyboard, KeyboardAvoidingView, Text, View, useWindowDimensions } from 'react-native';
 
+import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons';
 import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Icon } from '../../components/common/Icon/Icon';
 import Popover from '../../components/common/Popover/Popover';
 import { Paragraph, Title } from '../../components/common/Typography';
-import { UpdateUserPassword, verifyUserPassword } from '../../core/db/modules/auth/api';
+import { UpdateUserPassword } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
@@ -16,23 +17,22 @@ const Security = () => {
   const navigation = useNavigation();
   const { width } = useWindowDimensions();
   const { t } = useTranslations();
+  const { user } = useAuthContext();
 
   const [isVisible, setIsVisible] = useState(true);
 
   const { control, handleSubmit } = useForm();
+  const { control: checkPassword, handleSubmit: handleCheckSubmmit } = useForm();
 
   const { isSubmitSuccessful } = useFormState({ control });
 
   const updateUser = async ({ password }) => {
     setIsLoading(true);
     try {
-      const { error } = await UpdateUserPassword(password);
-      if (error) {
-        const authError = handleAuthError(error);
-        setChangePasswordError(authError);
-      }
+      await UpdateUserPassword(user.email, password);
     } catch (error) {
-      console.error(error);
+      const authError = handleAuthError(error);
+      setChangePasswordError(authError);
     } finally {
       setIsLoading(false);
     }
@@ -40,22 +40,10 @@ const Security = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [changePasswordError, setChangePasswordError] = useState();
-  const [validatePasswordError, setValidatePasswordError] = useState();
 
-  // Todo modal met 'bevestig uw identiteit'
-  // Check of huidige wachtwoord correct is
-  // https://github.com/orgs/supabase/discussions/4042
-  const checkCurrentPassword = async ({ password }) => {
-    try {
-      const isVerified = await verifyUserPassword(password);
-      if (!isVerified) {
-        const authError = handleAuthError('Password mismatch');
-        setValidatePasswordError(authError);
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+  const handleCheckPassword = async ({ password }) => {
+    if (password) {
+      setIsVisible(false);
     }
   };
 
@@ -68,16 +56,6 @@ const Security = () => {
         >
           <Title size="medium">{t('settings.changePassword.check.title')}</Title>
           <Paragraph styles="mb-4">{t('settings.changePassword.check.description')} </Paragraph>
-          {validatePasswordError && (
-            <View
-              className=" bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-              role="alert"
-            >
-              <Text className="block text-center text-red-700 sm:inline">
-                {changePasswordError}
-              </Text>
-            </View>
-          )}
 
           <View className="mb-8">
             <Formgroup
@@ -88,11 +66,12 @@ const Security = () => {
                   message: t('error.password.length'),
                 },
               }}
-              control={control}
+              control={checkPassword}
               label={t('input.currentPassword')}
               returnKeyType="done"
               autoCapitalize="none"
               keyboardType="default"
+              type="password"
               inputName="password"
               onSubmitEditing={Keyboard.dismiss}
             />
@@ -108,7 +87,7 @@ const Security = () => {
             <View className="flex-1">
               <PrimaryButton
                 label={t('settings.changePassword.check.cta.primary')}
-                onPress={handleSubmit(checkCurrentPassword)}
+                onPress={handleCheckSubmmit(handleCheckPassword)}
                 type="error"
               />
             </View>
@@ -146,6 +125,7 @@ const Security = () => {
               returnKeyType="done"
               autoCapitalize="none"
               keyboardType="default"
+              type="password"
               inputName="password"
               onSubmitEditing={Keyboard.dismiss}
             />

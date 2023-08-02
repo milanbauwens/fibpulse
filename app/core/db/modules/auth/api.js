@@ -39,17 +39,7 @@ export const sendResetPasswordEmail = async (email, redirectURL) => {
   return Promise.resolve(data);
 };
 
-// export const verifyUserPassword = async (password) => {
-//   // Check if current password equals password in database
-//   const { error } = await supabase.auth.api.updateUser(supabase.auth.user(), {
-//     password,
-//   });
-// };
-
-export const UpdateUserPassword = async (newPassword) => {
-  const session = getCurrentSession();
-  const email = session.user.email;
-
+export const UpdateUserPassword = async (email, newPassword) => {
   const { data, error } = await supabase.auth.updateUser({
     email,
     password: newPassword,
