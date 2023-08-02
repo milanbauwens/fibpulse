@@ -18,7 +18,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.milanbauwens.fibpulse"
+      "bundleIdentifier": "com.milanbauwens.fibpulse",
+      "buildNumber": "2.0.0"
     },
     "android": {
       "adaptiveIcon": {
