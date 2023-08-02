@@ -12,33 +12,14 @@ export const getCurrentSession = async () => {
   return session;
 };
 
-// export const deleteUser = async (user) => {
-//   try {
-//     const { data, error } = await supabaseAdmin.auth.admin.deleteUser(user.id);
-
-//     if (error) {
-//       return Promise.reject(error);
-//     } else {
-//       await supabase.auth.signOut();
-//       return Promise.resolve(data);
-//     }
-//   } catch (error) {
-//     return Promise.reject(error);
-//   }
-// };
-
 export const deleteUser = async (user) => {
   try {
     const { error } = await supabaseAdmin.auth.admin.deleteUser(user.id);
 
     if (error) {
-      console.log(error);
       return error;
-    } else {
-      await supabase.auth.signOut();
     }
   } catch (error) {
-    console.error(error);
     return error;
   }
 };
@@ -55,7 +36,7 @@ export const sendResetPasswordEmail = async (email, redirectURL) => {
   return Promise.resolve(data);
 };
 
-export const UpdateUserPassword = async (email, newPassword) => {
+export const UpdateUserPassword = async (newPassword) => {
   const { data, error } = await supabase.auth.updateUser({
     password: newPassword,
   });

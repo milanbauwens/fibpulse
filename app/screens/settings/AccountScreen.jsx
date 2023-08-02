@@ -34,7 +34,6 @@ const AccountScreen = () => {
       await UpdateUser(email, { firstname, lastname });
       setUpdatedSuccesfully(true);
     } catch (error) {
-      console.log(error.message);
       const authError = handleAuthError(error, locale);
       setUpdateProfileError(authError);
       setUpdatedSuccesfully(false);
