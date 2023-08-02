@@ -2,28 +2,25 @@ import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons';
 import { Icon } from '../../components/common/Icon/Icon';
 import { Paragraph, Title } from '../../components/common/Typography';
 import IntakeIllustration from '../../components/svg/IntakeIllustration';
-import { supabase } from '../../core/db/initSupabase';
+import { createMedicalProfile } from '../../core/db/modules/medical_profiles/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import colors from '../../theme/colors';
 
 const IntakeStart = ({ route }) => {
-  const { fromSettings } = route.params || { fromSettings: false };
+  const { fromSettings } = route.params || false;
 
   const navigation = useNavigation();
-  const { user } = useAuthContext();
   const { t } = useTranslations();
   const { bottom } = useSafeAreaInsets();
 
-  const createMedicalProfile = async () => {
-    const { error } = await supabase.from('medical_profiles').upsert({
-      user_id: user.id,
-    });
-    if (error) {
+  const handleCreateMedicalProfile = async () => {
+    try {
+      await createMedicalProfile();
+    } catch (error) {
       console.log(error);
     }
   };
@@ -53,7 +50,7 @@ const IntakeStart = ({ route }) => {
           <SecondaryButton
             label={t('medicalProfile.start.cta.secondary')}
             onPress={async () => {
-              await createMedicalProfile();
+              await handleCreateMedicalProfile();
               navigation.navigate('Main');
             }}
           />
@@ -62,10 +59,10 @@ const IntakeStart = ({ route }) => {
           <PrimaryButton
             label={t('medicalProfile.start.cta.primary')}
             onPress={async () => {
-              await createMedicalProfile();
+              await handleCreateMedicalProfile();
 
               if (fromSettings) {
-                navigation.navigate('MedicalIntake');
+                navigation.navigate('MedicalIntake', { fromSettings });
               } else {
                 navigation.navigate('Intake', { fromSettings });
               }

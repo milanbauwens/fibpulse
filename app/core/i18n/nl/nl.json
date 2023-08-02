@@ -39,6 +39,17 @@
     "doAccount": "Heeft u al een profiel?",
     "login": "Inloggen"
   },
+  "forgotPassword": {
+    "title": "Wachtwoord vergeten",
+    "description": "Vul uw e-mail in en wij sturen u een mail om uw wachtwoord te herstellen.",
+    "cta": "Herstel wachtwoord",
+    "success": "E-mail verzonden"
+  },
+  "resetPassword": {
+    "title": "Wachtwoord herstellen",
+    "description": "Kies een nieuw wachtwoord voor %{email} en bevestig het.",
+    "cta": "Wachtwoord bevestigen"
+  },
   "home": {
     "greeting": "Dag %{name}",
     "daysSince": {
@@ -334,6 +345,20 @@
       "account": "Account",
       "medicalProfile": "Medisch profiel"
     },
+    "changePassword": {
+      "title": "Wachtwoord wijzigingen",
+      "description": "Kies een nieuw wachtwoord voor uw account. Uw wachtwoord moet minstens 6 karakters lang zijn.",
+      "cta": "Wachtwoord opslaan",
+      "success": "Wachtwoord gewijzigd",
+      "check": {
+        "title": "Bevestig dat u het bent",
+        "description": "Vul uw huidige wachtwoord in om verder te gaan.",
+        "cta": {
+          "primary": "Doorgaan",
+          "secondary": "Annuleer"
+        }
+      }
+    },
     "account": {
       "save": "Wijzigingen opslaan",
       "delete": "Account verwijderen",
@@ -459,6 +484,7 @@
     "medicalProfile": "Medisch profiel",
     "account": "Account",
     "language": "Taal",
+    "security": "Beveiliging",
     "terms": "Gebruikersvoorwaarden",
     "privacy": "Privacybeleid"
   },
@@ -471,6 +497,8 @@
     "lastname": "Achternaam",
     "email": "E-mail",
     "password": "Wachtwoord",
+    "newPassword": "Nieuw wachtwoord",
+    "currentPassword": "Huidig wachtwoord",
     "gender": "Geslacht",
     "date": "Datum",
     "time": "Tijd",

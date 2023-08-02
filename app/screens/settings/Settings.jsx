@@ -61,7 +61,11 @@ const Settings = ({ navigation }) => {
           title={t('settings.settings.language')}
           onPress={() => navigation.navigate('Language')}
         />
-        <SettingsItem iconName="lock-unlocked-outline" title={t('settings.settings.security')} />
+        <SettingsItem
+          iconName="lock-unlocked-outline"
+          title={t('settings.settings.security')}
+          onPress={() => navigation.navigate('Security')}
+        />
       </View>
 
       <View className="mb-16">

@@ -37,11 +37,12 @@ const Item = ({ type, data, onSelect }) => {
 
   const [selected, setSelected] = useState(data.type === 'multiselect' ? [] : '');
 
+  const [isVisible, setIsVisible] = useState(false);
+
   const [seconds, setSeconds] = useState(60);
   const [timerActive, setTimerActive] = useState(false);
 
   // stopwatch function based on chat-gpt input
-
   useEffect(() => {
     let interval;
 
@@ -84,8 +85,6 @@ const Item = ({ type, data, onSelect }) => {
     onSelect(selected);
   }, [selected]);
 
-  const [isVisible, setIsVisible] = useState(false);
-
   return (
     <View style={{ width }} className="h-full bg-white mt-8">
       <View className="px-5">
@@ -108,7 +107,7 @@ const Item = ({ type, data, onSelect }) => {
               };
 
               const handleDeselect = () => {
-                setSelected('');
+                setSelected();
               };
 
               // Determine the spot illustration

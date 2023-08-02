@@ -14,7 +14,7 @@ import { updateMedicalProfile } from '../../core/db/modules/medical_profiles/api
 import { useTranslations } from '../../core/i18n/LocaleProvider.jsx';
 
 const Intake = ({ route }) => {
-  const { fromSettings } = route.params || { fromSettings: false };
+  const { fromSettings } = route.params || false;
 
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
@@ -22,8 +22,10 @@ const Intake = ({ route }) => {
   const { t } = useTranslations();
 
   const slidesRef = useRef(null);
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selected, setSelected] = useState();
+
   const [isVisible, setIsVisible] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -37,6 +39,7 @@ const Intake = ({ route }) => {
     handleUpdate();
     if (currentSlide < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
+      setIsDisabled(true);
     } else {
       await setPassedIntake.mutateAsync();
     }
@@ -68,23 +71,20 @@ const Intake = ({ route }) => {
         navigation.navigate('Main');
       }
     },
+    onError: () => {
+      console.log('error');
+    },
   });
 
+  // handle disabled state
   useEffect(() => {
-    if (!column) {
+    if (selected && (selected.length > 0 || typeof selected !== 'object')) {
       setIsDisabled(false);
     }
-    if (selected) {
-      setIsDisabled(false);
-    }
-  }, [selected, column]);
+  }, [selected]);
 
   const handleUpdate = async () => {
-    try {
-      await mutation.mutateAsync(selected);
-    } catch (error) {
-      console.error(error);
-    }
+    await mutation.mutateAsync(selected);
   };
 
   const handleClose = () => {
@@ -128,7 +128,13 @@ const Intake = ({ route }) => {
         data={slides}
         scrollX={scrollX}
         scrollTo={scrollTo}
-        scrollBack={currentSlide === 0 ? () => navigation.navigate('IntakeStart') : scrollBack}
+        scrollBack={
+          currentSlide === 0
+            ? fromSettings
+              ? () => navigation.navigate('MedicalIntakeStart', { fromSettings })
+              : () => navigation.navigate('IntakeStart', { fromSettings })
+            : scrollBack
+        }
         onClose={() => setIsVisible(true)}
       />
 
@@ -146,7 +152,7 @@ const Intake = ({ route }) => {
         bounces={false}
         pagingEnabled
         scrollEnabled={false}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, index) => index.toString()}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
           useNativeDriver: false,
         })}

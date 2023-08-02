@@ -74,7 +74,7 @@ const Create = ({ route }) => {
     if (!column || column === 'notes') {
       setIsDisabled(false);
     }
-    if (selected) {
+    if (selected && (selected.length > 0 || typeof selected !== 'object')) {
       setIsDisabled(false);
     }
   }, [selected, column]);

@@ -45,14 +45,13 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
       queryClient.invalidateQueries('medical_profile');
       setIsVisible(false);
     },
+    onError: () => {
+      console.log('error');
+    },
   });
 
   const handleUpdate = async () => {
-    try {
-      await mutation.mutateAsync(selectedValue);
-    } catch (error) {
-      console.log(error);
-    }
+    await mutation.mutateAsync(selectedValue);
   };
 
   const showData = () => {

@@ -9,7 +9,7 @@ import { BackButton, PrimaryButton, TertiairyButton } from '../../components/com
 import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Title } from '../../components/common/Typography';
 import Error from '../../components/errors/Error';
-import { supabase } from '../../core/db/initSupabase';
+import { SignUp } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
@@ -17,11 +17,7 @@ const Register = () => {
   const navigation = useNavigation();
   const { t } = useTranslations();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { control, handleSubmit } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
   const [signUpError, setSignUpError] = useState();
@@ -31,25 +27,13 @@ const Register = () => {
   const nameInputRef = createRef();
   const firstnameInputRef = createRef();
 
-  async function handleRegister(formData) {
+  async function handleRegister({ email, password, firstname, lastname }) {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.userEmail,
-        password: formData.userPassword,
-        options: {
-          data: {
-            firstname: formData.userFirstname,
-            lastname: formData.userName,
-          },
-        },
-      });
-      if (error) {
-        const authError = handleAuthError(error);
-        setSignUpError(authError);
-      }
+      await SignUp(email, password, { firstname, lastname });
     } catch (error) {
-      console.error(error);
+      const authError = handleAuthError(error);
+      setSignUpError(authError);
     } finally {
       setIsLoading(false);
     }
@@ -62,9 +46,8 @@ const Register = () => {
         <Title size="large">{t('register.title')}</Title>
       </View>
       <KeyboardAwareScrollView
+        contentContainerStyle={{ paddingBottom: 124 }}
         showsVerticalScrollIndicator={false}
-        overScrollMode="never"
-        extraHeight={0}
       >
         {signUpError && (
           <View className="mt-2">
@@ -81,7 +64,7 @@ const Register = () => {
               returnKeyType="next"
               autoCapitalize="words"
               keyboardType="default"
-              inputName="userFirstname"
+              inputName="firstname"
               onSubmitEditing={() => nameInputRef.current && nameInputRef.current.focus()}
             />
           </View>
@@ -94,7 +77,7 @@ const Register = () => {
               returnKeyType="next"
               autoCapitalize="words"
               keyboardType="default"
-              inputName="userName"
+              inputName="lastname"
               onSubmitEditing={() => emailInputRef.current && emailInputRef.current.focus()}
             />
           </View>
@@ -114,7 +97,7 @@ const Register = () => {
               autoComplete="off"
               autoCapitalize="none"
               keyboardType="email-address"
-              inputName="userEmail"
+              inputName="email"
               onSubmitEditing={() => passwordInputRef.current && passwordInputRef.current.focus()}
             />
           </View>
@@ -129,7 +112,7 @@ const Register = () => {
               }}
               control={control}
               label={t('input.password')}
-              inputName="userPassword"
+              inputName="password"
               ref={passwordInputRef}
               returnKeyType="done"
               autoCapitalize="none"
@@ -139,39 +122,39 @@ const Register = () => {
             />
           </View>
         </View>
+      </KeyboardAwareScrollView>
 
-        <View className="mb-6 mt-12">
-          <Text
-            className="text-xs text-deepMarine-700 mb-4 text-center"
-            style={{ fontFamily: 'Mulish-medium' }}
-          >
-            {t('landing.agreement')}{' '}
-            <Link to="/Terms">
-              <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
-                {t('landing.terms')}
-              </Text>
-            </Link>{' '}
-            {t('landing.and')}{' '}
-            <Link to="/Privacy">
-              <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
-                {t('landing.privacy')}
-              </Text>
-            </Link>
-          </Text>
-          <View className="mb-2">
-            <PrimaryButton
-              isLoading={isLoading}
-              label={t('register.cta')}
-              onPress={handleSubmit(handleRegister)}
-            />
-          </View>
-          <TertiairyButton
-            label={t('register.doAccount')}
-            action={t('register.login')}
-            onPress={() => navigation.navigate('Login')}
+      <View className="mb-6 mt-12">
+        <Text
+          className="text-xs text-deepMarine-700 mb-4 text-center"
+          style={{ fontFamily: 'Mulish-medium' }}
+        >
+          {t('landing.agreement')}{' '}
+          <Link to="/Terms">
+            <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
+              {t('landing.terms')}
+            </Text>
+          </Link>{' '}
+          {t('landing.and')}{' '}
+          <Link to="/Privacy">
+            <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
+              {t('landing.privacy')}
+            </Text>
+          </Link>
+        </Text>
+        <View className="mb-2">
+          <PrimaryButton
+            isLoading={isLoading}
+            label={t('register.cta')}
+            onPress={handleSubmit(handleRegister)}
           />
         </View>
-      </KeyboardAwareScrollView>
+        <TertiairyButton
+          label={t('register.doAccount')}
+          action={t('register.login')}
+          onPress={() => navigation.navigate('Login')}
+        />
+      </View>
     </SafeAreaView>
   );
 };

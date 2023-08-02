@@ -23,10 +23,12 @@ export const handleAuthError = (error) => {
         return 'Er is iets misgelopen bij het resetten van uw wachtwoord.';
       case 'Invalid password':
         return 'Het ingevoerde wachtwoord is ongeldig.';
+      case 'Password mismatch':
+        return 'Het ingevoerde wachtwoord is niet correct.';
       default:
         return error.message;
     }
   } else {
-    console.error(error);
+    return error.message;
   }
 };

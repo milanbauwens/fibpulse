@@ -9,7 +9,7 @@ import { BackButton, PrimaryButton, TertiairyButton } from '../../components/com
 import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Title } from '../../components/common/Typography';
 import Error from '../../components/errors/Error';
-import { supabase } from '../../core/db/initSupabase';
+import { signIn } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
@@ -24,19 +24,13 @@ const Login = () => {
 
   const passwordInputRef = createRef();
 
-  const handleLogin = async (formData) => {
+  const handleLogin = async ({ email, password }) => {
     setIsLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: formData.userEmail,
-        password: formData.userPassword,
-      });
-      if (error) {
-        const authError = handleAuthError(error);
-        setSignInError(authError);
-      }
+      await signIn(email, password);
     } catch (error) {
-      console.error(error);
+      const authError = handleAuthError(error);
+      setSignInError(authError);
     } finally {
       setIsLoading(false);
     }
@@ -74,7 +68,7 @@ const Login = () => {
             returnKeyType="next"
             autoCapitalize="none"
             keyboardType="email-address"
-            inputName="userEmail"
+            inputName="email"
             onSubmitEditing={() => passwordInputRef.current && passwordInputRef.current.focus()}
           />
         </View>
@@ -90,7 +84,7 @@ const Login = () => {
             }}
             control={control}
             label={t('input.password')}
-            inputName="userPassword"
+            inputName="password"
             ref={passwordInputRef}
             returnKeyType="done"
             autoCapitalize="none"
@@ -105,7 +99,7 @@ const Login = () => {
             <TouchableOpacity
               activeOpacity={0.8}
               className="mb-4 w-full mt-4"
-              onPress={() => navigation.navigate('ResetPassword')}
+              onPress={() => navigation.navigate('ForgotPassword')}
             >
               <Text
                 className="text-right pr-2 text-base text-deepMarine-900"

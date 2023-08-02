@@ -36,6 +36,17 @@
     "doAccount": "Already have an account?",
     "login": "Log in"
   },
+  "forgotPassword": {
+    "title": "Forgot your password",
+    "description": "Fill in your e-mail address and we'll send you a link to reset your password.",
+    "cta": "Retrieve password",
+    "success": "E-mail send"
+  },
+  "resetPassword": {
+    "title": "Reset your password",
+    "description": "Fill in your new password for %{email} and confirm it",
+    "cta": "Reset password"
+  },
   "home": {
     "greeting": "Hello %{name}",
     "daysSince": {
@@ -331,6 +342,20 @@
       "account": "Account",
       "medicalProfile": "Medical profile"
     },
+    "changePassword": {
+      "title": "Change password",
+      "description": "Choose a new password for your account. Make sure it's at least 6 characters long.",
+      "cta": "Update password",
+      "success": "Password updated",
+      "check": {
+        "title": "Confirm it's you",
+        "description": "We need to make sure it's you before we can change your password. Please enter your current password.",
+        "cta": {
+          "primary": "Confirm",
+          "secondary": "Cancel"
+        }
+      }
+    },
     "account": {
       "save": "Save changes",
       "delete": "Delete account",
@@ -378,7 +403,7 @@
     "description": "This Privacy Policy explains how we collect, use, and disclose your personal information when you use our app.",
     "collect": {
       "title": "Information We Collect",
-      "description": "We collect personal information provided during account registration, including your name, email address, and password. Additionally, we also collect medical profile information, such as your year of birth, heart condition, gender, risk factors that increase the risk of heart condition, average duration of an attack, and the frequency of your attacks."
+      "description": "We collect personal information provided during account registration, including your name, e-mail address, and password. Additionally, we also collect medical profile information, such as your year of birth, heart condition, gender, risk factors that increase the risk of heart condition, average duration of an attack, and the frequency of your attacks."
     },
     "use": {
       "title": "How We Use Your Information",
@@ -457,13 +482,16 @@
     "account": "Account",
     "language": "Language",
     "terms": "Terms and conditions",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "security": "Security"
   },
   "input": {
     "firstname": "Firstname",
     "lastname": "Lastname",
     "email": "E-mail",
     "password": "Password",
+    "newPassword": "New password",
+    "currentPassword": "Current password",
     "gender": "Gender",
     "date": "Date",
     "time": "Time",

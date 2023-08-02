@@ -3,33 +3,29 @@ import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useAuthContext } from '../../../components/auth/AuthProvider';
 import { PrimaryButton, SecondaryButton } from '../../../components/common/Buttons';
 import { Paragraph, Title } from '../../../components/common/Typography';
 import CreateEpisodeIllustration from '../../../components/svg/CreateEpisodeIllustration';
-import { supabase } from '../../../core/db/initSupabase';
+import { createEpisode } from '../../../core/db/modules/episodes/api';
 import { useTranslations } from '../../../core/i18n/LocaleProvider';
 
 const Start = () => {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
-  const { user } = useAuthContext();
   const { t } = useTranslations();
 
   const handleStart = async () => {
-    const { error, data } = await supabase
-      .from('episodes')
-      .insert({
-        user_id: user.id,
-      })
-      .select('id');
-    if (error) {
+    try {
+      const episode = await createEpisode();
+
+      if (episode) {
+        navigation.navigate('EpisodesCreateInfo', {
+          episodeId: episode.at(0).id,
+        });
+      }
+    } catch (error) {
       console.log(error);
     }
-
-    navigation.navigate('EpisodesCreateInfo', {
-      episodeId: data.at(0).id,
-    });
   };
 
   return (
@@ -54,7 +50,10 @@ const Start = () => {
           />
         </View>
         <View className="flex-1">
-          <PrimaryButton label={t('episodes.create.start.cta.primary')} onPress={handleStart} />
+          <PrimaryButton
+            label={t('episodes.create.start.cta.primary')}
+            onPress={async () => await handleStart()}
+          />
         </View>
       </View>
     </SafeAreaView>

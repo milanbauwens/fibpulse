@@ -45,6 +45,24 @@ export const getHighestAmountOfSymptoms = async () => {
   return await supabase.from('episodes').select('symptoms').match({ user_id }).throwOnError();
 };
 
+export const createEpisode = async () => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  const { data, error } = await supabase
+    .from('episodes')
+    .insert({
+      user_id,
+    })
+    .select('id');
+
+  if (error) {
+    return Promise.reject(error);
+  }
+
+  return data;
+};
+
 export const getEpisodeById = async (id) => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;

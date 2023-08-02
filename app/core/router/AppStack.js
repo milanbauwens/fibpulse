@@ -25,6 +25,7 @@ import {
   LanguageScreen,
   MedicalDataScreen,
   PersonalInformationScreen,
+  Security,
   Settings,
 } from '../../screens/settings';
 import colors from '../../theme/colors';
@@ -200,6 +201,15 @@ export const Stack = () => {
           options={{
             title: t('navigation.language'),
             headerTitle: t('navigation.language'),
+            headerLeft: () => <BackButton />,
+          }}
+        />
+        <Stack.Screen
+          name="Security"
+          component={Security}
+          options={{
+            title: t('navigation.security'),
+            headerTitle: t('navigation.security'),
             headerLeft: () => <BackButton />,
           }}
         />

@@ -15,6 +15,21 @@ export const getMedicalProfile = async () => {
     .throwOnError();
 };
 
+export const createMedicalProfile = async () => {
+  const session = await getCurrentSession();
+  const user_id = session.user?.id;
+
+  const { data, error } = await supabase.from('medical_profiles').upsert({
+    user_id,
+  });
+
+  if (error) {
+    return Promise.reject(error);
+  }
+
+  return Promise.resolve(data);
+};
+
 export const updateMedicalProfile = async (column, value) => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;
