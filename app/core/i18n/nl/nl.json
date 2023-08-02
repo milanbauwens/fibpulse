@@ -58,11 +58,11 @@
       "null": {
         "first": "Nog",
         "count": "geen dagen",
-        "last": "zonder onregelmatige hartslag"
+        "last": "zonder onregelmatige hartslag."
       },
       "default": {
         "first": "Al",
-        "last": "zonder onregelmatige hartslag"
+        "last": "zonder onregelmatige hartslag."
       }
     },
     "cta": {
@@ -72,7 +72,7 @@
     "episodes": {
       "tag": "Ritmestoornis",
       "title": "Mijn hartmomenten",
-      "description": "Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis",
+      "description": "Houd uw momenten bij en creëer een beter overzicht over uw ritmestoornis.",
       "emptyState": {
         "title": "Geen hartmomenten gevonden",
         "description": "U heeft deze periode nog geen hartmomenten toegevoegd."
