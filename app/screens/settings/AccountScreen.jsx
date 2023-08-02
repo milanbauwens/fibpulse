@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Keyboard, KeyboardAvoidingView, Platform, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -9,39 +9,37 @@ import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Icon } from '../../components/common/Icon/Icon';
 import Popover from '../../components/common/Popover/Popover';
 import { Paragraph } from '../../components/common/Typography';
+import Error from '../../components/errors/Error';
 import DeleteAccount from '../../components/svg/DeleteAccount';
-import { supabase } from '../../core/db/initSupabase';
-import { deleteUser, signOut } from '../../core/db/modules/auth/api';
+import { UpdateUser, deleteUser, signOut } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
+import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const AccountScreen = () => {
   const { user } = useAuthContext();
   const { bottom } = useSafeAreaInsets();
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
 
   const [isVisible, setIsVisible] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [updateProfileError, setUpdateProfileError] = useState();
 
   const { control, handleSubmit } = useForm();
 
-  const { isSubmitted } = useFormState({ control });
+  const [updatedSuccesfully, setUpdatedSuccesfully] = useState(false);
 
   const handleUpdateProfile = async ({ firstname, lastname, email }) => {
     setIsLoading(true);
     try {
-      await supabase.auth.updateUser({
-        email,
-        data: {
-          firstname,
-          lastname,
-        },
-      });
+      await UpdateUser(email, { firstname, lastname });
+      setUpdatedSuccesfully(true);
     } catch (error) {
-      console.error(error);
+      console.log(error.message);
+      const authError = handleAuthError(error, locale);
+      setUpdateProfileError(authError);
+      setUpdatedSuccesfully(false);
     } finally {
       setIsLoading(false);
-      setIsSuccess(true);
     }
   };
 
@@ -94,6 +92,12 @@ const AccountScreen = () => {
         className="bg-white h-full w-full pt-4"
       >
         <View className="px-4 ">
+          {updateProfileError && (
+            <View className="mt-2 mb-6">
+              <Error error={updateProfileError} />
+            </View>
+          )}
+
           <View className="mb-6">
             <Formgroup
               value={user.firstname}
@@ -147,8 +151,8 @@ const AccountScreen = () => {
             </View>
           </View>
           <PrimaryButton
-            icon={isSubmitted ? <Icon name="check" size={24} color="white" /> : null}
-            label={isSubmitted ? t('edit.success') : t('settings.account.save')}
+            icon={updatedSuccesfully ? <Icon name="check" size={24} color="white" /> : null}
+            label={updatedSuccesfully ? t('edit.success') : t('settings.account.save')}
             onPress={handleSubmit(handleUpdateProfile)}
             isLoading={isLoading}
           />

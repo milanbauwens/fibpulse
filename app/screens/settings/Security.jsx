@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import { Keyboard, KeyboardAvoidingView, Text, View, useWindowDimensions } from 'react-native';
 
-import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, SecondaryButton } from '../../components/common/Buttons';
 import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Icon } from '../../components/common/Icon/Icon';
@@ -16,8 +15,7 @@ import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 const Security = () => {
   const navigation = useNavigation();
   const { width } = useWindowDimensions();
-  const { t } = useTranslations();
-  const { user } = useAuthContext();
+  const { t, locale } = useTranslations();
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -26,12 +24,12 @@ const Security = () => {
 
   const { isSubmitSuccessful } = useFormState({ control });
 
-  const updateUser = async ({ password }) => {
+  const updateUserPassword = async ({ password }) => {
     setIsLoading(true);
     try {
-      await UpdateUserPassword(user.email, password);
+      await UpdateUserPassword(password);
     } catch (error) {
-      const authError = handleAuthError(error);
+      const authError = handleAuthError(error, locale);
       setChangePasswordError(authError);
     } finally {
       setIsLoading(false);
@@ -132,7 +130,7 @@ const Security = () => {
           </View>
           <View>
             <PrimaryButton
-              onPress={handleSubmit(updateUser)}
+              onPress={handleSubmit(updateUserPassword)}
               isLoading={isLoading}
               icon={isSubmitSuccessful ? <Icon name="check" size={20} /> : null}
               label={

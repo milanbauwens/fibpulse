@@ -15,7 +15,7 @@ import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const Login = () => {
   const navigation = useNavigation();
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
 
   const { control, handleSubmit } = useForm();
 
@@ -29,7 +29,7 @@ const Login = () => {
     try {
       await signIn(email, password);
     } catch (error) {
-      const authError = handleAuthError(error);
+      const authError = handleAuthError(error, locale);
       setSignInError(authError);
     } finally {
       setIsLoading(false);

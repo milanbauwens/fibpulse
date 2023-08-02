@@ -15,7 +15,7 @@ import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
 
   const { control, handleSubmit } = useForm();
   const { isSubmitSuccessful } = useFormState({ control });
@@ -30,7 +30,7 @@ const ForgotPassword = () => {
 
       await sendResetPasswordEmail(email, redirectURL);
     } catch (error) {
-      const authError = handleAuthError(error);
+      const authError = handleAuthError(error, locale);
       setResetPasswordError(authError);
     } finally {
       setIsLoading(false);

@@ -15,7 +15,7 @@ import { handleAuthError } from '../../core/utils/auth/handleAuthError';
 
 const Register = () => {
   const navigation = useNavigation();
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
 
   const { control, handleSubmit } = useForm();
 
@@ -32,7 +32,9 @@ const Register = () => {
     try {
       await SignUp(email, password, { firstname, lastname });
     } catch (error) {
-      const authError = handleAuthError(error);
+      console.log(error);
+      console.log(error.message);
+      const authError = handleAuthError(error, locale);
       setSignUpError(authError);
     } finally {
       setIsLoading(false);
@@ -46,11 +48,11 @@ const Register = () => {
         <Title size="large">{t('register.title')}</Title>
       </View>
       <KeyboardAwareScrollView
-        contentContainerStyle={{ paddingBottom: 124 }}
+        contentContainerStyle={{ paddingBottom: 48 }}
         showsVerticalScrollIndicator={false}
       >
         {signUpError && (
-          <View className="mt-2">
+          <View className="mt-2 mb-6">
             <Error error={signUpError} />
           </View>
         )}
