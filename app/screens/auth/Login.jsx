@@ -11,7 +11,7 @@ import { Title } from '../../components/common/Typography';
 import Error from '../../components/errors/Error';
 import { signIn } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
-import { handleAuthError } from '../../core/utils/auth/handleAuthError';
+import { getErrorMessage } from '../../core/utils/global/getErrorMessage';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -29,8 +29,8 @@ const Login = () => {
     try {
       await signIn(email, password);
     } catch (error) {
-      const authError = handleAuthError(error, locale);
-      setSignInError(authError);
+      const errorMessage = getErrorMessage(error, locale);
+      setSignInError(errorMessage);
     } finally {
       setIsLoading(false);
     }

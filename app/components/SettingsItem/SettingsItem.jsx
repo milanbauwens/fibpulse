@@ -2,8 +2,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Switch, Text, TouchableOpacity, View } from 'react-native';
 
-import colors from '../../../../theme/colors';
-import { Icon } from '../../../common/Icon/Icon';
+import colors from '../../theme/colors';
+import { Icon } from '../common/Icon/Icon';
 
 const SettingsItem = ({
   type = 'normal' || 'error',

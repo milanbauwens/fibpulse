@@ -6,6 +6,7 @@ import CTACard from '../components/CTACard/CTACard';
 import EpisodeChart from '../components/EpisodeChart/EpisodeChart';
 import Insights from '../components/Insights/Insights';
 import SectionCard from '../components/SectionCard/SectionCard';
+import FeedbackMessage from '../components/common/FeedbackMessage/FeedbackMessage';
 import { Icon } from '../components/common/Icon/Icon';
 import { Paragraph } from '../components/common/Typography';
 import { LifestyleIllustration } from '../components/svg/onboarding';
@@ -17,10 +18,15 @@ import colors from '../theme/colors';
 const Home = ({ navigation }) => {
   const { t } = useTranslations();
 
-  const [daysSince, setDaysSince] = useState(0); // TODO: Replace with actual days since last admission
+  const [daysSince, setDaysSince] = useState(0);
+  const [errorVisible, setErrorVisible] = useState(!!error);
 
   // Get latest episode
-  const { data: episodes, isLoading } = useQuery({
+  const {
+    data: episodes,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['episodes'],
     queryFn: getLatestEpisode,
   });
@@ -49,75 +55,84 @@ const Home = ({ navigation }) => {
   }, []);
 
   return (
-    <Animated.ScrollView
-      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
-        useNativeDriver: true,
-        listener: (event) => {
-          navigation.setOptions({
-            scrollY: event.nativeEvent.contentOffset.y,
-          });
-        },
-      })}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: 24 }}
-      scrollEventThrottle={16}
-      className="w-full h-screen bg-white px-5"
-    >
-      <View className="mb-8">
-        {daysSince === 0 ? (
-          <Paragraph>
-            {`${t('home.daysSince.null.first')} `}
-            <Paragraph isStrong>{t('home.daysSince.null.count')}</Paragraph>
-            {` ${t('home.daysSince.null.last')}`}
-          </Paragraph>
-        ) : (
-          <Paragraph>
-            {`${t('home.daysSince.default.first')} `}
-            <Paragraph isStrong>{`${daysSince} ${
-              daysSince === 1 ? t('home.daysSince.day') : t('home.daysSince.days')
-            }`}</Paragraph>
-            {` ${t('home.daysSince.default.last')}`}
-          </Paragraph>
-        )}
-      </View>
-      <View className="mb-6">
-        <CTACard
-          onPress={() => navigation.navigate('EpisodesCreateStart')}
-          title={t('home.cta.title')}
-          description={t('home.cta.subtitle')}
+    <>
+      <Animated.ScrollView
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+          useNativeDriver: true,
+          listener: (event) => {
+            navigation.setOptions({
+              scrollY: event.nativeEvent.contentOffset.y,
+            });
+          },
+        })}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 24 }}
+        scrollEventThrottle={16}
+        className="w-full h-screen bg-white px-5"
+      >
+        <View className="mb-8">
+          {daysSince === 0 ? (
+            <Paragraph>
+              {`${t('home.daysSince.null.first')} `}
+              <Paragraph isStrong>{t('home.daysSince.null.count')}</Paragraph>
+              {` ${t('home.daysSince.null.last')}`}
+            </Paragraph>
+          ) : (
+            <Paragraph>
+              {`${t('home.daysSince.default.first')} `}
+              <Paragraph isStrong>{`${daysSince} ${
+                daysSince === 1 ? t('home.daysSince.day') : t('home.daysSince.days')
+              }`}</Paragraph>
+              {` ${t('home.daysSince.default.last')}`}
+            </Paragraph>
+          )}
+        </View>
+        <View className="mb-6">
+          <CTACard
+            onPress={() => navigation.navigate('EpisodesCreateStart')}
+            title={t('home.cta.title')}
+            description={t('home.cta.subtitle')}
+          />
+        </View>
+
+        <SectionCard
+          label={t('home.episodes.tag')}
+          title={t('home.episodes.title')}
+          description={t('home.episodes.description')}
+          cta={t('home.episodes.cta')}
+          icon="calendar-heart-outline"
+          onPress={() => navigation.navigate('Episodes')}
+        >
+          <EpisodeChart />
+        </SectionCard>
+
+        <SectionCard
+          label={t('home.insights.tag')}
+          title={t('home.insights.title')}
+          description={t('home.insights.description')}
+        >
+          <Insights />
+        </SectionCard>
+
+        <SectionCard
+          withIllustration
+          illustration={<LifestyleIllustration />}
+          label={t('home.discover.tag')}
+          title={t('home.discover.title')}
+          description={t('home.discover.description')}
+          cta={t('home.discover.cta')}
+          icon="calendar-heart-outline"
+          onPress={() => navigation.navigate('Discover')}
         />
-      </View>
-
-      <SectionCard
-        label={t('home.episodes.tag')}
-        title={t('home.episodes.title')}
-        description={t('home.episodes.description')}
-        cta={t('home.episodes.cta')}
-        icon="calendar-heart-outline"
-        onPress={() => navigation.navigate('Episodes')}
-      >
-        <EpisodeChart />
-      </SectionCard>
-
-      <SectionCard
-        label={t('home.insights.tag')}
-        title={t('home.insights.title')}
-        description={t('home.insights.description')}
-      >
-        <Insights />
-      </SectionCard>
-
-      <SectionCard
-        withIllustration
-        illustration={<LifestyleIllustration />}
-        label={t('home.discover.tag')}
-        title={t('home.discover.title')}
-        description={t('home.discover.description')}
-        cta={t('home.discover.cta')}
-        icon="calendar-heart-outline"
-        onPress={() => navigation.navigate('Discover')}
+      </Animated.ScrollView>
+      <FeedbackMessage
+        isVisible={errorVisible}
+        icon="alert-triangle"
+        type="error"
+        content={t('error.generic')}
+        onHide={() => setErrorVisible(false)}
       />
-    </Animated.ScrollView>
+    </>
   );
 };
 

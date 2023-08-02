@@ -204,6 +204,8 @@ const Edit = ({ route }) => {
       <FeedbackMessage
         isVisible={isVisible}
         icon="check"
+        type="success"
+        endY={-134}
         content={t('edit.success')}
         onHide={() => setIsVisible(false)}
       />

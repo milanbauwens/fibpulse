@@ -111,6 +111,11 @@
         "primary": "Keep going"
       }
     },
+    "emptyState": {
+      "title": "No medical profile yet",
+      "description": "We need some more information about your heart disorder to provide you with more insights.",
+      "cta": "Complete medical profile"
+    },
     "finish": "Finish your profile",
     "start": {
       "title": "Share your health story with us",
@@ -512,6 +517,7 @@
     "save": "Save"
   },
   "error": {
+    "generic": "Something went wrong",
     "email": {
       "required": "E-mail is required",
       "invalid": "E-mail is invalid"

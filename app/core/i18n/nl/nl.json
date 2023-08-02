@@ -115,6 +115,11 @@
         "primary": "Annuleer"
       }
     },
+    "emptyState": {
+      "title": "Nog geen medische profiel",
+      "description": "Om uw profiel te vervolledigen, willen we nog graag enkele zaken over u weten.",
+      "cta": "Voltooi medisch profiel"
+    },
     "start": {
       "title": "Uw medisch profiel in kaart brengen",
       "description": "Met uw medische gegevens proberen we meer inzichten te krijgen in uw hartritmestoornis.",
@@ -515,6 +520,7 @@
     "save": "Opslaan"
   },
   "error": {
+    "generic": "Er is iets misgelopen",
     "email": {
       "required": "Vul een e-mailadres in",
       "invalid": "Vul een geldig e-mailadres in"

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "fibpulse",
-    "slug": "fibpulse",
+    "name": "Fibpulse",
+    "slug": "Fibpulse",
     "version": "1.0.0",
     "scheme": "fibpulse",
     "orientation": "portrait",
@@ -26,9 +26,6 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.milanbauwens.fibpulse"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {

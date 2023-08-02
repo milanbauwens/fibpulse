@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 
 import {
@@ -11,17 +12,26 @@ import {
 } from '../../__content/medicalProfile.js';
 import DataView from '../../components/DataView/DataView';
 import EmptyState from '../../components/common/EmptyState/EmptyState';
+import FeedbackMessage from '../../components/common/FeedbackMessage/FeedbackMessage.jsx';
 import LoadingIndicator from '../../components/common/Loading/Loading';
 import IntakeIllustration from '../../components/svg/IntakeIllustration';
 import {
   getMedicalProfile,
   updateMedicalProfile,
 } from '../../core/db/modules/medical_profiles/api';
+import { useTranslations } from '../../core/i18n/LocaleProvider.jsx';
 
 const MedicalDataScreen = () => {
   const navigation = useNavigation();
+  const { t } = useTranslations();
 
-  const { data: medicalProfile, isLoading } = useQuery({
+  const [errorVisible, setErrorVisible] = useState(!!error);
+
+  const {
+    data: medicalProfile,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['medical_profile'],
     queryFn: getMedicalProfile,
   });
@@ -77,34 +87,44 @@ const MedicalDataScreen = () => {
   };
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: 24 }}
-      scrollEventThrottle={16}
-      className="bg-white h-full w-full pt-4"
-    >
-      <View className="px-4 bg-white h-full">
-        {isLoading ? (
-          <View className="h-5/6 w-full flex items-center justify-center">
-            <LoadingIndicator />
-          </View>
-        ) : (
-          <>
-            {medicalProfile.data.passed_intake ? (
-              <DataView data={formattedData} />
-            ) : (
-              <EmptyState
-                illustration={<IntakeIllustration />}
-                title="Nog geen Medische gegevens"
-                description="Om uw profiel te vervolledigen, willen we nog graag enkele zaken over u weten. "
-                cta="voltooi uw medisch profiel"
-                onPress={() => navigation.navigate('MedicalIntakeStart', { fromSettings: true })}
-              />
-            )}
-          </>
-        )}
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 24 }}
+        scrollEventThrottle={16}
+        className="bg-white h-full w-full pt-4"
+      >
+        <View className="px-4 bg-white h-full">
+          {isLoading ? (
+            <View className="h-5/6 w-full flex items-center justify-center">
+              <LoadingIndicator />
+            </View>
+          ) : (
+            <>
+              {medicalProfile.data.passed_intake ? (
+                <DataView data={formattedData} />
+              ) : (
+                <EmptyState
+                  illustration={<IntakeIllustration />}
+                  title={t('medicalProfile.emptyState.title')}
+                  description={t('medicalProfile.emptyState.description')}
+                  cta={t('medicalProfile.emptyState.cta')}
+                  onPress={() => navigation.navigate('MedicalIntakeStart', { fromSettings: true })}
+                />
+              )}
+            </>
+          )}
+        </View>
+      </ScrollView>
+      <FeedbackMessage
+        isVisible={errorVisible}
+        icon="alert-triangle"
+        type="error"
+        endY={-50}
+        content={t('error.generic')}
+        onHide={() => setErrorVisible(false)}
+      />
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import { Animated, FlatList, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import slides from '../../__content/intake.js';
-import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons/index.jsx';
+import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons/index.js';
 import { FlatlistItem, FlatlistPaginator } from '../../components/common/Flatlist/index.js';
 import Popover from '../../components/common/Popover/Popover.jsx';
 import Paragraph from '../../components/common/Typography/Paragraph.jsx';

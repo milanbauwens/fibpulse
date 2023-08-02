@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuthContext } from '../../components/auth/AuthProvider';
 import Label from '../../components/common/Label/Label';
 import { Paragraph } from '../../components/common/Typography';
-import SettingsItem from '../../components/screens/settings/SettingsItem/SettingsItem';
+import SettingsItem from '../../components/SettingsItem/SettingsItem';
 import { signOut } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 
@@ -73,7 +73,6 @@ const Settings = ({ navigation }) => {
           <Label title={t('settings.help.title')} />
         </View>
 
-        <SettingsItem iconName="announcement-outline" title={t('settings.help.bug')} />
         <SettingsItem
           iconName="file-check-outline"
           title={t('settings.help.privacy')}

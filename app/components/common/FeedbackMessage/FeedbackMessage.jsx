@@ -5,7 +5,7 @@ import colors from '../../../theme/colors';
 import { Icon } from '../Icon/Icon';
 import Label from '../Label/Label';
 
-const FeedbackMessage = ({ isVisible, icon, content, onHide }) => {
+const FeedbackMessage = ({ type, isVisible, icon, endY = -20, content, onHide }) => {
   const animation = new Animated.Value(0);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const FeedbackMessage = ({ isVisible, icon, content, onHide }) => {
       {
         translateY: animation.interpolate({
           inputRange: [0, 1],
-          outputRange: [50, -132],
+          outputRange: [50, endY],
         }),
       },
     ],
@@ -44,15 +44,49 @@ const FeedbackMessage = ({ isVisible, icon, content, onHide }) => {
     return null; // Don't render anything if not visible
   }
 
+  let primaryColor;
+  let backgroundColor;
+  let borderColor;
+  let textColor;
+  switch (type) {
+    case 'success':
+      primaryColor = colors.success[700];
+      backgroundColor = colors.success[100];
+      borderColor = colors.success[300];
+      textColor = 'text-success-700';
+      break;
+    case 'error':
+      primaryColor = colors.red[600];
+      backgroundColor = colors.red[100];
+      borderColor = colors.red[300];
+      textColor = 'text-red-600';
+      break;
+    case 'general':
+      primaryColor = colors.turquoise[600];
+      backgroundColor = colors.deepMarine[100];
+      borderColor = colors.deepMarine[200];
+      textColor = 'text-turquoise-600';
+
+      break;
+    default:
+      primaryColor = colors.turquoise[600];
+      textColor = 'text-turquoise-600';
+
+      break;
+  }
+
   return (
     <Animated.View
       style={[animatedStyle]}
       className="w-full px-5 absolute bottom-0 left-0 right-0 m-auto flex-col justify-center"
     >
-      <View className="p-3 w-full flex justify-center flex-row items-center bg-deepMarine-700 border border-deepMarine-600 rounded-lg">
-        <Icon name={icon} size={24} color={colors.deepMarine[100]} />
-        <View className="ml-2 mb-[-8]">
-          <Label textColor="text-white" title={content} />
+      <View
+        style={{ backgroundColor, borderColor }}
+        className="p-3 w-full flex flex-row items-center border shadow-card-md rounded-lg"
+      >
+        <Icon name={icon} size={24} color={primaryColor} />
+        <View className="ml-3 mb-[-8]">
+          <Label textColor={textColor} title={content} />
         </View>
       </View>
     </Animated.View>

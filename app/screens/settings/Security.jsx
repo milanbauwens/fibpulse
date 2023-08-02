@@ -10,7 +10,7 @@ import Popover from '../../components/common/Popover/Popover';
 import { Paragraph, Title } from '../../components/common/Typography';
 import { UpdateUserPassword } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
-import { handleAuthError } from '../../core/utils/auth/handleAuthError';
+import { getErrorMessage } from '../../core/utils/global/getErrorMessage';
 
 const Security = () => {
   const navigation = useNavigation();
@@ -29,8 +29,8 @@ const Security = () => {
     try {
       await UpdateUserPassword(password);
     } catch (error) {
-      const authError = handleAuthError(error, locale);
-      setChangePasswordError(authError);
+      const errorMessage = getErrorMessage(error, locale);
+      setChangePasswordError(errorMessage);
     } finally {
       setIsLoading(false);
     }

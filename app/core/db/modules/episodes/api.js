@@ -28,6 +28,7 @@ export const getEpisodesByUser = async () => {
     .select('*')
     .order('start_date', { ascending: false })
     .match({ user_id })
+    .not('start_date, end_date, pulse, symptoms, activity', 'is', null)
     .throwOnError();
 };
 
@@ -35,14 +36,24 @@ export const getHighestAmountOfActivities = async () => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;
 
-  return await supabase.from('episodes').select('activity').match({ user_id }).throwOnError();
+  return await supabase
+    .from('episodes')
+    .select('activity')
+    .match({ user_id })
+    .not('start_date, end_date, pulse, symptoms, activity', 'is', null)
+    .throwOnError();
 };
 
 export const getHighestAmountOfSymptoms = async () => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;
 
-  return await supabase.from('episodes').select('symptoms').match({ user_id }).throwOnError();
+  return await supabase
+    .from('episodes')
+    .select('symptoms')
+    .match({ user_id })
+    .not('start_date, end_date, pulse, symptoms, activity', 'is', null)
+    .throwOnError();
 };
 
 export const createEpisode = async () => {
@@ -87,6 +98,7 @@ export const getEpisodesByDate = async (date) => {
     .order('start_date', { ascending: false })
     .gte('start_date', startDate.toISOString()) // Filter episodes created on or after the start of the month
     .lte('start_date', endDate.toISOString()) // Filter episodes created on or before the end of the month
+    .not('start_date, end_date, pulse, symptoms, activity', 'is', null)
     .throwOnError();
 };
 
@@ -103,6 +115,7 @@ export const getEpisodesByDateRange = async (type = 'week' || 'year', year, star
     .match({ user_id })
     .gte('start_date', type === 'year' ? yearStart.toISOString() : start.toISOString()) // Filter episodes created on or after the start of the month
     .lte('start_date', type === 'year' ? yearEnd.toISOString() : end.toISOString()) // Filter episodes created on or before the end of the month
+    .not('start_date, end_date, pulse, symptoms, activity', 'is', null)
     .throwOnError();
 };
 
@@ -115,6 +128,7 @@ export const getLatestEpisode = async () => {
     .select('*')
     .match({ user_id })
     .order('start_date', { ascending: false })
+    .not('start_date, end_date, pulse, symptoms, activity', 'is', null)
     .limit(1)
     .single();
 };

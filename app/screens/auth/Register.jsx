@@ -11,7 +11,7 @@ import { Title } from '../../components/common/Typography';
 import Error from '../../components/errors/Error';
 import { SignUp } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
-import { handleAuthError } from '../../core/utils/auth/handleAuthError';
+import { getErrorMessage } from '../../core/utils/global/getErrorMessage';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -32,10 +32,8 @@ const Register = () => {
     try {
       await SignUp(email, password, { firstname, lastname });
     } catch (error) {
-      console.log(error);
-      console.log(error.message);
-      const authError = handleAuthError(error, locale);
-      setSignUpError(authError);
+      const errorMessage = getErrorMessage(error, locale);
+      setSignUpError(errorMessage);
     } finally {
       setIsLoading(false);
     }

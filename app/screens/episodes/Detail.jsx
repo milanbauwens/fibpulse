@@ -18,7 +18,7 @@ import { deleteEpisodeById, getEpisodeById } from '../../core/db/modules/episode
 import { getMedicalProfile } from '../../core/db/modules/medical_profiles/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { getEpisodeDurationSentence } from '../../core/utils/episode/getEpisodeDuration';
-import { formatDate } from '../../core/utils/formatData';
+import { formatDate } from '../../core/utils/global/formatData';
 import { episodeHTML } from '../../templates/episodeHTML';
 import colors from '../../theme/colors';
 

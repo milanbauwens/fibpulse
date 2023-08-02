@@ -13,7 +13,7 @@ import Error from '../../components/errors/Error';
 import DeleteAccount from '../../components/svg/DeleteAccount';
 import { UpdateUser, deleteUser, signOut } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
-import { handleAuthError } from '../../core/utils/auth/handleAuthError';
+import { getErrorMessage } from '../../core/utils/global/getErrorMessage';
 
 const AccountScreen = () => {
   const { user } = useAuthContext();
@@ -34,8 +34,8 @@ const AccountScreen = () => {
       await UpdateUser(email, { firstname, lastname });
       setUpdatedSuccesfully(true);
     } catch (error) {
-      const authError = handleAuthError(error, locale);
-      setUpdateProfileError(authError);
+      const errorMessage = getErrorMessage(error, locale);
+      setUpdateProfileError(errorMessage);
       setUpdatedSuccesfully(false);
     } finally {
       setIsLoading(false);

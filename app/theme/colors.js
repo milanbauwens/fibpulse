@@ -33,7 +33,9 @@ module.exports = {
     900: '#301D04',
   },
   success: {
+    100: '#E4FAEC',
     200: '#DFFDE8',
+    300: '#9AD9B2',
     700: '#35A350',
   },
   red: {

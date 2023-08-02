@@ -11,7 +11,7 @@ import { Icon } from '../../components/common/Icon/Icon';
 import { Paragraph, Title } from '../../components/common/Typography';
 import { sendResetPasswordEmail } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
-import { handleAuthError } from '../../core/utils/auth/handleAuthError';
+import { getErrorMessage } from '../../core/utils/global/getErrorMessage';
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
@@ -30,8 +30,8 @@ const ForgotPassword = () => {
 
       await sendResetPasswordEmail(email, redirectURL);
     } catch (error) {
-      const authError = handleAuthError(error, locale);
-      setResetPasswordError(authError);
+      const errorMessage = getErrorMessage(error, locale);
+      setResetPasswordError(errorMessage);
     } finally {
       setIsLoading(false);
     }

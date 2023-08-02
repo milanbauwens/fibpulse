@@ -1,10 +1,10 @@
 import { AuthError } from '@supabase/supabase-js';
 
-export const handleAuthError = (error, locale) => {
-  if (error instanceof AuthError) {
-    // Check if locale starts with the desired language code (e.g., 'nl')
-    const isDutch = locale.includes('nl');
+export const getErrorMessage = (error, locale) => {
+  // Check if locale starts with the desired language code (e.g., 'nl')
+  const isDutch = locale.includes('nl');
 
+  if (error instanceof AuthError) {
     switch (error.message) {
       // Login errors
       case 'A user with this email address has already been registered':
@@ -38,6 +38,6 @@ export const handleAuthError = (error, locale) => {
         return error.message;
     }
   } else {
-    // Handle non-AuthError errors if necessary
+    return isDutch ? 'Er is iets misgelopen.' : 'Something went wrong.';
   }
 };

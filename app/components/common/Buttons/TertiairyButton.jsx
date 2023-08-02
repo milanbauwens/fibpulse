@@ -11,12 +11,12 @@ const TertiairyButton = ({ type, label, action, onPress, props }) => {
       <Text
         style={{ fontFamily: 'Bitter-semibold' }}
         className={`${
-          type === 'error' ? 'text-red-600' : 'text-deepMarine-900'
+          type === 'error' ? 'text-[#FF3B30]' : 'text-deepMarine-900'
         } text-center text-base `}
       >
         {label}{' '}
         <Text
-          className={`${type === 'error' ? 'text-red-600' : 'text-deepMarine-500'} `}
+          className={`${type === 'error' ? 'text-[#FF3B30]' : 'text-deepMarine-500'} `}
           style={{ fontFamily: 'Bitter-semibold' }}
         >
           {action}
