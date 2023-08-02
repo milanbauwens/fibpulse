@@ -66,13 +66,13 @@ const Intake = ({ route }) => {
     onSuccess: () => {
       queryClient.invalidateQueries('medical_profile');
       if (fromSettings) {
-        navigation.navigate('Main', { screen: 'Settings' });
+        navigation.navigate('MedicalProfile');
       } else {
         navigation.navigate('Main');
       }
     },
     onError: () => {
-      console.log('error');
+      throw new Error(t('error.generic'));
     },
   });
 

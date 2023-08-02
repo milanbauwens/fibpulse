@@ -46,7 +46,7 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
       setIsVisible(false);
     },
     onError: () => {
-      console.log('error');
+      throw new Error(t('error.generic'));
     },
   });
 

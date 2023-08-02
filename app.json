@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Fibpulse",
-    "slug": "Fibpulse",
+    "slug": "fibpulse",
     "version": "1.0.0",
     "scheme": "fibpulse",
     "orientation": "portrait",
