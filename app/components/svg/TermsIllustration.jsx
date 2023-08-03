@@ -4,7 +4,7 @@ import Svg, { Circle, Path, Rect } from 'react-native-svg';
 function TermsIllustration(props) {
   return (
     <Svg
-      width={350}
+      width="100%"
       height={250}
       viewBox="0 0 350 250"
       fill="none"

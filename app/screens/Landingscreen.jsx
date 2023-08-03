@@ -46,10 +46,13 @@ const Landingscreen = () => {
           scrollEventThrottle={16}
           ref={slidesRef}
         />
-        <OnboardingNavigator data={slides} scrollX={scrollX} />
       </View>
 
       <View style={{ bottom: bottom + 8 }} className="absolute w-full mx-auto px-5">
+        <View className="mb-6">
+          <OnboardingNavigator data={slides} scrollX={scrollX} />
+        </View>
+
         <View className="mb-2">
           <PrimaryButton
             icon={<Icon name="mail-outline" size={24} color="white" />}

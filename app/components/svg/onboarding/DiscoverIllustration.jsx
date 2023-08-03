@@ -1,11 +1,14 @@
 import * as React from 'react';
+import { useWindowDimensions } from 'react-native';
 import Svg, { ClipPath, Defs, Ellipse, G, Path } from 'react-native-svg';
 
 function DiscoverIllustration(props) {
+  const { height } = useWindowDimensions();
+
   return (
     <Svg
       width="100%"
-      height={301}
+      height={height * 0.3}
       viewBox="0 0 390 301"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

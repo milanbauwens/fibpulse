@@ -1,11 +1,14 @@
 import * as React from 'react';
+import { useWindowDimensions } from 'react-native';
 import Svg, { Circle, Defs, G, LinearGradient, Mask, Path, Rect, Stop } from 'react-native-svg';
 
 function MeasurePulse(props) {
+  const { height } = useWindowDimensions();
+
   return (
     <Svg
       width="100%"
-      height={350}
+      height={height * 0.45}
       viewBox="0 0 350 350"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
