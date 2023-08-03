@@ -59,9 +59,11 @@ const EpisodeChart = () => {
           {selectedView === 'week'
             ? `${startOfWeekDate.toLocaleDateString(locale, {
                 day: 'numeric',
+                month: 'numeric',
               })} - ${endOfWeekDate.toLocaleDateString(locale, {
                 day: 'numeric',
-              })} ${endOfWeekDate.toLocaleDateString(locale, { month: 'long' })}`
+                month: 'numeric',
+              })} `
             : dateObj.getFullYear()}
         </Paragraph>
         <Animated.View className="rounded-full p-1 bg-deepMarine-100 flex flex-row">

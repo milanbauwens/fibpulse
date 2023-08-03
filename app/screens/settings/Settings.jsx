@@ -1,11 +1,12 @@
 import { useQueryClient } from '@tanstack/react-query';
+import Constants from 'expo-constants';
 import { Animated, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import SettingsItem from '../../components/SettingsItem/SettingsItem';
 import { useAuthContext } from '../../components/auth/AuthProvider';
 import Label from '../../components/common/Label/Label';
 import { Paragraph } from '../../components/common/Typography';
-import SettingsItem from '../../components/SettingsItem/SettingsItem';
 import { signOut } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 
@@ -98,7 +99,7 @@ const Settings = ({ navigation }) => {
         style={{ marginBottom: bottom + 8 }}
         className="text-xs text-center text-deepMarine-400"
       >
-        Fibpulse v1.0.0{' '}
+        {`Fibpulse v${Constants.expoConfig.version}`}
       </Text>
     </Animated.ScrollView>
   );

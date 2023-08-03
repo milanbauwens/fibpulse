@@ -19,7 +19,7 @@ const SectionCard = ({
   <Card className="w-full bg-white rounded-lg relative shadow-card-md border border-deepMarine-100 mb-6">
     {withIllustration && (
       <View className="w-full h-44 rounded-t-lg bg-ochre-300 flex items-center">
-        <View className=" w-64 mt-[-42]">{illustration}</View>
+        <View className=" w-64 mt-[-18]">{illustration}</View>
       </View>
     )}
     <View className="p-4">
