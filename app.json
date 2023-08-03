@@ -2,7 +2,7 @@
   "expo": {
     "name": "Fibpulse",
     "slug": "fibpulse",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "scheme": "fibpulse",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.milanbauwens.fibpulse",
-      "buildNumber": "2.0.0",
+      "buildNumber": "3.0.0",
       "jsEngine": "jsc"
     },
     "android": {
