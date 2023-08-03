@@ -20,7 +20,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.milanbauwens.fibpulse",
-      "buildNumber": "2",
+      "buildNumber": "2.0.0",
       "jsEngine": "jsc"
     },
     "android": {
