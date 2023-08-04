@@ -1,4 +1,4 @@
-import { useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Constants from 'expo-constants';
 import { Animated, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import { useAuthContext } from '../../components/auth/AuthProvider';
 import Label from '../../components/common/Label/Label';
 import { Paragraph } from '../../components/common/Typography';
 import { signOut } from '../../core/db/modules/auth/api';
+import { getIntakeCompletion } from '../../core/db/modules/medical_profiles/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 
 const Settings = ({ navigation }) => {
@@ -15,6 +16,12 @@ const Settings = ({ navigation }) => {
   const { bottom } = useSafeAreaInsets();
   const { t } = useTranslations();
   const QueryClient = useQueryClient();
+
+  // Check medical profile status
+  const { data: medicalProfile, isLoading } = useQuery({
+    queryKey: ['medical_profile'],
+    queryFn: getIntakeCompletion,
+  });
 
   const scrollY = new Animated.Value(0);
 
@@ -47,6 +54,7 @@ const Settings = ({ navigation }) => {
           onPress={() => navigation.navigate('Profile')}
         />
         <SettingsItem
+          requiresAttention={!isLoading && !medicalProfile?.data.passed_intake}
           iconName="medical-cross-outline"
           title={t('settings.profile.medicalProfile')}
           onPress={() => navigation.navigate('MedicalProfile')}

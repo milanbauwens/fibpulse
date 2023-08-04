@@ -10,6 +10,7 @@ const SettingsItem = ({
   title,
   iconName,
   onPress,
+  requiresAttention = false,
   withToggle = false,
   toggleState,
 }) => {
@@ -24,10 +25,16 @@ const SettingsItem = ({
     >
       <View className="flex flex-row items-center">
         <View
-          className={`w-8 h-8 mr-4 flex items-center justify-center ${
+          className={`relative w-8 h-8 mr-4 flex items-center justify-center ${
             type === 'error' ? 'bg-red-100' : ' bg-turquoise-200'
           } rounded-full`}
         >
+          {requiresAttention && (
+            <View
+              style={{ backgroundColor: colors.red[600] }}
+              className="w-2 h-2 absolute top-0 right-0 rounded-full"
+            />
+          )}
           <Icon
             name={iconName}
             size={20}
