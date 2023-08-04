@@ -32,7 +32,7 @@
 ## Tracking your heart disorder with Fibpulse
 
 <p align="center">
-  <img src="./assets/images/fibpulse_mockup.png" alt="Preview" width="400px">
+  <img src="./assets/images/fibpulse_mockup.png" alt="Preview" width="600px">
 </p>
 
 Currently, 1 in 4 people face the risk of heart disorders beyond their 40s, we recognize that heart health is a crucial component of overall well-being. At Fibpulse, we are committed to empowering you with the tools you need to actively monitor and manage heart conditions, with a special focus on atrial fibrillation.
