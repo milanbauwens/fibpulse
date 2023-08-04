@@ -146,7 +146,7 @@
         "tachycardia": "Tachycardia",
         "vfib": "Ventricular fibrillation",
         "other": "Other heart disorder",
-        "none": "I don't have one"
+        "none": "No heart disorder"
       }
     },
     "frequency": {
