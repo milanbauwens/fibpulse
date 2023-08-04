@@ -81,7 +81,24 @@ export const HEART_DISORDERS = [
     value: 'afib',
   },
   {
+    label: 'vfib',
+    value: 'vfib',
+  },
+  {
+    label: 'bradycardia',
+    value: 'bradycardia',
+  },
+
+  {
+    label: 'tachycardia',
+    value: 'tachycardia',
+  },
+  {
     label: 'other',
     value: 'other',
+  },
+  {
+    label: 'none',
+    value: 'none',
   },
 ];

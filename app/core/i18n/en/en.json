@@ -142,7 +142,11 @@
       "question": "Which heart disorder do you have?",
       "options": {
         "afib": "Atrial fibrillation",
-        "other": "Other heart disorder"
+        "bradycardia": "Bradycardia",
+        "tachycardia": "Tachycardia",
+        "vfib": "Ventricular fibrillation",
+        "other": "Other heart disorder",
+        "none": "I don't have one"
       }
     },
     "frequency": {

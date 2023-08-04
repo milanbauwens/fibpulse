@@ -145,7 +145,11 @@
       "question": "Welke hartritmestoornis werd bij u reeds vastgesteld?",
       "options": {
         "afib": "Voorkamerfibrilatie",
-        "other": "Een andere ritmestoornis"
+        "vfib": "Ventrikelfibrilleren",
+        "bradycardia": "Bradycardie",
+        "tachycardia": "Tachycardie",
+        "other": "Een andere ritmestoornis",
+        "none": "Ik heb geen ritmestoornis"
       }
     },
     "frequency": {

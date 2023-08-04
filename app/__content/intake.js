@@ -15,7 +15,7 @@ module.exports = [
     column: 'heart_disorder',
     type: 'select',
     question: 'heartDisease',
-    options: ['afib', 'other'],
+    options: ['afib', 'bradycardia', 'tachycardia', 'vfib', 'other', 'none'],
   },
   {
     type: 'select',

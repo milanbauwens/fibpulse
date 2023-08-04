@@ -38,8 +38,12 @@ const Intake = ({ route }) => {
   const scrollTo = async () => {
     handleUpdate();
     if (currentSlide < slides.length - 1) {
-      slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
-      setIsDisabled(true);
+      if (column === 'heart_disorder' && selected === 'none') {
+        slidesRef.current.scrollToIndex({ index: currentSlide + 3 });
+      } else {
+        slidesRef.current.scrollToIndex({ index: currentSlide + 1 });
+        setIsDisabled(true);
+      }
     } else {
       await setPassedIntake.mutateAsync();
     }
