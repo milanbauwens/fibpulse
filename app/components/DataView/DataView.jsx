@@ -10,6 +10,7 @@ const DataView = ({ data }) => {
       {dataArray.map(
         ([label, { data: medicalData, tag, options, method, column, type }], index) => {
           const hasBorder = index < dataArray.length - 1;
+
           return (
             <DataViewItem
               hasBorder={hasBorder}

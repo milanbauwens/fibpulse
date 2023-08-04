@@ -24,7 +24,7 @@ const DataViewItem = ({ data, options, label, method, tag, column, type, hasBord
 
   useEffect(() => {
     // Localize data in Array
-    if (type === 'multi') {
+    if (data && type === 'multi') {
       const localizedData = data && data.map((item) => t(`medicalProfile.${tag}.options.${item}`));
       setLocalizedArray(localizedData);
     }
