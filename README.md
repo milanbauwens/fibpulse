@@ -71,7 +71,7 @@ One way to test Fibpulse, is to download the Expo Go app on your phone and scan 
 ### User
 
     Email: user@fibpulse.com
-    password: secret123
+    Password: secret123
 
 <br />
 
