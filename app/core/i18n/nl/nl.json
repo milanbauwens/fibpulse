@@ -296,6 +296,7 @@
     "detail": {
       "start": "Begin",
       "end": "Einde",
+      "manual": "Handmatige meting",
       "duration": "Dit hartmoment duurde ongeveer",
       "delete": {
         "title": "Hartmoment verwijderen",

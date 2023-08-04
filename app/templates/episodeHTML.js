@@ -5,7 +5,7 @@ export const episodeHTML = (data) => {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Mulish:wght@500;700&display=swap" rel="stylesheet">
-    <title>Hartmoment - ${data.startDate}</title>
+    <title>Heartmoment - ${data.startDate}</title>
       <style>
         * {
           margin: 0;
@@ -87,7 +87,7 @@ export const episodeHTML = (data) => {
     <body>
       <div class="header">
         <div>
-          <p class="text--medium">Overzicht hartmoment</p>
+          <p class="text--medium">Overview of heartmoment</p>
           <h1>${data.startDate}</h1>
         </div>
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,53 +121,53 @@ export const episodeHTML = (data) => {
       </div>
 
       <div class="user-data">
-        <p class="text--medium text--mb">Gegevens gebruiker:</p>
+        <p class="text--medium text--mb">User information:</p>
         <div class="container--bg">
           <div>
-            <p class="text--bold">Naam</p>
+            <p class="text--bold">Name</p>
             <p class="text--medium">${data.fullName}</p>
           </div>
           <div>
-            <p class="text--bold">Geboortejaar</p>
+            <p class="text--bold">Year of birth</p>
             <p class="text--medium">${data.yearOfBirth}</p>
           </div>
           <div>
-            <p class="text--bold">Hartritmestoornis</p>
+            <p class="text--bold">Heart disorder</p>
             <p class="text--medium">${data.heartDisorder}</p>
           </div>
         </div>
       </div>
 
       <div>
-        <p class="text--medium text--mb">Hartmoment vaststellingen:</p>
+        <p class="text--medium text--mb">Details heartmoment:</p>
         <div class="content">
           <div class="content-item">
             <div>
-              <p class="text--bold">Begin moment</p>
+              <p class="text--bold">Start of irregular heartbeat</p>
               <p class="text--medium">${data.start}</p>
             </div>
             <div>
-              <p class="text--bold">Einde moment</p>
+              <p class="text--bold">End of irregular heartbeat</p>
               <p class="text--medium">${data.end}</p>
             </div>
           </div>
           <div class="content-item">
             <div>
-              <p class="text--bold">Hartslag</p>
+              <p class="text--bold">Pulse</p>
               <p class="text--medium">${data.pulse} slagen per minuut</p>
             </div>
             <div>
-              <p class="text--bold">Hartslag handmatig vastgesteld </p>
+              <p class="text--bold">Pulse was determined manually </p>
               <p class="text--medium">${data.isMedicalApproved}</p>
             </div>
           </div>
           <div class="content-item">
             <div>
-              <p class="text--bold">Activiteit voor moment</p>
+              <p class="text--bold">Activity</p>
               <p class="text--medium">${data.activity}</p>
             </div>
             <div>
-              <p class="text--bold">Symptomen</p>
+              <p class="text--bold">Symptoms</p>
               <p class="text--medium">${data.symptoms.join(', ')}</p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export const episodeHTML = (data) => {
       </div>
 
       <div>
-        <p class="text--bold">Opmerkingen</p>
+        <p class="text--bold">Notes</p>
         <p class="text--medium">${data.notes}</p>
       </div>
 

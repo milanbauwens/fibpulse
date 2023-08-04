@@ -293,6 +293,7 @@
     "detail": {
       "start": "Start",
       "end": "End",
+      "manual": "Manually measured",
       "duration": "This moment lasted around",
       "delete": {
         "title": "Delete heartmoment",

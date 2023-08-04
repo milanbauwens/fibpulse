@@ -59,15 +59,14 @@ const Detail = ({ route, navigation }) => {
     startDate: formatDate(start_date, 'full', locale),
     fullName: `${user.firstname} ${user.lastname}`,
     heartDisorder:
-      t(`medicalProfile.heartDisease.options.${medicalProfile?.data?.heart_disorder}`) ||
-      'Onbekend',
-    yearOfBirth: medicalProfile?.data?.year_of_birth || 'Onbekend',
+      t(`medicalProfile.heartDisease.options.${medicalProfile?.data?.heart_disorder}`) || 'Unknown',
+    yearOfBirth: medicalProfile?.data?.year_of_birth || 'Unknown',
     pulse,
     activity: t(`episodes.intake.activity.options.${activity}`),
     symptoms:
       symptoms && symptoms.map((symptom) => t(`episodes.intake.symptoms.options.${symptom}`)),
     notes: notes || 'Geen opmerkingen',
-    isMedicalApproved: is_medical_approved ? 'Nee' : 'Ja',
+    isMedicalApproved: is_medical_approved ? 'No' : 'Yes',
     start: `${formatDate(start_date, 'time', locale)} - ${formatDate(start_date, 'full', locale)}`,
     end: `${formatDate(end_date, 'time', locale)} - ${formatDate(end_date, 'full', locale)}`,
   };
@@ -264,7 +263,7 @@ const Detail = ({ route, navigation }) => {
                     <View className="w-full flex flex-row items-center mt-3 p-3 rounded-lg bg-ochre-500">
                       <Icon name="alert-triangle" size={24} color={colors.ochre[900]} />
                       <Paragraph textColor="text-ochre-900" isStrong styles="ml-3">
-                        Handmatige meting
+                        {t('episodes.detail.manual')}{' '}
                       </Paragraph>
                     </View>
                   )}
