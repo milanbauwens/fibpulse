@@ -91,14 +91,14 @@ const Item = ({ type, data, onSelect }) => {
         <Title size="large">{t(`${type}.${data.question}.question`)}</Title>
         {data.description && <Paragraph>{t(`${type}.${data.question}.description`)}</Paragraph>}
       </View>
-
-      {(data.type === 'select' || data.type === 'spot-select') && (
-        <View className="mt-8">
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 250, paddingHorizontal: 20 }}
-            className="w-full flex h-full flex-col"
-          >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 164, paddingHorizontal: 20 }}
+        className="mt-8 w-full flex h-full flex-col"
+      >
+        {/* Select & select with spot illustrations */}
+        {(data.type === 'select' || data.type === 'spot-select') && (
+          <>
             {data.options.map((option, index) => {
               const isSelected = selected === option;
 
@@ -164,43 +164,40 @@ const Item = ({ type, data, onSelect }) => {
                 </TouchableOpacity>
               );
             })}
-          </ScrollView>
-        </View>
-      )}
+          </>
+        )}
 
-      <View className="px-5">
-        <View className="mt-8">
-          {data.type === 'multiselect' && (
-            <MultiSelect
-              data={data.options}
-              onChange={(values) => setSelected(values)}
-              translationKey={data.translationKey}
-            />
-          )}
+        {/* Multiselect */}
+        {data.type === 'multiselect' && (
+          <MultiSelect
+            data={data.options}
+            onChange={(values) => setSelected(values)}
+            translationKey={data.translationKey}
+          />
+        )}
 
-          {data.type === 'measurement' && (
-            <View className="w-full flex flex-row items-center justify-around">
-              <TouchableOpacity activeOpacity={0.8} onPress={handleTimerStartPause}>
-                <Icon
-                  name={timerActive ? 'pause' : 'play-outline'}
-                  size={24}
-                  color={colors.turquoise[700]}
-                />
-              </TouchableOpacity>
-              <View className="flex flex-row items-center">
-                <View className="p-3 bg-ochre-300 rounded-lg">
-                  <Title size="large">{Math.floor(seconds / 10)}</Title>
-                </View>
-                <View className="p-3 bg-ochre-300 rounded-lg ml-2">
-                  <Title size="large">{seconds % 10}</Title>
-                </View>
+        {data.type === 'measurement' && (
+          <View className="w-full flex flex-row items-center justify-around">
+            <TouchableOpacity activeOpacity={0.8} onPress={handleTimerStartPause}>
+              <Icon
+                name={timerActive ? 'pause' : 'play-outline'}
+                size={24}
+                color={colors.turquoise[700]}
+              />
+            </TouchableOpacity>
+            <View className="flex flex-row items-center">
+              <View className="p-3 bg-ochre-300 rounded-lg">
+                <Title size="large">{Math.floor(seconds / 10)}</Title>
               </View>
-              <TouchableOpacity activeOpacity={0.8} onPress={handleTimerReset}>
-                <Icon name="loop" size={24} color={colors.turquoise[700]} />
-              </TouchableOpacity>
+              <View className="p-3 bg-ochre-300 rounded-lg ml-2">
+                <Title size="large">{seconds % 10}</Title>
+              </View>
             </View>
-          )}
-        </View>
+            <TouchableOpacity activeOpacity={0.8} onPress={handleTimerReset}>
+              <Icon name="loop" size={24} color={colors.turquoise[700]} />
+            </TouchableOpacity>
+          </View>
+        )}
 
         {data.type === 'picker' && (
           <View>
@@ -287,7 +284,7 @@ const Item = ({ type, data, onSelect }) => {
             />
           </View>
         )}
-      </View>
+      </ScrollView>
     </View>
   );
 };
