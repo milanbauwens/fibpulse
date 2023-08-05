@@ -65,7 +65,7 @@ const Detail = ({ route, navigation }) => {
     activity: t(`episodes.intake.activity.options.${activity}`),
     symptoms:
       symptoms && symptoms.map((symptom) => t(`episodes.intake.symptoms.options.${symptom}`)),
-    notes: notes || 'Geen opmerkingen',
+    notes: notes || 'No notes',
     isMedicalApproved: is_medical_approved ? 'No' : 'Yes',
     start: `${formatDate(start_date, 'time', locale)} - ${formatDate(start_date, 'full', locale)}`,
     end: `${formatDate(end_date, 'time', locale)} - ${formatDate(end_date, 'full', locale)}`,
