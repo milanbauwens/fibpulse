@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
 import Card from '../components/common/Card/Card';
 import { Paragraph } from '../components/common/Typography';
@@ -48,19 +48,24 @@ const Terms = () => {
         <Title size="small">{t('terms.disclaimer.title')}</Title>
         <Paragraph>{t('terms.disclaimer.description')}</Paragraph>
       </View>
-      <View className="mb-12">
+      <View className="mb-10">
         <Title size="small">{t('terms.changes.title')}</Title>
         <Paragraph>{t('terms.changes.description')}</Paragraph>
       </View>
 
-      <Card className="bg-deepMarine-100 p-4 rounded-lg">
-        <View className="mb-2">
-          <Title size="small">{t('privacy.contact')}</Title>
-        </View>
+      <Card className="bg-deepMarine-100 p-4 rounded-lg mb-6">
+        <Title size="small">{t('privacy.contact')}</Title>
         <Paragraph>milabauw@student.arteveldehs.be</Paragraph>
         <Paragraph>+32 474 77 81 96</Paragraph>
         <Paragraph>Hovenierstraat 70, 9940 Evergem </Paragraph>
       </Card>
+
+      <Text
+        style={{ fontFamily: 'Mulish-medium' }}
+        className="flex-1 text-center text-turquoise-500 text-xs"
+      >
+        {t('terms.info')}
+      </Text>
     </ScrollView>
   );
 };
