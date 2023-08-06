@@ -230,6 +230,8 @@
         "description": "U kan meerdere symptomen selecteren.",
         "options": {
           "none": "Geen opmerkelijke symptomen",
+          "heartPalpitations": "Hartkloppingen",
+          "heartSkipping": "Hartoverslagen",
           "chestPain": "Pijn op de borst",
           "lightHeaded": "Licht in het hoofd",
           "breathing": "Kortademigheid",

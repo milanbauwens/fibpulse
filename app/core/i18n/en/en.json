@@ -227,6 +227,8 @@
         "description": "U can select multiple symptoms.",
         "options": {
           "none": "No symptoms",
+          "heartPalpitations": "Heart palpitations",
+          "heartSkipping": "Heart skipping",
           "chestPain": "Chest pain",
           "lightHeaded": "Light headed",
           "breathing": "Breathing problems",

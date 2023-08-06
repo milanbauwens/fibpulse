@@ -34,6 +34,8 @@ module.exports = [
     column: 'symptoms',
     options: [
       'none',
+      'heartPalpitations',
+      'heartSkipping',
       'chestPain',
       'lightHeaded',
       'breathing',
