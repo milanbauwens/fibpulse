@@ -2,6 +2,7 @@
   "expo": {
     "name": "Fibpulse",
     "slug": "fibpulse",
+    "version": "3.0.5",
     "scheme": "fibpulse",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
