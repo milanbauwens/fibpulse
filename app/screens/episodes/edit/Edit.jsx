@@ -17,6 +17,8 @@ import { useTranslations } from '../../../core/i18n/LocaleProvider';
 const activityOptions = ['sleeping', 'sitting', 'walking', 'standing', 'sports', 'other'];
 const symptomsOptions = [
   'none',
+  'heartPalpitations',
+  'heartSkipping',
   'chestPain',
   'lightHeaded',
   'breathing',
