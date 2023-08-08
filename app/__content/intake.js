@@ -38,7 +38,6 @@ module.exports = [
     options: [
       'stress',
       'apnea',
-
       'smoking',
       'diabetes',
       'overweight',

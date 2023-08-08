@@ -6,9 +6,10 @@ import CTACard from '../components/CTACard/CTACard';
 import EpisodeChart from '../components/EpisodeChart/EpisodeChart';
 import Insights from '../components/Insights/Insights';
 import SectionCard from '../components/SectionCard/SectionCard';
+import { useAuthContext } from '../components/auth/AuthProvider';
 import FeedbackMessage from '../components/common/FeedbackMessage/FeedbackMessage';
 import { Icon } from '../components/common/Icon/Icon';
-import { Paragraph } from '../components/common/Typography';
+import { Paragraph, Title } from '../components/common/Typography';
 import { LifestyleIllustration } from '../components/svg/onboarding';
 import { getLatestEpisode } from '../core/db/modules/episodes/api';
 import { useTranslations } from '../core/i18n/LocaleProvider';
@@ -17,6 +18,7 @@ import colors from '../theme/colors';
 
 const Home = ({ navigation }) => {
   const { t } = useTranslations();
+  const { user } = useAuthContext();
 
   const [daysSince, setDaysSince] = useState(0);
   const [errorVisible, setErrorVisible] = useState(!!error);
@@ -70,7 +72,8 @@ const Home = ({ navigation }) => {
         scrollEventThrottle={16}
         className="w-full h-screen bg-white px-5"
       >
-        <View className="mb-8">
+        <View className="mb-4">
+          <Title size="large">{t('home.greeting', { name: user.firstname })}</Title>
           {daysSince === 0 ? (
             <Paragraph>
               {`${t('home.daysSince.null.first')} `}

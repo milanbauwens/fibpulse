@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SettingsItem from '../../components/SettingsItem/SettingsItem';
 import { useAuthContext } from '../../components/auth/AuthProvider';
 import Label from '../../components/common/Label/Label';
-import { Paragraph } from '../../components/common/Typography';
+import { Paragraph, Title } from '../../components/common/Typography';
 import { signOut } from '../../core/db/modules/auth/api';
 import { getIntakeCompletion } from '../../core/db/modules/medical_profiles/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
@@ -37,10 +37,10 @@ const Settings = ({ navigation }) => {
       })}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={false}
-      style={{ paddingTop: 0 }}
       className="bg-white h-screen px-5"
     >
       <View className="mb-10">
+        <Title size="large">{`${user.firstname} ${user.lastname}`}</Title>
         <Paragraph>{user.email}</Paragraph>
       </View>
 

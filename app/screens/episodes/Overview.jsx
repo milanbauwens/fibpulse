@@ -8,6 +8,7 @@ import EmptyState from '../../components/common/EmptyState/EmptyState';
 import FeedbackMessage from '../../components/common/FeedbackMessage/FeedbackMessage';
 import { Icon } from '../../components/common/Icon/Icon';
 import { EpisodeSkeleton } from '../../components/common/Skeleton';
+import { Title } from '../../components/common/Typography';
 import EpisodesEmptyState from '../../components/svg/EpisodesEmptyState';
 import { getEpisodesByDate } from '../../core/db/modules/episodes/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
@@ -59,9 +60,12 @@ const Overview = ({ navigation }) => {
           },
         })}
         contentContainerStyle={{ paddingBottom: 48 }}
-        style={{ paddingTop: 16 }}
         className="w-full h-screen bg-white px-5"
       >
+        <View className="mb-4">
+          <Title size="large">{t('episodes.title')}</Title>
+        </View>
+
         <EpisodePaginator onChange={(date) => setDate(date)} />
 
         {!isLoading ? (
@@ -106,7 +110,7 @@ const Overview = ({ navigation }) => {
         )}
       </Animated.ScrollView>
       <FeedbackMessage
-        isVisible
+        isVisible={errorVisible}
         icon="alert-triangle"
         type="error"
         content={t('error.generic')}

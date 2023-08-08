@@ -21,7 +21,11 @@ const Discover = ({ navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity activeOpacity={0.8} onPress={() => setIsSourcesVisible(true)}>
+        <TouchableOpacity
+          className="w-8 h-8 bg-white flex items-center justify-center"
+          activeOpacity={0.8}
+          onPress={() => setIsSourcesVisible(true)}
+        >
           <Icon name="info-circle-outline" size={24} />
         </TouchableOpacity>
       ),
@@ -77,6 +81,10 @@ const Discover = ({ navigation }) => {
         contentContainerStyle={{ paddingBottom: 24 }}
         className="w-full h-screen bg-white"
       >
+        <View className="mb-4 px-5">
+          <Title size="large">{t('discover.title')}</Title>
+        </View>
+
         {categories.map((category) => (
           <DiscoverSlider
             width={cardWith}
