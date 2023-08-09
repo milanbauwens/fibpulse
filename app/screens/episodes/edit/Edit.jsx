@@ -193,6 +193,7 @@ const Edit = ({ route }) => {
             <Input
               placeholder={t('input.textarea.placeholder')}
               variant="textarea"
+              blurOnSubmit={false}
               inputMode="text"
               returnKeyType="done"
               onSubmitEditing={() => Keyboard.dismiss()}

@@ -10,7 +10,7 @@ const DateTimePicker = ({ initialDate, initialTime, onChange }) => {
   const { t, locale } = useTranslations();
 
   const [date, setDate] = useState(initialDate ? new Date(initialDate) : new Date());
-  const [time, setTime] = useState(initialTime ? new Date(initialTime) : undefined);
+  const [time, setTime] = useState(initialTime ? new Date(initialTime) : new Date());
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -74,15 +74,17 @@ const DateTimePicker = ({ initialDate, initialTime, onChange }) => {
               ? time.toLocaleTimeString(locale, {
                   hour: '2-digit',
                   minute: '2-digit',
-                  hourCycle: 'h24',
+                  hourCycle: 'h23',
                 })
               : ''
           }
           icon="clock-outline"
           showSoftInputOnFocus={false}
+          onPressIn={() => setTimePickerVisibility(true)}
           onFocus={() => setTimePickerVisibility(true)}
         />
         <DateTimePickerModal
+          date={time}
           isVisible={isTimePickerVisible}
           mode="time"
           locale="en_GB"

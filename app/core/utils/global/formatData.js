@@ -18,7 +18,7 @@ export const formatDate = (date, format = 'full' | 'short' | 'time', locale) => 
       return dateObject.toLocaleTimeString(locale, {
         hour: '2-digit',
         minute: '2-digit',
-        hourCycle: 'h24',
+        hourCycle: 'h23',
       });
     default:
       return dateObject.toLocaleDateString(locale, {

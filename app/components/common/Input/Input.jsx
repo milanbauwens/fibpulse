@@ -10,6 +10,7 @@ const Input = ({
   placeholder,
   error,
   inputMode,
+  blurOnSubmit,
   onFocus,
   returnKeyType,
   onPressIn,
@@ -39,6 +40,7 @@ const Input = ({
       value={value}
       inputMode={inputMode}
       onFocus={onFocus}
+      blurOnSubmit={blurOnSubmit}
       secureTextEntry={false}
       returnKeyType={returnKeyType}
       onPressIn={onPressIn}
