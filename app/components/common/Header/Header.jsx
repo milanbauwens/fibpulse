@@ -15,7 +15,10 @@ const Header = ({ title, headerLeft, headerRight }) => {
       <View style={{ paddingTop: paddingTop + 12 }} className="absolute left-5">
         {headerLeftComponent}
       </View>
-      <Text style={{ fontFamily: 'Mulish-semibold' }} className="text-center text-lg">
+      <Text
+        style={{ fontFamily: 'Mulish-bold' }}
+        className="text-base text-center text-turquoise-700"
+      >
         {title}
       </Text>
       <View style={{ paddingTop: paddingTop + 12 }} className="absolute right-5">

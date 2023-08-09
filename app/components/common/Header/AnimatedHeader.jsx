@@ -37,7 +37,7 @@ const AnimatedHeader = ({ title, headerRight, scrollY }) => {
 
         <Animated.Text
           style={{ fontFamily: 'Mulish-bold', opacity }}
-          className="text-base text-turquoise-700"
+          className="text-base text-turquoise-700 text-center"
         >
           {title}
         </Animated.Text>
