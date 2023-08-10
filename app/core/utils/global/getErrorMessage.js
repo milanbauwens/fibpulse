@@ -25,6 +25,8 @@ export const getErrorMessage = (error, locale) => {
         return isDutch ? 'De verificatie link die u gebruikte werkt niet. ' : error.message;
       case 'Verification link expired':
         return isDutch ? 'De verificatie link die u gebruikte is vervallen.' : error.message;
+      case 'Email not confirmed':
+        return isDutch ? 'Verifieer uw email.' : error.message;
       // Password reset errors
       case 'Error resetting password':
         return isDutch
@@ -35,7 +37,7 @@ export const getErrorMessage = (error, locale) => {
       case 'Password mismatch':
         return isDutch ? 'Het ingevoerde wachtwoord is fout.' : error.message;
       default:
-        return error.message;
+        return isDutch ? 'Er is iets misgelopen.' : 'Something went wrong.';
     }
   } else {
     return isDutch ? 'Er is iets misgelopen.' : 'Something went wrong.';

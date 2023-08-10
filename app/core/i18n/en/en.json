@@ -47,6 +47,11 @@
     "description": "Fill in your new password for %{email} and confirm it",
     "cta": "Reset password"
   },
+  "verifyEmail": {
+    "title": "Verify your e-mail",
+    "description": "In order to continue, you first have to verify your e-mail address by clicking the link in the e-mail we send you.",
+    "cta": "E-mail verified"
+  },
   "home": {
     "greeting": "Hello %{name}",
     "daysSince": {

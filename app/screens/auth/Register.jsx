@@ -30,12 +30,13 @@ const Register = () => {
   async function handleRegister({ email, password, firstname, lastname }) {
     setIsLoading(true);
     try {
-      await SignUp(email, password, { firstname, lastname });
+      await SignUp(email, password, { firstname, lastname, hasMedicalProfile: false });
     } catch (error) {
       const errorMessage = getErrorMessage(error, locale);
       setSignUpError(errorMessage);
     } finally {
       setIsLoading(false);
+      navigation.navigate('VerifyEmail');
     }
   }
 

@@ -1,5 +1,5 @@
 import { supabase } from '../../initSupabase';
-import { getCurrentSession } from '../auth/api';
+import { UpdateUser, getCurrentSession } from '../auth/api';
 
 export const getMedicalProfile = async () => {
   const session = await getCurrentSession();
@@ -18,6 +18,7 @@ export const getMedicalProfile = async () => {
 export const createMedicalProfile = async () => {
   const session = await getCurrentSession();
   const user_id = session.user?.id;
+  const email = session.user?.email;
 
   const { data, error } = await supabase.from('medical_profiles').upsert({
     user_id,
@@ -25,6 +26,8 @@ export const createMedicalProfile = async () => {
 
   if (error) {
     return Promise.reject(error);
+  } else {
+    await UpdateUser(email, { hasMedicalProfile: true });
   }
 
   return Promise.resolve(data);

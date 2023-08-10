@@ -10,7 +10,7 @@ const DateTimePicker = ({ initialDate, initialTime, onChange }) => {
   const { t, locale } = useTranslations();
 
   const [date, setDate] = useState(initialDate ? new Date(initialDate) : new Date());
-  const [time, setTime] = useState(initialTime ? new Date(initialTime) : new Date());
+  const [time, setTime] = useState(initialTime ? new Date(initialTime) : undefined);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);

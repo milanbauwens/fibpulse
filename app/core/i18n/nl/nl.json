@@ -50,6 +50,11 @@
     "description": "Kies een nieuw wachtwoord voor %{email} en bevestig het.",
     "cta": "Wachtwoord bevestigen"
   },
+  "verifyEmail": {
+    "title": "Verifieer uw email",
+    "description": "Om door te gaan, moet u uw e-mailadres verifiëren. Controleer uw inbox of spam en volg de stappen.",
+    "cta": "E-mail geverifieerd"
+  },
   "home": {
     "greeting": "Dag %{name}",
     "daysSince": {

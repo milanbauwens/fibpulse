@@ -1,5 +1,4 @@
 import { getHeaderTitle } from '@react-navigation/elements';
-import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
@@ -10,6 +9,7 @@ import Home from '../../screens/Home';
 import Landingscreen from '../../screens/Landingscreen';
 import Privacy from '../../screens/Privacy';
 import Terms from '../../screens/Terms';
+import VerifyEmail from '../../screens/auth/VerifyEmail';
 import {
   EpisodeConfirmationScreen,
   EpisodeCreateScreen,
@@ -33,14 +33,10 @@ import { useTranslations } from '../i18n/LocaleProvider';
 import AuthStack from './AuthStack';
 
 export const Stack = () => {
-  const navigation = useNavigation();
-  const { isLoggedIn } = useAuthContext();
+  const { isLoggedIn, user } = useAuthContext();
   const { t } = useTranslations();
 
   const Stack = createNativeStackNavigator();
-
-  const routes = navigation.getState()?.routes;
-  const prevRoute = routes && routes[routes.length - 1];
 
   const screenOptions = () => ({
     gestureEnabled: false,
@@ -79,7 +75,7 @@ export const Stack = () => {
   if (isLoggedIn) {
     return (
       <Stack.Navigator screenOptions={screenOptions}>
-        {prevRoute?.params?.screen === 'Register' ? (
+        {!user.hasMedicalProfile ? (
           <>
             <Stack.Screen
               name="IntakeStart"
@@ -87,13 +83,6 @@ export const Stack = () => {
               options={{
                 headerShown: false,
               }}
-            />
-            <Stack.Screen
-              name="Intake"
-              options={{
-                headerShown: false,
-              }}
-              component={Intake}
             />
           </>
         ) : null}
@@ -105,6 +94,14 @@ export const Stack = () => {
             headerShown: false,
           }}
           component={BottomNavigation}
+        />
+
+        <Stack.Screen
+          name="Intake"
+          options={{
+            headerShown: false,
+          }}
+          component={Intake}
         />
 
         {/* Home */}
@@ -254,6 +251,7 @@ export const Stack = () => {
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="Landing" component={Landingscreen} options={{ headerShown: false }} />
         <Stack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
+        <Stack.Screen name="VerifyEmail" component={VerifyEmail} options={{ headerShown: false }} />
 
         <Stack.Screen
           name="Privacy"

@@ -7,6 +7,8 @@ import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
 import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Icon } from '../../components/common/Icon/Icon';
+import Input from '../../components/common/Input/Input';
+import Label from '../../components/common/Label/Label';
 import Popover from '../../components/common/Popover/Popover';
 import { Paragraph } from '../../components/common/Typography';
 import Error from '../../components/errors/Error';
@@ -14,6 +16,7 @@ import DeleteAccount from '../../components/svg/DeleteAccount';
 import { UpdateUser, deleteUser, signOut } from '../../core/db/modules/auth/api';
 import { useTranslations } from '../../core/i18n/LocaleProvider';
 import { getErrorMessage } from '../../core/utils/global/getErrorMessage';
+import colors from '../../theme/colors';
 
 const AccountScreen = () => {
   const { user } = useAuthContext();
@@ -28,16 +31,15 @@ const AccountScreen = () => {
 
   const [updatedSuccesfully, setUpdatedSuccesfully] = useState(false);
 
-  const handleUpdateProfile = async ({ firstname, lastname, email }) => {
+  const handleUpdateProfile = async ({ firstname, lastname }) => {
     setIsLoading(true);
     try {
-      await UpdateUser(email, { firstname, lastname });
-      setUpdatedSuccesfully(true);
+      await UpdateUser(user.email, { firstname, lastname });
     } catch (error) {
       const errorMessage = getErrorMessage(error, locale);
       setUpdateProfileError(errorMessage);
-      setUpdatedSuccesfully(false);
     } finally {
+      setUpdatedSuccesfully(true);
       setIsLoading(false);
     }
   };
@@ -129,25 +131,13 @@ const AccountScreen = () => {
             />
           </View>
           <View className="mb-8">
-            <View>
-              <Formgroup
-                value={user.email}
-                rules={{
-                  required: t('error.email.required'),
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: t('error.email.invalid'),
-                  },
-                }}
-                control={control}
-                label={t('input.email')}
-                returnKeyType="done"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                inputName="email"
-                onSubmitEditing={() => Keyboard.dismiss()}
-              />
+            <View className="flex flex-row items-center ">
+              <View className="mb-2 mr-2">
+                <Icon name="lock-outline" size={16} color={colors.turquoise[500]} />
+              </View>
+              <Label title={t('input.email')} />
             </View>
+            <Input disabled value={user.email} />
           </View>
           <PrimaryButton
             icon={updatedSuccesfully ? <Icon name="check" size={24} color="white" /> : null}

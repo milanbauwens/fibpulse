@@ -28,7 +28,9 @@ const Input = ({
       placeholder={placeholder}
       className={`w-full ${
         variant === 'textarea' ? 'h-48' : 'h-12 '
-      } rounded-lg bg-deepMarine-100 px-2 text-base text-deepMarine-900 ${
+      } rounded-lg bg-deepMarine-100 px-2 text-base ${
+        disabled ? 'text-turquoise-500' : 'text-deepMarine-900'
+      } ${
         error ? 'border-red-500 border bg-red-100' : ''
       }  outline-none transition-all duration-300`}
       style={{
