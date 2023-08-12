@@ -137,7 +137,7 @@ const AccountScreen = () => {
               </View>
               <Label title={t('input.email')} />
             </View>
-            <Input isLocked value={user.email} />
+            <Input isLocked disabled value={user.email} />
           </View>
           <PrimaryButton
             icon={updatedSuccesfully ? <Icon name="check" size={24} color="white" /> : null}
