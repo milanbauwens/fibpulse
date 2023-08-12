@@ -108,26 +108,26 @@ Add the following columns to the tables:
 
 ##### medical_profile
 
-| Column            | Type      |                                                                  |
-| ----------------- | --------- | ---------------------------------------------------------------- |
-| user_id           | uuid      | Foreign key from auth.users.id as Primary Key + enable cascading |
-| gender            | varchar   |                                                                  |
-| risk_factors      | varchar[] |                                                                  |
-| episode_frequency | varchar   |                                                                  |
-| passed_intake     | bool      | Default FALSE                                                    |
-| heart_disorder    | varchar   |                                                                  |
-| episode_duration  | varchar   |                                                                  |
-| year_of_birth     | int8      |                                                                  |
+| Column            | Type   |                                                                  |
+| ----------------- | ------ | ---------------------------------------------------------------- |
+| user_id           | uuid   | Foreign key from auth.users.id as Primary Key + enable cascading |
+| gender            | text   |                                                                  |
+| risk_factors      | text[] |                                                                  |
+| episode_frequency | text   |                                                                  |
+| passed_intake     | bool   | Default FALSE                                                    |
+| heart_disorder    | text   |                                                                  |
+| episode_duration  | text   |                                                                  |
+| year_of_birth     | int8   |                                                                  |
 
 ##### discover
 
-| Column   | Type    |                    |
-| -------- | ------- | ------------------ |
-| id       | int8    | Primary Key        |
-| category | varchar |                    |
-| title    | json    | {"en":"", "nl":""} |
-| content  | json    | {"en":"", "nl":""} |
-| source   | varchar |                    |
+| Column   | Type |                    |
+| -------- | ---- | ------------------ |
+| id       | int8 | Primary Key        |
+| category | text |                    |
+| title    | json | {"en":"", "nl":""} |
+| content  | json | {"en":"", "nl":""} |
+| source   | text |                    |
 
 ##### episodes
 
@@ -139,9 +139,9 @@ Add the following columns to the tables:
 | end_date            | timestamptz |                                                 |
 | pulse               | int8        |                                                 |
 | is_medical_approved | bool        | Default FALSE                                   |
-| activity            | varchar     |                                                 |
-| symptoms            | varchar[]   |                                                 |
-| notes               | varchar     |                                                 |
+| activity            | text        |                                                 |
+| symptoms            | text[]      |                                                 |
+| notes               | text        |                                                 |
 
 Save your tables by clicking the **Save** button.
 
