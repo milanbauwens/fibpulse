@@ -31,12 +31,12 @@ const Register = () => {
     setIsLoading(true);
     try {
       await SignUp(email, password, { firstname, lastname, hasMedicalProfile: false });
+      navigation.navigate('VerifyEmail');
     } catch (error) {
       const errorMessage = getErrorMessage(error, locale);
       setSignUpError(errorMessage);
     } finally {
       setIsLoading(false);
-      navigation.navigate('VerifyEmail');
     }
   }
 
