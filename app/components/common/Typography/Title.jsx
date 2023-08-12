@@ -10,16 +10,16 @@ const Title = ({
 
   switch (size) {
     case 'small':
-      variant = 'text-lg sm:text-base';
+      variant = 'text-lg large:text-base';
       break;
     case 'medium':
-      variant = 'text-xl sm:text-lg';
+      variant = 'text-xl large:text-lg';
       break;
     case 'large':
-      variant = 'text-2xl small:text-lg';
+      variant = 'text-2xl large:text-xl';
       break;
     default:
-      variant = 'text-xl sm:text-base';
+      variant = 'text-xl medium:text-base';
       break;
   }
 

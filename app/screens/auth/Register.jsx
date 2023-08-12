@@ -17,7 +17,7 @@ const Register = () => {
   const navigation = useNavigation();
   const { t, locale } = useTranslations();
 
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
   const [signUpError, setSignUpError] = useState();
@@ -31,6 +31,7 @@ const Register = () => {
     setIsLoading(true);
     try {
       await SignUp(email, password, { firstname, lastname, hasMedicalProfile: false });
+      reset({ email: '', password: '', firstname: '', lastname: '' }, { keepErrors: false });
       navigation.navigate('VerifyEmail');
     } catch (error) {
       const errorMessage = getErrorMessage(error, locale);
@@ -47,6 +48,8 @@ const Register = () => {
         <Title size="large">{t('register.title')}</Title>
       </View>
       <KeyboardAwareScrollView
+        extraHeight={200}
+        keyboardOpeningTime={0}
         contentContainerStyle={{ paddingBottom: 48 }}
         showsVerticalScrollIndicator={false}
       >
@@ -123,39 +126,39 @@ const Register = () => {
             />
           </View>
         </View>
-      </KeyboardAwareScrollView>
 
-      <View className="mb-6 mt-12">
-        <Text
-          className="text-xs text-deepMarine-700 mb-4 text-center"
-          style={{ fontFamily: 'Mulish-medium' }}
-        >
-          {t('landing.agreement')}{' '}
-          <Link to="/Terms">
-            <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
-              {t('landing.terms')}
-            </Text>
-          </Link>{' '}
-          {t('landing.and')}{' '}
-          <Link to="/Privacy">
-            <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
-              {t('landing.privacy')}
-            </Text>
-          </Link>
-        </Text>
-        <View className="mb-2">
-          <PrimaryButton
-            isLoading={isLoading}
-            label={t('register.cta')}
-            onPress={handleSubmit(handleRegister)}
+        <View className="mb-6 mt-12">
+          <Text
+            className="text-xs text-deepMarine-700 mb-4 text-center"
+            style={{ fontFamily: 'Mulish-medium' }}
+          >
+            {t('landing.agreement')}{' '}
+            <Link to="/Terms">
+              <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
+                {t('landing.terms')}
+              </Text>
+            </Link>{' '}
+            {t('landing.and')}{' '}
+            <Link to="/Privacy">
+              <Text className="text-xs text-deepMarine-500" style={{ fontFamily: 'Mulish-bold' }}>
+                {t('landing.privacy')}
+              </Text>
+            </Link>
+          </Text>
+          <View className="mb-2">
+            <PrimaryButton
+              isLoading={isLoading}
+              label={t('register.cta')}
+              onPress={handleSubmit(handleRegister)}
+            />
+          </View>
+          <TertiairyButton
+            label={t('register.doAccount')}
+            action={t('register.login')}
+            onPress={() => navigation.navigate('Login')}
           />
         </View>
-        <TertiairyButton
-          label={t('register.doAccount')}
-          action={t('register.login')}
-          onPress={() => navigation.navigate('Login')}
-        />
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

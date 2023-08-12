@@ -4,7 +4,7 @@ const Paragraph = ({ children, isStrong, textColor = 'text-turquoise-700', style
   const fontFamily = isStrong ? 'Mulish-bold' : 'Mulish-medium';
 
   return (
-    <Text style={{ fontFamily }} className={`text-base ${textColor} ${styles}`}>
+    <Text style={{ fontFamily }} className={`text-base medium:text-sm  ${textColor} ${styles}`}>
       {children}
     </Text>
   );

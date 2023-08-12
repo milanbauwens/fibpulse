@@ -17,7 +17,7 @@ const Login = () => {
   const navigation = useNavigation();
   const { t, locale } = useTranslations();
 
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
   const [signInError, setSignInError] = useState();
@@ -28,6 +28,7 @@ const Login = () => {
     setIsLoading(true);
     try {
       await signIn(email, password);
+      reset({ email: '', password: '' }, { keepErrors: false });
     } catch (error) {
       const errorMessage = getErrorMessage(error, locale);
       setSignInError(errorMessage);
