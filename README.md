@@ -14,7 +14,7 @@
         <li><a href="#build-with">Build with</a></li>
       </ul>
     </li>
-    <li>   <a href="#test-our-app">Test our app</a></li>
+    <li>   <a href="#try-it-out">Try it out</a></li>
     <li>
       <a href="#installation">Installation</a>
       <ul>
@@ -151,7 +151,7 @@ Click on the **Project settings** section, and press the **API** button.
 
 You should see your API keys. Copy the **anon** key, **service_rol** key and the **URL**. You will need these in the next steps to setup your environment variables.
 
-### Local
+### Local Development
 
 Clone the repository.
 
@@ -193,4 +193,4 @@ To build the app, please follow the instructions on the [Expo documentation](htt
 
 ## Created by
 
-Milan Bauwens - [@milanbauwens](www.linkedin.com/in/milan-bauwens-9741311b8)
+Milan Bauwens - [@milanbauwens](https://www.milanbauwens.be)
