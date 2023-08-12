@@ -62,7 +62,7 @@ const AccountScreen = () => {
           <DeleteAccount />
           <Text
             style={{ fontFamily: 'Bitter-semibold' }}
-            className="text-xl text-deepMarine-900 mb-2 mt-8"
+            className="text-xl text-deepMarine-900 mb-2"
           >
             {t('settings.account.cta.title')}
           </Text>
