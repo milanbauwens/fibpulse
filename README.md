@@ -66,7 +66,7 @@ One way to test Fibpulse, is to download the Expo Go app on your phone and scan 
   <img src="./assets/images/expo_qr.svg" alt="Qr Code to Fibpulse" width="250px">
 </p>
 
-<a href="exp://u.expo.dev/a32b5503-7a1e-40e7-ad8f-e958348387ee?channel-name=main&runtime-version=exposdk%3A48.0.0" target="_blank">Open Fibpulse on Expo Go</a>
+[Open Fibpulse in Expo Go app](exp://u.expo.dev/a32b5503-7a1e-40e7-ad8f-e958348387ee?channel-name=main&runtime-version=exposdk%3A48.0.0)
 
 ### User
 
