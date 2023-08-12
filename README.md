@@ -68,7 +68,7 @@ One way to test Fibpulse, is to download the Expo Go app on your phone and scan 
 
 [Open Fibpulse in Expo Go app](exp://u.expo.dev/a32b5503-7a1e-40e7-ad8f-e958348387ee?channel-name=main&runtime-version=exposdk%3A48.0.0)
 
-### User
+### Test User
 
     Email: milanbauwens@outlook.be
     Password: secret123
