@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Keyboard, KeyboardAvoidingView, Platform, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useAuthContext } from '../../components/auth/AuthProvider';
+import { useAuthContext } from '../../components/Auth/AuthProvider';
 import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
 import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Icon } from '../../components/common/Icon/Icon';

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Keyboard, KeyboardAvoidingView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { useAuthContext } from '../../components/auth/AuthProvider';
+import { useAuthContext } from '../../components/Auth/AuthProvider';
 import { BackButton, PrimaryButton } from '../../components/common/Buttons';
 import Formgroup from '../../components/common/Formgroup/Formgroup';
 import { Paragraph, Title } from '../../components/common/Typography';

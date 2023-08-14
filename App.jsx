@@ -5,7 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import AuthProvider from './app/components/auth/AuthProvider';
+import AuthProvider from './app/components/Auth/AuthProvider';
 import LocaleProvider from './app/core/i18n/LocaleProvider';
 import { Stack } from './app/core/router/AppStack';
 import { SplashscreenLoader } from './app/screens/Splashscreen';

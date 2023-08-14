@@ -1,8 +1,8 @@
 import { getHeaderTitle } from '@react-navigation/elements';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { useAuthContext } from '../../components/Auth/AuthProvider';
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
-import { useAuthContext } from '../../components/auth/AuthProvider';
 import { BackButton } from '../../components/common/Buttons';
 import Header from '../../components/common/Header/Header';
 import Home from '../../screens/Home';

@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Animated, TouchableOpacity, View } from 'react-native';
 
+import { useAuthContext } from '../components/Auth/AuthProvider';
 import CTACard from '../components/CTACard/CTACard';
 import EpisodeChart from '../components/EpisodeChart/EpisodeChart';
 import Insights from '../components/Insights/Insights';
 import SectionCard from '../components/SectionCard/SectionCard';
-import { useAuthContext } from '../components/auth/AuthProvider';
 import FeedbackMessage from '../components/common/FeedbackMessage/FeedbackMessage';
 import { Icon } from '../components/common/Icon/Icon';
 import { Paragraph, Title } from '../components/common/Typography';

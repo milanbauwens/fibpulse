@@ -9,7 +9,7 @@ import Home from '../../screens/Home';
 import { Episodes } from '../../screens/episodes';
 import { Settings } from '../../screens/settings';
 import colors from '../../theme/colors';
-import { useAuthContext } from '../auth/AuthProvider';
+import { useAuthContext } from '../Auth/AuthProvider';
 import AnimatedHeader from '../common/Header/AnimatedHeader';
 import { Icon } from '../common/Icon/Icon';
 

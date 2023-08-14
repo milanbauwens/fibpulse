@@ -4,8 +4,8 @@ import { shareAsync } from 'expo-sharing';
 import { useEffect, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
+import { useAuthContext } from '../../components/Auth/AuthProvider';
 import MeasureCard from '../../components/MeasureCard/MeasureCard';
-import { useAuthContext } from '../../components/auth/AuthProvider';
 import { PrimaryButton, TertiairyButton } from '../../components/common/Buttons';
 import Card from '../../components/common/Card/Card';
 import { Icon } from '../../components/common/Icon/Icon';

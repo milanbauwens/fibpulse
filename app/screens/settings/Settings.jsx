@@ -3,8 +3,8 @@ import Constants from 'expo-constants';
 import { Animated, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { useAuthContext } from '../../components/Auth/AuthProvider';
 import SettingsItem from '../../components/SettingsItem/SettingsItem';
-import { useAuthContext } from '../../components/auth/AuthProvider';
 import Label from '../../components/common/Label/Label';
 import { Paragraph, Title } from '../../components/common/Typography';
 import { signOut } from '../../core/db/modules/auth/api';

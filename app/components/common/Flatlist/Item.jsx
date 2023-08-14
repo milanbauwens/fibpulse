@@ -1,8 +1,10 @@
 import { Picker } from '@react-native-picker/picker';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Keyboard,
+  Platform,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -41,6 +43,8 @@ const Item = ({ type, data, onSelect }) => {
 
   const [seconds, setSeconds] = useState(60);
   const [timerActive, setTimerActive] = useState(false);
+
+  const pickerRef = useRef();
 
   // stopwatch function based on chat-gpt input
   useEffect(() => {
@@ -206,8 +210,9 @@ const Item = ({ type, data, onSelect }) => {
               inputMode="none"
               value={selected ? `${selected}` : ''}
               icon="chevron-right"
+              onFocus={() => setIsVisible(true)}
+              showSoftInputOnFocus={false}
               onPressIn={() => setIsVisible(true)}
-              disabled
             />
 
             <Popover animationType="slide" isVisible={isVisible}>
@@ -227,21 +232,26 @@ const Item = ({ type, data, onSelect }) => {
                     <Icon name="close" size={24} color={colors.deepMarine[700]} />
                   </TouchableOpacity>
                 </View>
-                <Picker
-                  selectionColor="rgba(22, 128, 135, 0.05)"
-                  itemStyle={{ fontFamily: 'Mulish-medium' }}
-                  selectedValue={selected ? selected : 40}
-                  onValueChange={(itemValue) => setSelected(itemValue)}
-                >
-                  {YEARS.map(({ label, value }) => (
-                    <Picker.Item
-                      color={colors.deepMarine[900]}
-                      key={value}
-                      label={label}
-                      value={value}
-                    />
-                  ))}
-                </Picker>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => pickerRef.current.focus()}>
+                  <Picker
+                    ref={pickerRef}
+                    style={Platform.OS === 'ios' ? styles.iosStyles : styles.androidStyles}
+                    selectionColor="rgba(22, 128, 135, 0.05)"
+                    itemStyle={{ fontFamily: 'Mulish-medium' }}
+                    selectedValue={selected ? selected : 40}
+                    onValueChange={(itemValue) => setSelected(itemValue)}
+                  >
+                    {YEARS.map(({ label, value }) => (
+                      <Picker.Item
+                        color={colors.deepMarine[900]}
+                        key={value}
+                        label={label}
+                        value={value}
+                      />
+                    ))}
+                  </Picker>
+                </TouchableOpacity>
+
                 <View style={{ paddingBottom: bottom + 8 }} className="mt-8 pb-[-24]">
                   <PrimaryButton onPress={() => setIsVisible(false)} label={t('actions.save')} />
                 </View>
@@ -288,5 +298,19 @@ const Item = ({ type, data, onSelect }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  androidStyles: {
+    marginTop: 32,
+    width: '100%',
+    backgroundColor: colors.deepMarine[100],
+    color: colors.turquoise[700],
+    fontFamily: 'Mulish-medium',
+    borderRadius: 8,
+  },
+  iosStyles: {
+    fontFamily: 'Mulish-medium',
+  },
+});
 
 export default Item;
